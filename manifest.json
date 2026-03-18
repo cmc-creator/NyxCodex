@@ -1,0 +1,43 @@
+{
+  "name": "NyxLab™",
+  "short_name": "NyxLab™",
+  "description": "NyxLab™ by Nyx Collective LLC — De-escalation & Crisis Intervention Training for Destiny Springs Healthcare",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0f172a",
+  "theme_color": "#2563eb",
+  "categories": ["education", "medical"],
+  "icons": [
+    {
+      "src": "/dsh.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/destiny-springs-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Start Training",
+      "short_name": "Train",
+      "description": "Jump straight into the training module",
+      "url": "/?shortcut=training",
+      "icons": [{ "src": "/dsh.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Practice Lab",
+      "short_name": "Lab",
+      "description": "Open the AI scenario practice lab",
+      "url": "/?shortcut=lab",
+      "icons": [{ "src": "/dsh.png", "sizes": "96x96" }]
+    }
+  ]
+}

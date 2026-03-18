@@ -1,0 +1,15 @@
+{
+  "name": "dsh-training-lab-functions",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "deploy": "firebase deploy --only functions:paxChat"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "dependencies": {
+    "firebase-admin": "^11.11.0",
+    "firebase-functions": "^4.6.0"
+  }
+}
