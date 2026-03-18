@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NyxCodex | Coming Soon</title>
+    <meta name="description" content="NyxCodex — an internal training platform built for high-performance teams. Coming soon from NyxCollective LLC.">
+    <link rel="icon" type="image/png" href="https://nyxcollectivellc.com/nclogo%20nobg.png">
+    <meta property="og:title" content="NyxCodex | Coming Soon">
+    <meta property="og:description" content="A training platform built for high-performance teams. Coming soon from NyxCollective LLC.">
+    <meta property="og:url" content="https://nyxcodex.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #0d0d0d;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .hero-text { font-family: 'Playfair Display', serif; }
+
+        .chrome-text {
+            background: linear-gradient(to bottom, #ffffff 10%, #666666 50%, #ffffff 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        @keyframes pulse-ring {
+            0%   { transform: scale(0.95); opacity: 0.6; }
+            50%  { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.6; }
+        }
+        .pulse-icon { animation: pulse-ring 3s ease-in-out infinite; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-8px); }
+        }
+        .floating { animation: float 5s ease-in-out infinite; }
+
+        /* Countdown digits */
+        .digit {
+            font-variant-numeric: tabular-nums;
+            font-weight: 800;
+            font-size: 2.5rem;
+            line-height: 1;
+            color: white;
+        }
+
+        /* Subtle vein background */
+        #marble-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Email input */
+        input::placeholder { color: rgba(255,255,255,0.2); }
+
+        #notify-success { display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Marble background -->
+    <svg id="marble-bg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+         width="100%" height="100%">
+        <defs>
+            <filter id="mf" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+                <feTurbulence type="turbulence" baseFrequency="0.013 0.003" numOctaves="8" seed="11" result="noise"/>
+                <feColorMatrix in="noise" type="matrix"
+                    values="7   0 0 0 -3.0
+                            7   0 0 0 -3.0
+                            7.5 0 0 0 -3.0
+                            0   0 0 0  0.80"/>
+            </filter>
+        </defs>
+        <rect width="100%" height="100%" fill="#0d0d0d"/>
+        <rect width="100%" height="100%" filter="url(#mf)" opacity="0.45"/>
+        <radialGradient id="pg" cx="10%" cy="15%" r="45%">
+            <stop offset="0%" stop-color="#9333ea" stop-opacity="0.07"/>
+            <stop offset="100%" stop-color="#9333ea" stop-opacity="0"/>
+        </radialGradient>
+        <rect width="100%" height="100%" fill="url(#pg)"/>
+    </svg>
+
+    <!-- Page -->
+    <div class="min-h-screen flex flex-col items-center justify-center px-6 py-24 text-center">
+
+        <!-- Nav back link -->
+        <a href="https://nyxcollectivellc.com" class="fixed top-6 left-6 flex items-center gap-2 text-[10px] font-black tracking-widest uppercase text-gray-500 hover:text-white transition">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            NyxCollective
+        </a>
+
+        <!-- Icon -->
+        <div class="floating mb-12">
+            <div class="pulse-icon w-24 h-24 rounded-3xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center mx-auto">
+                <i data-lucide="book-open" class="text-yellow-400 w-10 h-10"></i>
+            </div>
+        </div>
+
+        <!-- Eyebrow -->
+        <span class="text-[10px] font-black tracking-[0.5em] uppercase text-yellow-400 block mb-6">Coming Soon</span>
+
+        <!-- Headline -->
+        <h1 class="hero-text text-5xl md:text-7xl chrome-text mb-6 leading-none uppercase tracking-tighter">
+            NyxCodex
+        </h1>
+
+        <p class="text-gray-500 text-lg md:text-xl max-w-xl mx-auto mb-4 font-light leading-relaxed">
+            A training platform built for high-performance teams.<br>
+            <span class="text-white font-medium">Continuous learning, made infrastructure.</span>
+        </p>
+
+        <p class="text-gray-600 text-sm max-w-md mx-auto mb-16">
+            Create courses. Track progress. Issue certifications. Build a culture where development is the baseline, not the bonus.
+        </p>
+
+        <!-- Feature pills -->
+        <div class="flex flex-wrap gap-3 justify-center mb-16">
+            <span class="text-[9px] font-black tracking-widest uppercase px-4 py-2 rounded-full bg-yellow-500/8 border border-yellow-500/20 text-yellow-400">Course Builder</span>
+            <span class="text-[9px] font-black tracking-widest uppercase px-4 py-2 rounded-full bg-yellow-500/8 border border-yellow-500/20 text-yellow-400">Progress Tracking</span>
+            <span class="text-[9px] font-black tracking-widest uppercase px-4 py-2 rounded-full bg-yellow-500/8 border border-yellow-500/20 text-yellow-400">Certifications</span>
+            <span class="text-[9px] font-black tracking-widest uppercase px-4 py-2 rounded-full bg-yellow-500/8 border border-yellow-500/20 text-yellow-400">Assessments</span>
+            <span class="text-[9px] font-black tracking-widest uppercase px-4 py-2 rounded-full bg-yellow-500/8 border border-yellow-500/20 text-yellow-400">Onboarding Tracks</span>
+            <span class="text-[9px] font-black tracking-widest uppercase px-4 py-2 rounded-full bg-yellow-500/8 border border-yellow-500/20 text-yellow-400">White-Label Ready</span>
+        </div>
+
+        <!-- Notify form -->
+        <div class="glass rounded-[2rem] p-8 max-w-md w-full mx-auto border border-white/5">
+            <p class="text-white font-bold text-sm uppercase tracking-widest mb-6">Get notified at launch</p>
+            <form id="notify-form" action="https://formspree.io/f/xqeydzrb" method="POST" novalidate
+                  class="flex flex-col sm:flex-row gap-3">
+                <input type="hidden" name="product" value="NyxCodex Launch Notification">
+                <input type="email" name="email" placeholder="your@email.com" required
+                       class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-yellow-500/50 text-sm text-white transition">
+                <button type="submit"
+                        class="px-6 py-3 bg-yellow-500 text-black font-black text-xs tracking-widest uppercase rounded-xl hover:bg-yellow-400 transition whitespace-nowrap">
+                    Notify Me
+                </button>
+            </form>
+            <p id="notify-success" class="text-yellow-400 text-xs font-bold tracking-widest uppercase mt-4">You're on the list. We'll be in touch.</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-20 text-gray-700 text-xs uppercase tracking-widest">
+            A product by <a href="https://nyxcollectivellc.com" class="text-gray-500 hover:text-white transition">NyxCollective LLC</a>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        document.getElementById('notify-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const email = form.querySelector('input[type="email"]').value;
+            if (!email || !email.includes('@')) return;
+
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (res.ok) {
+                    form.style.display = 'none';
+                    document.getElementById('notify-success').style.display = 'block';
+                }
+            } catch (err) {
+                // silent fail
+            }
+        });
+    </script>
+</body>
+</html>
