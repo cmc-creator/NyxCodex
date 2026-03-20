@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>NyxCodex® — Destiny Springs Healthcare</title>
+<title>NyxCodex™ — Clinical De-Escalation Training</title>
 
 <!-- PWA -->
 <link rel="manifest" href="/manifest.json">
@@ -447,7 +447,7 @@ window._emitXAPI = async function(verb, resultData) {
       },
       result: resultData || {},
       timestamp: new Date().toISOString(),
-      context: { platform:'NyxCodex®', language:'en-US', extensions: { 'https://www.destinysprings.com/extensions/orgId': window.TENANT?.orgId || 'unknown' } }
+      context: { platform:'NyxCodex®', language:'en-US', extensions: { 'https://nyxcodex.com/extensions/orgId': window.TENANT?.orgId || 'unknown' } }
     };
     const headers = { 'Content-Type':'application/json', 'X-Experience-API-Version':'1.0.3' };
     if (cfg.xapiUsername) headers['Authorization'] = 'Basic ' + btoa((cfg.xapiUsername||'') + ':' + (cfg.xapiPassword||''));
@@ -627,7 +627,7 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
   /* Modal cards on mobile - full width */
   #admin-modal .card,#account-modal .card,#admin-pin-modal .card{border-radius:1rem!important}
   /* Auth logo — shrink on mobile */
-  #auth-screen img[alt="Destiny Springs Healthcare"]{height:100px!important}
+  
   /* Hide auth hero image on mobile */
   #auth-hero-img{display:none!important}
 }
@@ -708,7 +708,7 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
 
       <!-- Logo -->
       <div style="margin-bottom:auto">
-        <img src="destiny-springs-logo.png" alt="Destiny Springs Healthcare" style="height:160px;width:auto;max-width:100%;display:block">
+        <div class="logo-inline" style="max-height:80px;max-width:280px;width:100%"></div>
       </div>
 
       <!-- Hero headline -->
@@ -723,21 +723,26 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
           Lives.
         </h1>
         <div id="auth-tagline" style="margin-bottom:2.5rem;max-width:420px;color:#94a3b8;font-size:.95rem;line-height:1.75;font-weight:600">
-          Master psychiatric de-escalation techniques through immersive training built for Destiny Springs Healthcare staff.
+          AI-powered clinical simulation training for psychiatric de-escalation.
         </div>
-        <div id="auth-hero-img" style="margin-top:1.5rem">
-          <img src="dsh.png" alt="Destiny Springs Healthcare" style="width:280px;max-width:100%;height:auto;display:block;border-radius:.875rem;box-shadow:0 4px 18px rgba(0,0,0,.35)">
+        <div id="auth-hero-img" style="margin-top:1.5rem;display:flex;gap:.75rem;flex-wrap:wrap">
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:.875rem;padding:.875rem 1.25rem;flex:1;min-width:130px">
+            <div style="font-size:1.5rem;margin-bottom:.35rem">&#129504;</div>
+            <div style="color:white;font-size:.8rem;font-weight:800">AI Scenarios</div>
+            <div style="color:#94a3b8;font-size:.7rem">Real-time coaching</div>
+          </div>
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:.875rem;padding:.875rem 1.25rem;flex:1;min-width:130px">
+            <div style="font-size:1.5rem;margin-bottom:.35rem">&#128200;</div>
+            <div style="color:white;font-size:.8rem;font-weight:800">Progress Tracking</div>
+            <div style="color:#94a3b8;font-size:.7rem">XP &amp; leaderboards</div>
+          </div>
         </div>
       </div>
 
       <!-- Footer strip -->
       <div style="border-top:1px solid rgba(255,255,255,.15);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
-        <div style="display:flex;align-items:center;gap:.6rem">
-          <span id="auth-copyright" style="font-size:.82rem;color:#cbd5e1;font-weight:600">© 2026 NyxCodex® · Nyx Collective LLC</span>
-          <span style="color:#475569;font-size:.9rem">·</span>
-          <a href="https://www.destinyspringshealthcare.com/" target="_blank" style="font-size:.82rem;color:#7dd3fc;text-decoration:none;font-weight:700">destinyspringshealthcare.com</a>
-        </div>
-        <span style="font-size:.8rem;color:#94a3b8;font-weight:500">17300 N Dysart Rd, Surprise AZ 85378</span>
+        <span id="auth-copyright" style="font-size:.82rem;color:#cbd5e1;font-weight:600">© 2026 NyxCodex™ · Nyx Collective LLC</span>
+        <a href="https://nyxcodex.com" target="_blank" style="font-size:.82rem;color:#7dd3fc;text-decoration:none;font-weight:700">nyxcodex.com</a>
       </div>
     </div>
   </div>
@@ -863,7 +868,7 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
           Create Account ?
         </button>
         <p style="font-size:.68rem;color:#94a3b8;text-align:center;line-height:1.5">
-          <span id="auth-privacy">Your information is stored securely and used only for Destiny Springs Healthcare training purposes.</span>
+          <span id="auth-privacy">Your information is stored securely and used only for training purposes.</span>
         </p>
         <div style="display:flex;align-items:center;gap:.5rem;margin:1rem 0 .75rem">
           <div style="flex:1;height:1px;background:#e2e8f0"></div>
@@ -945,11 +950,11 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
   <div id="due-date-banner" style="display:none;width:100%;max-width:1100px;margin-bottom:1rem"></div>
   <div style="width:100%;max-width:1100px;display:grid;grid-template-columns:1.1fr 1fr;gap:1.75rem;align-items:center;color:#e2e8f0">
     <div style="display:flex;flex-direction:column;gap:1.1rem">
-      <div class="logo-inline" aria-label="Destiny Springs Healthcare logo" style="max-width:360px;width:100%"></div>
+      <div class="logo-inline" aria-label="NyxCodex logo" style="max-width:360px;width:100%"></div>
       <div id="hub-heading" style="font-family:Montserrat,sans-serif;font-weight:900;font-size:clamp(2rem,4vw,2.7rem);line-height:1.05;color:white">Welcome back to NyxCodex®</div>
       <p style="color:#cbd5e1;font-size:1rem;line-height:1.7;max-width:640px;font-weight:600">Pick where you want to go. Restart the full training from slide one, or jump straight into the live Lab to practice scenarios. Your XP, level, and lab credits stay with you.</p>
       <div style="display:flex;flex-wrap:wrap;gap:1rem;color:#94a3b8;font-weight:700;font-size:.9rem">
-        <div id="hub-org-pill" style="display:flex;align-items:center;gap:.5rem;padding:.65rem 1rem;border-radius:.9rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)">Destiny Springs Healthcare</div>
+        <div id="hub-org-pill" style="display:flex;align-items:center;gap:.5rem;padding:.65rem 1rem;border-radius:.9rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)"></div>
         <div style="display:flex;align-items:center;gap:.5rem;padding:.65rem 1rem;border-radius:.9rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)">Interactive Module Training</div>
         <div style="display:flex;align-items:center;gap:.5rem;padding:.65rem 1rem;border-radius:.9rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)">Lab simulations</div>
       </div>
@@ -1038,7 +1043,7 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
 <div id="admin-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:150;align-items:center;justify-content:center;padding:1rem">
   <div class="card w-full max-w-5xl" style="max-height:90vh;overflow:hidden;display:flex;flex-direction:column">
     <div class="p-6 border-b border-slate-200 flex items-center justify-between flex-shrink-0">
-      <div><h2 class="text-xl font-black text-slate-900">NyxCodex® Command Center</h2><p id="admin-role-badge" class="text-xs text-slate-400 font-semibold">Destiny Springs Healthcare — Training Management</p></div>
+      <div><h2 class="text-xl font-black text-slate-900">NyxCodex® Command Center</h2><p id="admin-role-badge" class="text-xs text-slate-400 font-semibold">NyxCodex™ — Training Management</p></div>
       <button onclick="closeAdmin()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center font-black text-slate-600">✕</button>
     </div>
     <div class="flex gap-0 border-b border-slate-200 px-6 flex-shrink-0" style="overflow-x:auto">
@@ -1480,7 +1485,7 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
         <div id="acct-avatar-circle" style="width:52px;height:52px;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:1.1rem"></div>
         <div>
           <h2 style="font-size:1.1rem;font-weight:900;color:#0f172a;font-family:Montserrat,sans-serif" id="acct-header-name">My Account</h2>
-          <p style="font-size:.7rem;color:#94a3b8;font-weight:600" id="acct-header-sub">Destiny Springs Healthcare</p>
+          <p style="font-size:.7rem;color:#94a3b8;font-weight:600" id="acct-header-sub"></p>
         </div>
       </div>
       <button onclick="closeAccountModal()" style="width:36px;height:36px;border-radius:50%;background:#f1f5f9;border:none;cursor:pointer;font-size:1rem;font-weight:900;color:#64748b">✕</button>
@@ -1584,7 +1589,7 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
 
 <!-- Loading overlay: covers the app while Firebase loads user data -->
 <div id="app-loading" style="position:fixed;inset:0;z-index:300;background:#0b1224;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem">
-  <img src="destiny-springs-logo.png" alt="Destiny Springs Healthcare" style="height:80px;width:auto">
+  <div class="logo-inline" style="max-height:64px;max-width:220px;width:100%;margin:0 auto"></div>
   <div style="width:48px;height:48px;border:4px solid rgba(255,255,255,.15);border-top-color:#60a5fa;border-radius:50%;animation:spin .8s linear infinite"></div>
   <p style="color:#94a3b8;font-size:.9rem;font-weight:600">Loading your training profile&hellip;</p>
   <p id="app-loading-hint" style="color:#475569;font-size:.75rem;font-weight:600;display:none">Taking longer than usual &mdash; <a href="" onclick="location.reload();return false;" style="color:#60a5fa;text-decoration:underline">tap here to reload</a></p>
@@ -1820,7 +1825,7 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
 <div class="slide active" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#0f172a 100%)">
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2rem;text-align:center;padding-bottom:6rem">
     <div style="margin-bottom:1.2rem;max-width:320px;width:70vw;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))">
-      <img src="destiny-springs-logo.png" alt="Destiny Springs Healthcare" style="width:100%;object-fit:contain;display:block">
+      <div class="logo-inline" style="max-height:80px;max-width:300px;width:100%;margin:0 auto"></div>
     </div>
     <div class="badge" style="background:rgba(37,99,235,.2);color:#93c5fd;border:1px solid rgba(37,99,235,.3);margin-bottom:2rem;font-size:.7rem">
       NyxCodex® · Est. 2026 · Nyx Collective LLC
@@ -1828,8 +1833,8 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
     <h1 style="font-size:clamp(2.5rem,8vw,5.5rem);color:white;line-height:.95;margin-bottom:1.5rem;font-family:Montserrat,sans-serif;font-weight:900">
       NyxCodex®<br><span style="background:linear-gradient(90deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent">De-escalation</span>
     </h1>
-    <p style="color:#94a3b8;font-size:1rem;margin-bottom:.25rem;font-weight:600">Mastery Lab — Destiny Springs Healthcare Edition</p>
-    <p style="color:#475569;font-size:.8rem;margin-bottom:3rem">© 2026 NyxCodex® · Nyx Collective LLC — All Rights Reserved — Deployed for Destiny Springs Healthcare</p>
+    <p style="color:#94a3b8;font-size:1rem;margin-bottom:.25rem;font-weight:600">Mastery Lab — NyxCodex™</p>
+    <p style="color:#475569;font-size:.8rem;margin-bottom:3rem">© 2026 NyxCodex® · Nyx Collective LLC — All Rights Reserved — Clinical Training Platform</p>
     <div id="welcome-card" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:1.5rem;padding:2rem;max-width:520px;width:100%;margin-bottom:2.5rem;backdrop-filter:blur(12px)">
       <p id="welcome-greeting" style="color:#94a3b8;font-size:.85rem;margin-bottom:.5rem">Welcome,</p>
       <p id="welcome-name" style="color:white;font-size:1.75rem;font-weight:900;font-family:Montserrat,sans-serif;margin-bottom:1rem">&nbsp;</p>
@@ -2890,7 +2895,7 @@ function getSlides14to27() { return `
     <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:1.25rem;padding:1.5rem;grid-column:1/-1;display:flex;align-items:center;gap:1rem">
       <div style="font-size:2.5rem;flex-shrink:0">??</div>
       <div>
-        <p style="font-weight:800;color:white;margin-bottom:.5rem">Internal Resources at Destiny Springs Healthcare</p>
+        <p style="font-weight:800;color:white;margin-bottom:.5rem">Staff Wellness Resources</p>
         <p style="font-size:.875rem;color:#94a3b8;line-height:1.7">Employee Assistance Program (EAP) — Peer Support Team — Clinical Supervisor Debriefs — Anonymous wellness check-ins available anytime. <strong style="color:#c4b5fd">You cannot give what you don't have. Taking care of yourself IS patient care.</strong></p>
       </div>
     </div>
@@ -3254,7 +3259,7 @@ function getSlides14to27() { return `
       </div>
       <p style="color:#cbd5e1;font-weight:700;font-size:.9rem;margin:0">Pass to unlock the certificate slide.</p>
     </div>
-    <p style="color:#475569;font-size:.75rem;line-height:1.8">© 2026 NyxCodex® · Nyx Collective LLC — All Rights Reserved — Deployed for Destiny Springs Healthcare</p>
+    <p style="color:#475569;font-size:.75rem;line-height:1.8">© 2026 NyxCodex® · Nyx Collective LLC — All Rights Reserved — Clinical Training Platform</p>
   </div>
 </div>
 
@@ -3299,20 +3304,15 @@ function getSlides14to27() { return `
 ----------------------------------------------------------- -->
 <script>
 // --- State ------------------------------------------------
-const LOGO_SVG = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 300' role='img' aria-label='Destiny Springs Healthcare' width='100%' height='100%'>
+const LOGO_SVG = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 110' role='img' aria-label='NyxCodex' width='100%' height='100%'>
   <defs>
-    <linearGradient id='ds-grad' x1='0%' y1='0%' x2='100%' y2='100%'>
-      <stop offset='0%' stop-color='#1FA0E0'/>
-      <stop offset='100%' stop-color='#0066B3'/>
+    <linearGradient id='nx-grad' x1='0%' y1='0%' x2='100%' y2='0%'>
+      <stop offset='0%' stop-color='#818cf8'/>
+      <stop offset='100%' stop-color='#38bdf8'/>
     </linearGradient>
   </defs>
-  <g transform='translate(40 30) scale(0.9)'>
-    <path fill='url(#ds-grad)' d='M200 240c-77 0-140-63-140-140S123 0 200 0s140 63 140 140-63 140-140 140Zm0-16c67 0 122-55 122-124S267  -24 200 -24 78 31 78 100s55 124 122 124Z' opacity='0.35'/>
-    <path fill='url(#ds-grad)' d='M205 248c-74 0-134-60-134-134 0-24 6-47 18-67 4-7 14-9 20-4 49 44 93 50 129 27 8-5 18 3 15 12-14 46-51 105-151 112 22 17 50 27 80 27 56 0 105-33 126-80-8 67-65 119-133 119Z'/>
-    <path fill='url(#ds-grad)' d='M121 213c39-6 70-34 95-107 4-13 19-17 28-7 9 10 12 26 6 41-27 75-78 97-129 73Z'/>
-    <text x='280' y='130' fill='#0f5fab' font-family='Georgia,serif' font-size='86' font-weight='400'>Destiny Springs</text>
-    <text x='280' y='185' fill='#0f9edd' font-family='Helvetica Neue,Arial,sans-serif' font-size='46' font-weight='700' letter-spacing='6'>HEALTHCARE</text>
-  </g>
+  <text x='8' y='80' fill='url(#nx-grad)' font-family='Montserrat,Georgia,sans-serif' font-size='76' font-weight='900' letter-spacing='-2'>NyxCodex</text>
+  <text x='10' y='104' fill='#64748b' font-family='Helvetica Neue,Arial,sans-serif' font-size='16' font-weight='700' letter-spacing='5'>CLINICAL TRAINING PLATFORM</text>
 </svg>`;
 function renderInlineLogos() {
   const t = window.TENANT;
@@ -4652,7 +4652,7 @@ async function sendChatMessage() {
   const mode = sessionMode || 'training';
   const sys = mode === 'lab'
     ? `You are Professor Vance, an expert Clinical Mentor for Behavioral Health Technicians (BHTs) in a high-acuity psychiatric crisis unit. You are coaching a trainee through a simulation involving a patient named ${_pName} (${_pDx}). You have access to the user's progress through the training. When the user is on a slide, narrate key points and provide Pro-Tips. When the user types a response, evaluate it based on de-escalation criteria and award XP verbally for strong clinical points. Tone: calm, authoritative, deeply empathetic — unshakable in a crisis. Maximum THREE short conversational sentences per reply. Use 'we' to foster teamwork. Safety rules: Reaction Gap (6-10 feet), validate feelings before asserting authority, offer forced choices (Choice Architecture), scan for environmental hazards. If the trainee's response would escalate the patient: 'That's a common mistake, but in this environment it's a dangerous one. Let's look at what went wrong.' If they choose well: 'Excellent work. By validating their frustration, you've lowered the room's temperature.' Link feedback to concepts from the slides they just completed. Avoid PHI and definitive clinical orders.`
-    : `You are Professor Vance, an expert Clinical Mentor for Behavioral Health Technicians at ${window.TENANT?.orgName||'Destiny Springs Healthcare'}, coaching through an interactive de-escalation training involving a patient named ${_pName}. You serve dual roles: (1) when asked about slides or content, narrate and give Pro-Tips linked to what was just covered; (2) when the user types a clinical response, evaluate it against de-escalation best practices and provide immediate coaching. Keep replies to maximum THREE short sentences. Use 'we' to build teamwork. Always connect feedback to the slides. If unsure or outside training scope, recommend the supervisor or clinical leadership. Avoid PHI.`;
+    : `You are Professor Vance, an expert Clinical Mentor for Behavioral Health Technicians at ${window.TENANT?.orgName||'your healthcare organization'}, coaching through an interactive de-escalation training involving a patient named ${_pName}. You serve dual roles: (1) when asked about slides or content, narrate and give Pro-Tips linked to what was just covered; (2) when the user types a clinical response, evaluate it against de-escalation best practices and provide immediate coaching. Keep replies to maximum THREE short sentences. Use 'we' to build teamwork. Always connect feedback to the slides. If unsure or outside training scope, recommend the supervisor or clinical leadership. Avoid PHI.`;
   const _mStateNote = (typeof marcusState !== 'undefined' && marcusState !== 'Neutral') ? ` [ALERT: Patient ${_pName} current state is ${marcusState} — calibrate your coaching accordingly.]` : '';
   const body = { system: sys + _mStateNote, messages: chatMessages.slice(-8) };
   let reply = '';
@@ -5192,7 +5192,7 @@ function openAdminDashboard() {
   const badge = document.getElementById('admin-role-badge');
   const roleLabels = { owner: '🔑 Owner', admin: '🛡️ Admin', manager: '🏥 Dept Manager' };
   const roleLabel = roleLabels[currentAdminRole] || currentAdminRole;
-  if(badge) badge.textContent = `Destiny Springs Healthcare — Signed in as ${roleLabel}`;
+  if(badge) badge.textContent = `${window.TENANT?.orgName || 'NyxCodex™'} — Signed in as ${roleLabel}`;
   // Manager: capture department for filtering
   if(currentAdminRole === 'manager') {
     const myRecord = (window._allAdminsCache||{})[window._currentUser?.uid];
@@ -6858,7 +6858,7 @@ async function runDebrief() {
   if(!text) { alert('Describe an incident first.'); return; }
   if(btn) { btn.disabled=true; btn.textContent='Analyzing…'; }
   if(output) output.innerHTML = '<span style="opacity:.6">Dr. Rivera is reviewing your incident·</span>';
-  const sys = `You are Dr. Rivera, clinical supervisor at Destiny Springs Healthcare. Review this real incident and provide structured clinical feedback. Format your response using these four sections: WHAT WENT WELL | MISSED OPPORTUNITIES | NEXT TIME TRY | COMPETENCY LEVEL. Be supportive and growth-focused. This is about learning, not judgment. Keep response under 250 words.`;
+  const sys = `You are Dr. Rivera, clinical supervisor at your healthcare organization. Review this real incident and provide structured clinical feedback. Format your response using these four sections: WHAT WENT WELL | MISSED OPPORTUNITIES | NEXT TIME TRY | COMPETENCY LEVEL. Be supportive and growth-focused. This is about learning, not judgment. Keep response under 250 words.`;
   try {
     const res = await fetch(CHAT_ENDPOINT, {
       method:'POST', headers:{'Content-Type':'application/json'},
@@ -7342,7 +7342,7 @@ function downloadCertificate() {
   const T    = window.TENANT || {};
   const name = user ? (user.displayName||user.email) : (T.orgName||'DSH') + ' Staff Member';
   const date = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-  const orgName     = T.orgName            || 'Destiny Springs Healthcare';
+  const orgName     = T.orgName            || 'Your Organization';
   const brandName   = T.brandName          || 'NyxCodex\u2122';
   const tagline     = T.tagline            || '31-Module Inpatient Psychiatric Crisis Intervention Training';
   const contactHrs  = T.certContactHours   || 4.0;
@@ -7587,7 +7587,7 @@ function downloadCard(type) {
         <div style="font-size:1.75rem">${card.icon}</div>
         <div>
           <div style="font-size:1rem;font-weight:900;color:${card.color};font-family:Georgia,serif">${card.title}</div>
-          <div style="font-size:.65rem;color:#94a3b8;font-weight:700;letter-spacing:.1em;text-transform:uppercase">NyxCodex® · Nyx Collective LLC — Deployed for Destiny Springs Healthcare</div>
+          <div style="font-size:.65rem;color:#94a3b8;font-weight:700;letter-spacing:.1em;text-transform:uppercase">NyxCodex® · Nyx Collective LLC — Clinical Training Platform</div>
         </div>
       </div>
       ${itemsHtml}
@@ -8246,7 +8246,7 @@ thead tr{background:#f1f5f9}th{padding:.875rem 1rem;text-align:left;font-weight:
     </tr></thead>
     <tbody>${rows}</tbody>
   </table>
-  <div class="footer">Destiny Springs Healthcare &mdash; De-escalation Training &mdash; Confidential. For internal use only.</div>
+  <div class="footer">NyxCodex™ &mdash; De-escalation Training &mdash; Confidential. For internal use only.</div>
 </div>
 </body></html>`;
   const blob = new Blob([html], { type: 'text/html' });

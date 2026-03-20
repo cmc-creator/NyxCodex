@@ -1,56 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta http-equiv="refresh" content="0; url=trainer_pro.html">
-    <title>Destiny Springs Healthcare Training Lab</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .container {
-            text-align: center;
-        }
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        a {
-            color: white;
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NyxCodex&#8482; &#8212; Clinical De-Escalation Training Platform</title>
+  <meta name="description" content="NyxCodex&#8482; is an AI-powered clinical training platform for psychiatric healthcare professionals. Master de-escalation with immersive simulations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:'Inter',sans-serif}
+    body{background:#070c1f;color:white;overflow-x:hidden}
+
+    /* ---- Animated background ---- */
+    .bg{position:fixed;inset:0;z-index:0;background:linear-gradient(160deg,#070c1f 0%,#0f1740 45%,#1a0a3d 100%)}
+    .orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0}
+    .orb1{width:700px;height:700px;background:radial-gradient(circle,rgba(99,57,220,.18) 0%,transparent 70%);top:-200px;right:-100px;animation:drift 18s ease-in-out infinite}
+    .orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(56,189,248,.12) 0%,transparent 70%);bottom:-100px;left:-150px;animation:drift 24s ease-in-out infinite reverse}
+    .orb3{width:300px;height:300px;background:radial-gradient(circle,rgba(168,85,247,.14) 0%,transparent 70%);top:50%;left:50%;animation:drift 14s ease-in-out infinite 3s}
+    .grid{position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:56px 56px;z-index:0}
+    @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-40px) scale(1.05)}}
+
+    /* ---- Layout ---- */
+    .wrap{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+
+    /* ---- Nav ---- */
+    nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.5rem;background:linear-gradient(90deg,#818cf8,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none}
+    .nav-cta{background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;border-radius:.75rem;padding:.65rem 1.5rem;font-size:.9rem;font-weight:800;cursor:pointer;text-decoration:none;transition:opacity .2s}
+    .nav-cta:hover{opacity:.88}
+
+    /* ---- Hero ---- */
+    .hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 2rem 4rem}
+    .eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(129,140,248,.12);border:1px solid rgba(129,140,248,.25);border-radius:2rem;padding:.45rem 1.1rem;font-size:.72rem;font-weight:800;color:#a5b4fc;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2rem}
+    .eyebrow-dot{width:6px;height:6px;border-radius:50%;background:#818cf8;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.0;letter-spacing:-.04em;margin-bottom:1.5rem}
+    .gradient-text{background:linear-gradient(90deg,#818cf8 0%,#38bdf8 60%,#c084fc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-sub{max-width:580px;color:#94a3b8;font-size:1.1rem;line-height:1.8;font-weight:600;margin-bottom:3rem}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+    .btn-primary{background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;border-radius:.875rem;padding:1rem 2.25rem;font-size:1rem;font-weight:800;cursor:pointer;text-decoration:none;box-shadow:0 8px 28px rgba(99,57,220,.35);transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:.5rem}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(99,57,220,.45)}
+    .btn-secondary{background:rgba(255,255,255,.06);color:#e2e8f0;border:1px solid rgba(255,255,255,.12);border-radius:.875rem;padding:1rem 2.25rem;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;transition:background .2s;display:inline-flex;align-items:center;gap:.5rem}
+    .btn-secondary:hover{background:rgba(255,255,255,.1)}
+
+    /* ---- Stats strip ---- */
+    .stats{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;padding:2.5rem 2rem;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+    .stat{text-align:center}
+    .stat-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;background:linear-gradient(90deg,#818cf8,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .stat-label{color:#64748b;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem}
+
+    /* ---- Features ---- */
+    .features{padding:5rem 2rem;max-width:1100px;margin:0 auto;width:100%}
+    .section-label{text-align:center;font-size:.72rem;font-weight:800;color:#818cf8;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem}
+    .section-title{text-align:center;font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;letter-spacing:-.03em;margin-bottom:1rem}
+    .section-sub{text-align:center;color:#64748b;font-size:1rem;max-width:500px;margin:0 auto 3.5rem;line-height:1.7}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1.25rem;padding:1.75rem;transition:background .25s,border-color .25s,transform .25s}
+    .card:hover{background:rgba(255,255,255,.07);border-color:rgba(129,140,248,.35);transform:translateY(-3px)}
+    .card-icon{font-size:2rem;margin-bottom:1rem}
+    .card-title{font-weight:800;font-size:1rem;margin-bottom:.5rem}
+    .card-body{color:#64748b;font-size:.9rem;line-height:1.7}
+
+    /* ---- For Who ---- */
+    .for-who{padding:4rem 2rem;max-width:800px;margin:0 auto;text-align:center}
+    .roles{display:flex;justify-content:center;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+    .role-pill{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:2rem;padding:.6rem 1.25rem;font-size:.85rem;font-weight:700;color:#cbd5e1}
+
+    /* ---- CTA Banner ---- */
+    .cta-banner{margin:2rem auto 5rem;max-width:960px;width:calc(100% - 4rem);background:linear-gradient(135deg,rgba(37,99,235,.2),rgba(124,58,237,.2));border:1px solid rgba(129,140,248,.2);border-radius:1.5rem;padding:3rem 2.5rem;text-align:center}
+    .cta-banner h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.6rem,3.5vw,2.4rem);margin-bottom:.75rem;letter-spacing:-.02em}
+    .cta-banner p{color:#94a3b8;margin-bottom:2rem;font-size:1rem;font-weight:600}
+
+    /* ---- Footer ---- */
+    footer{border-top:1px solid rgba(255,255,255,.06);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-brand{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1rem;background:linear-gradient(90deg,#818cf8,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .footer-copy{font-size:.78rem;color:#475569;font-weight:600}
+
+    /* ---- Mobile ---- */
+    @media(max-width:640px){
+      nav{padding:1.25rem 1.25rem}
+      .hero{padding:3.5rem 1.25rem 3rem}
+      .stats{gap:1.5rem;padding:2rem 1.25rem}
+      .features,.for-who{padding:3rem 1.25rem}
+      .cta-banner{margin:1rem 1rem 3rem;padding:2rem 1.5rem}
+      footer{padding:1.5rem 1.25rem;flex-direction:column;text-align:center}
+      .nav-logo{font-size:1.25rem}
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Destiny Springs Healthcare</h1>
-        <h2>De-escalation Training Lab</h2>
-        <div class="spinner"></div>
-        <p>Redirecting to training platform...</p>
-        <p><a href="trainer_pro.html">Click here if you are not redirected automatically</a></p>
+  <div class="bg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="grid"></div>
+
+  <div class="wrap">
+    <!-- Nav -->
+    <nav>
+      <span class="nav-logo">NyxCodex&#8482;</span>
+      <a href="trainer_pro.html" class="nav-cta">Sign In &#8594;</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        AI-Powered Clinical Training
+      </div>
+      <h1>
+        Train Smarter.<br>
+        <span class="gradient-text">De-escalate Better.</span>
+      </h1>
+      <p class="hero-sub">
+        NyxCodex&#8482; is the clinical simulation platform built for psychiatric healthcare professionals&mdash;AI patient scenarios, real-time coaching, and evidence-based de-escalation training.
+      </p>
+      <div class="hero-actions">
+        <a href="trainer_pro.html" class="btn-primary">
+          &#128275; Access Training Platform
+        </a>
+        <a href="trainer_pro.html#demo" class="btn-secondary" onclick="event.preventDefault();window.location.href='trainer_pro.html'">
+          &#127916; See a Demo
+        </a>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Training Slides</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">AI</div>
+        <div class="stat-label">Live Coaching</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Skill Scenarios</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Evidence-Based</div>
+      </div>
     </div>
-    <script>
-        // Redirect after a brief moment
-        setTimeout(function() {
-            window.location.href = 'trainer_pro.html';
-        }, 500);
-    </script>
+
+    <!-- Features -->
+    <section class="features">
+      <div class="section-label">Platform Features</div>
+      <h2 class="section-title">Everything your team needs to train confidently</h2>
+      <p class="section-sub">From onboarding to mastery, NyxCodex&#8482; covers the full clinical training cycle.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">&#129504;</div>
+          <div class="card-title">AI Patient Simulations</div>
+          <div class="card-body">Interact with realistic simulated patients powered by AI. Practice responses and receive real-time clinical coaching from Professor Vance.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#127979;</div>
+          <div class="card-title">30-Slide Training Curriculum</div>
+          <div class="card-body">Evidence-based de-escalation content covering trauma-informed care, PTSD, bipolar mania, paranoia, environmental safety, and more.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128200;</div>
+          <div class="card-title">XP &amp; Progress Tracking</div>
+          <div class="card-body">Gamified learning with experience points, skill levels, and leaderboards. Admins get full audit trails and completion reporting.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#127919;</div>
+          <div class="card-title">Daily Drill Mode</div>
+          <div class="card-body">15 clinical flash-cards with spaced repetition. Scenario branching and hazard drills keep skills sharp between full training runs.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128203;</div>
+          <div class="card-title">Admin Dashboard</div>
+          <div class="card-body">Full org management: user invites, role assignment, department filtering, completion exports, and live staff progress monitoring.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128241;</div>
+          <div class="card-title">Mobile-First Design</div>
+          <div class="card-body">Fully responsive&mdash;works on phones, tablets, and desktops. Train anywhere, on any shift, on any device.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- For Who -->
+    <section class="for-who">
+      <div class="section-label">Built For</div>
+      <h2 class="section-title">Designed for every role on the unit</h2>
+      <div class="roles">
+        <span class="role-pill">&#127978; Behavioral Health Technicians</span>
+        <span class="role-pill">&#128138; Registered Nurses</span>
+        <span class="role-pill">&#129657; Mental Health Staff</span>
+        <span class="role-pill">&#128203; Clinical Supervisors</span>
+        <span class="role-pill">&#127968; Inpatient Teams</span>
+        <span class="role-pill">&#128736; Training Coordinators</span>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner">
+      <h2>Ready to elevate your team's clinical skills?</h2>
+      <p>Sign in to access NyxCodex&#8482; or explore the platform with a no-account demo.</p>
+      <a href="trainer_pro.html" class="btn-primary" style="display:inline-flex">
+        &#128275; Go to Training Platform
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <span class="footer-brand">NyxCodex&#8482;</span>
+      <span class="footer-copy">&#169; 2026 NyxCodex&#8482; &middot; Nyx Collective LLC &middot; All Rights Reserved</span>
+    </footer>
+  </div>
 </body>
 </html>
