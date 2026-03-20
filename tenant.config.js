@@ -19,8 +19,8 @@ window.TENANT = {
   orgWebsite:    'https://www.destinyspringshealthcare.com/',
   orgAddress:    '17300 N Dysart Rd, Surprise AZ 85378',
 
-  brandName:     'NyxLab\u2122',
-  productLine:   'NyxLab\u2122 \u2014 A Nyx Collective LLC Platform',
+  brandName:     'NyxCodex\u2122',
+  productLine:   'NyxCodex\u2122 \u2014 A Nyx Collective LLC Platform',
   moduleCount:   31,
   tagline:       'De-escalation &amp; Crisis Intervention Training \u2014 Destiny Springs Healthcare Edition',
   subtopics:     'CPI Model \u00B7 Diagnosis-Specific Care \u00B7 Trauma-Informed Practice \u00B7 Safety Protocols',
