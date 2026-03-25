@@ -708,7 +708,7 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
 
       <!-- Logo -->
       <div style="margin-bottom:auto">
-        <div class="logo-inline" style="max-height:80px;max-width:280px;width:100%"></div>
+        <div class="logo-inline" style="max-height:160px;max-width:380px;width:100%"></div>
       </div>
 
       <!-- Hero headline -->
@@ -1589,7 +1589,7 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
 
 <!-- Loading overlay: covers the app while Firebase loads user data -->
 <div id="app-loading" style="position:fixed;inset:0;z-index:300;background:#0b1224;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem">
-  <div class="logo-inline" style="max-height:64px;max-width:220px;width:100%;margin:0 auto"></div>
+  <div class="logo-inline" style="max-height:100px;max-width:320px;width:100%;margin:0 auto"></div>
   <div style="width:48px;height:48px;border:4px solid rgba(255,255,255,.15);border-top-color:#60a5fa;border-radius:50%;animation:spin .8s linear infinite"></div>
   <p style="color:#94a3b8;font-size:.9rem;font-weight:600">Loading your training profile&hellip;</p>
   <p id="app-loading-hint" style="color:#475569;font-size:.75rem;font-weight:600;display:none">Taking longer than usual &mdash; <a href="" onclick="location.reload();return false;" style="color:#60a5fa;text-decoration:underline">tap here to reload</a></p>
@@ -1825,7 +1825,7 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
 <div class="slide active" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#0f172a 100%)">
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2rem;text-align:center;padding-bottom:6rem">
     <div style="margin-bottom:1.2rem;max-width:320px;width:70vw;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))">
-      <div class="logo-inline" style="max-height:80px;max-width:300px;width:100%;margin:0 auto"></div>
+      <div class="logo-inline" style="max-height:160px;max-width:400px;width:100%;margin:0 auto"></div>
     </div>
     <div class="badge" style="background:rgba(37,99,235,.2);color:#93c5fd;border:1px solid rgba(37,99,235,.3);margin-bottom:2rem;font-size:.7rem">
       NyxCodex® · Est. 2026 · Nyx Collective LLC
@@ -3318,7 +3318,7 @@ function renderInlineLogos() {
   const t = window.TENANT;
   document.querySelectorAll('.logo-inline').forEach(el => {
     if(t?.logoUrl) {
-      el.innerHTML = `<img src="${t.logoUrl}" alt="${t.orgName || ''}" style="width:auto;height:auto;object-fit:contain;display:block;max-height:100px;max-width:100%">`;
+      el.innerHTML = `<img src="${t.logoUrl}" alt="${t.orgName || ''}" style="width:auto;height:auto;object-fit:contain;display:block;max-height:160px;max-width:100%">`;
     } else {
       el.innerHTML = LOGO_SVG;
     }
