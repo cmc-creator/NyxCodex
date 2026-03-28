@@ -593,7 +593,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 .auth-dot-grid{position:absolute;inset:0;background-image:radial-gradient(rgba(0,229,255,.12) 1px,transparent 1px);background-size:28px 28px;z-index:1}
 .auth-hero-content{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;padding:3rem 3.5rem}
 .auth-logo-wrap{margin-bottom:auto}
-.auth-logo-lg{max-height:160px;max-width:380px;width:100%}
+.auth-logo-lg{max-height:220px;max-width:520px;width:100%}
 .auth-headline-wrap{flex:1;display:flex;flex-direction:column;justify-content:center;padding:2rem 0}
 .auth-status-row{font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:rgba(0,229,255,.65);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem}
 .auth-status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80,0 0 14px rgba(74,222,128,.35)}
@@ -628,7 +628,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 }
 .auth-form-topbar{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#0369a1,#2563eb,#7c3aed)}
 #mobile-logo-block{display:none;text-align:center;margin-bottom:2rem}
-.auth-mobile-logo{max-width:260px;margin:0 auto}
+.auth-mobile-logo{max-width:340px;margin:0 auto}
 .auth-tab-wrap{width:100%;margin-bottom:2rem}
 #auth-panel-title{font-family:Montserrat,sans-serif;font-weight:900;font-size:1.45rem;color:#0f172a;margin-bottom:.3rem}
 #auth-panel-sub{font-size:.82rem;color:#64748b;margin-bottom:1.5rem}
@@ -668,6 +668,30 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 .auth-trust-item{display:flex;align-items:center;gap:.4rem}
 .auth-trust-icon{font-size:.9rem}
 .auth-trust-text{font-size:.68rem;color:#94a3b8;font-weight:700}
+
+/* Tutorial overlay */
+#tutorial-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(5,10,24,.95);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:1rem}
+.tutorial-card{width:100%;max-width:520px;background:white;border-radius:1.4rem;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.6);position:relative}
+.tutorial-skip{position:absolute;top:.8rem;right:.8rem;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);padding:.3rem .7rem;border-radius:.6rem;color:rgba(255,255,255,.85);font-weight:800;font-size:.78rem;cursor:pointer;z-index:2}
+.tutorial-header{background:linear-gradient(135deg,#0f1f5c,#1d4ed8,#6d28d9);padding:1.5rem 1.5rem .9rem;display:flex;align-items:center;gap:1rem}
+#tut-portrait{width:76px;height:76px;border-radius:50%;object-fit:cover;object-position:top center;border:3px solid rgba(255,255,255,.55);flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,.35)}
+.tutorial-header-copy{color:white;flex:1;min-width:0}
+.tutorial-kicker{font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.14em;opacity:.75}
+#tut-title{font-size:1.12rem;font-weight:900;line-height:1.25;margin-top:.25rem}
+#tut-subtitle{font-size:.8rem;font-weight:600;opacity:.75;margin-top:.1rem}
+.tutorial-dots{display:flex;justify-content:center;gap:.55rem;padding:.65rem 1.5rem .1rem;background:#f8fafc}
+.tutorial-dot{width:9px;height:9px;border-radius:50%;background:#cbd5e1;transition:background .3s}
+#tut-dot-0{background:#2563eb}
+.tutorial-body{padding:1.2rem 1.5rem 0}
+#tut-icon{font-size:2rem;margin-bottom:.4rem}
+#tut-body{color:#374151;font-weight:600;font-size:.96rem;line-height:1.72;margin:0 0 .9rem}
+.tutorial-tip{background:#eff6ff;border-left:4px solid #2563eb;border-radius:0 .6rem .6rem 0;padding:.7rem 1rem;margin-bottom:1.1rem}
+.tutorial-tip-head{font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#1d4ed8;margin-bottom:.25rem}
+#tut-tip{color:#1e3a8a;font-weight:700;font-size:.87rem;line-height:1.65;margin:0;font-style:italic}
+.tutorial-nav{display:flex;align-items:center;gap:.75rem;padding:.7rem 1.5rem 1.2rem}
+#tut-back-btn{border:1px solid #e2e8f0;background:#f8fafc;color:#475569;padding:.6rem 1rem;border-radius:.85rem;font-weight:800;font-size:.88rem;cursor:pointer;display:none}
+.tutorial-nav-spacer{flex:1}
+#tut-next-btn{border:none;background:#2563eb;color:white;padding:.7rem 1.5rem;border-radius:.9rem;font-weight:900;font-size:.95rem;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.4)}
 #auth-form-panel #auth-panel-title{font-family:'Montserrat',sans-serif !important;color:#f8fafc !important}
 #auth-form-panel #auth-panel-sub{color:#b8c0d1 !important}
 #auth-tab-switch{background:rgba(255,255,255,.08) !important;border:1px solid rgba(255,255,255,.14);border-radius:14px !important}
@@ -1097,40 +1121,40 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 </div>
 
 <!-- --------------- 3-STEP ONBOARDING TUTORIAL --------------- -->
-<div id="tutorial-overlay" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(5,10,24,.95);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:1rem">
-  <div style="width:100%;max-width:520px;background:white;border-radius:1.4rem;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.6);position:relative">
+<div id="tutorial-overlay">
+  <div class="tutorial-card">
     <!-- Skip button -->
-    <button onclick="closeTutorial()" style="position:absolute;top:.8rem;right:.8rem;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);padding:.3rem .7rem;border-radius:.6rem;color:rgba(255,255,255,.85);font-weight:800;font-size:.78rem;cursor:pointer;z-index:2">Skip</button>
+    <button onclick="closeTutorial()" class="tutorial-skip">Skip</button>
     <!-- Portrait header -->
-    <div style="background:linear-gradient(135deg,#0f1f5c,#1d4ed8,#6d28d9);padding:1.5rem 1.5rem .9rem;display:flex;align-items:center;gap:1rem">
-      <img src="prof.png" id="tut-portrait" style="width:76px;height:76px;border-radius:50%;object-fit:cover;object-position:top center;border:3px solid rgba(255,255,255,.55);flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,.35)" alt="Professor Vance">
-      <div style="color:white;flex:1;min-width:0">
-        <div style="font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.14em;opacity:.75">Professor Vance &middot; Clinical Mentor</div>
-        <div id="tut-title" style="font-size:1.12rem;font-weight:900;line-height:1.25;margin-top:.25rem">Welcome to the Lab</div>
-        <div id="tut-subtitle" style="font-size:.8rem;font-weight:600;opacity:.75;margin-top:.1rem">De-escalation Training Unit</div>
+    <div class="tutorial-header">
+      <img src="prof.png" id="tut-portrait" alt="Professor Vance">
+      <div class="tutorial-header-copy">
+        <div class="tutorial-kicker">Professor Vance &middot; Clinical Mentor</div>
+        <div id="tut-title">Welcome to the Lab</div>
+        <div id="tut-subtitle">De-escalation Training Unit</div>
       </div>
     </div>
     <!-- Step dots -->
-    <div style="display:flex;justify-content:center;gap:.55rem;padding:.65rem 1.5rem .1rem;background:#f8fafc">
-      <div id="tut-dot-0" style="width:9px;height:9px;border-radius:50%;background:#2563eb;transition:background .3s"></div>
-      <div id="tut-dot-1" style="width:9px;height:9px;border-radius:50%;background:#cbd5e1;transition:background .3s"></div>
-      <div id="tut-dot-2" style="width:9px;height:9px;border-radius:50%;background:#cbd5e1;transition:background .3s"></div>
-      <div id="tut-dot-3" style="width:9px;height:9px;border-radius:50%;background:#cbd5e1;transition:background .3s"></div>
+    <div class="tutorial-dots">
+      <div id="tut-dot-0" class="tutorial-dot"></div>
+      <div id="tut-dot-1" class="tutorial-dot"></div>
+      <div id="tut-dot-2" class="tutorial-dot"></div>
+      <div id="tut-dot-3" class="tutorial-dot"></div>
     </div>
     <!-- Body -->
-    <div style="padding:1.2rem 1.5rem 0">
-      <div id="tut-icon" style="font-size:2rem;margin-bottom:.4rem">&#127891;</div>
-      <p id="tut-body" style="color:#374151;font-weight:600;font-size:.96rem;line-height:1.72;margin:0 0 .9rem"></p>
-      <div style="background:#eff6ff;border-left:4px solid #2563eb;border-radius:0 .6rem .6rem 0;padding:.7rem 1rem;margin-bottom:1.1rem">
-        <div style="font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#1d4ed8;margin-bottom:.25rem">&#127891; Prof. Vance says</div>
-        <p id="tut-tip" style="color:#1e3a8a;font-weight:700;font-size:.87rem;line-height:1.65;margin:0;font-style:italic"></p>
+    <div class="tutorial-body">
+      <div id="tut-icon">&#127891;</div>
+      <p id="tut-body"></p>
+      <div class="tutorial-tip">
+        <div class="tutorial-tip-head">&#127891; Prof. Vance says</div>
+        <p id="tut-tip"></p>
       </div>
     </div>
     <!-- Nav -->
-    <div style="display:flex;align-items:center;gap:.75rem;padding:.7rem 1.5rem 1.2rem">
-      <button id="tut-back-btn" onclick="tutStep(-1)" style="border:1px solid #e2e8f0;background:#f8fafc;color:#475569;padding:.6rem 1rem;border-radius:.85rem;font-weight:800;font-size:.88rem;cursor:pointer;display:none">&larr; Back</button>
-      <div style="flex:1"></div>
-      <button id="tut-next-btn" style="border:none;background:#2563eb;color:white;padding:.7rem 1.5rem;border-radius:.9rem;font-weight:900;font-size:.95rem;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.4)">Next &rarr;</button>
+    <div class="tutorial-nav">
+      <button id="tut-back-btn" onclick="tutStep(-1)">&larr; Back</button>
+      <div class="tutorial-nav-spacer"></div>
+      <button id="tut-next-btn">Next &rarr;</button>
     </div>
   </div>
 </div>
@@ -1141,7 +1165,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
   <div id="due-date-banner" style="display:none;width:100%;max-width:1100px;margin-bottom:1rem"></div>
   <div style="width:100%;max-width:1100px;display:grid;grid-template-columns:1.1fr 1fr;gap:1.75rem;align-items:center;color:#e2e8f0">
     <div style="display:flex;flex-direction:column;gap:1.1rem">
-      <div class="logo-inline" aria-label="NyxCodex logo" style="max-width:360px;width:100%"></div>
+      <div class="logo-inline" aria-label="NyxCodex logo" style="max-width:460px;width:100%"></div>
       <div id="hub-heading" style="font-family:Montserrat,sans-serif;font-weight:900;font-size:clamp(2rem,4vw,2.7rem);line-height:1.05;color:white">Welcome back to NyxCodex®</div>
       <p style="color:#cbd5e1;font-size:1rem;line-height:1.7;max-width:640px;font-weight:600">Pick where you want to go. Restart the full training from slide one, or jump straight into the live Lab to practice scenarios. Your XP, level, and lab credits stay with you.</p>
       <div style="display:flex;flex-wrap:wrap;gap:1rem;color:#94a3b8;font-weight:700;font-size:.9rem">
@@ -1780,7 +1804,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 
 <!-- Loading overlay: covers the app while Firebase loads user data -->
 <div id="app-loading" style="position:fixed;inset:0;z-index:300;background:#0b1224;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem">
-  <div class="logo-inline" style="max-height:100px;max-width:320px;width:100%;margin:0 auto"></div>
+  <div class="logo-inline" style="max-height:130px;max-width:420px;width:100%;margin:0 auto"></div>
   <div style="width:48px;height:48px;border:4px solid rgba(255,255,255,.15);border-top-color:#60a5fa;border-radius:50%;animation:spin .8s linear infinite"></div>
   <p style="color:#94a3b8;font-size:.9rem;font-weight:600">Loading your training profile&hellip;</p>
   <p id="app-loading-hint" style="color:#475569;font-size:.75rem;font-weight:600;display:none">Taking longer than usual &mdash; <a href="" onclick="location.reload();return false;" style="color:#60a5fa;text-decoration:underline">tap here to reload</a></p>
@@ -2029,8 +2053,8 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 ------------------------------------------------------------------- -->
 <div class="slide active" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#0f172a 100%)">
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2rem;text-align:center;padding-bottom:6rem">
-    <div style="margin-bottom:1.2rem;max-width:320px;width:70vw;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))">
-      <div class="logo-inline" style="max-height:160px;max-width:400px;width:100%;margin:0 auto"></div>
+    <div style="margin-bottom:1.2rem;max-width:420px;width:80vw;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))">
+      <div class="logo-inline" style="max-height:220px;max-width:520px;width:100%;margin:0 auto"></div>
     </div>
     <div id="slide1-badge" class="badge" style="background:rgba(37,99,235,.2);color:#93c5fd;border:1px solid rgba(37,99,235,.3);margin-bottom:2rem;font-size:.7rem">
       NyxCodex® · Est. 2026 · Nyx Collective LLC
@@ -3523,7 +3547,7 @@ function renderInlineLogos() {
   const t = window.TENANT;
   document.querySelectorAll('.logo-inline').forEach(el => {
     if(t?.logoUrl) {
-      el.innerHTML = `<img src="${t.logoUrl}" alt="${t.orgName || ''}" style="width:auto;height:auto;object-fit:contain;display:block;max-height:160px;max-width:100%">`;
+      el.innerHTML = `<img src="${t.logoUrl}" alt="${t.orgName || ''}" style="width:auto;height:auto;object-fit:contain;display:block;max-height:220px;max-width:100%">`;
     } else {
       el.innerHTML = LOGO_SVG;
     }

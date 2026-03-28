@@ -61,7 +61,7 @@
       animation:rise .7s ease both;
     }
     .brand{display:flex;align-items:center;gap:.7rem;min-width:0}
-    .brand img{width:48px;height:48px;object-fit:contain;border-radius:12px;background:rgba(255,255,255,.06)}
+    .brand img{width:68px;height:68px;object-fit:contain;border-radius:14px;background:rgba(255,255,255,.06)}
     .brand div{min-width:0}
     .brand .kicker{font:700 .62rem/1 "IBM Plex Mono",monospace;letter-spacing:.15em;color:var(--accent-2);text-transform:uppercase}
     .brand .name{font:800 1rem/1.1 "Fraunces",serif;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -127,6 +127,9 @@
       .hero-copy{padding:1.5rem 1.5rem 1.8rem}
       .hero-panel{border-top:none;border-left:1px solid var(--line);padding:1.2rem}
       .modules{grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem}
+    }
+    @media (max-width:430px){
+      .brand img{width:58px;height:58px}
     }
   </style>
 </head>
