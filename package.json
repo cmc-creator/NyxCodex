@@ -2,6 +2,9 @@
   "name": "dsh-training-lab",
   "version": "1.0.0",
   "type": "module",
+  "scripts": {
+    "check:doc-urls": "node scripts/validate-doc-urls.mjs"
+  },
   "engines": {
     "node": "20.x"
   },

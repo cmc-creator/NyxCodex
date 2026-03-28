@@ -551,35 +551,17 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
   /* Score badge */
   .score-badge{font-size:1.8rem;padding:.75rem;min-width:60px}
   
-  /* Navigation bar - more compact on mobile */
-  #main-nav{padding:.5rem .75rem!important;gap:.35rem!important}
-  #main-nav>div:last-child{overflow-x:auto;scrollbar-width:none}
-  #main-nav>div:last-child::-webkit-scrollbar{display:none}
-  #main-nav button{padding:.4rem .5rem!important;font-size:.7rem!important}
-  #main-nav button[onclick="openChat()"],
-  #main-nav button[onclick="openLabRoom()"],
-  #main-nav button[onclick="openVideoModal()"]{width:36px!important;height:36px!important;padding:0!important;justify-content:center!important}
-  #main-nav button[onclick="openChat()"] span,
-  #main-nav button[onclick="openLabRoom()"] span,
-  #main-nav button[onclick="openVideoModal()"] span{display:none!important}
+  /* Mobile bottom nav redesign: 4 primary actions + overflow sheet */
+  #main-nav-main-row{padding:.45rem .5rem!important;gap:.35rem!important}
+  #nav-stats-group,#nav-feature-group,#nav-divider,#nav-account-btn,#nav-signout-btn{display:none!important}
+  #nav-controls-group{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:.35rem!important;width:100%}
+  #nav-controls-group button{min-height:44px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;font-size:1rem!important}
+  #nav-more-btn{display:flex!important}
+  #mobile-nav-sheet-backdrop{display:none;position:fixed;inset:0;z-index:94;background:rgba(2,6,23,.6);backdrop-filter:blur(2px);align-items:flex-end;padding:0 .5rem 5.2rem}
+  #mobile-nav-sheet{width:100%;max-width:560px;margin:0 auto;background:rgba(8,12,24,.98);border:1px solid rgba(255,255,255,.12);border-radius:1rem;padding:.7rem;display:grid;grid-template-columns:1fr 1fr;gap:.45rem;box-shadow:0 16px 36px rgba(0,0,0,.35)}
+  #mobile-nav-sheet button{min-height:44px;border-radius:.7rem;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#e2e8f0;font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center;gap:.4rem}
   /* hide side-edge arrows on small screens to avoid obscuring content */
   #side-arrow-prev,#side-arrow-next{display:none!important}
-  
-  /* Hide "Sign Out" text on mobile, keep button - using visibility for accessibility */
-  nav button[onclick="doSignOut()"]{
-    padding:.45rem!important;
-    overflow:hidden;
-    text-indent:-9999px;
-  }
-  nav button[onclick="doSignOut()"]::before{
-    content:"·";
-    font-size:1.2rem;
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    text-indent:0;
-  }
   
   /* Prof. Vance portrait glow while speaking */
   @keyframes vance-pulse {
@@ -593,19 +575,6 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
 
   /* Hide Prof. Pax text on mobile - keep for screen readers */
   nav button[onclick="showGuide()"] span{
-    position:absolute;
-    width:1px;
-    height:1px;
-    padding:0;
-    margin:-1px;
-    overflow:hidden;
-    clip:rect(0,0,0,0);
-    white-space:nowrap;
-    border:0;
-  }
-  
-  /* My Account - hide name on mobile but keep for screen readers */
-  #nav-name{
     position:absolute;
     width:1px;
     height:1px;
@@ -1686,10 +1655,10 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
   <!-- Slim progress strip at very top of nav -->
   <div style="height:3px;background:rgba(255,255,255,.05)"><div id="nav-progress-fill" style="height:100%;width:0%;background:linear-gradient(90deg,#2563eb,#7c3aed);transition:width .4s ease"></div></div>
   <!-- Main row -->
-  <div style="background:rgba(8,12,24,.97);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,.06);padding:.4rem .85rem;display:flex;align-items:center;gap:.4rem">
+  <div id="main-nav-main-row" style="background:rgba(8,12,24,.97);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,.06);padding:.4rem .85rem;display:flex;align-items:center;gap:.4rem">
 
     <!-- ? Stats group -->
-    <div style="display:flex;align-items:center;gap:.4rem;flex-shrink:0;padding-right:.65rem;border-right:1px solid rgba(255,255,255,.07)">
+    <div id="nav-stats-group" style="display:flex;align-items:center;gap:.4rem;flex-shrink:0;padding-right:.65rem;border-right:1px solid rgba(255,255,255,.07)">
       <span id="nav-slide-counter" style="font-size:.7rem;font-weight:800;color:#475569;min-width:44px">1 / 33</span>
       <div style="display:flex;align-items:center;gap:.2rem;font-size:.65rem;font-weight:800">
         <span style="color:#64748b">Lv</span>
@@ -1705,31 +1674,45 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
     <div style="flex:1"></div>
 
     <!-- ? Feature buttons — uniform pill style -->
-    <div style="display:flex;align-items:center;gap:.28rem">
-      <button onclick="openChat()" title="Ask Professor Vance" style="display:flex;align-items:center;gap:.32rem;background:linear-gradient(135deg,rgba(96,165,250,.2),rgba(124,58,237,.18));border:1px solid rgba(96,165,250,.38);color:#93c5fd;padding:.38rem .7rem;border-radius:.65rem;font-size:.76rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">🎓 <span>Prof. Vance</span></button>
-      <button onclick="openLabRoom()" title="NyxCodex Laboratory Room" style="display:flex;align-items:center;gap:.32rem;background:rgba(16,185,129,.14);border:1px solid rgba(16,185,129,.32);color:#6ee7b7;padding:.38rem .7rem;border-radius:.65rem;font-size:.76rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">🧪 <span>Lab</span></button>
-      <button onclick="openVideoModal()" title="Training Videos" style="display:flex;align-items:center;gap:.32rem;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);color:#fde68a;padding:.38rem .7rem;border-radius:.65rem;font-size:.76rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">🎬 <span>Videos</span></button>
+    <div id="nav-feature-group" style="display:flex;align-items:center;gap:.28rem">
+      <button id="nav-chat-btn" onclick="openChat()" title="Ask Professor Vance" style="display:flex;align-items:center;gap:.32rem;background:linear-gradient(135deg,rgba(96,165,250,.2),rgba(124,58,237,.18));border:1px solid rgba(96,165,250,.38);color:#93c5fd;padding:.38rem .7rem;border-radius:.65rem;font-size:.76rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">🎓 <span>Prof. Vance</span></button>
+      <button id="nav-lab-btn" onclick="openLabRoom()" title="NyxCodex Laboratory Room" style="display:flex;align-items:center;gap:.32rem;background:rgba(16,185,129,.14);border:1px solid rgba(16,185,129,.32);color:#6ee7b7;padding:.38rem .7rem;border-radius:.65rem;font-size:.76rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">🧪 <span>Lab</span></button>
+      <button id="nav-videos-btn" onclick="openVideoModal()" title="Training Videos" style="display:flex;align-items:center;gap:.32rem;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);color:#fde68a;padding:.38rem .7rem;border-radius:.65rem;font-size:.76rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">🎬 <span>Videos</span></button>
       <button onclick="toggleAmbience()" id="ambience-btn" title="Toggle ambient sound" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.22);color:#93c5fd;padding:.38rem .6rem;border-radius:.65rem;font-size:.85rem;cursor:pointer;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">🎵</button>
-      <button onclick="openAdminPrompt()" title="Admin Dashboard" style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.26);color:#c4b5fd;padding:.38rem .6rem;border-radius:.65rem;font-size:.85rem;cursor:pointer;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">⚙️</button>
+      <button id="nav-admin-btn" onclick="openAdminPrompt()" title="Admin Dashboard" style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.26);color:#c4b5fd;padding:.38rem .6rem;border-radius:.65rem;font-size:.85rem;cursor:pointer;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">⚙️</button>
     </div>
 
     <!-- Divider -->
-    <div style="width:1px;height:26px;background:rgba(255,255,255,.07);margin:0 .3rem;flex-shrink:0"></div>
+    <div id="nav-divider" style="width:1px;height:26px;background:rgba(255,255,255,.07);margin:0 .3rem;flex-shrink:0"></div>
 
     <!-- ? Navigation controls -->
-    <div style="display:flex;align-items:center;gap:.28rem;flex-shrink:0">
-      <button onclick="prevSlide()" title="Previous slide" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:white;width:36px;height:36px;border-radius:.65rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.18)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">&#8249;</button>
-      <button onclick="showHomeGateway()" title="Home Hub" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#64748b;width:36px;height:36px;border-radius:.65rem;font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .15s" onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748b'">🏠</button>
-      <button onclick="nextSlide()" title="Next slide" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;width:36px;height:36px;border-radius:.65rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(37,99,235,.5);transition:filter .15s" onmouseover="this.style.filter='brightness(1.15)'" onmouseout="this.style.filter=''">&#8250;</button>
+    <div id="nav-controls-group" style="display:flex;align-items:center;gap:.28rem;flex-shrink:0">
+      <button id="nav-prev-btn" onclick="prevSlide()" title="Previous slide" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:white;width:36px;height:36px;border-radius:.65rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.18)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">&#8249;</button>
+      <button id="nav-home-btn" onclick="showHomeGateway()" title="Home Hub" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#64748b;width:36px;height:36px;border-radius:.65rem;font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .15s" onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748b'">🏠</button>
+      <button id="nav-next-btn" onclick="nextSlide()" title="Next slide" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;width:36px;height:36px;border-radius:.65rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(37,99,235,.5);transition:filter .15s" onmouseover="this.style.filter='brightness(1.15)'" onmouseout="this.style.filter=''">&#8250;</button>
+      <button id="nav-more-btn" onclick="toggleMobileNavSheet()" title="More actions" aria-expanded="false" style="display:none;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:white;width:36px;height:36px;border-radius:.65rem;font-size:1rem;cursor:pointer;align-items:center;justify-content:center">⋯</button>
       <!-- Account pill -->
-      <button onclick="openAccountModal()" title="My Account" style="display:flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);cursor:pointer;padding:.28rem .55rem .28rem .28rem;border-radius:.65rem;flex-shrink:0;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.05)'">
+      <button id="nav-account-btn" onclick="openAccountModal()" title="My Account" style="display:flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);cursor:pointer;padding:.28rem .55rem .28rem .28rem;border-radius:.65rem;flex-shrink:0;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.05)'">
         <div id="nav-avatar-initials" style="width:24px;height:24px;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:.68rem;flex-shrink:0"></div>
         <span id="nav-name" style="color:white;font-weight:800;font-size:.72rem;white-space:nowrap">Account</span>
       </button>
-      <button onclick="doSignOut()" title="Sign out" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18);color:#fca5a5;padding:.35rem .55rem;border-radius:.65rem;font-size:.72rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:background .15s" onmouseover="this.style.background='rgba(239,68,68,.22)'" onmouseout="this.style.background='rgba(239,68,68,.08)'">Sign Out</button>
+      <button id="nav-signout-btn" onclick="doSignOut()" title="Sign out" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18);color:#fca5a5;padding:.35rem .55rem;border-radius:.65rem;font-size:.72rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:background .15s" onmouseover="this.style.background='rgba(239,68,68,.22)'" onmouseout="this.style.background='rgba(239,68,68,.08)'">Sign Out</button>
     </div>
   </div>
 </nav>
+
+<!-- Mobile overflow sheet for bottom nav -->
+<div id="mobile-nav-sheet-backdrop" onclick="closeMobileNavSheet()" style="display:none">
+  <div id="mobile-nav-sheet" onclick="event.stopPropagation()">
+    <button onclick="openChat();closeMobileNavSheet()">🎓 Prof. Vance</button>
+    <button onclick="openLabRoom();closeMobileNavSheet()">🧪 Lab</button>
+    <button onclick="openVideoModal();closeMobileNavSheet()">🎬 Videos</button>
+    <button onclick="openAccountModal();closeMobileNavSheet()">👤 My Account</button>
+    <button onclick="toggleAmbience();closeMobileNavSheet()">🎵 Ambient</button>
+    <button onclick="openAdminPrompt();closeMobileNavSheet()">⚙️ Admin</button>
+    <button onclick="doSignOut();closeMobileNavSheet()" style="grid-column:1/-1;border-color:rgba(239,68,68,.35);color:#fca5a5">🚪 Sign Out</button>
+  </div>
+</div>
 
 <!-- XP Toast notification -->
 <div id="xp-toast" style="display:none;position:fixed;bottom:6.5rem;left:50%;transform:translateX(-50%);z-index:300;background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:white;font-weight:900;font-size:.95rem;padding:.5rem 1.3rem;border-radius:2rem;box-shadow:0 6px 20px rgba(37,99,235,.45);pointer-events:none;white-space:nowrap">+XP</div>
@@ -3355,7 +3338,7 @@ function applyTenantContent() {
   if(el('auth-org-logo'))  { el('auth-org-logo').src = T.logoUrl; el('auth-org-logo').alt = T.orgName; }
   if(el('auth-privacy'))   el('auth-privacy').textContent   = `Your information is stored securely and used only for ${T.orgName} training purposes.`;
   if(el('auth-copyright')) el('auth-copyright').textContent = `\u00A9 ${T.copyrightYear} NyxCodex\u2122 \u00b7 ${T.copyrightHolder||'Nyx Collective LLC'}`;
-  if(el('hub-heading'))    el('hub-heading').textContent    = `Welcome back to NyxCodex\u2122`;
+  if(el('hub-heading'))    el('hub-heading').textContent    = `Welcome back to ${T.brandName}`;
   if(el('slide1-badge'))   el('slide1-badge').textContent   = `${T.brandName} \u00b7 Est. ${T.copyrightYear} \u00b7 ${T.copyrightHolder}`;
   if(el('slide1-subtitle'))el('slide1-subtitle').textContent= `Mastery Lab \u2014 ${T.brandName}`;
   if(el('slide1-footer'))  el('slide1-footer').innerHTML    = `\u00A9 ${T.copyrightYear} ${T.brandName} \u00b7 <a href="https://nyxcollectivellc.com" target="_blank" rel="noopener" style="color:#475569">${T.copyrightHolder}</a> \u2014 All Rights Reserved \u2014 Clinical Training Platform`;
@@ -3867,6 +3850,31 @@ function closeShortcuts() {
   if(o) o.style.display = 'none';
 }
 
+function closeMobileNavSheet() {
+  const backdrop = document.getElementById('mobile-nav-sheet-backdrop');
+  const btn = document.getElementById('nav-more-btn');
+  if(backdrop) backdrop.style.display = 'none';
+  if(btn) btn.setAttribute('aria-expanded', 'false');
+}
+
+function toggleMobileNavSheet() {
+  if(window.innerWidth > 640) return;
+  const backdrop = document.getElementById('mobile-nav-sheet-backdrop');
+  const btn = document.getElementById('nav-more-btn');
+  if(!backdrop) return;
+  const opening = backdrop.style.display !== 'flex';
+  backdrop.style.display = opening ? 'flex' : 'none';
+  if(btn) btn.setAttribute('aria-expanded', opening ? 'true' : 'false');
+}
+
+window.addEventListener('resize', () => {
+  if(window.innerWidth > 640) closeMobileNavSheet();
+});
+
+document.addEventListener('keydown', (event) => {
+  if(event.key === 'Escape') closeMobileNavSheet();
+});
+
 // --- Nav UI ----------------------------------------------
 function updateNavUI() {
   const user = window._currentUser;
@@ -4022,7 +4030,7 @@ function showHomeGateway() {
   if(window._vanceAudio) { window._vanceAudio.pause(); window._vanceAudio.currentTime = 0; }
   // Update hub heading with user's first name
   const hubHeading = document.getElementById('hub-heading');
-  if(hubHeading) hubHeading.textContent = isReturning ? `Welcome back, ${fname}! \uD83D\uDC4B` : `Welcome to NyxCodex\u2122, ${fname}!`;
+  if(hubHeading) hubHeading.textContent = isReturning ? `Welcome back, ${fname}! \uD83D\uDC4B` : `Welcome to ${window.TENANT?.brandName || 'the platform'}, ${fname}!`;
   scheduleVance(()=>showAvatarAndSpeak('_direct_', fname, hubMsg), 300);
 }
 
@@ -4618,6 +4626,7 @@ function renderChatMessages() {
 }
 
 function openChat() {
+  closeMobileNavSheet();
   const panel = document.getElementById('chat-panel');
   if(panel) {
     panel.style.display='flex';

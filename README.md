@@ -18,6 +18,8 @@ An interactive, AI-powered clinical training platform for psychiatric healthcare
 
 **Live Training Platform:** [https://cmc-creator.github.io/NyxCodex/](https://cmc-creator.github.io/NyxCodex/)
 
+Canonical repo/site URLs are maintained in `site.urls.json` and validated in CI via `npm run check:doc-urls`.
+
 Staff can access the platform directly from any device with internet connection. The platform features:
 - Secure user authentication (email/password)
 - Cloud-based data persistence via Firebase
