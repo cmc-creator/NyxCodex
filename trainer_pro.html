@@ -553,8 +553,16 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
   
   /* Navigation bar - more compact on mobile */
   nav[style*="position:fixed;bottom:0"]{padding:.5rem .75rem!important;gap:.35rem!important}
+  #main-nav>div:last-child{overflow-x:auto;scrollbar-width:none}
+  #main-nav>div:last-child::-webkit-scrollbar{display:none}
   nav[style*="position:fixed;bottom:0"] button{padding:.4rem .5rem!important;font-size:.7rem!important}
   nav[style*="position:fixed;bottom:0"] button[style*="width:48px"]{width:38px!important;height:38px!important}
+  #main-nav button[onclick="openChat()"],
+  #main-nav button[onclick="openLabRoom()"],
+  #main-nav button[onclick="openVideoModal()"]{width:36px!important;height:36px!important;padding:0!important;justify-content:center!important}
+  #main-nav button[onclick="openChat()"] span,
+  #main-nav button[onclick="openLabRoom()"] span,
+  #main-nav button[onclick="openVideoModal()"] span{display:none!important}
   /* hide side-edge arrows on small screens to avoid obscuring content */
   button[style*="border-radius:0 .75rem"]{display:none!important}
   button[style*="border-radius:.75rem 0"]{display:none!important}
@@ -627,6 +635,10 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
   /* Modal cards on mobile - full width */
   #admin-modal .card,#account-modal .card,#admin-pin-modal .card{border-radius:1rem!important}
   /* Auth logo — shrink on mobile */
+  #chat-panel{left:.5rem!important;right:.5rem!important;bottom:5rem!important;width:auto!important;max-height:min(62vh,480px)!important}
+  #chat-panel textarea{font-size:16px!important}
+  #chat-panel>div:last-child>div{flex-direction:column!important;align-items:stretch!important}
+  #chat-send-btn{width:100%}
   
   /* Hide auth hero image on mobile */
   #auth-hero-img{display:none!important}
