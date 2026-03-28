@@ -106,6 +106,7 @@ onAuthStateChanged(auth, user => {
   } else {
     document.getElementById('auth-screen').style.display = 'flex';
     document.getElementById('app').style.display = 'none';
+    applyAuthTabFromUrl();
     const hub = document.getElementById('home-gateway');
     if(hub) hub.style.display = 'none';
   }
@@ -476,6 +477,27 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
 .btn-amber{background:#d97706;color:#fff} .btn-amber:hover{background:#b45309}
 .input-field{width:100%;padding:.875rem 1rem;background:#f8fafc;border:2px solid #e2e8f0;border-radius:.875rem;font-family:inherit;font-size:.9rem;font-weight:600;outline:none;transition:border-color .2s}
 .input-field:focus{border-color:#2563eb;background:#fff}
+
+/* Landing-aligned auth visual language */
+#auth-screen{
+  background:
+    radial-gradient(42rem 22rem at 16% 0%, rgba(240,184,109,.17), transparent 60%),
+    radial-gradient(36rem 20rem at 82% 0%, rgba(125,211,252,.14), transparent 62%),
+    linear-gradient(165deg,#090d15 0%, #101827 50%, #0a0f18 100%);
+}
+#auth-form-panel{
+  background:rgba(14,20,32,.82) !important;
+  border-left:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(14px);
+}
+#auth-form-panel #auth-panel-title{font-family:'Montserrat',sans-serif !important;color:#f8fafc !important}
+#auth-form-panel #auth-panel-sub{color:#b8c0d1 !important}
+#auth-tab-switch{background:rgba(255,255,255,.08) !important;border:1px solid rgba(255,255,255,.14);border-radius:14px !important}
+.auth-tab-btn{font-family:'Space Mono',monospace !important;letter-spacing:.04em}
+.input-field{background:rgba(255,255,255,.08) !important;border-color:rgba(255,255,255,.2) !important;color:#f8fafc}
+.input-field:focus{border-color:#7dd3fc !important;background:rgba(255,255,255,.12) !important}
+.input-field::placeholder{color:#9ca3af}
+#auth-form-panel label{color:#c9d3e4 !important}
 .diagnosis-pill{padding:.5rem 1.25rem;border-radius:999px;font-weight:800;font-size:.75rem;cursor:pointer;transition:all .2s;border:2px solid transparent}
 .diagnosis-pill.active{color:#fff}
 @keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
@@ -739,7 +761,7 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
   </div>
 
   <!-- -- RIGHT FORM PANEL -- -->
-  <div style="width:460px;flex-shrink:0;background:#f8fafc;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:3rem 2.75rem 2.75rem;overflow-y:auto;position:relative;row-gap:1rem">
+  <div id="auth-form-panel" style="width:460px;flex-shrink:0;background:#f8fafc;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:3rem 2.75rem 2.75rem;overflow-y:auto;position:relative;row-gap:1rem">
 
     <!-- Top decoration bar -->
     <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#0369a1,#2563eb,#7c3aed)"></div>
@@ -753,14 +775,14 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
     <div style="width:100%;margin-bottom:2rem">
       <div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:1.45rem;color:#0f172a;margin-bottom:.3rem" id="auth-panel-title">Welcome back</div>
       <p style="font-size:.82rem;color:#64748b;margin-bottom:1.5rem" id="auth-panel-sub">Sign in to continue your training.</p>
-      <div style="display:flex;background:#e2e8f0;border-radius:12px;padding:4px;gap:4px">
+      <div id="auth-tab-switch" style="display:flex;background:#e2e8f0;border-radius:12px;padding:4px;gap:4px">
         <button onclick="showAuthTab('login')" id="tab-login"
-          style="flex:1;padding:.65rem;border-radius:9px;border:none;font-size:.82rem;font-weight:800;cursor:pointer;transition:all .2s;background:white;color:#0f172a;box-shadow:0 1px 4px rgba(0,0,0,.1)">
+          class="auth-tab-btn" style="flex:1;padding:.65rem;border-radius:9px;border:none;font-size:.82rem;font-weight:800;cursor:pointer;transition:all .2s;background:white;color:#0f172a;box-shadow:0 1px 4px rgba(0,0,0,.1)">
           Sign In
         </button>
         <button onclick="showAuthTab('signup')" id="tab-signup"
-          style="flex:1;padding:.65rem;border-radius:9px;border:none;font-size:.82rem;font-weight:800;cursor:pointer;transition:all .2s;background:transparent;color:#64748b">
-          Create Account
+          class="auth-tab-btn" style="flex:1;padding:.65rem;border-radius:9px;border:none;font-size:.82rem;font-weight:800;cursor:pointer;transition:all .2s;background:transparent;color:#64748b">
+          Sign Up
         </button>
       </div>
     </div>
@@ -770,7 +792,7 @@ h1,h2,.font-display{font-family:'Montserrat',sans-serif}
       <div style="display:flex;flex-direction:column;gap:.875rem">
         <div>
           <label style="font-size:.72rem;font-weight:800;color:#475569;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:.4rem">Work Email</label>
-          <input id="li-email" class="input-field" type="email" placeholder="your.email@destinysprings.com" style="width:100%">
+          <input id="li-email" class="input-field" type="email" placeholder="your.email@facility.org" style="width:100%">
         </div>
         <div>
           <label style="font-size:.72rem;font-weight:800;color:#475569;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:.4rem">Password</label>
@@ -3347,7 +3369,7 @@ function applyTenantContent() {
   if(el('lab-patient-name')) el('lab-patient-name').innerHTML = `${T.patientName} <span style="font-size:.75rem;font-weight:600;color:#94a3b8">\u2014 ${T.patientDx}</span>`;
   document.querySelectorAll('.tenant-lab-bg').forEach(img => { img.src = T.labImageUrl; });
 }
-document.addEventListener('DOMContentLoaded', () => { renderInlineLogos(); applyTenantContent(); });
+document.addEventListener('DOMContentLoaded', () => { renderInlineLogos(); applyTenantContent(); applyAuthTabFromUrl(); });
 const CHAT_ENDPOINT = (() => {
   const sameOrigin = '/api/pax-chat';
   const tenantOrigin = String(window.TENANT?.orgWebsite || '').trim().replace(/\/+$/, '');
@@ -3468,17 +3490,28 @@ function showAuthTab(tab) {
   const title = document.getElementById('auth-panel-title');
   const sub   = document.getElementById('auth-panel-sub');
   if(loginBtn) {
-    loginBtn.style.background = tab==='login' ? 'white' : 'transparent';
-    loginBtn.style.color      = tab==='login' ? '#0f172a' : '#64748b';
-    loginBtn.style.boxShadow  = tab==='login' ? '0 1px 4px rgba(0,0,0,.1)' : 'none';
+    loginBtn.style.background = tab==='login' ? 'rgba(240,184,109,.95)' : 'transparent';
+    loginBtn.style.color      = tab==='login' ? '#1f170b' : '#9fb0c7';
+    loginBtn.style.boxShadow  = tab==='login' ? '0 6px 18px rgba(240,184,109,.25)' : 'none';
   }
   if(signupBtn) {
-    signupBtn.style.background = tab==='signup' ? 'white' : 'transparent';
-    signupBtn.style.color      = tab==='signup' ? '#0f172a' : '#64748b';
-    signupBtn.style.boxShadow  = tab==='signup' ? '0 1px 4px rgba(0,0,0,.1)' : 'none';
+    signupBtn.style.background = tab==='signup' ? 'rgba(125,211,252,.9)' : 'transparent';
+    signupBtn.style.color      = tab==='signup' ? '#0c1b2d' : '#9fb0c7';
+    signupBtn.style.boxShadow  = tab==='signup' ? '0 6px 18px rgba(125,211,252,.25)' : 'none';
   }
   if(title) title.textContent = tab==='login' ? 'Welcome back' : 'Join the team';
   if(sub)   sub.textContent   = tab==='login' ? 'Sign in to continue your training.' : 'Create your staff training account.';
+}
+
+function applyAuthTabFromUrl() {
+  const qp = new URLSearchParams(window.location.search).get('auth');
+  const hash = (window.location.hash || '').toLowerCase().replace('#', '');
+  const mode = (qp || hash || '').toLowerCase();
+  if(mode === 'signup' || mode === 'register') {
+    showAuthTab('signup');
+  } else if(mode === 'signin' || mode === 'login') {
+    showAuthTab('login');
+  }
 }
 
 async function doForgotPassword() {

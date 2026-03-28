@@ -153,9 +153,9 @@
           NyxCodex blends scenario pressure, real-time AI coaching, and competency tracking so your team can practice difficult moments before they happen on shift.
         </p>
         <div class="actions">
-          <a class="cta" href="trainer_pro.html" id="launch-now">Launch Training</a>
-          <a class="ghost" href="trainer_pro.html">Open Platform</a>
-          <button class="control" id="pause-redirect" type="button" aria-live="polite">Auto-launch in <span id="countdown">12</span>s</button>
+          <a class="cta" href="trainer_pro.html?auth=login">Sign In</a>
+          <a class="ghost" href="trainer_pro.html?auth=signup">Sign Up</a>
+          <a class="control" href="trainer_pro.html">View Platform</a>
         </div>
       </div>
 
@@ -169,8 +169,8 @@
           <div class="kpi"><b>Mobile</b><small>Shift-friendly Access</small></div>
         </div>
         <div class="kpi" style="border-color:rgba(240,184,109,.38)">
-          <b id="status-line" style="font-size:1.02rem;color:#ffd79a">Redirect armed</b>
-          <small id="status-sub">Landing page will route to trainer_pro.html</small>
+          <b style="font-size:1.02rem;color:#ffd79a">Ready when you are</b>
+          <small>Choose Sign In or Sign Up to enter the training app.</small>
         </div>
       </aside>
     </section>
@@ -198,39 +198,5 @@
     </footer>
   </main>
 
-  <script>
-    (function () {
-      var seconds = 12;
-      var paused = false;
-      var launchPath = 'trainer_pro.html';
-      function getCountdownEl() { return document.getElementById('countdown'); }
-      var pauseBtn = document.getElementById('pause-redirect');
-      var statusLine = document.getElementById('status-line');
-      var statusSub = document.getElementById('status-sub');
-      var timer = setInterval(function () {
-        if (paused) return;
-        seconds -= 1;
-        var countdownEl = getCountdownEl();
-        if (countdownEl) countdownEl.textContent = String(seconds);
-        if (seconds <= 0) {
-          clearInterval(timer);
-          window.location.href = launchPath;
-        }
-      }, 1000);
-
-      if (pauseBtn) {
-        pauseBtn.addEventListener('click', function () {
-          paused = !paused;
-          pauseBtn.innerHTML = paused
-            ? 'Auto-launch paused'
-            : 'Auto-launch in <span id="countdown">' + seconds + '</span>s';
-          if (statusLine) statusLine.textContent = paused ? 'Redirect paused' : 'Redirect armed';
-          if (statusSub) statusSub.textContent = paused
-            ? 'Tap Launch Training any time to continue.'
-            : 'Landing page will route to trainer_pro.html';
-        });
-      }
-    }());
-  </script>
 </body>
 </html>
