@@ -31,7 +31,7 @@ export const paxChat = onRequest({ cors: true, region: "us-central1", secrets:["
     generationConfig: { temperature: 0.6, maxOutputTokens: 256, candidateCount: 1 }
   };
 
-  const model = "gemini-2.0-flash";
+  const model = "gemini-2.5-flash";
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
   try {

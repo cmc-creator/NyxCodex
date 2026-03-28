@@ -3348,7 +3348,13 @@ function applyTenantContent() {
   document.querySelectorAll('.tenant-lab-bg').forEach(img => { img.src = T.labImageUrl; });
 }
 document.addEventListener('DOMContentLoaded', () => { renderInlineLogos(); applyTenantContent(); });
-const CHAT_ENDPOINT = '/api/pax-chat';
+const CHAT_ENDPOINT = (() => {
+  const sameOrigin = '/api/pax-chat';
+  const tenantOrigin = String(window.TENANT?.orgWebsite || '').trim().replace(/\/+$/, '');
+  const onGithubPages = /github\.io$/i.test(window.location.hostname);
+  if (onGithubPages && tenantOrigin) return `${tenantOrigin}/api/pax-chat`;
+  return sameOrigin;
+})();
 let currentSlide = 0;
 let totalSlides  = 0;
 let xp           = 0;
