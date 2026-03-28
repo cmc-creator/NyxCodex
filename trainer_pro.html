@@ -532,6 +532,47 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 #chat-panel textarea{color:#e2e8f0 !important}
 #home-gateway{backdrop-filter:blur(10px)}
 
+/* Slide palette harmonization */
+.slide{position:relative;isolation:isolate;--slide-overlay:linear-gradient(180deg,rgba(240,184,109,.05),rgba(125,211,252,.04));}
+.slide::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:var(--slide-overlay);
+}
+.slide>div{position:relative;z-index:1}
+.slide[style*="background:#f8fafc"],
+.slide[style*="background:white"],
+.slide[style*="background:#fff"],
+.slide[style*="background:#fff5f5"]{--slide-overlay:linear-gradient(180deg,rgba(240,184,109,.06),rgba(125,211,252,.05));}
+.slide[style*="background:#0f172a"],
+.slide[style*="background:#0b172a"],
+.slide[style*="background:#0b1224"],
+.slide[style*="linear-gradient(135deg,#1e3a8a"],
+.slide[style*="linear-gradient(135deg,#1e3a5f"],
+.slide[style*="linear-gradient(135deg,#0f172a"]{--slide-overlay:linear-gradient(180deg,rgba(240,184,109,.11),rgba(125,211,252,.1));}
+
+/* Illustration and icon consistency */
+.slide img[src$=".png"],
+.slide img[src$=".jpg"],
+.slide img[src$=".jpeg"],
+.slide img[src$=".webp"]{
+  border-radius:14px;
+  border:1px solid rgba(15,23,42,.1);
+  box-shadow:0 12px 26px rgba(2,6,23,.2);
+}
+#tut-portrait,#vance-portrait{box-shadow:0 8px 26px rgba(2,6,23,.45)!important}
+#main-nav button{transition:filter .18s ease,transform .18s ease,background .2s ease,border-color .2s ease}
+#main-nav button:hover{transform:translateY(-1px)}
+
+/* Modal and panel micro-interactions */
+@keyframes panel-enter{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes panel-leave{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(10px) scale(.985)}}
+.ui-panel-enter{animation:panel-enter .2s cubic-bezier(.2,.8,.2,1) both}
+.ui-panel-leave{animation:panel-leave .18s ease both}
+
 /* Landing-aligned auth visual language */
 #auth-screen{
   background:
@@ -3936,17 +3977,44 @@ document.addEventListener('keydown',e=>{
 })();
 function showShortcuts() {
   const o = document.getElementById('shortcuts-overlay');
-  if(o) { o.style.display = 'flex'; }
+  if(o) {
+    o.style.display = 'flex';
+    const panel = o.firstElementChild;
+    if(panel) {
+      panel.classList.remove('ui-panel-leave');
+      panel.classList.add('ui-panel-enter');
+    }
+  }
 }
 function closeShortcuts() {
   const o = document.getElementById('shortcuts-overlay');
-  if(o) o.style.display = 'none';
+  if(!o) return;
+  const panel = o.firstElementChild;
+  if(panel) {
+    panel.classList.remove('ui-panel-enter');
+    panel.classList.add('ui-panel-leave');
+  }
+  setTimeout(() => { o.style.display = 'none'; }, 170);
+}
+
+function animatePanelIn(el, displayMode='flex') {
+  if(!el) return;
+  el.style.display = displayMode;
+  el.classList.remove('ui-panel-leave');
+  el.classList.add('ui-panel-enter');
+}
+
+function animatePanelOut(el) {
+  if(!el) return;
+  el.classList.remove('ui-panel-enter');
+  el.classList.add('ui-panel-leave');
+  setTimeout(() => { el.style.display = 'none'; }, 170);
 }
 
 function closeMobileNavSheet() {
   const backdrop = document.getElementById('mobile-nav-sheet-backdrop');
   const btn = document.getElementById('nav-more-btn');
-  if(backdrop) backdrop.style.display = 'none';
+  if(backdrop) animatePanelOut(backdrop);
   if(btn) btn.setAttribute('aria-expanded', 'false');
 }
 
@@ -3956,7 +4024,8 @@ function toggleMobileNavSheet() {
   const btn = document.getElementById('nav-more-btn');
   if(!backdrop) return;
   const opening = backdrop.style.display !== 'flex';
-  backdrop.style.display = opening ? 'flex' : 'none';
+  if(opening) animatePanelIn(backdrop, 'flex');
+  else animatePanelOut(backdrop);
   if(btn) btn.setAttribute('aria-expanded', opening ? 'true' : 'false');
 }
 
@@ -4095,7 +4164,7 @@ function showHomeGateway() {
     return;
   }
   const hub = document.getElementById('home-gateway');
-  if(hub) hub.style.display = 'flex';
+  if(hub) animatePanelIn(hub, 'flex');
   refreshDueDateBanner(); // show/hide training deadline notification
   refreshDrillStreak();   // update streak badge on daily drill button
   refreshHubProgress();   // update training progress bar
@@ -4129,7 +4198,7 @@ function showHomeGateway() {
 
 function hideHomeGateway() {
   const hub = document.getElementById('home-gateway');
-  if(hub) hub.style.display = 'none';
+  if(hub) animatePanelOut(hub);
   // Restore slide navigation arrows
   const pa = document.getElementById('side-arrow-prev');
   const na = document.getElementById('side-arrow-next');
@@ -4721,10 +4790,7 @@ function renderChatMessages() {
 function openChat() {
   closeMobileNavSheet();
   const panel = document.getElementById('chat-panel');
-  if(panel) {
-    panel.style.display='flex';
-    panel.style.opacity='1';
-  }
+  if(panel) animatePanelIn(panel, 'flex');
   const pName = window.TENANT?.patientName || 'the patient';
   const subtitleEl = document.getElementById('chat-subtitle');
   if(subtitleEl) subtitleEl.textContent = `${pName} scenario — clinical de-escalation coach`;
@@ -4756,7 +4822,7 @@ function openChatFromPax(evt) {
 
 function closeChat() {
   const panel = document.getElementById('chat-panel');
-  if(panel) panel.style.display='none';
+  if(panel) animatePanelOut(panel);
 }
 
 async function sendChatMessage() {
