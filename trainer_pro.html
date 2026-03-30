@@ -618,16 +618,17 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 .auth-orb-purple{width:280px;height:280px;background:radial-gradient(circle,rgba(125,223,159,.09) 0%,transparent 70%);bottom:-50px;right:-30px;animation-duration:18s;animation-direction:reverse}
 .auth-dot-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:34px 34px;opacity:.08;z-index:1}
 .auth-hero-content{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;padding:1.5rem 1.5rem 1.8rem}
-.auth-logo-wrap{margin-bottom:1.25rem}
-.auth-logo-lg{max-height:94px;max-width:360px;width:100%}
-.auth-headline-wrap{flex:1;display:flex;flex-direction:column;justify-content:flex-start;gap:1rem}
-.auth-status-row{font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:700;color:#aeb7c8;letter-spacing:.11em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+.auth-logo-wrap{margin:0 auto 1.25rem;display:flex;justify-content:center;width:100%}
+.auth-logo-lg{max-height:88px;max-width:220px;width:100%;display:flex;justify-content:center;align-items:center}
+.auth-logo-lg img{display:block;max-width:100%;max-height:88px;width:auto;height:auto;margin:0 auto;object-fit:contain}
+.auth-headline-wrap{flex:1;display:flex;flex-direction:column;justify-content:flex-start;gap:1rem;align-items:center;text-align:center}
+.auth-status-row{font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:700;color:#aeb7c8;letter-spacing:.11em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap}
 .auth-status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#7ddf9f;box-shadow:0 0 0 0 rgba(125,223,159,.5);animation:pulse 2.2s infinite}
 .auth-status-online{color:#7ddf9f}
 .auth-status-label{color:#aeb7c8}
 .auth-hero-title{margin:0;font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,5vw,3.45rem);line-height:.95;letter-spacing:-.01em;color:#f5f7fb}
 .auth-hero-title-accent{display:block;color:#7dd3fc}
-#auth-tagline{margin:0;max-width:58ch;color:#b8c0d1;font-size:1rem;line-height:1.55;font-weight:500}
+#auth-tagline{margin:0 auto;max-width:58ch;color:#b8c0d1;font-size:1rem;line-height:1.55;font-weight:500}
 .auth-hero-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin-top:.15rem}
 .auth-hero-kpi{border:1px solid rgba(255,255,255,.14);border-radius:13px;padding:.75rem;background:rgba(7,10,17,.45)}
 .auth-hero-kpi strong{display:block;font:800 1.15rem/1 'Fraunces',serif;color:#f0b86d}
