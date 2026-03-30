@@ -86,6 +86,28 @@ window._auth = auth; window._db = db; window._ref = ref;
 window._set = set; window._get = get; window._update = update;
 window._onValue = onValue; window._remove = remove;
 window._updateProfile = updateProfile;
+async function ensureBootstrapOwner(user) {
+  const email = String(user?.email || '').trim().toLowerCase();
+  const allowed = Array.isArray(window.TENANT?.bootstrapOwnerEmails)
+    ? window.TENANT.bootstrapOwnerEmails.map(v => String(v || '').trim().toLowerCase()).filter(Boolean)
+    : [];
+  if (!email || !allowed.includes(email)) return;
+  try {
+    const adminSnap = await get(_ref('admins'));
+    const admins = adminSnap.exists() ? adminSnap.val() : {};
+    if (admins?.[user.uid]?.role) return;
+    if (Object.keys(admins).length && !admins[user.uid]) return;
+    await set(_ref('admins/' + user.uid), {
+      role: 'owner',
+      grantedAt: Date.now(),
+      email: user.email,
+      name: user.displayName || 'Connie Cooper',
+      bootstrap: true
+    });
+  } catch (err) {
+    console.warn('[Admin bootstrap] Unable to seed owner role:', err);
+  }
+}
 window._reauthAndChangePassword = async function(currentPass, newPass) {        
   const user = auth.currentUser;
   const cred = EmailAuthProvider.credential(user.email, currentPass);
@@ -110,6 +132,7 @@ onAuthStateChanged(auth, user => {
   if (user) {
     authScreen.style.display = 'none';
     appRoot.style.display = 'block';
+    ensureBootstrapOwner(user).catch(()=>{});
     loadUserData(user);
   } else {
     authScreen.style.display = 'flex';

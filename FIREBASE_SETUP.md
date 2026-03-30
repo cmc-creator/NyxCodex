@@ -66,32 +66,37 @@ const firebaseConfig = {
 
 ---
 
-## ⚙️ Step 3: Configure trainer_pro.html
+## ⚙️ Step 3: Configure Firebase For This App
 
-### Update Firebase Config
-1. Open `trainer_pro.html` in a text editor
-2. Find this section (around line 20):
+### Where The App Reads Config
+This project now loads tenant settings from `tenant.config.js` first.
+
+1. Open `tenant.config.js`
+2. Keep `firebase: null` if you want to use the shared default Firebase project already referenced by the app
+3. Or replace `firebase: null` with your own Firebase config object if you want a dedicated Firebase project for this tenant
+
+Example:
 ```javascript
-const firebaseConfig = {
-    apiKey: "YOUR_FIREBASE_API_KEY_HERE",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    // ... etc
-};
+firebase: {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.firebasestorage.app",
+  messagingSenderId: "1234567890",
+  appId: "1:1234567890:web:abcdef"
+}
 ```
 
-3. Replace with YOUR actual credentials from Step 2
-
-### Example (DO NOT USE - THIS IS EXAMPLE ONLY):
+### Tenant Org ID
+Make sure this matches your database path prefix:
 ```javascript
-const firebaseConfig = {
-    apiKey: "AIzaSyD8UQAVR_GslkMyBSxjJEygHFcrbajr37c",
-    authDomain: "destiny-springs-trainer.firebaseapp.com",
-    databaseURL: "https://destiny-springs-trainer.firebasedatabase.app",
-    projectId: "destiny-springs-trainer",
-    storageBucket: "destiny-springs-trainer.appspot.com",
-    messagingSenderId: "426519148291",
-    appId: "1:426519148291:web:a1b2c3d4e5f6g7h8i9"
-};
+orgId: 'destiny-springs'
+```
+
+All live data is stored under:
+```text
+orgs/{orgId}/...
 ```
 
 4. Save the file
@@ -108,20 +113,44 @@ const firebaseConfig = {
 ```json
 {
   "rules": {
-    "users": {
-      "$uid": {
-        ".read": "auth.uid === $uid || root.child('admins').child(auth.uid).exists()",
-        ".write": "auth.uid === $uid",
-        ".validate": "newData.hasChildren(['email', 'xp', 'scores'])"
+    ".read": false,
+    ".write": false,
+    "orgs": {
+      "$orgId": {
+        ".read": "auth != null",
+        ".write": false,
+        "users": {
+          "$uid": {
+            ".read": "auth != null && (auth.uid === $uid || root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'owner' || root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'admin')",
+            ".write": "auth != null && (auth.uid === $uid || root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'owner' || root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'admin')"
+          },
+          ".read": "auth != null && (root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'owner' || root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'admin')"
+        },
+        "admins": {
+          ".read": "auth != null && (root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'owner' || root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'admin')",
+          "$uid": {
+            ".write": "auth != null && (root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'owner' || (!root.child('orgs').child($orgId).child('admins').exists() && auth.uid === $uid && auth.token.email != null))"
+          }
+        },
+        "settings": {
+          ".read": "auth != null",
+          ".write": "auth != null && (root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'owner' || root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'admin')"
+        },
+        "audit": {
+          ".read": "auth != null && (root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'owner' || root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'admin')",
+          "$logId": {
+            ".write": "auth != null"
+          }
+        },
+        "invites": {
+          ".read": "auth != null",
+          ".write": "auth != null && (root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'owner' || root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'admin')"
+        },
+        "scenarios": {
+          ".read": "auth != null",
+          ".write": "auth != null && (root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'owner' || root.child('orgs').child($orgId).child('admins').child(auth.uid).child('role').val() === 'admin')"
+        }
       }
-    },
-    "admins": {
-      ".read": "root.child('admins').child(auth.uid).exists()",
-      ".write": false
-    },
-    "leaderboard": {
-      ".read": "auth != null",
-      ".write": false
     }
   }
 }
@@ -129,16 +158,59 @@ const firebaseConfig = {
 
 4. Click **"Publish"**
 
-### Set Admin Users (IMPORTANT)
+### Seed The First Owner Account
+You now have two supported options.
+
+#### Option A: Auto-bootstrap on first login
+This repo is configured to bootstrap the first owner from:
+
+```text
+ccooper@destinysprings.com
+```
+
+The email is configured in `tenant.config.js` under:
+
+```javascript
+bootstrapOwnerEmails: ['ccooper@destinysprings.com']
+```
+
+After you sign in with that account, the app will attempt to create:
+
+```text
+orgs/destiny-springs/admins/{YOUR_UID}
+```
+
+with role:
+
+```json
+{
+  "role": "owner",
+  "grantedAt": 1774911000000,
+  "email": "ccooper@destinysprings.com",
+  "name": "Connie Cooper",
+  "bootstrap": true
+}
+```
+
+#### Option B: Seed manually in the Firebase Data tab
 1. Click **"Realtime Database"** → **"Data"** tab
-2. Click the **+** icon to add a new path
-3. Create path: `admins/ADD_YOUR_UID_HERE` with value `true`
+2. Create path: `orgs/destiny-springs/admins/YOUR_UID`
+3. Set value to:
+
+```json
+{
+  "role": "owner",
+  "grantedAt": 1774911000000,
+  "email": "ccooper@destinysprings.com",
+  "name": "Connie Cooper"
+}
+```
 
 **How to get your UID:**
 1. Go to **Authentication** in Firebase
 2. Create test account with your email
 3. Firebase generates a UID - copy it
-4. Use that in the admins path above
+4. Use that UID in the path above
 
 ---
 

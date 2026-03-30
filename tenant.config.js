@@ -72,6 +72,11 @@ window.TENANT = {
   // this org a completely dedicated Firebase project.
   firebase: null,
 
+  // ── Admin Bootstrap (optional) ────────────────────────────────────────────
+  // Any email listed here can self-seed as the first owner account when no
+  // admin records exist yet for this tenant.
+  bootstrapOwnerEmails: ['ccooper@destinysprings.com'],
+
 };
 
 // ── Inject CSS Custom Properties immediately ───────────────────────────────
