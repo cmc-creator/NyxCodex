@@ -55,17 +55,17 @@
 
     .shell{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:1rem 1rem 2rem}
     .topline{
-      display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;
       border:1px solid var(--line);border-radius:18px;background:var(--panel);
       backdrop-filter:blur(12px);padding:.75rem .9rem;
       animation:rise .7s ease both;
     }
-    .brand{display:flex;align-items:center;gap:.7rem;min-width:0}
+    .brand{display:flex;align-items:center;justify-content:center;gap:.7rem;min-width:0;width:100%}
     .brand img{width:68px;height:68px;object-fit:contain;border-radius:14px;background:rgba(255,255,255,.06)}
-    .brand div{min-width:0}
+    .brand div{min-width:0;text-align:center}
     .brand .kicker{font:700 .62rem/1 "IBM Plex Mono",monospace;letter-spacing:.15em;color:var(--accent-2);text-transform:uppercase}
     .brand .name{font:800 1rem/1.1 "Fraunces",serif;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .status{display:flex;align-items:center;gap:.45rem;font:700 .66rem/1 "IBM Plex Mono",monospace;color:var(--ok);letter-spacing:.08em;text-transform:uppercase}
+    .status{display:flex;align-items:center;justify-content:center;gap:.45rem;font:700 .66rem/1 "IBM Plex Mono",monospace;color:var(--ok);letter-spacing:.08em;text-transform:uppercase}
     .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(125,223,159,.5);animation:pulse 2.2s infinite}
     @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(125,223,159,.5)}100%{box-shadow:0 0 0 10px rgba(125,223,159,0)}}
 
@@ -138,6 +138,9 @@
 
     @media (min-width:760px){
       .shell{padding:1.3rem 1.3rem 2.5rem}
+      .topline{flex-direction:row;align-items:center;justify-content:space-between}
+      .brand{justify-content:flex-start;width:auto}
+      .brand div{text-align:left}
       .hero{grid-template-columns:1.25fr .95fr;min-height:520px}
       .hero-copy{padding:1.5rem 1.5rem 1.8rem}
       .hero-panel{border-top:none;border-left:1px solid var(--line);padding:1.2rem}

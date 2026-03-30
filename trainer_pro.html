@@ -77,13 +77,6 @@ window._auth = auth; window._db = db; window._ref = ref;
 window._set = set; window._get = get; window._update = update;
 window._onValue = onValue; window._remove = remove;
 window._updateProfile = updateProfile;
-const isReloadNav = (() => {
-  const nav = (performance && performance.getEntriesByType) ? performance.getEntriesByType('navigation')[0] : null;
-  if (nav && nav.type) return nav.type === 'reload';
-  if (performance && performance.navigation) return performance.navigation.type === 1; // legacy API
-  return false;
-})();
-let firstAuthEvent = true;
 window._reauthAndChangePassword = async function(currentPass, newPass) {        
   const user = auth.currentUser;
   const cred = EmailAuthProvider.credential(user.email, currentPass);
@@ -92,13 +85,6 @@ window._reauthAndChangePassword = async function(currentPass, newPass) {
 };
 onAuthStateChanged(auth, user => {
   window._currentUser = user;
-  if (firstAuthEvent && user && isReloadNav) {
-    // Only sign out persisted sessions that survive a hard reload
-    signOut(auth);
-    firstAuthEvent = false;
-    return;
-  }
-  firstAuthEvent = false;
   if (user) {
     document.getElementById('auth-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
