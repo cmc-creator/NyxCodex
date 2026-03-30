@@ -285,6 +285,14 @@ const ACHIEVEMENTS = [
   { id:'all_patients',  icon:'🌈', name:'Full Spectrum',     desc:'Worked with all 3 patients in the lab',   check: u=> (u._labPatientSet||[]).length >= 3 },
   { id:'streak_3',      icon:'🔥', name:'On Fire',           desc:'Built a 3-day daily drill streak',         check: u=> (u.drillStreak||0) >= 3 },
   { id:'streak_7',      icon:'🏅', name:'Week Warrior',      desc:'Built a 7-day daily drill streak',         check: u=> (u.drillStreak||0) >= 7 },
+  { id:'streak_14',     icon:'⚡', name:'Fortnight Fire',    desc:'Built a 14-day daily drill streak',        check: u=> (u.drillStreak||0) >= 14 },
+  { id:'streak_30',     icon:'💎', name:'Iron Will',         desc:'Built a 30-day daily drill streak',        check: u=> (u.drillStreak||0) >= 30 },
+  { id:'mastery_ptsd',  icon:'🎯', name:'Trauma Specialist', desc:'Scored A or B on 3+ PTSD scenarios',       check: u=> (u.masteryCount?.ptsd||0) >= 3 },
+  { id:'mastery_autism',icon:'🧩', name:'Autism Specialist', desc:'Scored A or B on 3+ Autism scenarios',     check: u=> (u.masteryCount?.autism||0) >= 3 },
+  { id:'mastery_adhd',  icon:'💡', name:'ADHD Specialist',   desc:'Scored A or B on 3+ ADHD scenarios',       check: u=> (u.masteryCount?.adhd||0) >= 3 },
+  { id:'mastery_schiz', icon:'🔬', name:'Psychosis Specialist',desc:'Scored A or B on 3+ Schizophrenia scenarios',check: u=> (u.masteryCount?.schizophrenia||0) >= 3 },
+  { id:'mastery_bipolar',icon:'⚖️',name:'Bipolar Specialist', desc:'Scored A or B on 3+ Bipolar scenarios',   check: u=> (u.masteryCount?.bipolar||0) >= 3 },
+  { id:'mastery_bpd',   icon:'🌊', name:'BPD Specialist',    desc:'Scored A or B on 3+ BPD scenarios',        check: u=> (u.masteryCount?.bpd||0) >= 3 },
   { id:'level_3',       icon:'📈', name:'Rising Clinician', desc:'Reached Level 3',                          check: u=> (u.level||1) >= 3 },
   { id:'level_5',       icon:'🏆', name:'Expert Clinician',  desc:'Reached Level 5',                          check: u=> (u.level||1) >= 5 },
   { id:'cert_earned',   icon:'🎓', name:'Certified!',        desc:'Downloaded your completion certificate',   check: u=> !!u.completedAt },
@@ -511,6 +519,12 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 .btn-purple:hover{box-shadow:0 10px 24px rgba(142,113,255,.34)}
 .btn-amber{background:linear-gradient(130deg,#ffd189,#f0b86d);color:#2f1b06;border-color:rgba(255,221,163,.65)}
 .btn-amber:hover{box-shadow:0 10px 24px rgba(240,184,109,.34)}
+.btn-secondary{background:white;color:#475569;border-color:#e2e8f0}
+.btn-secondary:hover{background:#f8fafc;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.btn-info{background:linear-gradient(130deg,#93c5fd,#60a5fa);color:#0c2d6b;border-color:rgba(96,165,250,.55)}
+.btn-info:hover{box-shadow:0 10px 24px rgba(96,165,250,.32)}
+.lab-tab-btn{padding:.65rem 1.1rem;font-size:.85rem;font-weight:800;border:none;cursor:pointer;border-bottom:3px solid transparent;color:#64748b;background:transparent;margin-bottom:-2px;transition:color .2s,border-color .2s}
+.lab-tab-btn.active{color:#2563eb;border-bottom-color:#2563eb}
 .input-field{width:100%;padding:.875rem 1rem;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:.82rem;font-family:inherit;font-size:.9rem;font-weight:600;outline:none;transition:border-color .2s,background .2s;color:#0f172a}
 .input-field:focus{border-color:#60a5fa;background:#fff}
 
@@ -739,7 +753,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
   
   /* Buttons and controls */
   .btn{padding:.65rem 1.25rem;font-size:.8rem}
-  .btn-primary,.btn-success,.btn-danger,.btn-purple,.btn-amber{padding:.75rem 1.25rem}
+  .btn-primary,.btn-success,.btn-danger,.btn-purple,.btn-amber,.btn-info{padding:.75rem 1.25rem}
   
   /* Input fields */
   .input-field{padding:.75rem .875rem;font-size:.85rem}
@@ -762,6 +776,9 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
   /* Grid layouts - stack on mobile */
   .grid-cols-2{grid-template-columns:1fr!important}
   [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+  .grid-two-even,.grid-two-equal,.grid-two-varied,.modal-form-grid.two-col{grid-template-columns:1fr!important}
+  .grid-three-col,.modal-form-grid.four-col{grid-template-columns:repeat(2,1fr)!important}
+  .grid-form-row{display:flex;flex-direction:column!important;gap:.5rem}
   
   /* Diagnosis pills - wrap properly */
   .diagnosis-pill{font-size:.7rem;padding:.4rem 1rem}
@@ -966,6 +983,13 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 .modal-form-grid{display:grid;gap:.6rem}
 .modal-form-grid.two-col{grid-template-columns:1fr 1fr}
 .modal-form-grid.four-col{grid-template-columns:repeat(4,1fr)}
+.grid-three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+.grid-form-row{display:grid;grid-template-columns:1fr auto;gap:.6rem;align-items:end}
+.grid-two-even{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.grid-two-varied{display:grid;grid-template-columns:1.1fr 0.9fr;gap:1rem;align-items:start}
+.grid-two-equal{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.space-y-3>*+*{margin-top:.75rem}
+.flex-col-gap{display:flex;flex-direction:column;gap:.6rem}
 .modal-label{font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem}
 .modal-label.section{font-size:.75rem;font-weight:900;color:#0f172a;text-transform:uppercase;letter-spacing:.06em}
 .modal-action-buttons{display:flex;gap:.75rem;justify-content:flex-end;padding-top:.75rem;border-top:1px solid #e2e8f0}
@@ -1016,6 +1040,76 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 .btn-color-cancel-light{width:100%;padding:.7rem;background:#f1f5f9;color:#475569;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem}
 .modal-form-group{display:flex;flex-direction:column;gap:.6rem}
 .modal-form-section-header{font-size:.75rem;font-weight:900;color:#0f172a;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid #e2e8f0;padding-bottom:.4rem;margin:0 0 .875rem}
+/* Hidden by JS - display toggled dynamically */
+.js-hidden{display:none}
+/* Common utility layout classes */
+.flex-row{display:flex;flex-direction:row}
+.flex-col{display:flex;flex-direction:column}
+.flex-wrap{flex-wrap:wrap}
+.gap-xs{gap:.5rem}
+.gap-sm{gap:.6rem}
+.gap-md{gap:.75rem}
+.gap-lg{gap:1rem}
+.mb-xs{margin-bottom:.25rem}
+.mb-sm{margin-bottom:.5rem}
+.mb-md{margin-bottom:.65rem}
+.mb-lg{margin-bottom:1rem}
+.mt-md{margin-top:.65rem}
+.mt-lg{margin-top:1rem}
+.p-xs{padding:.2rem}
+.p-sm{padding:.6rem 1rem}
+.p-md{padding:1rem}
+.p-lg{padding:1.25rem}
+.border-top{border-top:1px solid #e2e8f0;padding-top:1rem}
+.border-bottom{border-bottom:1px solid #e2e8f0;padding-bottom:1rem}
+.rounded-sm{border-radius:.5rem}
+.rounded-md{border-radius:.875rem}
+.rounded-lg{border-radius:1rem}
+.bg-light{background:#f8fafc}
+.bg-lighter{background:#f1f5f9}
+.bg-lightest{background:#fffaf5}
+.bg-dark{background:#0f172a}
+.text-sm{font-size:.78rem}
+.text-base{font-size:.88rem}
+.text-md{font-size:.95rem}
+.font-bold{font-weight:900}
+.font-semi{font-weight:800}
+.font-med{font-weight:700}
+.font-normal{font-weight:600}
+.uppercase{text-transform:uppercase}
+.letter-spacing{letter-spacing:.08em}
+.align-items-center{align-items:center}
+.align-items-end{align-items:end}
+.justify-content-between{justify-content:space-between}
+.justify-content-end{justify-content:flex-end}
+.min-w-xs{min-width:110px}
+.min-w-sm{min-width:180px}
+.w-full{width:100%}
+.flex-1{flex:1}
+.flex-0{flex:0}
+.color-danger{color:#dc2626}
+.color-warning{color:#92400e}
+.color-success{color:#15803d}
+.color-info{color:#1d4ed8}
+.color-neutral{color:#475569}
+/* Tab button styles */
+.tab-btn-base{padding:.65rem 1.1rem;font-size:.85rem;font-weight:800;border:none;cursor:pointer;margin-bottom:-2px}
+.tab-btn-active{border-bottom:3px solid #2563eb;color:#2563eb;background:transparent}
+.tab-btn-inactive{border-bottom:3px solid transparent;color:#64748b;background:transparent}
+.tab-content{display:none}
+.tab-active{display:block}
+/* Scenario and rules boxes */
+.scenario-box{background:white;border:1px solid #e2e8f0;border-radius:.875rem;padding:1rem;min-height:140px;color:#0f172a;font-weight:600;line-height:1.6}
+.rules-box{background:#fffaf5;border:1px solid #fed7aa;border-radius:1rem;padding:1rem}
+.rules-title{margin:0 0 .5rem;font-size:.95rem;font-weight:900;color:#92400e}
+.rules-list{margin:0;padding-left:1.1rem;color:#92400e;font-weight:700;font-size:.86rem;line-height:1.6}
+.rules-footer{margin-top:.65rem;font-size:.82rem;color:#b45309;font-weight:700}
+/* Input field styles */
+.input-select{flex:1;min-width:180px}
+.input-select-fixed{width:180px}
+/* Badge and state styles */
+.badge-patient{padding:.3rem .85rem;border-radius:1rem;font-weight:900;font-size:.8rem;background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
+.badge-credits{background:#ecfdf3;border:1px solid #bbf7d0;padding:.4rem .75rem;border-radius:.75rem;font-weight:800;color:#15803d;font-size:.85rem}
 </style>
 </head>
 <body>
@@ -1320,6 +1414,27 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
       <div id="hub-cert-status"></div>
       <!-- Achievement badge wall (populated by JS) -->
       <div id="hub-badges-wrap"></div>
+      <!-- Monthly team challenge (populated by JS) -->
+      <div id="hub-challenge-wrap" style="display:none;margin:.45rem 0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:.875rem;padding:.8rem 1rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+          <div style="font-size:.72rem;font-weight:900;color:#e2e8f0;text-transform:uppercase;letter-spacing:.06em">🏆 Monthly Team Challenge</div>
+          <div id="hub-challenge-days" style="font-size:.68rem;font-weight:700;color:#94a3b8"></div>
+        </div>
+        <div id="hub-challenge-label" style="font-size:.82rem;font-weight:700;color:#e2e8f0;margin-bottom:.4rem"></div>
+        <div style="background:rgba(255,255,255,.1);border-radius:999px;height:7px;overflow:hidden">
+          <div id="hub-challenge-fill" style="height:7px;background:linear-gradient(90deg,#2563eb,#7c3aed);border-radius:999px;width:0%;transition:width .9s ease"></div>
+        </div>
+        <div id="hub-challenge-sub" style="font-size:.72rem;color:#94a3b8;margin-top:.3rem;font-weight:600"></div>
+      </div>
+      <!-- Assigned scenario banner (populated by JS) -->
+      <div id="hub-assigned-wrap" style="display:none;background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.3);border-radius:.875rem;padding:.75rem 1rem;margin:.45rem 0">
+        <div style="font-size:.7rem;font-weight:900;color:#fbbf24;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem">📌 Assigned by your manager</div>
+        <div id="hub-assigned-label" style="font-size:.86rem;font-weight:800;color:#fef3c7"></div>
+        <div id="hub-assigned-due" style="font-size:.72rem;color:#fcd34d;font-weight:600;margin-top:.15rem"></div>
+        <button onclick="enterLabFromHub()" style="margin-top:.5rem;background:rgba(245,158,11,.18);color:#fbbf24;border:1px solid rgba(245,158,11,.35);border-radius:.55rem;padding:.3rem .9rem;font-size:.75rem;font-weight:800;cursor:pointer">Open Lab →</button>
+      </div>
+      <!-- Onboarding checklist (populated by JS) -->
+      <div id="hub-checklist-wrap" style="display:none;background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.2);border-radius:.875rem;padding:.8rem 1rem;margin:.45rem 0"></div>
       <!-- Role-based track selector -->
       <div id="hub-role-wrap">
         <div class="hub-role-label">Your Role Track</div>
@@ -1398,9 +1513,9 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('analytics',this)">📊 Analytics</button>
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('reports',this)">📋 Reports</button>
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('completion',this)">? Completion</button>
-      <button id="settings-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('settings',this)" style="display:none">⚙️ Settings</button>
-      <button id="audit-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('audit',this)" style="display:none">📜 Audit Log</button>
-      <button id="scenarios-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('scenarios',this)" style="display:none">📚 Scenarios</button>
+      <button id="settings-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('settings',this)">⚙️ Settings</button>
+      <button id="audit-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('audit',this)">📜 Audit Log</button>
+      <button id="scenarios-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('scenarios',this)">📚 Scenarios</button>
     </div>
     <div class="admin-tab-content-wrap">
       <div id="at-leaderboard"></div>
@@ -1423,8 +1538,8 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
       <button onclick="closeUserManageModal()" class="modal-close-btn">&times;</button>
     </div>
     <div class="modal-content">
-      <div id="umm-stats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem"></div>
-      <div style="display:flex;flex-direction:column;gap:.6rem">
+      <div id="umm-stats" class="grid-three-col"></div>
+      <div class="flex-col-gap">
         <h3 class="modal-section-title">✏️ Edit Profile</h3>
         <div class="modal-form-grid two-col">
           <div><label class="modal-label">First Name</label><input id="umm-fname" class="input-field"></div>
@@ -1432,19 +1547,19 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
           <div><label class="modal-label">Department</label><input id="umm-dept" class="input-field"></div>
           <div><label class="modal-label">Job Title</label><input id="umm-title" class="input-field"></div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr auto;gap:.6rem;align-items:end">
+        <div class="grid-form-row">
           <div><label class="modal-label">Due Date</label><input id="umm-due" type="date" class="input-field"></div>
-          <button onclick="document.getElementById('umm-due').value=''" style="background:#fee2e2;color:#dc2626;border:1px solid #fecaca;border-radius:.5rem;padding:.55rem .875rem;font-size:.78rem;font-weight:800;cursor:pointer;white-space:nowrap">Clear</button>
+          <button onclick="document.getElementById('umm-due').value=''" class="btn btn-danger" style="padding:.55rem .875rem;font-size:.78rem;white-space:nowrap">Clear</button>
         </div>
         <button onclick="saveUserManage()" class="btn btn-primary">💾 Save Changes</button>
       </div>
       <div style="border-top:1px solid #f1f5f9;padding-top:1rem">
         <h3 class="modal-section-title">⚠️ Training Actions</h3>
         <div style="display:flex;flex-wrap:wrap;gap:.5rem">
-          <button onclick="adminResetTraining()" style="background:#fef3c7;color:#92400e;border:1px solid #fde68a;border-radius:.5rem;padding:.45rem .875rem;font-size:.78rem;font-weight:800;cursor:pointer">🔄 Reset Training Year</button>
-          <button onclick="adminExtendDeadline(30)" style="background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:.5rem;padding:.45rem .875rem;font-size:.78rem;font-weight:800;cursor:pointer">📅 +30 Days</button>
-          <button onclick="adminExtendDeadline(90)" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;border-radius:.5rem;padding:.45rem .875rem;font-size:.78rem;font-weight:800;cursor:pointer">📅 +90 Days</button>
-          <button onclick="adminSendNudge()" style="background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe;border-radius:.5rem;padding:.45rem .875rem;font-size:.78rem;font-weight:800;cursor:pointer">📣 Send Reminder</button>
+          <button onclick="adminResetTraining()" class="btn btn-amber" style="padding:.45rem .875rem;font-size:.78rem">🔄 Reset Training Year</button>
+          <button onclick="adminExtendDeadline(30)" class="btn btn-info" style="padding:.45rem .875rem;font-size:.78rem">📅 +30 Days</button>
+          <button onclick="adminExtendDeadline(90)" class="btn btn-success" style="padding:.45rem .875rem;font-size:.78rem">📅 +90 Days</button>
+          <button onclick="adminSendNudge()" class="btn btn-purple" style="padding:.45rem .875rem;font-size:.78rem">📣 Send Reminder</button>
         </div>
       </div>
     </div>
@@ -1522,10 +1637,10 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
     </div>
     <!-- Tab bar -->
     <div style="display:flex;gap:0;border-bottom:2px solid #e2e8f0;padding:0 1.25rem;background:#f8fafc">
-      <button id="lab-tab-btn-scenarios" onclick="switchLabTab('scenarios')" style="padding:.65rem 1.1rem;font-size:.85rem;font-weight:800;border:none;cursor:pointer;border-bottom:3px solid #2563eb;color:#2563eb;background:transparent;margin-bottom:-2px">🎮 Scenarios</button>
-      <button id="lab-tab-btn-debrief" onclick="switchLabTab('debrief')" style="padding:.65rem 1.1rem;font-size:.85rem;font-weight:800;border:none;cursor:pointer;border-bottom:3px solid transparent;color:#64748b;background:transparent;margin-bottom:-2px">📝 Debrief</button>
-      <button id="lab-tab-btn-script" onclick="switchLabTab('script')" style="padding:.65rem 1.1rem;font-size:.85rem;font-weight:800;border:none;cursor:pointer;border-bottom:3px solid transparent;color:#64748b;background:transparent;margin-bottom:-2px">📄 Script Builder</button>
-      <button id="lab-tab-btn-microexp" onclick="switchLabTab('microexp')" style="padding:.65rem 1.1rem;font-size:.85rem;font-weight:800;border:none;cursor:pointer;border-bottom:3px solid transparent;color:#64748b;background:transparent;margin-bottom:-2px">🧠 Micro-Exp</button>
+      <button id="lab-tab-btn-scenarios" onclick="switchLabTab('scenarios')" class="lab-tab-btn active">🎮 Scenarios</button>
+      <button id="lab-tab-btn-debrief" onclick="switchLabTab('debrief')" class="lab-tab-btn">📝 Debrief</button>
+      <button id="lab-tab-btn-script" onclick="switchLabTab('script')" class="lab-tab-btn">📄 Script Builder</button>
+      <button id="lab-tab-btn-microexp" onclick="switchLabTab('microexp')" class="lab-tab-btn">🧠 Micro-Exp</button>
     </div>
     <div style="padding:1.25rem;overflow-y:auto;flex:1">
 
@@ -1544,7 +1659,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
           </div>
           <div id="marcus-state-badge" style="padding:.3rem .85rem;border-radius:1rem;font-weight:900;font-size:.8rem;background:#dcfce7;color:#166534;border:1px solid #bbf7d0">&#x26AB; Neutral</div>
         </div>
-        <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:1rem;align-items:start">
+        <div class="grid-two-varied">
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem">
           <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem">
             <select id="lab-dx" class="input-field" style="flex:1;min-width:180px">
@@ -1576,7 +1691,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
           <div style="margin-top:.65rem;font-size:.82rem;color:#b45309;font-weight:700">Redemption tiers: 300 → 600 → 1000 → 1800 LC (set in settings).</div>
         </div>
       </div>
-      <div style="margin-top:1rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+      <div class="grid-two-equal" style="margin-top:1rem">
         <textarea id="lab-response" class="input-field" placeholder="Type your de-escalation response..." style="height:180px;resize:vertical"></textarea>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem;display:flex;flex-direction:column;gap:.75rem">
           <button id="lab-submit-btn" class="btn btn-success" onclick="submitLabScenario()" style="width:100%">Submit Response</button>
@@ -1608,7 +1723,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
       <!-- TAB: Debrief -->
       <div id="lab-tab-debrief" style="display:none">
         <p style="margin:0 0 1rem;color:#64748b;font-size:.88rem;font-weight:700">Describe a real or practice incident. Professor Vance will review it and provide structured clinical feedback.</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="grid-two-equal">
           <div style="display:flex;flex-direction:column;gap:.5rem">
             <label style="font-size:.75rem;font-weight:800;color:#475569;text-transform:uppercase;letter-spacing:.06em">📝 What happened?</label>
             <textarea id="debrief-input" class="input-field" placeholder="Describe the incident, what you tried, and how it went. Be specific..." style="height:280px;resize:vertical"></textarea>
@@ -1617,6 +1732,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
           <div style="display:flex;flex-direction:column;gap:.5rem">
             <label style="font-size:.75rem;font-weight:800;color:#475569;text-transform:uppercase;letter-spacing:.06em">🧠 Clinical Mentor Analysis</label>
             <div id="debrief-output" style="flex:1;min-height:280px;background:#1e1b4b;border:1px solid #4338ca;border-radius:.875rem;padding:1rem;color:#c7d2fe;font-size:.875rem;line-height:1.6;font-weight:600;overflow-y:auto;white-space:pre-wrap"><span style="opacity:.5">Your mentor's feedback will appear here...</span></div>
+                      <button id="debrief-export-btn" onclick="exportDebriefNote()" style="display:none;background:#ede9fe;color:#5b21b6;border:1px solid #c4b5fd;border-radius:.75rem;padding:.55rem 1.25rem;font-weight:800;font-size:.82rem;cursor:pointer">📄 Export as Clinical Note</button>
           </div>
         </div>
       </div><!-- end tab debrief -->
@@ -1743,7 +1859,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
             </div>
           </div>
           <div style="text-align:center">
-            <button onclick="advanceDrillToStep2()" style="background:linear-gradient(135deg,#f59e0b,#d97706);color:white;border:none;border-radius:.875rem;padding:.75rem 2rem;font-weight:900;font-size:.9rem;cursor:pointer;box-shadow:0 8px 20px rgba(245,158,11,.3)">Next: Practice Scenario ?</button>
+            <button onclick="advanceDrillToStep2()" class="btn btn-amber">Next: Practice Scenario ?</button>
           </div>
         </div>
 
@@ -1751,7 +1867,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
         <div id="drill-step-2" style="display:none">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.85rem">
             <div style="font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#a16207;background:#fef3c7;border:1px solid #fcd34d;border-radius:999px;padding:.2rem .65rem">Step 2 of 2 — Live Scenario</div>
-            <button onclick="rerollDrillScenario()" style="border:1px solid #e2e8f0;background:white;border-radius:.65rem;padding:.3rem .75rem;font-size:.75rem;font-weight:800;color:#475569;cursor:pointer">🔀 Different scenario</button>
+            <button onclick="rerollDrillScenario()" class="btn btn-secondary" style="padding:.3rem .75rem;font-size:.75rem">🔀 Different scenario</button>
           </div>
           <div id="drill-scenario-box" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem;margin-bottom:.85rem;font-weight:600;color:#0f172a;line-height:1.65;font-size:.88rem;min-height:90px">Loading…</div>
           <div style="margin-bottom:.75rem">
@@ -1771,7 +1887,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 
           <div style="display:flex;gap:.75rem;justify-content:flex-end">
             <button id="drill-submit-btn" onclick="submitDrill()" class="btn btn-primary">Submit Response</button>
-            <button id="drill-finish-btn" onclick="closeDrillModal()" style="display:none;background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;padding:.65rem 1.5rem;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.875rem">Done ?</button>
+            <button id="drill-finish-btn" onclick="closeDrillModal()" class="btn btn-success" style="display:none">Done ?</button>
           </div>
         </div>
 
@@ -1883,9 +1999,10 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
         <div class="acct-stats-item"><p style="font-size:1.4rem;font-weight:900;color:#22c55e" id="acct-lc-stat">0</p><p class="acct-stats-label">Lab Credits</p></div>
         <div class="acct-stats-item"><p style="font-size:1.4rem;font-weight:900;color:#fbbf24" id="acct-tier-stat">—</p><p class="acct-stats-label">Redeem Tier</p></div>
       </div>
-      <div style="display:flex;gap:.75rem">
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap">
         <button class="btn btn-primary" style="flex:1" onclick="openAccountEdit()">✏️ Edit Profile</button>
-        <button class="btn" style="background:#fef2f2;color:#dc2626;border:1px solid #fee2e2;flex:1" onclick="openChangePassword()">🔑 Change Password</button>
+        <button class="btn btn-danger" style="flex:1" onclick="openChangePassword()">🔑 Change Password</button>
+        <button class="btn" style="flex:1;background:#ede9fe;color:#5b21b6;border:1px solid #c4b5fd;min-width:140px" onclick="openAccountHistory()">📋 Lab History</button>
       </div>
     </div>
 
@@ -1893,12 +2010,12 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
     <div id="acct-edit" style="display:none;padding:1.5rem">
       <h3 style="font-size:.9rem;font-weight:900;color:#0f172a;margin-bottom:1rem">Edit Profile Information</h3>
       <div class="space-y-3">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+        <div class="grid-two-even">
           <input id="edit-fname" class="input-field" type="text" placeholder="First Name">
           <input id="edit-lname" class="input-field" type="text" placeholder="Last Name">
         </div>
         <input id="edit-phone" class="input-field" type="tel" placeholder="Mobile Phone">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+        <div class="grid-two-even">
           <input id="edit-title" class="input-field" type="text" placeholder="Job Title">
           <input id="edit-dept" class="input-field" type="text" placeholder="Department">
         </div>
@@ -1906,7 +2023,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
         <div id="acct-edit-error" style="display:none;color:#dc2626;font-size:.8rem;font-weight:700;padding:.5rem;background:#fef2f2;border-radius:.5rem"></div>
         <div style="display:flex;gap:.75rem">
           <button class="btn btn-success" style="flex:1" onclick="saveAccountEdit()">Save Changes</button>
-          <button class="btn" style="background:#f1f5f9;color:#475569;flex:1" onclick="cancelAccountEdit()">Cancel</button>
+          <button class="btn btn-secondary" style="flex:1" onclick="cancelAccountEdit()">Cancel</button>
         </div>
       </div>
     </div>
@@ -1922,9 +2039,18 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
         <div id="acct-pw-success" style="display:none;color:#059669;font-size:.8rem;font-weight:700;padding:.5rem;background:#f0fdf4;border-radius:.5rem">Password updated successfully!</div>
         <div style="display:flex;gap:.75rem">
           <button class="btn btn-primary" style="flex:1" onclick="doChangePassword()">Update Password</button>
-          <button class="btn" style="background:#f1f5f9;color:#475569;flex:1" onclick="cancelChangePassword()">Cancel</button>
+          <button class="btn btn-secondary" style="flex:1" onclick="cancelChangePassword()">Cancel</button>
         </div>
       </div>
+    </div>
+
+    <!-- Lab History Mode -->
+    <div id="acct-history" style="display:none;padding:1.5rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+        <h3 style="font-size:.9rem;font-weight:900;color:#0f172a;margin:0">Recent Lab Sessions</h3>
+        <button class="btn" style="font-size:.78rem;padding:.35rem .85rem;background:#f1f5f9;color:#475569" onclick="cancelAccountHistory()">← Back</button>
+      </div>
+      <div id="acct-history-list" style="display:flex;flex-direction:column;gap:.5rem;max-height:55vh;overflow-y:auto"></div>
     </div>
   </div>
 </div>
@@ -2054,13 +2180,24 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
         <span id="nav-name" style="color:white;font-weight:800;font-size:.72rem;white-space:nowrap">Account</span>
       </button>
       <button id="nav-signout-btn" onclick="doSignOut()" title="Sign out" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18);color:#fca5a5;padding:.35rem .55rem;border-radius:.65rem;font-size:.72rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:background .15s" onmouseover="this.style.background='rgba(239,68,68,.22)'" onmouseout="this.style.background='rgba(239,68,68,.08)'">Sign Out</button>
+<!-- Mobile overflow sheet for bottom nav -->
+      </div>
+      <div style="border-top:1px solid #f1f5f9;padding-top:1rem;margin-top:.5rem">
+        <h3 class="modal-section-title">📌 Assign Scenario</h3>
+        <div style="display:flex;flex-direction:column;gap:.5rem">
+          <div><label class="modal-label">Assignment note</label><input id="umm-assign-note" class="input-field" placeholder="e.g. Complete 2 PTSD scenarios this week"></div>
+          <div class="grid-form-row">
+            <div><label class="modal-label">Due Date</label><input id="umm-assign-due" type="date" class="input-field"></div>
+            <button onclick="saveAssignedScenario()" class="btn btn-primary" style="padding:.55rem 1rem;font-size:.82rem;white-space:nowrap">📌 Assign</button>
+          </div>
+          <div id="umm-assign-current" style="font-size:.78rem;color:#64748b;font-weight:600"></div>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
-
-<!-- Mobile overflow sheet for bottom nav -->
-<div id="mobile-nav-sheet-backdrop" onclick="closeMobileNavSheet()" style="display:none">
+</div>
   <div id="mobile-nav-sheet" onclick="event.stopPropagation()">
+<!-- -------------------------------- ORG SETUP WIZARD -- -->
     <button onclick="openChat();closeMobileNavSheet()">🎓 Prof. Vance</button>
     <button onclick="openLabRoom();closeMobileNavSheet()">🧪 Lab</button>
     <button onclick="openVideoModal();closeMobileNavSheet()">🎬 Videos</button>
@@ -4396,7 +4533,86 @@ function refreshHubRoleTrack() {
   }).join('');
 }
 
+// --- Assign Scenario (Admin → User) — global scope for onclick handlers ---
+async function saveAssignedScenario() {
+  if(!_ummUid) return;
+  const note  = document.getElementById('umm-assign-note')?.value.trim();
+  const dueRaw = document.getElementById('umm-assign-due')?.value;
+  if(!note) { alert('Enter an assignment description.'); return; }
+  await window._updateUserData(_ummUid, { assignedScenario: { note, dueDate: dueRaw ? new Date(dueRaw).getTime() : null, assignedBy: window._currentUser?.uid, assignedAt: Date.now() } });
+  const statusEl = document.getElementById('umm-assign-current');
+  if(statusEl) { statusEl.textContent = '✅ Assigned: ' + note; statusEl.style.color='#15803d'; }
+  await window._writeAudit('admin_assign_scenario', { targetUid: _ummUid, note });
+}
+
 function showHomeGateway() {
+  // --- Monthly Team Challenge Widget ---------------------------
+  async function refreshHubChallenge() {
+    const wrap = document.getElementById('hub-challenge-wrap');
+    if(!wrap) return;
+    try {
+      const settings = window._settingsCache || await window._getSettings();
+      const challenge = settings?.monthlyChallenge;
+      if(!challenge?.target) { wrap.style.display='none'; return; }
+      const now = new Date();
+      const daysLeft = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate() - now.getDate();
+      const orgTotalXP = window._adminUsersCache
+        ? Object.values(window._adminUsersCache).reduce((s,u)=>s+(u.xp||0),0)
+        : (window._userData?.xp||0);
+      const pct = Math.min(100, Math.round((orgTotalXP / challenge.target) * 100));
+      document.getElementById('hub-challenge-label').textContent = challenge.label || 'Monthly Training Challenge';
+      document.getElementById('hub-challenge-sub').textContent = `${orgTotalXP.toLocaleString()} / ${challenge.target.toLocaleString()} XP · ${pct}% complete`;
+      document.getElementById('hub-challenge-fill').style.width = pct + '%';
+      const daysEl = document.getElementById('hub-challenge-days');
+      if(daysEl) daysEl.textContent = daysLeft + ' day' + (daysLeft!==1?'s':'') + ' left';
+      wrap.style.display = 'block';
+    } catch(_) { wrap.style.display='none'; }
+  }
+  
+  // --- Manager-Assigned Scenario Banner -----------------------
+  function refreshAssignedScenarioBanner() {
+    const wrap = document.getElementById('hub-assigned-wrap');
+    if(!wrap) return;
+    const assigned = window._userData?.assignedScenario;
+    if(!assigned?.note) { wrap.style.display='none'; return; }
+    document.getElementById('hub-assigned-label').textContent = assigned.note;
+    if(assigned.dueDate) {
+      const d = new Date(assigned.dueDate);
+      const days = Math.ceil((d.getTime() - Date.now()) / 864e5);
+      document.getElementById('hub-assigned-due').textContent = days >= 0
+        ? `Due: ${d.toLocaleDateString('en-US',{month:'short',day:'numeric'})} — ${days} day${days!==1?'s':''} remaining`
+        : `Overdue by ${Math.abs(days)} day${Math.abs(days)!==1?'s':''}`;
+    } else {
+      document.getElementById('hub-assigned-due').textContent = '';
+    }
+    wrap.style.display = 'block';
+  }
+  
+  // --- Onboarding Checklist Widget ----------------------------
+  function refreshHubChecklist() {
+    const wrap = document.getElementById('hub-checklist-wrap');
+    if(!wrap) return;
+    const ud = window._userData || {};
+    const T = window.TENANT;
+    const totalSl = (T?.moduleCount || 31);
+    const checks = [
+      { label:'Create your account',           done: true },
+      { label:'Complete your first 5 slides',  done: (ud.currentSlide||0) >= 5 },
+      { label:'Complete a 5-min daily drill',  done: (ud.totalDrillsCompleted||0) >= 1 },
+      { label:'Complete a lab scenario',       done: (ud.scenariosDone||0) >= 1 },
+      { label:'Earn your certificate',         done: !!ud.completedAt },
+    ];
+    const allDone = checks.every(c=>c.done);
+    if(allDone && ud.hasOnboarded) { wrap.style.display='none'; return; }
+    wrap.style.display = 'block';
+    const completedCount = checks.filter(c=>c.done).length;
+    wrap.innerHTML = `
+      <div style="font-size:.7rem;font-weight:900;color:#7c3aed;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">Getting Started — ${completedCount}/${checks.length}</div>
+      <div style="display:flex;flex-direction:column;gap:.3rem">
+        ${checks.map(c=>`<div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:700;color:${c.done?'#94a3b8':'#e2e8f0'};text-decoration:${c.done?'line-through':'none'}"><span style="font-size:.9rem">${c.done?'✅':'⬜'}</span>${c.label}</div>`).join('')}
+      </div>`;
+  }
+  
   // First-time users get the tutorial automatically
 
   if(window._userData && !window._userData.hasOnboarded) {
@@ -4411,6 +4627,9 @@ function showHomeGateway() {
   refreshHubCertStatus(); // update certification renewal strip
   refreshHubBadges();     // render earned badge wall
   refreshHubRoleTrack();  // render role selector pills
+  refreshHubChallenge();  // show monthly team challenge widget
+  refreshAssignedScenarioBanner(); // show manager-assigned scenario if any
+  refreshHubChecklist();  // onboarding checklist for new users
   const pa = document.getElementById('side-arrow-prev');
   const na = document.getElementById('side-arrow-next');
   if(pa) pa.style.display = 'none';
@@ -4985,87 +5204,7 @@ function saveProgress() {
   }).catch(()=>{}); // suppress permission errors — slide navigation always succeeds
 }
 
-// --- Avatar & Voice --------------------------------------
-// Per-slide tips (0-indexed slide number)
-const slideTips = [
-  n=>`This is where it all begins. Take a breath and read through — when you're ready, hit the arrow and we'll dive in.`,
-
-  ()=>'De-escalation is a skill, not a personality trait. Every technique you learn here can be practiced until it becomes instinct.',
-  ()=>'The CPI model has 4 key pillars: Care, Welfare, Safety, and Security. Keep all four in mind for every patient interaction.',
-  ()=>'Remember: behavior is communication. Ask yourself — what is this patient trying to tell me with this behavior?',
-  ()=>'Verbal de-escalation tip: Lower your voice when a patient raises theirs. They will often unconsciously mirror your calm tone.',
-  ()=>'Body language accounts for over 55% of communication. Keep an open stance, avoid crossed arms, and stay at eye level.',
-  ()=>'Active listening means reflecting back what you hear: "It sounds like you\'re feeling really frustrated right now. Am I hearing that right?"',
-  ()=>'5-4-3-2-1 grounding: Ask them to name 5 things they can see, 4 they can touch, 3 they can hear, 2 they can smell, 1 they can taste.',
-  ()=>'Box breathing works for staff too! Use it yourself before entering a high-tension room to regulate your own stress response.',
-  ()=>'Trauma-informed care means asking "What happened to you?" instead of "What\'s wrong with you?" — it changes everything.',
-  ()=>'CPI Stage 3 (Acceleration): Reduce verbal interaction. The patient is past reasoning. Focus on lowering stimulation, not winning the conversation.',
-  ()=>'With autism: remove the sensory trigger FIRST. No touching, no crowding, no loud voice. Silence and space are your tools.',
-  ()=>'ADHD de-escalation: short sentences win. "I hear you. Let\'s step outside." Three to five words at a time max during a crisis.',
-  ()=>'Schizophrenia: never argue with a delusion. Validate the emotion behind it — "That sounds really frightening. I want you to feel safe."',
-  ()=>'Bipolar mania: match their energy level first, then slowly bring your tone down. Sudden calm can feel threatening to a manic patient.',
-  ()=>'PTSD: always announce before you touch. "I\'m going to put my hand on your shoulder — is that okay?" Every time. No exceptions.',
-  ()=>'BPD: the most powerful words are "I\'m not leaving." Abandonment is the core fear. Your consistent presence is the intervention.',
-  ()=>'Seclusion and restraint are last resort options — not behavior management tools. Document every alternative you tried first.',
-  ()=>'Non-punitive limit setting: "I can\'t let you do X because I care about your safety. What I CAN do is Y. Your choice."',
-  ()=>'Cultural humility means staying curious about a patient\'s cultural context rather than assuming you know what their behavior means.',
-  ()=>'Suicide risk: the C-SSRS is your structured tool — but your relationship with the patient determines whether they tell you the truth.',
-  ()=>'Scenario practice builds muscle memory. The goal is not to score an A — it\'s to build automatic clinical responses for real situations.',
-  ()=>'The role-play script builder helps your team practice together. Run it with a colleague this week — even 10 minutes builds skill.',
-  ()=>'Box breathing for staff: try 4 counts before any difficult conversation. Your regulated nervous system helps regulate your patient\'s.',
-  ()=>'Quick reference cards are yours to keep. Print the de-escalation phrases card and post it somewhere you\'ll see it every shift.',
-  ()=>'Test yourself in the Do vs Don\'t matching game — repetition builds automatic habits.',
-  ()=>'You\'ve made it to the final module. This training counts — and your patients benefit every time you practice these skills.',
-  ()=>'Great work completing the training! Download your certificate and share it with your supervisor. These skills save lives.',
-  ()=>'Certificate unlocked — download it and send to your supervisor to log credit.'
-];
-
-function renderChatMessages() {
-  const box = document.getElementById('chat-messages');
-  if(!box) return;
-  box.innerHTML = chatMessages.map(m=>`<div style="margin-bottom:.65rem;">${m.role==='user'?'<div style="font-size:.78rem;color:#475569;font-weight:800;margin-bottom:.2rem">You</div>':'<div style="font-size:.78rem;color:#1d4ed8;font-weight:900;margin-bottom:.2rem">Prof. Vance</div>'}<div style="background:${m.role==='user'?'#e2e8f0':'#eff6ff'};border:1px solid ${m.role==='user'?'#cbd5e1':'#bfdbfe'};border-radius:.75rem;padding:.65rem .8rem;font-size:.92rem;color:#0f172a;line-height:1.55">${m.content}</div></div>`).join('');
-  box.scrollTop = box.scrollHeight;
-}
-
-function openChat() {
-  closeMobileNavSheet();
-  const panel = document.getElementById('chat-panel');
-  if(panel) animatePanelIn(panel, 'flex');
-  const pName = window.TENANT?.patientName || 'the patient';
-  const subtitleEl = document.getElementById('chat-subtitle');
-  if(subtitleEl) subtitleEl.textContent = `${pName} scenario — clinical de-escalation coach`;
-  const inputEl = document.getElementById('chat-input');
-  if(inputEl && !inputEl.value) inputEl.placeholder = `Type your response to ${pName}, or ask Professor Vance a clinical question...`;
-  const avatar = document.getElementById('avatar-container');
-  const mini = document.getElementById('avatar-mini');
-  paxMinimized = false;
-  if(avatar) avatar.style.display = 'flex';
-  if(mini) mini.style.display = 'none';
-  if(typeof restorePax === 'function') restorePax();
-  if(!chatMessages.length) {
-    const mode = sessionMode || 'training';
-    const _pn = window.TENANT?.patientName || 'the patient';
-    const intro = mode === 'lab'
-      ? `Welcome to the unit. I'm Professor Vance. ${_pn} is waiting — tension is rising. Before you step in, take a breath. Your goal isn't to control them, it's to help them regain control of themselves. Tell me how you plan to approach.`
-      : `Welcome to the unit. I'm Professor Vance. Today we're working with ${_pn} — they've been waiting a long time for their evaluation and the tension is rising. Your goal isn't to control them, it's to help them regain control of themselves. When you're ready, tell me how you plan to approach.`;
-    chatMessages.push({role:'assistant', content:intro});
-  }
-  renderChatMessages();
-  const input = document.getElementById('chat-input');
-  if(input) setTimeout(()=>input.focus(), 50);
-}
-
-function openChatFromPax(evt) {
-  if(evt) evt.stopPropagation();
-  openChat();
-}
-
-function closeChat() {
-  const panel = document.getElementById('chat-panel');
-  if(panel) animatePanelOut(panel);
-}
-
-async function sendChatMessage() {
+  // First-time users get the tutorial automatically
   if(chatLoading) return;
   const input = document.getElementById('chat-input');
   const q = (input?.value||'').trim();
@@ -5471,6 +5610,8 @@ function openAccountModal() {
   document.getElementById('acct-view').style.display = 'block';
   document.getElementById('acct-edit').style.display = 'none';
   document.getElementById('acct-pw').style.display   = 'none';
+  const acctHist = document.getElementById('acct-history');
+  if(acctHist) acctHist.style.display = 'none';
   document.getElementById('account-modal').style.display = 'flex';
 }
 function closeAccountModal() { document.getElementById('account-modal').style.display='none'; }
@@ -5534,6 +5675,31 @@ function openChangePassword() {
 function cancelChangePassword() {
   document.getElementById('acct-pw').style.display='none';
   document.getElementById('acct-view').style.display='block';
+}
+function openAccountHistory() {
+  const hist = (window._userData?.scenarioHistory||[]).slice().reverse();
+  const gradeColors = { A:'#15803d', B:'#2563eb', C:'#d97706', D:'#dc2626' };
+  const gradeBg     = { A:'#dcfce7', B:'#dbeafe', C:'#fff7ed', D:'#fee2e2' };
+  const el = document.getElementById('acct-history-list');
+  if(el) el.innerHTML = hist.length ? hist.map(h => {
+    const dxLabel = (h.dx||'').replace(/_/g,' ').replace(/\b\w/g, c=>c.toUpperCase());
+    const dateStr = h.ts ? new Date(h.ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
+    return `<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:.875rem;padding:.75rem;display:flex;align-items:center;gap:.75rem">
+      <div style="width:38px;height:38px;border-radius:.65rem;background:${gradeBg[h.grade]||'#f1f5f9'};border:1.5px solid ${gradeColors[h.grade]||'#94a3b8'};color:${gradeColors[h.grade]||'#475569'};display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;flex-shrink:0">${h.grade||'?'}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:800;font-size:.88rem;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${dxLabel} — ${h.patient||'Marcus'}</div>
+        <div style="font-size:.74rem;color:#64748b;font-weight:600;margin-top:.1rem">+${h.xp||0} XP &nbsp;·&nbsp; +${h.lc||0} LC &nbsp;·&nbsp; ${dateStr}</div>
+      </div>
+    </div>`;
+  }).join('') : '<p style="color:#94a3b8;font-size:.85rem;font-weight:600">No lab sessions recorded yet. Complete a lab scenario to see your history.</p>';
+  document.getElementById('acct-view').style.display = 'none';
+  document.getElementById('acct-edit').style.display = 'none';
+  document.getElementById('acct-pw').style.display   = 'none';
+  document.getElementById('acct-history').style.display = 'block';
+}
+function cancelAccountHistory() {
+  document.getElementById('acct-history').style.display = 'none';
+  document.getElementById('acct-view').style.display = 'block';
 }
 async function doChangePassword() {
   const cur  = document.getElementById('pw-current').value;
@@ -5639,10 +5805,11 @@ function openAdminDashboard() {
   } else { window._adminManagerDept = null; }
   // Show/hide owner-only tabs based on role
   const isOwner = currentAdminRole === 'owner';
-  const auditBtn = document.getElementById('audit-tab-btn');
-  if(auditBtn) auditBtn.style.display = isOwner ? '' : 'none';
-  const stBtn = document.getElementById('settings-tab-btn');
-  if(stBtn) stBtn.style.display = isOwner ? 'block' : 'none';
+  const ownerBtns = ['audit-tab-btn', 'settings-tab-btn', 'scenarios-tab-btn'];
+  ownerBtns.forEach(btnId => {
+    const btn = document.getElementById(btnId);
+    if(btn) btn.style.display = isOwner ? '' : 'none';
+  });
   document.getElementById('admin-modal').style.display='flex';
   loadLeaderboard();
 }
@@ -5660,14 +5827,46 @@ async function verifyAdminCode() {
     return;
   }
   const hash = await hashText(val);
-  if(hash === adminCodeHash) {
+  if(hash !== adminCodeHash) {
+    if(err){err.textContent='Incorrect code. Try again.'; err.style.display='block';}
+    return;
+  }
+  // PIN correct — check for TOTP
+  const settings = window._settingsCache || await window._getSettings();
+  if(settings?.ownerTotpEnabled && settings?.ownerTotpSecret) {
+    document.getElementById('admin-pin-modal').style.display='none';
+    const tot = document.createElement('div');
+    tot.id = 'totp-modal';
+    tot.style.cssText = 'position:fixed;inset:0;background:rgba(2,6,23,.88);z-index:500;display:flex;align-items:center;justify-content:center;padding:1.5rem';
+    tot.innerHTML = `<div style="background:#0f172a;border:1px solid rgba(255,255,255,.12);border-radius:1.25rem;padding:2rem;max-width:380px;width:100%;box-shadow:0 25px 60px rgba(0,0,0,.5)">
+      <div style="font-size:1.75rem;text-align:center;margin-bottom:.75rem">🔐</div>
+      <h3 style="font-weight:900;font-size:1.05rem;color:white;text-align:center;margin:0 0 .5rem">Two-Factor Verification</h3>
+      <p style="font-size:.83rem;color:#94a3b8;text-align:center;margin:0 0 1.5rem">Enter the 6-digit code from your authenticator app.</p>
+      <input id="totp-admin-code" maxlength="6" placeholder="000000" style="width:100%;box-sizing:border-box;padding:.75rem;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:white;border-radius:.875rem;font-size:1.4rem;font-weight:900;text-align:center;letter-spacing:.2em;outline:none;margin-bottom:.75rem">
+      <div id="totp-admin-error" style="display:none;color:#f87171;font-size:.8rem;font-weight:700;text-align:center;margin-bottom:.5rem"></div>
+      <button onclick="verifyTotpAdmin('${settings.ownerTotpSecret}')" style="width:100%;padding:.75rem;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;border-radius:.875rem;font-weight:900;cursor:pointer;font-size:.9rem;margin-bottom:.5rem">Verify</button>
+      <button onclick="document.getElementById('totp-modal').remove()" style="width:100%;padding:.6rem;background:transparent;color:#64748b;border:1px solid rgba(255,255,255,.08);border-radius:.875rem;font-weight:700;cursor:pointer;font-size:.82rem">Cancel</button>
+    </div>`;
+    document.body.appendChild(tot);
+    document.getElementById('totp-admin-code').focus();
+  } else {
     document.getElementById('admin-pin-modal').style.display='none';
     openAdminDashboard();
-  } else {
-    if(err){err.textContent='Incorrect code. Try again.'; err.style.display='block';}
   }
 }
 
+async function verifyTotpAdmin(secret) {
+  const input = document.getElementById('totp-admin-code')?.value.trim();
+  const errEl = document.getElementById('totp-admin-error');
+  if(!input) return;
+  const expected = await _totpCode(secret);
+  if(input !== expected) {
+    if(errEl) { errEl.textContent='Incorrect code. Codes refresh every 30 seconds.'; errEl.style.display='block'; }
+    return;
+  }
+  document.getElementById('totp-modal')?.remove();
+  openAdminDashboard();
+}
 function closePinModal() { document.getElementById('admin-pin-modal').style.display='none'; }
 function closeAdmin()    { document.getElementById('admin-modal').style.display='none'; currentAdminRole=null; }
 
@@ -5676,6 +5875,15 @@ function adminTab(name, el) {
     t.className='admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap';
   });
   if(el){ el.className='admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-blue-600 text-blue-600 whitespace-nowrap'; }
+  
+  // Preserve role-based visibility for owner-only tabs when switching
+  const isOwner = currentAdminRole === 'owner';
+  const ownerBtns = ['audit-tab-btn', 'settings-tab-btn', 'scenarios-tab-btn'];
+  ownerBtns.forEach(btnId => {
+    const btn = document.getElementById(btnId);
+    if(btn) btn.style.display = isOwner ? '' : 'none';
+  });
+  
   ['leaderboard','users','analytics','reports','completion','settings','audit','scenarios'].forEach(t=>{
     const d=document.getElementById('at-'+t);
     if(d) d.style.display=(t===name)?'block':'none';
@@ -6509,6 +6717,23 @@ async function loadSettings() {
         <button onclick="saveAdminAccessCode()" class="btn btn-primary" style="margin-top:.75rem;font-size:.82rem;padding:.55rem 1.2rem;font-weight:800">Save Access Code</button>
         <p style="font-size:.75rem;color:#64748b;margin-top:.5rem">Owners can rotate the code anytime. The hash is stored in Firebase settings; no code is embedded in the page.</p>
       </div>
+      <!-- Two-Factor Authentication -->
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.5rem;margin-bottom:1.5rem">
+        <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">🔐 Two-Factor Authentication (Owner)</h3>
+        <p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">${settings?.ownerTotpEnabled ? '✅ 2FA is currently enabled on this account.' : '2FA is not enabled. Add an extra layer of security by scanning a TOTP secret into Google Authenticator, Authy, or similar.'}</p>
+        ${settings?.ownerTotpEnabled
+          ? `<button onclick="disableOwnerTotp()" class="btn btn-danger" style="font-size:.82rem;padding:.55rem 1.2rem">Disable 2FA</button>`
+          : `<button onclick="generateTotpSecret()" class="btn btn-primary" style="font-size:.82rem;padding:.55rem 1.2rem">Generate TOTP Secret</button>
+        <div id="totp-setup-wrap" style="display:none;margin-top:1rem">
+          <div id="totp-setup-url" style="font-family:monospace;font-size:.72rem;word-break:break-all;background:#f1f5f9;padding:.65rem;border-radius:.5rem;margin-bottom:.75rem;color:#0f172a"></div>
+          <p style="font-size:.78rem;color:#475569;font-weight:700;margin:0 0 .5rem">Enter the 6-digit code from your app to verify and enable:</p>
+          <div style="display:flex;gap:.65rem;flex-wrap:wrap;align-items:center">
+            <input id="totp-verify-code" class="input-field" maxlength="6" placeholder="123456" style="max-width:130px;font-size:1.1rem;font-weight:900;text-align:center;letter-spacing:.15em">
+            <button onclick="verifyAndEnableTotp()" class="btn btn-success" style="font-size:.82rem;padding:.55rem 1.2rem">Enable 2FA</button>
+          </div>
+          <div id="totp-setup-error" style="display:none;color:#dc2626;font-size:.8rem;font-weight:700;margin-top:.5rem"></div>
+        </div>`}
+      </div>
 
       <!-- Lab Settings -->
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.5rem;margin-bottom:1.5rem">
@@ -6665,7 +6890,27 @@ async function loadSettings() {
       </div>`;
   } catch(e) {
     el.innerHTML=`<p style="color:#ef4444;font-size:.875rem">Error: ${e.message}</p>`;
+        <!-- Push Campaign -->
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.5rem;margin-bottom:1.5rem">
+          <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.25rem">📣 Push Notification Campaign</h3>
+          <p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">Send an immediate push to all subscribed staff (requires VAPID key above).</p>
+          <div style="display:grid;gap:.65rem">
+            <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.3rem">Message</label><textarea id="setting-push-msg" class="input-field" rows="2" placeholder="e.g. Reminder: Annual training due this Friday!" style="resize:vertical"></textarea></div>
+            <button onclick="sendPushCampaign()" class="btn btn-primary" style="font-size:.82rem;padding:.55rem 1.2rem;align-self:start">🚀 Send to All Subscribers</button>
+            <div id="push-campaign-result"></div>
+          </div>
+        </div>
   }
+        <!-- Monthly Team Challenge -->
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.5rem;margin-bottom:1.5rem">
+          <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">🏆 Monthly Team Challenge</h3>
+          <p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">Set a month-long org-wide XP target. Staff see a live progress bar on their hub.</p>
+          <div style="display:grid;gap:.65rem">
+            <div><label style="font-size:.72rem;font-weight:800;color:#475569;display:block;margin-bottom:.3rem">Challenge Label</label><input id="setting-challenge-label" class="input-field" placeholder="e.g. March Mastery — 10,000 XP Together" value="${settings?.monthlyChallenge?.label||''}"></div>
+            <div><label style="font-size:.72rem;font-weight:800;color:#475569;display:block;margin-bottom:.3rem">XP Target</label><input id="setting-challenge-target" type="number" min="0" class="input-field" style="max-width:160px" value="${settings?.monthlyChallenge?.target||''}"></div>
+            <button onclick="saveMonthlyChallenge()" class="btn btn-primary" style="font-size:.82rem;padding:.55rem 1.2rem;align-self:start">Save Challenge</button>
+          </div>
+        </div>
 }
 
 async function saveTrainingYear() {
@@ -6685,6 +6930,62 @@ async function saveAdminAccessCode() {
   await window._saveSettings({ adminCodeHash: hash });
   adminCodeHash = hash;
   alert('Access code updated. Share the new code with admins/owners securely.');
+}
+let _pendingTotpSecret = null;
+
+async function generateTotpSecret() {
+  const arr = new Uint8Array(20);
+  crypto.getRandomValues(arr);
+  const b32chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+  let secret = '';
+  for(let i=0;i<arr.length;i++) secret += b32chars[arr[i] % 32];
+  _pendingTotpSecret = secret;
+  const issuer  = encodeURIComponent(window.TENANT?.name || 'NyxCodex');
+  const email   = encodeURIComponent(window._currentUser?.email || 'admin');
+  const url = `otpauth://totp/${issuer}:${email}?secret=${secret}&issuer=${issuer}&algorithm=SHA1&digits=6&period=30`;
+  const wrap  = document.getElementById('totp-setup-wrap');
+  const urlEl = document.getElementById('totp-setup-url');
+  if(urlEl) urlEl.textContent = url;
+  if(wrap)  wrap.style.display = 'block';
+}
+
+async function _totpCode(secret) {
+  const b32 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+  const clean = secret.toUpperCase().replace(/[^A-Z2-7]/g,'');
+  let bits = '';
+  for(const c of clean) bits += b32.indexOf(c).toString(2).padStart(5,'0');
+  const keyBytes = new Uint8Array(bits.match(/.{8}/g).map(b=>parseInt(b,2)));
+  const counter  = Math.floor(Date.now()/30000);
+  const buf = new ArrayBuffer(8);
+  new DataView(buf).setUint32(4, counter, false);
+  const key = await crypto.subtle.importKey('raw', keyBytes, {name:'HMAC',hash:'SHA-1'}, false, ['sign']);
+  const sig = new Uint8Array(await crypto.subtle.sign('HMAC', key, buf));
+  const off = sig[sig.length-1] & 0xf;
+  const code = ((sig[off]&0x7f)<<24|(sig[off+1]&0xff)<<16|(sig[off+2]&0xff)<<8|(sig[off+3]&0xff)) % 1000000;
+  return String(code).padStart(6,'0');
+}
+
+async function verifyAndEnableTotp() {
+  const input = document.getElementById('totp-verify-code')?.value.trim();
+  const errEl = document.getElementById('totp-setup-error');
+  if(!_pendingTotpSecret || !input) return;
+  const expected = await _totpCode(_pendingTotpSecret);
+  if(input !== expected) {
+    if(errEl) { errEl.textContent='Code incorrect. Codes refresh every 30 seconds — try again.'; errEl.style.display='block'; }
+    return;
+  }
+  await window._saveSettings({ ownerTotpSecret: _pendingTotpSecret, ownerTotpEnabled: true });
+  if(window._settingsCache) { window._settingsCache.ownerTotpSecret=_pendingTotpSecret; window._settingsCache.ownerTotpEnabled=true; }
+  _pendingTotpSecret = null;
+  alert('✅ Two-factor authentication enabled!');
+  loadSettings();
+}
+
+async function disableOwnerTotp() {
+  if(!confirm('Disable 2FA? This removes the extra security layer from admin access.')) return;
+  await window._saveSettings({ ownerTotpSecret: null, ownerTotpEnabled: false });
+  if(window._settingsCache) { window._settingsCache.ownerTotpSecret=null; window._settingsCache.ownerTotpEnabled=false; }
+  loadSettings();
 }
 
 async function saveLabSettings() {
@@ -7282,8 +7583,11 @@ function switchLabTab(tab) {
     const btn  = document.getElementById('lab-tab-btn-'+t);
     if(pane) pane.style.display = t === tab ? 'block' : 'none';
     if(btn) {
-      btn.style.borderBottomColor = t === tab ? '#2563eb' : 'transparent';
-      btn.style.color = t === tab ? '#2563eb' : '#64748b';
+      if(t === tab) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
     }
   });
   if(tab === 'microexp') updateMarcusStateBadge();
@@ -7306,11 +7610,26 @@ async function runDebrief() {
     const data = await res.json();
     const reply = (data?.reply || data?.choices?.[0]?.message?.content || 'Unable to retrieve feedback.').trim();
     if(output) output.textContent = reply;
+    const expBtn = document.getElementById('debrief-export-btn');
+    if(expBtn) expBtn.style.display = '';
     awardXP(100);
   } catch(e) {
     if(output) output.textContent = '⚠️ Professor Vance is temporarily unreachable. Check your internet connection and try again.';
   } finally {
+    if(btn) { btn.disabled=false; btn.textContent='Get Clinical Feedback ✨'; }
   }
+}
+function exportDebriefNote() {
+  const incident = document.getElementById('debrief-input')?.value || '';
+  const feedback = document.getElementById('debrief-output')?.textContent || '';
+  const ud = window._userData || {};
+  const name = [ud.firstName, ud.lastName].filter(Boolean).join(' ') || 'Staff Member';
+  const org = window.TENANT?.name || 'NyxCodex\u00AE';
+  const dateStr = new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  const win = window.open('','_blank');
+  if(!win) { alert('Pop-up blocked. Please allow pop-ups for this site.'); return; }
+  win.document.write(`<!DOCTYPE html><html><head><title>Clinical Supervision Note</title><style>body{font-family:Georgia,serif;max-width:680px;margin:2rem auto;padding:1.5rem;color:#0f172a;line-height:1.7}h1{font-size:1.3rem;border-bottom:2px solid #2563eb;padding-bottom:.5rem;margin-bottom:1rem}h2{font-size:1rem;color:#1e3a8a;margin-top:1.5rem}p{margin:.5rem 0}.footer{margin-top:2rem;font-size:.8rem;color:#64748b;border-top:1px solid #e2e8f0;padding-top:.75rem}@media print{button{display:none}}</style></head><body><h1>${org} — Clinical Supervision Note</h1><p><strong>Date:</strong> ${dateStr}</p><p><strong>Staff Member:</strong> ${name}</p><p><strong>Department:</strong> ${ud.department||'—'}</p><h2>Incident Description</h2><p>${incident.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</p><h2>Clinical Mentor Feedback (Prof. Vance)</h2><p>${feedback.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</p><div class="footer">Generated by ${org} Training Platform &middot; ${new Date().toISOString()}</div><br><button onclick="window.print()">🖨️ Print / Save as PDF</button></body></html>`);
+  win.document.close();
 }
 
 async function buildLabScriptAI() {
@@ -7450,6 +7769,20 @@ function submitLabScenario() {
     _labPatientSet: _patSet
   }).catch(()=>{});
   window._emitXAPI('experienced', { completion:true, success: grade==='A'||grade==='B', score:{ raw:xpGain,min:0,max:250 } }).catch(()=>{});
+
+  // --- Mastery count for diagnosis specialist badges ---
+  if(grade==='A'||grade==='B') {
+    const _mc = Object.assign({}, window._userData?.masteryCount||{});
+    _mc[currentLabDx] = (_mc[currentLabDx]||0) + 1;
+    window._saveUserData({ masteryCount: _mc }).catch(()=>{});
+    if(window._userData) window._userData.masteryCount = _mc;
+    window._checkAchievements && window._checkAchievements({ masteryCount: _mc }).catch(()=>{});
+  }
+  // --- Scenario history (capped at 50 entries) ---
+  const _histEntry = { dx: currentLabDx, patient: (typeof activePatient!=='undefined' ? activePatient.name : 'Marcus'), grade, xp: xpGain, lc: lcEarned, ts: Date.now() };
+  const _hist = [...((window._userData?.scenarioHistory)||[]), _histEntry].slice(-50);
+  window._saveUserData({ scenarioHistory: _hist }).catch(()=>{});
+  if(window._userData) window._userData.scenarioHistory = _hist;
 
   // Marcus in-character reply + AI clinical feedback
   const scenarioText = document.getElementById('lab-scenario-box')?.textContent || '';
@@ -8246,6 +8579,13 @@ async function openUserManageModal(uid) {
     document.getElementById('umm-dept').value = u.department || '';
     document.getElementById('umm-title').value = u.jobTitle || '';
     document.getElementById('umm-due').value = u.dueDate ? new Date(u.dueDate).toISOString().slice(0, 10) : '';
+    // Populate assign section
+    const assignNote = document.getElementById('umm-assign-note');
+    const assignDue  = document.getElementById('umm-assign-due');
+    const assignCur  = document.getElementById('umm-assign-current');
+    if(assignNote) assignNote.value = u.assignedScenario?.note || '';
+    if(assignDue)  assignDue.value  = u.assignedScenario?.dueDate ? new Date(u.assignedScenario.dueDate).toISOString().slice(0,10) : '';
+    if(assignCur)  assignCur.textContent = u.assignedScenario?.note ? `Current: ${u.assignedScenario.note}` : 'No scenario assigned';
     const daysAgo = u.lastLogin ? Math.round((Date.now() - u.lastLogin) / 864e5) : null;
     const loginStr = daysAgo === 0 ? 'Today' : daysAgo === 1 ? 'Yesterday' : daysAgo != null ? `${daysAgo}d ago` : '—';
     document.getElementById('umm-stats').innerHTML = [
@@ -8474,6 +8814,27 @@ async function saveVapidKey() {
 async function subscribeToPush() {
   if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
     alert('Push notifications are not supported in this browser.'); return;
+  async function sendPushCampaign() {
+    const msg = document.getElementById('setting-push-msg')?.value.trim();
+    const resultEl = document.getElementById('push-campaign-result');
+    if(!msg) { alert('Enter a message first.'); return; }
+    if(!confirm(`Send push notification to all subscribed staff?\n\n"${msg}"`)) return;
+    if(resultEl) resultEl.innerHTML = '<p style="font-size:.8rem;color:#2563eb;font-weight:700">⏳ Sending…</p>';
+    try {
+      const res = await fetch('/api/push', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ action:'broadcast', message: msg, adminUid: window._currentUser?.uid }) });
+      const data = await res.json();
+      if(resultEl) resultEl.innerHTML = `<p style="font-size:.8rem;color:#15803d;font-weight:700">✅ Sent to ${data.sent||0} subscribers.</p>`;
+    } catch(e) {
+      if(resultEl) resultEl.innerHTML = `<p style="font-size:.8rem;color:#dc2626;font-weight:700">Error: ${e.message}</p>`;
+    }
+  }
+  }
+  async function saveMonthlyChallenge() {
+    const label  = document.getElementById('setting-challenge-label')?.value.trim();
+    const target = parseInt(document.getElementById('setting-challenge-target')?.value||'0',10);
+    await window._saveSettings({ monthlyChallenge: { label, target } });
+    if(window._settingsCache) window._settingsCache.monthlyChallenge = { label, target };
+    alert('Monthly challenge saved.');
   }
   try {
     const settings = await window._getSettings();
@@ -8535,6 +8896,7 @@ async function loadScenarioBuilder() {
             </div>
             <div style="font-size:.76rem;color:#64748b;line-height:1.5;margin-bottom:.4rem">${(s.description || '').slice(0, 200)}</div>
             ${s.role ? `<span style="background:#dbeafe;color:#1d4ed8;padding:.15rem .55rem;border-radius:999px;font-size:.66rem;font-weight:800;margin-right:.35rem">👤 ${s.role}</span>` : ''}
+            ${s.difficulty ? `<span style="background:${s.difficulty==='crisis'?'#fee2e2':s.difficulty==='advanced'?'#fff7ed':'#f0fdf4'};color:${s.difficulty==='crisis'?'#dc2626':s.difficulty==='advanced'?'#d97706':'#15803d'};padding:.15rem .5rem;border-radius:999px;font-size:.66rem;font-weight:800;margin-right:.35rem">${s.difficulty==='crisis'?'🔴 Crisis':s.difficulty==='advanced'?'🟡 Advanced':'🟢 Foundational'}</span>` : ''}
             ${s.tags ? s.tags.split(',').map(t => `<span style="background:#ede9fe;color:#5b21b6;padding:.15rem .5rem;border-radius:999px;font-size:.66rem;font-weight:800">${t.trim()}</span>`).join('') : ''}
           </div>
           <div style="display:flex;gap:.4rem;flex-shrink:0;flex-wrap:wrap">
@@ -8564,7 +8926,7 @@ async function loadScenarioBuilder() {
           <div style="display:flex;flex-direction:column;gap:.6rem">
             <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem">Title</label><input id="sc-title" class="input-field" placeholder="e.g. High-acuity patient refusing medications" style="font-weight:700"></div>
             <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem">Patient / Situation Description <span style="font-weight:400;color:#94a3b8">(used as AI context)</span></label><textarea id="sc-description" class="input-field" rows="3" placeholder="Describe the patient's escalating behaviors, history, environment, and staff context…" style="font-weight:600;resize:vertical"></textarea></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem">
               <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem">Role Track</label>
                 <select id="sc-role" class="input-field" style="font-weight:700">
                   <option value="">All staff</option>
@@ -8572,6 +8934,12 @@ async function loadScenarioBuilder() {
                   <option value="tech">Behavioral Tech</option>
                   <option value="charge">Charge Nurse</option>
                   <option value="security">Security</option>
+                </select></div>
+              <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem">Difficulty</label>
+                <select id="sc-difficulty" class="input-field" style="font-weight:700">
+                  <option value="foundational">🟢 Foundational</option>
+                  <option value="advanced">🟡 Advanced</option>
+                  <option value="crisis">🔴 Crisis-Level</option>
                 </select></div>
               <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem">Tags (comma-separated)</label><input id="sc-tags" class="input-field" placeholder="aggression, meds, elopement" style="font-weight:600"></div>
             </div>
@@ -8595,9 +8963,10 @@ async function saveCustomScenario() {
     const id = `sc_${Date.now()}`;
     await set(_ref('scenarios/' + id), {
       title, description,
-      role:      document.getElementById('sc-role')?.value   || '',
-      tags:      document.getElementById('sc-tags')?.value.trim() || '',
-      opener:    document.getElementById('sc-opener')?.value.trim() || '',
+      role:       document.getElementById('sc-role')?.value   || '',
+      difficulty: document.getElementById('sc-difficulty')?.value || 'foundational',
+      tags:       document.getElementById('sc-tags')?.value.trim() || '',
+      opener:     document.getElementById('sc-opener')?.value.trim() || '',
       active:    true,
       createdAt: Date.now(),
       createdBy: window._currentUser?.uid || 'admin',

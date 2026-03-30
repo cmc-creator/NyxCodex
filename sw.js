@@ -6,7 +6,7 @@
 //    • API / Firebase DB calls → network-only (never cache)
 // ─────────────────────────────────────────────────────────
 
-const CACHE_VERSION = 'nyxcodex-v11';
+const CACHE_VERSION = 'nyxcodex-v12';
 const SHELL_CACHE   = `${CACHE_VERSION}-shell`;
 const CDN_CACHE     = `${CACHE_VERSION}-cdn`;
 
