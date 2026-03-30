@@ -311,6 +311,7 @@ const ACHIEVEMENTS = [
   { id:'lab_veteran',   icon:'🧪', name:'Lab Veteran',     desc:'Completed 10 or more live lab scenarios',     check: u=> (u.scenariosDone||0) >= 10 },
   { id:'elite_xp',      icon:'🌟', name:'Elite Clinician', desc:'Accumulated over 5 000 XP in total training',  check: u=> (u.xp||0) >= 5000 },
 ];
+window.ACHIEVEMENTS = ACHIEVEMENTS;
 window._showAchievementToast = function(a) {
   const old = document.getElementById('achievement-toast');
   if(old) old.remove();
@@ -4513,11 +4514,12 @@ function refreshHubCertStatus() {
 function refreshHubBadges() {
   const el = document.getElementById('hub-badges-wrap');
   if(!el) return;
+  const achievements = window.ACHIEVEMENTS || [];
   const earned = window._userData?.achievements || {};
   const earnedIds = Object.keys(earned);
-  if(!earnedIds.length) { el.style.display='none'; return; }
+  if(!earnedIds.length || !achievements.length) { el.style.display='none'; return; }
   el.style.display = 'block';
-  el.innerHTML = `<div style="font-size:.7rem;font-weight:900;color:#64748b;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">Achievements \u2014 ${earnedIds.length} / ${ACHIEVEMENTS.length} unlocked</div><div style="display:flex;flex-wrap:wrap;gap:.4rem">${ACHIEVEMENTS.map(a=>{
+  el.innerHTML = `<div style="font-size:.7rem;font-weight:900;color:#64748b;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">Achievements \u2014 ${earnedIds.length} / ${achievements.length} unlocked</div><div style="display:flex;flex-wrap:wrap;gap:.4rem">${achievements.map(a=>{
     const u=!!earned[a.id];
     return `<div title="${a.name}: ${a.desc}" style="width:2.2rem;height:2.2rem;border-radius:.55rem;display:flex;align-items:center;justify-content:center;font-size:1.05rem;background:${u?'linear-gradient(135deg,rgba(37,99,235,.25),rgba(124,58,237,.22))':'rgba(255,255,255,.05)'};border:1px solid ${u?'rgba(124,58,237,.4)':'rgba(255,255,255,.07)'};opacity:${u?1:.28};cursor:${u?'help':'default'};transition:transform .12s" ${u?`onmouseover="this.style.transform='scale(1.2)'"onmouseout="this.style.transform=''"`:''} >${a.icon}</div>`;
   }).join('')}</div>`;
@@ -5286,6 +5288,27 @@ async function sendChatMessage() {
   if(reply && reply.length > 30) { awardXP(40); showXPToast(40, 'Chat Reflection'); }
   // Play Professor Vance voice for this reply
   speakWithVance(reply);
+}
+
+function openChat() {
+  const panel = document.getElementById('chat-panel');
+  if(!panel) return;
+  panel.style.display = 'flex';
+  const input = document.getElementById('chat-input');
+  if(input) setTimeout(() => input.focus(), 30);
+}
+
+function closeChat() {
+  const panel = document.getElementById('chat-panel');
+  if(panel) panel.style.display = 'none';
+}
+
+function openChatFromPax(evt) {
+  if(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+  }
+  openChat();
 }
 
 function updatePaxMiniLabel() {
