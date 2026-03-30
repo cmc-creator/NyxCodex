@@ -53,7 +53,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, reauthenticateWithCredential, EmailAuthProvider, updatePassword, sendPasswordResetEmail, setPersistence, browserSessionPersistence, GoogleAuthProvider, signInWithPopup, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, reauthenticateWithCredential, EmailAuthProvider, updatePassword, sendPasswordResetEmail, setPersistence, browserSessionPersistence, browserLocalPersistence, GoogleAuthProvider, signInWithPopup, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getDatabase, ref, set, get, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 const firebaseConfig = (window.TENANT?.firebase) || {
   apiKey: "AIzaSyDVdGXUgxqsSZZiVoEjPL4DkDEMU29meMY",
@@ -67,7 +67,16 @@ const firebaseConfig = (window.TENANT?.firebase) || {
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-await setPersistence(auth, browserSessionPersistence); // sign out when tab/browser is closed
+try {
+  await setPersistence(auth, browserSessionPersistence); // sign out when tab/browser is closed
+} catch (persistErr) {
+  console.warn('[Auth] Session persistence unavailable, falling back to local persistence.', persistErr);
+  try {
+    await setPersistence(auth, browserLocalPersistence);
+  } catch (fallbackErr) {
+    console.warn('[Auth] Local persistence unavailable, using default in-memory persistence.', fallbackErr);
+  }
+}
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 const db = getDatabase(app);
@@ -85,13 +94,26 @@ window._reauthAndChangePassword = async function(currentPass, newPass) {
 };
 onAuthStateChanged(auth, user => {
   window._currentUser = user;
+  const authScreen = document.getElementById('auth-screen');
+  const appRoot = document.getElementById('app');
+  if (!authScreen || !appRoot) {
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window._currentUser) {
+        const as = document.getElementById('auth-screen');
+        const ar = document.getElementById('app');
+        if (as) as.style.display = 'none';
+        if (ar) ar.style.display = 'block';
+      }
+    }, { once: true });
+    return;
+  }
   if (user) {
-    document.getElementById('auth-screen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
+    authScreen.style.display = 'none';
+    appRoot.style.display = 'block';
     loadUserData(user);
   } else {
-    document.getElementById('auth-screen').style.display = 'flex';
-    document.getElementById('app').style.display = 'none';
+    authScreen.style.display = 'flex';
+    appRoot.style.display = 'none';
     applyAuthTabFromUrl();
     const hub = document.getElementById('home-gateway');
     if(hub) hub.style.display = 'none';
