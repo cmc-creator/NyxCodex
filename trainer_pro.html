@@ -4222,6 +4222,22 @@ function initApp() {
 }
 
 // --- Slide Navigation ------------------------------------
+function getSlideTipFn(index) {
+  const patientName = window.TENANT?.patientName || 'Marcus';
+  const tips = [
+    (name) => `Welcome, ${name}. We are going to build calm before the crisis peaks. Take your time and focus on the details that change patient safety outcomes.`,
+    (name) => `${name}, start by scanning the environment before you focus on the patient. Small hazards become major problems fast in a behavioral health setting.`,
+    (name) => `${name}, watch for the early cues here. Body language and pacing usually tell you what is rising before the words do.`,
+    (name) => `${name}, validation comes before direction. If ${patientName} does not feel heard, resistance usually climbs.`,
+    (name) => `${name}, protect the reaction gap here. Space buys you time, lowers pressure, and gives the patient a better chance to regulate.`,
+    (name) => `${name}, keep your tone slower and lower than the room around you. Your nervous system state is part of the intervention.`,
+    (name) => `${name}, look for the need underneath the behavior. The correct response is often shaped by fear, overload, or loss of control.`,
+    (name) => `${name}, offer structure without cornering the patient. Clear choices reduce friction better than ultimatums.`,
+    (name) => `${name}, stay clinically neutral and keep moving one step at a time. Good de-escalation is usually steady, not dramatic.`
+  ];
+  return tips[index] || tips[tips.length - 1];
+}
+
 function showSlide(n) {
   const slides = document.querySelectorAll('.slide');
   const certIndex = slides.length ? slides.length-1 : 0;
@@ -4302,7 +4318,7 @@ function showSlide(n) {
     if(target === 0) {
       scheduleVance(()=>showAvatarAndSpeak('_direct_', _fn, `Welcome, ${_fn}! Are you ready to begin? I'm here to help and guide you through every module on this journey.`), 400);
     } else {
-      const tipFn = slideTips[target] || slideTips[slideTips.length-1];
+      const tipFn = getSlideTipFn(target);
       scheduleVance(()=>showAvatarAndSpeak('_direct_', _fn, tipFn(_fn)), 400);
     }
   }
@@ -5356,7 +5372,7 @@ function showGuide() {
   const ud = window._userData || {};
   const fn = window._currentUser;
   const firstName = ud.firstName || (fn?.displayName||'').split(' ')[0] || 'there';
-  const tipFn = slideTips[currentSlide] || slideTips[slideTips.length-1];
+  const tipFn = getSlideTipFn(currentSlide);
   showAvatarAndSpeak('_direct_', firstName, tipFn(firstName));
 }
 
@@ -5562,9 +5578,9 @@ function showAvatarAndSpeak(context, name, directText) {
   if(directText) {
     text = directText;
   } else if(context === 'welcome') {
-    text = slideTips[0](name);
+    text = getSlideTipFn(0)(name);
   } else {
-    text = slideTips[currentSlide] ? slideTips[currentSlide](name) : slideTips[slideTips.length-1](name);
+    text = getSlideTipFn(currentSlide)(name);
   }
 
   cont.style.display = 'flex';
