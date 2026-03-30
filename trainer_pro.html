@@ -2061,20 +2061,17 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
   <p id="app-loading-hint" style="color:#475569;font-size:.75rem;font-weight:600;display:none">Taking longer than usual &mdash; <a href="" onclick="location.reload();return false;" style="color:#60a5fa;text-decoration:underline">tap here to reload</a></p>
 </div>
 <script>
-// Failsafe: if the app never initialises within 10 s, show a reload hint.
-// If still stuck at 20 s, force a hard reload to bust any stale cache.
+// Failsafe: if the authenticated app is visible but still loading after 10 s,
+// show a manual reload hint. Never auto-reload while the user is entering login fields.
 (function(){
   var hint = document.getElementById('app-loading-hint');
-  var t1 = setTimeout(function(){ if(document.getElementById('app-loading') && document.getElementById('app-loading').style.display !== 'none') hint && (hint.style.display = ''); }, 10000);
-  var t2 = setTimeout(function(){
+  var t1 = setTimeout(function(){
+    var app = document.getElementById('app');
     var l = document.getElementById('app-loading');
-    if(l && l.style.display !== 'none') {
-      // Hard reload bypassing the service worker cache
-      if('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(regs){ regs.forEach(function(r){ r.unregister(); }); location.reload(true); });
-      } else { location.reload(true); }
+    if(app && app.style.display !== 'none' && l && l.style.display !== 'none') {
+      hint && (hint.style.display = '');
     }
-  }, 20000);
+  }, 10000);
 })();
 </script>
 <!-- Demo Mode Banner -->
