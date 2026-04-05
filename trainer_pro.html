@@ -1691,6 +1691,58 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) .slide .blue-box h3,
 :root:not([data-theme="light"]) .slide .blue-box p,
 :root:not([data-theme="light"]) .slide .blue-box li{color:#93c5fd!important}
+
+/* ── DARK MODE: completion modal ── */
+:root:not([data-theme="light"]) #completion-modal>div{
+  background:#111828!important;border:1px solid rgba(255,255,255,.1)!important;
+}
+:root:not([data-theme="light"]) #completion-modal h3{color:#eef2fb!important}
+:root:not([data-theme="light"]) #completion-modal p{color:#b8c0d1!important}
+:root:not([data-theme="light"]) #completion-modal button[onclick*="review"]{
+  background:rgba(255,255,255,.06)!important;border-color:rgba(255,255,255,.12)!important;color:#e2e8f0!important;
+}
+:root:not([data-theme="light"]) #completion-modal button[onclick*="lab"]{
+  background:rgba(34,197,94,.1)!important;border-color:rgba(34,197,94,.2)!important;color:#86efac!important;
+}
+:root:not([data-theme="light"]) #completion-modal button[onclick*="continue"]{
+  background:rgba(99,102,241,.1)!important;border-color:rgba(99,102,241,.2)!important;color:#a5b4fc!important;
+}
+/* ── DARK MODE: chat panel ── */
+:root:not([data-theme="light"]) #chat-panel{
+  background:#111828!important;border-color:rgba(255,255,255,.1)!important;
+}
+:root:not([data-theme="light"]) #chat-panel>div{
+  background:rgba(255,255,255,.03)!important;border-color:rgba(255,255,255,.08)!important;
+}
+:root:not([data-theme="light"]) #chat-panel #chat-messages{background:#0c1018!important}
+:root:not([data-theme="light"]) #chat-panel div[style*="color:#0f172a"],
+:root:not([data-theme="light"]) #chat-panel div[style*="font-weight:900"]{color:#eef2fb!important}
+:root:not([data-theme="light"]) #chat-panel #chat-subtitle,
+:root:not([data-theme="light"]) #chat-panel div[style*="color:#475569"],
+:root:not([data-theme="light"]) #chat-panel span[style*="color:#64748b"]{color:#b8c0d1!important}
+:root:not([data-theme="light"]) #chat-panel button[onclick="closeChat()"]{
+  background:rgba(255,255,255,.08)!important;border-color:rgba(255,255,255,.1)!important;color:#94a3b8!important;
+}
+:root:not([data-theme="light"]) #chat-panel textarea{
+  background:#0c1018!important;border-color:rgba(255,255,255,.1)!important;color:#f0f4fb!important;
+}
+/* ── DARK MODE: video modal ── */
+:root:not([data-theme="light"]) #video-modal .card{
+  background:#111828!important;border-color:rgba(255,255,255,.1)!important;
+}
+:root:not([data-theme="light"]) #video-modal div[style*="border-bottom"]{
+  border-bottom-color:rgba(255,255,255,.08)!important;
+}
+:root:not([data-theme="light"]) #video-modal h3{color:#eef2fb!important}
+:root:not([data-theme="light"]) #video-modal p[style*="color:#475569"]{color:#b8c0d1!important}
+:root:not([data-theme="light"]) #video-modal button[onclick="closeVideoModal()"]{
+  background:rgba(255,255,255,.08)!important;border-color:transparent!important;color:#94a3b8!important;
+}
+:root:not([data-theme="light"]) #video-modal div[style*="background:#f8fafc"]{
+  background:rgba(255,255,255,.04)!important;border-color:rgba(255,255,255,.08)!important;
+}
+:root:not([data-theme="light"]) #video-modal div[style*="color:#0f172a"],
+:root:not([data-theme="light"]) #video-modal div[style*="font-weight:900;color"]{color:#eef2fb!important}
 </style>
 </head>
 <body>
@@ -2848,8 +2900,8 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
       <button onclick="closeShortcuts()" style="background:rgba(255,255,255,.08);border:none;color:#94a3b8;border-radius:.5rem;width:28px;height:28px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center">&times;</button>
     </div>
     <div style="display:grid;gap:.6rem;font-size:.83rem">
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .75rem;background:rgba(255,255,255,.05);border-radius:.65rem"><span style="color:#94a3b8">Next slide</span><kbd style="background:#1e293b;color:#e2e8f0;padding:.2rem .55rem;border-radius:.35rem;font-family:monospace;font-size:.78rem;border:1px solid rgba(255,255,255,.1)">? / ?</kbd></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .75rem;background:rgba(255,255,255,.05);border-radius:.65rem"><span style="color:#94a3b8">Previous slide</span><kbd style="background:#1e293b;color:#e2e8f0;padding:.2rem .55rem;border-radius:.35rem;font-family:monospace;font-size:.78rem;border:1px solid rgba(255,255,255,.1)">? / ?</kbd></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .75rem;background:rgba(255,255,255,.05);border-radius:.65rem"><span style="color:#94a3b8">Next slide</span><kbd style="background:#1e293b;color:#e2e8f0;padding:.2rem .55rem;border-radius:.35rem;font-family:monospace;font-size:.78rem;border:1px solid rgba(255,255,255,.1)">&#8594; / &#8595;</kbd></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .75rem;background:rgba(255,255,255,.05);border-radius:.65rem"><span style="color:#94a3b8">Previous slide</span><kbd style="background:#1e293b;color:#e2e8f0;padding:.2rem .55rem;border-radius:.35rem;font-family:monospace;font-size:.78rem;border:1px solid rgba(255,255,255,.1)">&#8592; / &#8593;</kbd></div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .75rem;background:rgba(255,255,255,.05);border-radius:.65rem"><span style="color:#94a3b8">Toggle ambient sound</span><kbd style="background:#1e293b;color:#e2e8f0;padding:.2rem .55rem;border-radius:.35rem;font-family:monospace;font-size:.78rem;border:1px solid rgba(255,255,255,.1)">M</kbd></div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .75rem;background:rgba(255,255,255,.05);border-radius:.65rem"><span style="color:#94a3b8">Open admin dashboard</span><kbd style="background:#1e293b;color:#e2e8f0;padding:.2rem .55rem;border-radius:.35rem;font-family:monospace;font-size:.78rem;border:1px solid rgba(255,255,255,.1)">A</kbd></div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .75rem;background:rgba(255,255,255,.05);border-radius:.65rem"><span style="color:#94a3b8">Dismiss Vance / close panel</span><kbd style="background:#1e293b;color:#e2e8f0;padding:.2rem .55rem;border-radius:.35rem;font-family:monospace;font-size:.78rem;border:1px solid rgba(255,255,255,.1)">Esc</kbd></div>
