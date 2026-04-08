@@ -19,6 +19,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <script src="tenant.config.js"></script>
 
 <!-- Service Worker registration -->
@@ -48,6 +49,12 @@
   const shortcut = sp.get('shortcut');
   if (shortcut) {
     window._pwaShortcut = shortcut; // picked up after login
+    history.replaceState(null, '', location.pathname);
+  }
+  // Prefill email from QR login card
+  const prefillEmail = sp.get('email');
+  if (prefillEmail) {
+    window._prefillEmail = decodeURIComponent(prefillEmail);
     history.replaceState(null, '', location.pathname);
   }
 })();
@@ -2547,7 +2554,14 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
         </div>
       </div>
       <div class="grid-two-equal" style="margin-top:1rem">
-        <textarea id="lab-response" class="input-field" placeholder="Type your de-escalation response..." style="height:180px;resize:vertical"></textarea>
+        <div style="display:flex;flex-direction:column;gap:.5rem">
+          <textarea id="lab-response" class="input-field" placeholder="Type your de-escalation response..." style="height:180px;resize:vertical"></textarea>
+          <button id="lab-mic-btn" onclick="toggleLabMic()" title="Record spoken response"
+            style="display:none;align-items:center;justify-content:center;gap:.45rem;padding:.45rem .9rem;border-radius:.65rem;border:1.5px solid #e2e8f0;background:#f8fafc;color:#475569;font-size:.8rem;font-weight:800;cursor:pointer;width:100%;transition:all .2s">
+            🎤 <span id="lab-mic-label">Speak response</span>
+          </button>
+          <div id="lab-mic-status" style="display:none;font-size:.75rem;color:#dc2626;font-weight:700;text-align:center"></div>
+        </div>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem;display:flex;flex-direction:column;gap:.75rem">
           <button id="lab-submit-btn" class="btn btn-success" onclick="submitLabScenario()" style="width:100%">Submit Response</button>
           <div id="lab-score-panel" style="display:none;background:white;border:1px solid #e2e8f0;border-radius:.875rem;padding:.75rem">
@@ -4830,6 +4844,11 @@ function applyAuthTabFromUrl() {
   } else if(mode === 'signin' || mode === 'login') {
     showAuthTab('login');
   }
+  // Apply email prefill from QR login card
+  if (window._prefillEmail) {
+    const emailInput = document.getElementById('li-email');
+    if (emailInput) { emailInput.value = window._prefillEmail; emailInput.focus(); }
+  }
 }
 
 async function doForgotPassword() {
@@ -6945,6 +6964,7 @@ function _renderUsersGrid(users) {
         oninput="filterAdminUsers(this.value)"
         style="flex:1;min-width:200px;padding:.55rem .9rem;border:1px solid #e2e8f0;border-radius:.65rem;font-size:.85rem;font-weight:600;color:#0f172a;outline:none">
       <button onclick="openBulkDueDateModal()" style="background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;padding:.5rem 1rem;border-radius:.65rem;font-size:.8rem;font-weight:800;cursor:pointer;white-space:nowrap">Bulk Deadline</button>
+      <button onclick="printLoginCards()" style="background:linear-gradient(135deg,#0f766e,#0891b2);color:white;border:none;padding:.5rem 1rem;border-radius:.65rem;font-size:.8rem;font-weight:800;cursor:pointer;white-space:nowrap">🪪 Print Cards</button>
       <span id="user-count-badge" style="font-size:.8rem;color:#94a3b8;font-weight:700">${entries.length} user${entries.length!==1?'s':''}</span>
     </div>
     <div id="user-cards-wrap">
@@ -6979,6 +6999,10 @@ function _renderUsersGrid(users) {
             <span style="background:${done?'#dcfce7':'#fef9c3'};color:${done?'#15803d':'#92400e'};padding:.2rem .6rem;border-radius:999px;font-size:.72rem;font-weight:800">${done?'? Done':'? Slide '+(u.currentSlide||0)}</span>
             ${dueBadge}
             <span style="font-size:.72rem;color:#94a3b8;font-weight:600">Last: ${lastSeen}</span>
+            ${u.supervisorApproval
+              ? `<span style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;border-radius:999px;padding:.2rem .55rem;font-size:.72rem;font-weight:800;display:inline-flex;align-items:center;gap:.35rem" title="Approved by ${(u.supervisorApproval.approverName||'').replace(/"/g,'&quot;')} on ${u.supervisorApproval.approvedAt ? new Date(u.supervisorApproval.approvedAt).toLocaleDateString() : ''}">✓ Approved <button onclick="revokeTraineeApproval('${uid}','${name.replace(/'/g,"\\'")}' )" style="background:none;border:none;color:#15803d;cursor:pointer;font-size:.7rem;padding:0;line-height:1;font-weight:900" title="Revoke">✕</button></span>`
+              : `<button onclick="approveTrainee('${uid}','${name.replace(/'/g,"\\'")}' )" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;border-radius:.5rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;cursor:pointer">✓ Approve</button>`
+            }
             <button onclick="openSetDueDateModal('${uid}','${name.replace(/'/g,"\\'")}',${u.dueDate||'null'})" style="background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;border-radius:.5rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;cursor:pointer">Deadline</button>
             <button onclick="confirmDeleteUser('${uid}','${name.replace(/'/g,"\\'")}' )" style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca;border-radius:.5rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;cursor:pointer">Remove</button>
           </div>
@@ -7007,6 +7031,80 @@ async function confirmDeleteUser(uid,name) {
     loadUsers();
     loadLeaderboard();
   }catch(e){alert('Error removing user: '+e.message);}
+}
+
+async function approveTrainee(uid, name) {
+  if(!confirm(`Mark "${name}" as supervisor-approved?`)) return;
+  try {
+    const approverName = window._userData?.name || window._userData?.firstName || window._currentUser?.email || 'Admin';
+    await window._updateUserData(uid, {
+      supervisorApproval: {
+        approvedBy:    window._currentUser?.uid || null,
+        approverName:  approverName,
+        approvedAt:    Date.now()
+      }
+    });
+    await window._writeAudit('supervisor_approval', { targetUid: uid, targetName: name });
+    loadUsers();
+  } catch(e) { alert('Error approving user: ' + e.message); }
+}
+
+async function revokeTraineeApproval(uid, name) {
+  if(!confirm(`Revoke supervisor approval for "${name}"?`)) return;
+  try {
+    await window._updateUserData(uid, { supervisorApproval: null });
+    await window._writeAudit('supervisor_approval_revoked', { targetUid: uid, targetName: name });
+    loadUsers();
+  } catch(e) { alert('Error revoking approval: ' + e.message); }
+}
+
+async function printLoginCards() {
+  const users = window._adminUsersCache;
+  if (!users || !Object.keys(users).length) { alert('No users to print cards for.'); return; }
+  if (typeof QRCode === 'undefined') { alert('QR library not loaded. Please check your connection.'); return; }
+  const T = window.TENANT;
+  const orgName = T?.name || 'NyxCodex\u2122 Training';
+  const baseUrl = window.location.origin + window.location.pathname;
+  const entries = Object.entries(users);
+  const canvases = await Promise.all(entries.map(async ([, u]) => {
+    const email = u.email || '';
+    const name  = [u.firstName, u.lastName].filter(Boolean).join(' ') || u.name || email;
+    const url   = baseUrl + (email ? '?email=' + encodeURIComponent(email) : '');
+    const dataUrl = await QRCode.toDataURL(url, { width: 200, margin: 1, color: { dark: '#0c1018', light: '#ffffff' } });
+    return { name, email, dataUrl, dept: u.department || '' };
+  }));
+  const win = window.open('', '_blank');
+  if (!win) { alert('Pop-up blocked. Please allow pop-ups for this site.'); return; }
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8">
+    <title>${orgName} \u2014 Login Cards</title>
+    <style>
+      @page { size: A4; margin: 10mm; }
+      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; }
+      .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; padding: 4mm; }
+      .card { border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 10px 10px 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; page-break-inside: avoid; }
+      .org { font-size: 7pt; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: .05em; }
+      .qr { width: 90px; height: 90px; border-radius: 6px; }
+      .name { font-size: 8.5pt; font-weight: 900; color: #0f172a; text-align: center; margin-top: 2px; }
+      .email { font-size: 6.5pt; color: #64748b; font-weight: 600; text-align: center; word-break: break-all; }
+      .dept { font-size: 6pt; color: #94a3b8; font-weight: 600; }
+      .hint { font-size: 6pt; color: #2563eb; font-weight: 700; margin-top: 2px; }
+      @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    </style>
+  </head><body>
+    <div class="grid">
+      ${canvases.map(c => `
+        <div class="card">
+          <span class="org">${orgName}</span>
+          <img class="qr" src="${c.dataUrl}" alt="QR">
+          <p class="name">${c.name.replace(/</g,'&lt;')}</p>
+          ${c.email ? `<p class="email">${c.email.replace(/</g,'&lt;')}</p>` : ''}
+          ${c.dept ? `<p class="dept">${c.dept.replace(/</g,'&lt;')}</p>` : ''}
+          <p class="hint">Scan to log in</p>
+        </div>`).join('')}
+    </div>
+    <script>window.onload=()=>window.print();<\/script>
+  </body></html>`);
+  win.document.close();
 }
 
 async function loadAnalytics() {
@@ -8411,6 +8509,11 @@ function openLabRoom() {
   document.getElementById('lab-response').value='';
   const mrw = document.getElementById('marcus-reply-wrap');
   if(mrw) mrw.style.display='none';
+  // Show mic button if browser supports MediaRecorder
+  const micBtn = document.getElementById('lab-mic-btn');
+  if (micBtn && (typeof MediaRecorder !== 'undefined' && navigator.mediaDevices)) {
+    micBtn.style.display = 'flex';
+  }
   // Sync patient UI (name/avatar/badge/selector)
   _setPatientAvatarEl('lab-patient-avatar-wrap', 'lab-patient-avatar-img', activePatient);
   _setPatientAvatarEl('reply-patient-avatar-wrap', 'reply-patient-avatar-img', activePatient);
@@ -8627,6 +8730,90 @@ function generateLabScenario() {
   document.getElementById('lab-submit-btn').disabled=false;
   const mrw = document.getElementById('marcus-reply-wrap');
   if(mrw) mrw.style.display='none';
+}
+
+// --- Audio response recording (Whisper) ------------------
+let _labRecorder = null;
+let _labChunks   = [];
+
+async function toggleLabMic() {
+  const btn      = document.getElementById('lab-mic-btn');
+  const label    = document.getElementById('lab-mic-label');
+  const status   = document.getElementById('lab-mic-status');
+  const textarea = document.getElementById('lab-response');
+
+  // Stop recording
+  if (_labRecorder && _labRecorder.state === 'recording') {
+    _labRecorder.stop();
+    return;
+  }
+
+  // Start recording
+  let stream;
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  } catch(e) {
+    status.style.display = 'block';
+    status.textContent   = 'Microphone access denied. Please allow microphone in browser settings.';
+    return;
+  }
+
+  const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus') ? 'audio/webm;codecs=opus'
+                 : MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm'
+                 : MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : '';
+
+  _labChunks   = [];
+  _labRecorder = new MediaRecorder(stream, mimeType ? { mimeType } : {});
+
+  _labRecorder.ondataavailable = e => { if(e.data.size > 0) _labChunks.push(e.data); };
+
+  _labRecorder.onstart = () => {
+    btn.style.background   = '#fef2f2';
+    btn.style.borderColor  = '#fca5a5';
+    btn.style.color        = '#dc2626';
+    label.textContent      = 'Stop recording ⏹';
+    status.style.display   = 'none';
+    status.textContent     = '';
+  };
+
+  _labRecorder.onstop = async () => {
+    stream.getTracks().forEach(t => t.stop());
+    btn.style.background  = '#f8fafc';
+    btn.style.borderColor = '#e2e8f0';
+    btn.style.color       = '#475569';
+    label.textContent     = 'Transcribing…';
+    btn.disabled          = true;
+    status.style.display  = 'block';
+    status.textContent    = '⏳ Transcribing your response…';
+
+    try {
+      const blob     = new Blob(_labChunks, { type: _labRecorder.mimeType || 'audio/webm' });
+      const reader   = new FileReader();
+      const base64   = await new Promise(res => { reader.onloadend = () => res(reader.result.split(',')[1]); reader.readAsDataURL(blob); });
+      const resp     = await fetch('/api/whisper', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ audio: base64, mimeType: blob.type })
+      });
+      const data = await resp.json();
+      if (data.text) {
+        textarea.value         = (textarea.value ? textarea.value + ' ' : '') + data.text.trim();
+        status.textContent     = '✓ Transcribed — edit text above if needed.';
+        status.style.color     = '#16a34a';
+      } else {
+        status.textContent = data.error || 'Transcription returned empty. Try speaking clearly.';
+        status.style.color = '#dc2626';
+      }
+    } catch(e) {
+      status.textContent = 'Transcription failed. Please type your response instead.';
+      status.style.color = '#dc2626';
+    } finally {
+      btn.disabled      = false;
+      label.textContent = 'Speak response';
+    }
+  };
+
+  _labRecorder.start();
 }
 
 function submitLabScenario() {
