@@ -1682,6 +1682,47 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) .slide .card .badge{
   background:rgba(201,168,76,.15)!important;color:#E8D49A!important;border-color:rgba(201,168,76,.3)!important;
 }
+/* ── GLOBAL DARK MODE: override ALL hardcoded dark inline text colors ── */
+/* These colors are invisible/near-invisible on #080806 dark background */
+:root:not([data-theme="light"]) [style*="color:#0f172a"],
+:root:not([data-theme="light"]) [style*="color:#1e293b"],
+:root:not([data-theme="light"]) [style*="color:#334155"],
+:root:not([data-theme="light"]) [style*="color:#475569"] { color:#D0C8B0 !important }
+
+:root:not([data-theme="light"]) [style*="color:#1e3a8a"],
+:root:not([data-theme="light"]) [style*="color:#1d4ed8"],
+:root:not([data-theme="light"]) [style*="color:#0c2d6b"],
+:root:not([data-theme="light"]) [style*="color:#1a56db"],
+:root:not([data-theme="light"]) [style*="color:#2563eb"],
+:root:not([data-theme="light"]) [style*="color:#0c4a6e"],
+:root:not([data-theme="light"]) [style*="color:#164e63"] { color:#93c5fd !important }
+
+:root:not([data-theme="light"]) [style*="color:#14532d"],
+:root:not([data-theme="light"]) [style*="color:#166534"],
+:root:not([data-theme="light"]) [style*="color:#15803d"] { color:#86efac !important }
+
+:root:not([data-theme="light"]) [style*="color:#92400e"],
+:root:not([data-theme="light"]) [style*="color:#78350f"],
+:root:not([data-theme="light"]) [style*="color:#7c2d12"] { color:#fcd34d !important }
+
+:root:not([data-theme="light"]) [style*="color:#991b1b"],
+:root:not([data-theme="light"]) [style*="color:#7f1d1d"],
+:root:not([data-theme="light"]) [style*="color:#9b1c1c"] { color:#fca5a5 !important }
+
+:root:not([data-theme="light"]) [style*="color:#5b21b6"],
+:root:not([data-theme="light"]) [style*="color:#4c1d95"],
+:root:not([data-theme="light"]) [style*="color:#3b0764"] { color:#c4b5fd !important }
+
+/* dark headings on slides that aren't inside .card */
+:root:not([data-theme="light"]) .slide h1[style*="color:#0f172a"],
+:root:not([data-theme="light"]) .slide h2[style*="color:#0f172a"],
+:root:not([data-theme="light"]) .slide h3[style*="color:#0f172a"],
+:root:not([data-theme="light"]) .slide h4[style*="color:#0f172a"] { color:#E8D49A !important }
+
+:root:not([data-theme="light"]) .slide p[style*="color:#64748b"],
+:root:not([data-theme="light"]) .slide p[style*="color:#475569"],
+:root:not([data-theme="light"]) .slide p[style*="color:#94a3b8"],
+:root:not([data-theme="light"]) .slide p[style*="color:#6b7280"] { color:#B0A890 !important }
 /* Nav bar — fix dark text on dark background */
 #main-nav #nav-slide-counter{color:#B0A880!important}
 #main-nav [style*="color:#64748b"],[style*="color:#475569"],[style*="color:#334155"]{color:#8A8070!important}
