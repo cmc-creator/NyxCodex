@@ -4922,6 +4922,18 @@ async function doSignUp() {
   if (!pass){err.textContent='Please create a password.';err.style.display='block';return;}
   if (pass!==conf){err.textContent='Passwords do not match.';err.style.display='block';return;}
   if (pass.length<6){err.textContent='Password must be at least 6 characters.';err.style.display='block';return;}
+  if (!window._settingsCache?.allowedDomain && window._getSettings) {
+    try { const _s = await window._getSettings(); window._settingsCache = Object.assign(window._settingsCache||{}, _s); } catch(e){}
+  }
+  const _allowedDomain = (window._settingsCache?.allowedDomain||'').trim().toLowerCase().replace(/^@/,'');
+  if (_allowedDomain) {
+    const _emailDomain = email.split('@')[1]?.toLowerCase()||'';
+    if (_emailDomain !== _allowedDomain) {
+      err.textContent = `Registration is restricted to @${_allowedDomain} email addresses. Please use your work email.`;
+      err.style.display='block';
+      return;
+    }
+  }
   if(btn){btn.disabled=true;btn.textContent='Creating account...';btn.style.opacity='0.7';}
   try {
     await window._signUp(fname, lname, email, pass, phone, title, dept, empid);
@@ -7726,6 +7738,16 @@ async function loadSettings() {
         <p style="font-size:.75rem;color:#64748b;margin-top:.75rem">Changing the year marks all users' current training as outdated at year-end rollover. Auto-Rollover resets completion for users whose cert has lapsed.</p>
       </div>
 
+      <!-- Allowed Email Domain -->
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.5rem;margin-bottom:1.5rem">
+        <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">✉ Allowed Email Domain</h3>
+        <p style="font-size:.78rem;color:#64748b;margin-bottom:1rem">Staff may only register with an email from this domain (e.g. <em>destinysprings.com</em>). Leave blank to allow any email.</p>
+        <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+          <span style="font-size:1rem;color:#64748b;font-weight:700">@</span>
+          <input id="setting-allowed-domain" type="text" placeholder="destinysprings.com" value="${settings?.allowedDomain||''}" class="input-field" style="max-width:22rem;font-size:.95rem">
+          <button onclick="saveAllowedDomain()" class="btn btn-primary" style="font-size:.82rem;padding:.55rem 1.25rem">Save Domain</button>
+        </div>
+      </div>
       <!-- Grant Admin -->
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.5rem;margin-bottom:1.5rem">
         <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:1rem">Grant Access Roles</h3>
@@ -7952,7 +7974,16 @@ async function loadSettings() {
         </div>
 }
 
-async function saveTrainingYear() {
+async function saveAllowedDomain() {
+  const val = document.getElementById('setting-allowed-domain')?.value.trim().toLowerCase().replace(/^@/,'');
+  if(val === undefined) return;
+  await window._saveSettings({ allowedDomain: val });
+  window._settingsCache = window._settingsCache || {};
+  window._settingsCache.allowedDomain = val;
+  if(val) alert('Allowed email domain set to: @' + val + '\nOnly staff with this domain may register.');
+  else alert('Domain restriction removed. Anyone may register.');
+}
+function saveTrainingYear() {
   const val = document.getElementById('setting-year')?.value;
   if(!val) return;
   await window._saveSettings({ trainingYear: parseInt(val) });
