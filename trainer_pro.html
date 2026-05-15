@@ -1682,6 +1682,20 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) .slide .card .badge{
   background:rgba(201,168,76,.15)!important;color:#E8D49A!important;border-color:rgba(201,168,76,.3)!important;
 }
+/* ── DARK MODE: override all hardcoded dark inline text colors globally ── */
+:root:not([data-theme="light"]) [style*="color:#1e3a8a"],
+:root:not([data-theme="light"]) [style*="color:#0f172a"],
+:root:not([data-theme="light"]) [style*="color:#1d4ed8"],
+:root:not([data-theme="light"]) [style*="color:#0c2d6b"],
+:root:not([data-theme="light"]) [style*="color:#1e293b"],
+:root:not([data-theme="light"]) [style*="color:#0e1b2e"]{color:#E8D49A!important}
+:root:not([data-theme="light"]) [style*="color:#64748b"],
+:root:not([data-theme="light"]) [style*="color:#475569"],
+:root:not([data-theme="light"]) [style*="color:#94a3b8"]{color:#B0A890!important}
+:root:not([data-theme="light"]) [style*="color:#374151"],
+:root:not([data-theme="light"]) [style*="color:#1f2937"],
+:root:not([data-theme="light"]) [style*="color:#111827"],
+:root:not([data-theme="light"]) [style*="color:#030712"]{color:#E8D49A!important}
 /* ── GLOBAL DARK MODE: override ALL hardcoded dark inline text colors ── */
 /* These colors are invisible/near-invisible on #080806 dark background */
 :root:not([data-theme="light"]) [style*="color:#0f172a"],
