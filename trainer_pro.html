@@ -93,6 +93,7 @@ const isReloadNav = (() => {
   return false;
 })();
 let firstAuthEvent = true;
+window._clearFirstAuth = () => { firstAuthEvent = false; };
 window._reauthAndChangePassword = async function(currentPass, newPass) {        
   const user = auth.currentUser;
   const cred = EmailAuthProvider.credential(user.email, currentPass);
@@ -203,6 +204,12 @@ window._signUp = async function(fname, lname, email, pass, phone, title, dept, e
 };
 window._signIn = async function(email, pass) {
   await signInWithEmailAndPassword(auth, email, pass);
+};
+window._googleSignIn = async function() {
+  await signInWithPopup(auth, googleProvider);
+};
+window._anonSignIn = async function() {
+  await signInAnonymously(auth);
 };
 window._sendPasswordReset = async function(email) {
   await sendPasswordResetEmail(auth, email);
@@ -629,9 +636,9 @@ h1,h2,.font-display{font-family:'Cormorant Garamond',serif}
 .auth-status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#C9A84C;box-shadow:0 0 10px rgba(201,168,76,.45)}
 .auth-status-online{color:#C9A84C}
 .auth-status-label{color:#9fb0c7}
-.auth-hero-title{font-family:'Cormorant Garamond',serif;font-weight:800;font-size:clamp(2.8rem,5vw,4.8rem);color:#f8fbff;line-height:.93;letter-spacing:-.03em;margin:0 0 .85rem;max-width:10ch}
+.auth-hero-title{text-wrap:balance;font-family:'Cormorant Garamond',serif;font-weight:800;font-size:clamp(2.8rem,5vw,4.8rem);color:#f8fbff;line-height:.93;letter-spacing:-.03em;margin:0 0 .85rem;max-width:10ch}
 .auth-hero-title-accent{display:block;color:#C9A84C;background:none;-webkit-text-fill-color:initial}
-#auth-tagline{margin:0;max-width:560px;color:#c4ccda;font-size:.98rem;line-height:1.68;font-weight:500}
+#auth-tagline{margin:0;max-width:560px;color:#c4ccda;font-size:.98rem;line-height:1.68;font-weight:500text-wrap:balance}
 #auth-hero-img{margin-top:1.2rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;max-width:520px}
 .auth-hero-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:.9rem;min-height:120px}
 .auth-hero-icon{font-size:1.12rem;margin-bottom:.35rem}
@@ -4961,6 +4968,7 @@ async function doSignIn() {
     if(err){err.textContent='App failed to connect to Firebase. Please hard-refresh (Ctrl+Shift+R) and try again.';err.style.display='block';} return;
   }
   if(btn){ btn.disabled=true; btn.textContent='Signing in...'; btn.style.opacity='0.75'; }
+  if(window._clearFirstAuth) window._clearFirstAuth();
   try {
     await window._signIn(email,pass);
     // onAuthStateChanged takes over from here
@@ -5046,22 +5054,22 @@ async function checkInviteForEmail(email) {
 async function doGoogleSignIn() {
   const err = document.getElementById('auth-error');
   err.style.display='none';
+  if(window._clearFirstAuth) window._clearFirstAuth();
   try {
-    await signInWithPopup(auth, googleProvider);
+    await window._googleSignIn();
   } catch(e){
-    err.textContent = e.message.replace('Firebase: ','');
-    err.style.display='block';
+    if(err){ err.textContent = e.message.replace('Firebase: ',''); err.style.display='block'; }
   }
 }
 
 async function doAnonSignIn() {
   const err = document.getElementById('auth-error');
   err.style.display='none';
+  if(window._clearFirstAuth) window._clearFirstAuth();
   try {
-    await signInAnonymously(auth);
+    await window._anonSignIn();
   } catch(e){
-    err.textContent = e.message.replace('Firebase: ','');
-    err.style.display='block';
+    if(err){ err.textContent = e.message.replace('Firebase: ',''); err.style.display='block'; }
   }
 }
 

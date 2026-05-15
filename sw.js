@@ -6,7 +6,7 @@
 //    • API / Firebase DB calls → network-only (never cache)
 // ─────────────────────────────────────────────────────────
 
-const CACHE_VERSION = 'nyxcodex-v13';
+const CACHE_VERSION = 'nyxcodex-v14';
 const SHELL_CACHE   = `${CACHE_VERSION}-shell`;
 const CDN_CACHE     = `${CACHE_VERSION}-cdn`;
 const APP_BASE      = self.location.pathname.replace(/\/[^/]*$/, '');
