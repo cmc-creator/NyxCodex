@@ -392,7 +392,7 @@ window._scorm = (function(){
     if (!initialized || !api) return;
     try { version === '1.2' ? api.LMSCommit('') : api.Commit(''); } catch(_e){}
   }
-  function complete(score15, totalPossible) {
+  async function complete(score15, totalPossible) {
     if (!initialized) return;
     const scaledScore = Math.round((score15 / totalPossible) * 100);
     if (version === '1.2') {
@@ -411,7 +411,7 @@ window._scorm = (function(){
     _commit();
     console.info('[SCORM] Completion reported to LMS. Score: ' + score15 + '/' + totalPossible);
   }
-  function finish() {
+  async function finish() {
     if (!initialized || !api) return;
     try { version === '1.2' ? api.LMSFinish('') : api.Terminate(''); } catch(_e){}
     initialized = false;
@@ -498,7 +498,7 @@ body::before{
   background:
     radial-gradient(42rem 22rem at 12% 0%, rgba(201,168,76,.14), transparent 62%),
     radial-gradient(38rem 20rem at 88% 0%, rgba(201,168,76,.12), transparent 64%),
-    linear-gradient(165deg,#090d15 0%, #101827 50%, #0a0f18 100%);
+    linear-gradient(165deg,#080806 0%, #0d0c09 50%, #080806 100%);
   z-index:-2;
 }
 body::after{
@@ -607,7 +607,7 @@ h1,h2,.font-display{font-family:'Cormorant Garamond',serif}
   background:
     radial-gradient(42rem 22rem at 16% 0%, rgba(201,168,76,.17), transparent 60%),
     radial-gradient(36rem 20rem at 82% 0%, rgba(201,168,76,.14), transparent 62%),
-    linear-gradient(165deg,#090d15 0%, #101827 50%, #0a0f18 100%);
+    linear-gradient(165deg,#080806 0%, #0d0c09 50%, #080806 100%);
 }
 .auth-hero-panel{flex:1.12;display:flex;flex-direction:column;position:relative;overflow:hidden;min-width:0}
 .auth-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 50% -10%,rgba(201,168,76,.06),transparent 65%),linear-gradient(170deg,#0d0c09 0%,#080806 60%,#050504 100%)}
@@ -665,7 +665,7 @@ h1,h2,.font-display{font-family:'Cormorant Garamond',serif}
   overflow-y:auto;
   position:relative;
   row-gap:1rem;
-  background:rgba(14,20,32,.84) !important;
+  background:rgba(11,10,8,.92) !important;
   border-left:1px solid rgba(255,255,255,.14);
   backdrop-filter:blur(16px);
 }
@@ -4844,7 +4844,7 @@ function showAuthTab(tab) {
   if(sub)   sub.textContent   = tab==='login' ? 'Sign in to continue drills, labs, assigned scenarios, and progress tracking.' : 'Create your account to enter the platform and begin staff training.';
 }
 
-function applyAuthTabFromUrl() {
+async function applyAuthTabFromUrl() {
   const qp = new URLSearchParams(window.location.search).get('auth');
   const hash = (window.location.hash || '').toLowerCase().replace('#', '');
   const mode = (qp || hash || '').toLowerCase();
@@ -4894,7 +4894,7 @@ async function doForgotPassword() {
   }
 }
 
-async function doSignIn() {
+async async function doSignIn() {
   const email = document.getElementById('li-email').value.trim();
   const pass  = document.getElementById('li-pass').value;
   const err   = document.getElementById('auth-error');
@@ -4915,7 +4915,7 @@ async function doSignIn() {
   }
 }
 
-async function doSignUp() {
+async async function doSignUp() {
   const fname = document.getElementById('su-fname').value.trim();
   const lname = document.getElementById('su-lname').value.trim();
   const email = document.getElementById('su-email').value.trim();
@@ -5391,7 +5391,7 @@ const ROLE_TRACKS = [
   { key:'supervisor',label:'Supervisor / Manager',   icon:'👔', vance:'As a leader, every technique you internalize becomes culture for your entire team. Your influence multiplies this learning.' },
 ];
 
-function selectRoleTrack(roleKey) {
+async function selectRoleTrack(roleKey) {
   const role = ROLE_TRACKS.find(r => r.key === roleKey);
   if (!role) return;
   window._saveUserData({ roleTrack: role.label }).catch(()=>{});
@@ -5402,7 +5402,7 @@ function selectRoleTrack(roleKey) {
     `Got it — role track set to ${role.label}. ${role.vance}`);
 }
 
-function refreshHubRoleTrack() {
+async function refreshHubRoleTrack() {
   const pillWrap = document.getElementById('hub-role-pills');
   const roleWrap = document.getElementById('hub-role-wrap');
   if (!pillWrap || !roleWrap) return;
@@ -5431,7 +5431,7 @@ async function saveAssignedScenario() {
   await window._writeAudit('admin_assign_scenario', { targetUid: _ummUid, note });
 }
 
-function showHomeGateway() {
+async function showHomeGateway() {
   // --- Monthly Team Challenge Widget ---------------------------
   async function refreshHubChallenge() {
     const wrap = document.getElementById('hub-challenge-wrap');
@@ -5667,20 +5667,20 @@ function awardXP(amount, save=true) {
   if(save) saveProgress();
 }
 
-function awardLabCredits(amount, save=true) {
+async function awardLabCredits(amount, save=true) {
   labCredits += amount;
   updateNavUI();
   if(save) saveProgress();
 }
 
-function getTier(lc, tiers) {
+async function getTier(lc, tiers) {
   const arr = Array.isArray(tiers) ? tiers.slice().sort((a,b)=>a-b) : [];
   let tier = null;
   arr.forEach((t,i)=>{ if(lc >= t) tier = i+1; });
   return tier;
 }
 
-function ensureAmbienceAudio() {
+async function ensureAmbienceAudio() {
   if(ambienceAudio) return ambienceAudio;
   ambienceAudio = new Audio('https://cdn.pixabay.com/download/audio/2022/10/09/audio_0c1486c1ef.mp3?filename=calm-nature-ambient-124008.mp3');
   ambienceAudio.loop = true;
@@ -5688,7 +5688,7 @@ function ensureAmbienceAudio() {
   return ambienceAudio;
 }
 
-function primeAmbienceOnce() {
+async function primeAmbienceOnce() {
   if(ambiencePrimed) return;
   const audio = ensureAmbienceAudio();
   const originalVolume = audio.volume;
@@ -6358,7 +6358,7 @@ const slideTips = [
 ];
 
 // Schedule a single Vance speech, cancelling any previously queued one
-function scheduleVance(fn, delay) {
+async function scheduleVance(fn, delay) {
   clearTimeout(_vanceTimer);
   _vanceTimer = setTimeout(fn, delay);
 }
@@ -6615,7 +6615,7 @@ function openAccountEdit() {
   document.getElementById('acct-view').style.display = 'none';
   document.getElementById('acct-edit').style.display = 'block';
 }
-function cancelAccountEdit() {
+async function cancelAccountEdit() {
   document.getElementById('acct-edit').style.display = 'none';
   document.getElementById('acct-view').style.display = 'block';
 }
@@ -6683,7 +6683,7 @@ function openAccountHistory() {
   document.getElementById('acct-pw').style.display   = 'none';
   document.getElementById('acct-history').style.display = 'block';
 }
-function cancelAccountHistory() {
+async function cancelAccountHistory() {
   document.getElementById('acct-history').style.display = 'none';
   document.getElementById('acct-view').style.display = 'block';
 }
@@ -6779,7 +6779,7 @@ async function claimOwnerAccount() {
   } catch(e) { if(err){err.textContent='Error: '+e.message; err.style.display='block';} else { alert('Error claiming owner account: ' + e.message); } }
 }
 
-function openAdminDashboard() {
+async function openAdminDashboard() {
   const badge = document.getElementById('admin-role-badge');
   const roleLabels = { owner: '🔑 Owner', admin: '🛡️ Admin', manager: '🏥 Dept Manager' };
   const roleLabel = roleLabels[currentAdminRole] || currentAdminRole;
@@ -7032,7 +7032,7 @@ function _renderUsersGrid(users) {
     </div>`;
 }
 
-function filterAdminUsers(q) {
+async function filterAdminUsers(q) {
   const term = (q||'').toLowerCase().trim();
   const cards = document.querySelectorAll('#user-cards-wrap>[data-uid]');
   let visible = 0;
@@ -7988,7 +7988,7 @@ async function loadSettings() {
         </div>
 }
 
-async function saveAllowedDomain() {
+async async function saveAllowedDomain() {
   const val = document.getElementById('setting-allowed-domain')?.value.trim().toLowerCase().replace(/^@/,'');
   if(val === undefined) return;
   await window._saveSettings({ allowedDomain: val });
@@ -7997,7 +7997,7 @@ async function saveAllowedDomain() {
   if(val) alert('Allowed email domain set to: @' + val + '\nOnly staff with this domain may register.');
   else alert('Domain restriction removed. Anyone may register.');
 }
-function saveTrainingYear() {
+async function saveTrainingYear() {
   const val = document.getElementById('setting-year')?.value;
   if(!val) return;
   await window._saveSettings({ trainingYear: parseInt(val) });
@@ -8116,7 +8116,7 @@ async function revokeAdmin(uid, name) {
   loadSettings();
 }
 
-function confirmResetTraining() {
+async function confirmResetTraining() {
   if(!confirm("⚠️ This will reset all users' slide progress to 0 for the new training year. This CANNOT be undone. Are you absolutely sure?")) return;
   if(!confirm('Final confirmation: Reset all training progress?')) return;
   resetAllTraining();
@@ -8665,7 +8665,7 @@ function selectLabPatient(id) {
   updateMarcusStateBadge();
 }
 
-function switchLabTab(tab) {
+async function switchLabTab(tab) {
   cancelVance();  // stop any Vance speech from the previous tab
   ['scenarios','debrief','script','microexp'].forEach(t => {
     const pane = document.getElementById('lab-tab-'+t);
@@ -8745,7 +8745,7 @@ async function buildLabScriptAI() {
   }
 }
 
-function generateLabScenario() {
+async function generateLabScenario() {
   // Use active patient's dx key; sync the dropdown to match
   const dxSel = document.getElementById('lab-dx');
   if (dxSel) dxSel.value = activePatient.dxKey;
@@ -9574,7 +9574,7 @@ function updateFinalStats() {
 }
 
 // --- Sign Out ---------------------------------------------
-function doSignOut() {
+async function doSignOut() {
   if(breathInterval) clearInterval(breathInterval);
   if(window.speechSynthesis) window.speechSynthesis.cancel();
   window._scorm?.finish(); // report SCORM session end before sign-out
@@ -9586,7 +9586,7 @@ function doSignOut() {
 document.addEventListener('DSHUserLoaded', initApp);
 
 // Pre-cache the 4 idle nudge phrases so the first fire is instant
-function _preCacheIdleNudges() {
+async function _preCacheIdleNudges() {
   if(paxMuted) return;
   const nudges = [
     "Don't miss the detail on the right - that could be a safety breach.",
@@ -9670,7 +9670,7 @@ function nextMicroExpRound() {
   _meTimerHandle = setTimeout(function() { if(!_meAnswered) answerMicroExp(null); }, DURATION);
 }
 
-function answerMicroExp(chosen) {
+async function answerMicroExp(chosen) {
   if(_meAnswered) return;
   _meAnswered = true;
   clearTimeout(_meTimerHandle); clearInterval(_meTimerBarHandle);
@@ -9772,7 +9772,7 @@ async function openUserManageModal(uid) {
   }
 }
 
-function closeUserManageModal() {
+async function closeUserManageModal() {
   const modal = document.getElementById('user-manage-modal');
   if (modal) modal.style.display = 'none';
   _ummUid = null;
@@ -9927,7 +9927,7 @@ async function openOnboardingWizard() {
   } catch(_) { /* pre-fill best-effort */ }
 }
 
-function closeOrgWizard() {
+async function closeOrgWizard() {
   const modal = document.getElementById('org-wizard-modal');
   if (modal) modal.style.display = 'none';
 }
