@@ -1671,6 +1671,20 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) .slide .card{
   background:rgba(255,255,255,.05)!important;border-color:rgba(255,255,255,.1)!important;
 }
+/* Fix hardcoded dark text colors inside cards in dark mode */
+:root:not([data-theme="light"]) .slide .card h1,
+:root:not([data-theme="light"]) .slide .card h2,
+:root:not([data-theme="light"]) .slide .card h3,
+:root:not([data-theme="light"]) .slide .card h4{color:#E8D49A!important}
+:root:not([data-theme="light"]) .slide .card p,
+:root:not([data-theme="light"]) .slide .card li,
+:root:not([data-theme="light"]) .slide .card span:not(.badge){color:#C8BFA8!important}
+:root:not([data-theme="light"]) .slide .card .badge{
+  background:rgba(201,168,76,.15)!important;color:#E8D49A!important;border-color:rgba(201,168,76,.3)!important;
+}
+/* Nav bar — fix dark text on dark background */
+#main-nav #nav-slide-counter{color:#B0A880!important}
+#main-nav [style*="color:#64748b"],[style*="color:#475569"],[style*="color:#334155"]{color:#8A8070!important}
 /* Semantic card variants → dark glass with retained accent borders */
 :root:not([data-theme="light"]) .slide .red-box{
   background:linear-gradient(135deg,rgba(239,68,68,.14),rgba(220,38,38,.08))!important;
@@ -3006,15 +3020,15 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 
     <!-- ? Stats group -->
     <div id="nav-stats-group" style="display:flex;align-items:center;gap:.4rem;flex-shrink:0;padding-right:.65rem;border-right:1px solid rgba(255,255,255,.07)">
-      <span id="nav-slide-counter" style="font-size:.7rem;font-weight:800;color:#475569;min-width:44px">1 / 33</span>
+      <span id="nav-slide-counter" style="font-size:.7rem;font-weight:800;color:#B0A880;min-width:44px">1 / 33</span>
       <div style="display:flex;align-items:center;gap:.2rem;font-size:.65rem;font-weight:800">
-        <span style="color:#64748b">Lv</span>
-        <span id="nav-level" style="color:#a78bfa">1</span>
-        <span style="color:#334155;margin:0 .1rem">·</span>
-        <span id="nav-xp" style="color:#60a5fa">0 XP</span>
-        <span style="color:#334155;margin:0 .1rem">·</span>
-        <span style="font-size:.7rem">💎</span>
-        <span id="nav-lc" style="color:#34d399">0 LC</span>
+        <span style="color:#8A8070">Lv</span>
+        <span id="nav-level" style="color:#C9A84C">1</span>
+        <span style="color:#6A6050;margin:0 .1rem">·</span>
+        <span id="nav-xp" style="color:#C9A84C">0 XP</span>
+        <span style="color:#6A6050;margin:0 .1rem">·</span>
+        <span style="font-size:.7rem">◆</span>
+        <span id="nav-lc" style="color:#E8D49A">0 LC</span>
       </div>
     </div>
 
