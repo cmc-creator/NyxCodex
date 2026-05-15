@@ -289,29 +289,29 @@ window._animCounter = function(el, from, to, ms=800) {
 };
 // --- Achievement Badges ---------------------------------------
 const ACHIEVEMENTS = [
-  { id:'first_login',   icon:'🎉', name:'Welcome Aboard',   desc:'Logged in for the first time',            check: ()=> true },
-  { id:'first_lab',     icon:'🧪', name:'Lab Initiate',      desc:'Completed your first lab scenario',       check: u=> (u.scenariosCompleted||0) >= 1 },
+  { id:'first_login',   icon:'I', name:'Welcome Aboard',   desc:'Logged in for the first time',            check: ()=> true },
+  { id:'first_lab',     icon:'L', name:'Lab Initiate',      desc:'Completed your first lab scenario',       check: u=> (u.scenariosCompleted||0) >= 1 },
   { id:'perfect_lab',   icon:'⭐', name:'Perfect Technique', desc:'Scored an A in a lab scenario',           check: u=> u._lastLabGrade === 'A' },
-  { id:'all_patients',  icon:'🌈', name:'Full Spectrum',     desc:'Worked with all 3 patients in the lab',   check: u=> (u._labPatientSet||[]).length >= 3 },
-  { id:'streak_3',      icon:'🔥', name:'On Fire',           desc:'Built a 3-day daily drill streak',         check: u=> (u.drillStreak||0) >= 3 },
-  { id:'streak_7',      icon:'🏅', name:'Week Warrior',      desc:'Built a 7-day daily drill streak',         check: u=> (u.drillStreak||0) >= 7 },
+  { id:'all_patients',  icon:'S', name:'Full Spectrum',     desc:'Worked with all 3 patients in the lab',   check: u=> (u._labPatientSet||[]).length >= 3 },
+  { id:'streak_3',      icon:'&#9670;', name:'On Fire',           desc:'Built a 3-day daily drill streak',         check: u=> (u.drillStreak||0) >= 3 },
+  { id:'streak_7',      icon:'&#10022;', name:'Week Warrior',      desc:'Built a 7-day daily drill streak',         check: u=> (u.drillStreak||0) >= 7 },
   { id:'streak_14',     icon:'⚡', name:'Fortnight Fire',    desc:'Built a 14-day daily drill streak',        check: u=> (u.drillStreak||0) >= 14 },
-  { id:'streak_30',     icon:'💎', name:'Iron Will',         desc:'Built a 30-day daily drill streak',        check: u=> (u.drillStreak||0) >= 30 },
-  { id:'mastery_ptsd',  icon:'🎯', name:'Trauma Specialist', desc:'Scored A or B on 3+ PTSD scenarios',       check: u=> (u.masteryCount?.ptsd||0) >= 3 },
-  { id:'mastery_autism',icon:'🧩', name:'Autism Specialist', desc:'Scored A or B on 3+ Autism scenarios',     check: u=> (u.masteryCount?.autism||0) >= 3 },
-  { id:'mastery_adhd',  icon:'💡', name:'ADHD Specialist',   desc:'Scored A or B on 3+ ADHD scenarios',       check: u=> (u.masteryCount?.adhd||0) >= 3 },
-  { id:'mastery_schiz', icon:'🔬', name:'Psychosis Specialist',desc:'Scored A or B on 3+ Schizophrenia scenarios',check: u=> (u.masteryCount?.schizophrenia||0) >= 3 },
+  { id:'streak_30',     icon:'&#9670;', name:'Iron Will',         desc:'Built a 30-day daily drill streak',        check: u=> (u.drillStreak||0) >= 30 },
+  { id:'mastery_ptsd',  icon:'&#10022;', name:'Trauma Specialist', desc:'Scored A or B on 3+ PTSD scenarios',       check: u=> (u.masteryCount?.ptsd||0) >= 3 },
+  { id:'mastery_autism',icon:'&#9670;', name:'Autism Specialist', desc:'Scored A or B on 3+ Autism scenarios',     check: u=> (u.masteryCount?.autism||0) >= 3 },
+  { id:'mastery_adhd',  icon:'&#10022;', name:'ADHD Specialist',   desc:'Scored A or B on 3+ ADHD scenarios',       check: u=> (u.masteryCount?.adhd||0) >= 3 },
+  { id:'mastery_schiz', icon:'&#9670;', name:'Psychosis Specialist',desc:'Scored A or B on 3+ Schizophrenia scenarios',check: u=> (u.masteryCount?.schizophrenia||0) >= 3 },
   { id:'mastery_bipolar',icon:'⚖️',name:'Bipolar Specialist', desc:'Scored A or B on 3+ Bipolar scenarios',   check: u=> (u.masteryCount?.bipolar||0) >= 3 },
-  { id:'mastery_bpd',   icon:'🌊', name:'BPD Specialist',    desc:'Scored A or B on 3+ BPD scenarios',        check: u=> (u.masteryCount?.bpd||0) >= 3 },
-  { id:'level_3',       icon:'📈', name:'Rising Clinician', desc:'Reached Level 3',                          check: u=> (u.level||1) >= 3 },
-  { id:'level_5',       icon:'🏆', name:'Expert Clinician',  desc:'Reached Level 5',                          check: u=> (u.level||1) >= 5 },
-  { id:'cert_earned',   icon:'🎓', name:'Certified!',        desc:'Downloaded your completion certificate',   check: u=> !!u.completedAt },
+  { id:'mastery_bpd',   icon:'&#10022;', name:'BPD Specialist',    desc:'Scored A or B on 3+ BPD scenarios',        check: u=> (u.masteryCount?.bpd||0) >= 3 },
+  { id:'level_3',       icon:'&#9670;', name:'Rising Clinician', desc:'Reached Level 3',                          check: u=> (u.level||1) >= 3 },
+  { id:'level_5',       icon:'&#10022;', name:'Expert Clinician',  desc:'Reached Level 5',                          check: u=> (u.level||1) >= 5 },
+  { id:'cert_earned',   icon:'&#9670;', name:'Certified!',        desc:'Downloaded your completion certificate',   check: u=> !!u.completedAt },
   { id:'drill_10',      icon:'⚡', name:'Drill Devotee',     desc:'Completed 10 or more daily drills',        check: u=> (u.totalDrillsCompleted||0) >= 10 },
   { id:'slide_half',    icon:'⚡', name:'Halfway Hero',    desc:'Reached the halfway point of your training',  check: u=> (u.currentSlide||0) >= 15 },
-  { id:'quiz_perfect',  icon:'💯', name:'Perfect Score',   desc:'Scored 15/15 on the final knowledge check',  check: u=> (u.finalQuizScore||0) >= 15 },
-  { id:'speed_learner', icon:'🚀', name:'Speed Learner',   desc:'Completed full training in under 3 hours',    check: u=> !!(u.completedAt && u.startDate && (u.completedAt - u.startDate) < 10800000) },
-  { id:'lab_veteran',   icon:'🧪', name:'Lab Veteran',     desc:'Completed 10 or more live lab scenarios',     check: u=> (u.scenariosDone||0) >= 10 },
-  { id:'elite_xp',      icon:'🌟', name:'Elite Clinician', desc:'Accumulated over 5 000 XP in total training',  check: u=> (u.xp||0) >= 5000 },
+  { id:'quiz_perfect',  icon:'&#10022;', name:'Perfect Score',   desc:'Scored 15/15 on the final knowledge check',  check: u=> (u.finalQuizScore||0) >= 15 },
+  { id:'speed_learner', icon:'&#9670;', name:'Speed Learner',   desc:'Completed full training in under 3 hours',    check: u=> !!(u.completedAt && u.startDate && (u.completedAt - u.startDate) < 10800000) },
+  { id:'lab_veteran',   icon:'L', name:'Lab Veteran',     desc:'Completed 10 or more live lab scenarios',     check: u=> (u.scenariosDone||0) >= 10 },
+  { id:'elite_xp',      icon:'&#10022;', name:'Elite Clinician', desc:'Accumulated over 5 000 XP in total training',  check: u=> (u.xp||0) >= 5000 },
 ];
 window._showAchievementToast = function(a) {
   const old = document.getElementById('achievement-toast');
@@ -475,20 +475,20 @@ window._emitXAPI = async function(verb, resultData) {
   } catch(_e) { /* silent */ }
 };
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Montserrat:wght@700;800;900&family=Space+Mono:wght@400;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Syne:wght@500;700;800&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@300;400;600;700;800;900&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{height:100%}
 body{font-family:'Syne',sans-serif;background:#0f172a;overflow:hidden;margin:0}
 :root{
-  --ui-bg:#0c1018;
-  --ui-ink:#f5f7fb;
-  --ui-muted:#b8c0d1;
-  --ui-line:rgba(255,255,255,.14);
-  --ui-panel:rgba(14,20,32,.78);
-  --ui-accent:#f0b86d;
-  --ui-accent-soft:#ffd79a;
-  --ui-cyan:#7dd3fc;
+  --ui-bg:#080806;
+  --ui-ink:#F0EAD8;
+  --ui-muted:#B0A890;
+  --ui-line:rgba(201,168,76,.18);
+  --ui-panel:rgba(11,10,8,.88);
+  --ui-accent:#C9A84C;
+  --ui-accent-soft:#E8D49A;
+  --ui-cyan:#C9A84C;
 }
 body::before{
   content:'';
@@ -496,8 +496,8 @@ body::before{
   inset:0;
   pointer-events:none;
   background:
-    radial-gradient(42rem 22rem at 12% 0%, rgba(240,184,109,.14), transparent 62%),
-    radial-gradient(38rem 20rem at 88% 0%, rgba(125,211,252,.12), transparent 64%),
+    radial-gradient(42rem 22rem at 12% 0%, rgba(201,168,76,.14), transparent 62%),
+    radial-gradient(38rem 20rem at 88% 0%, rgba(201,168,76,.12), transparent 64%),
     linear-gradient(165deg,#090d15 0%, #101827 50%, #0a0f18 100%);
   z-index:-2;
 }
@@ -514,21 +514,21 @@ body::after{
 .slide{display:none;width:100vw;height:100vh;overflow-y:auto;flex-direction:column;padding-bottom:5rem}
 .slide.active{display:block}
 .slide>div{max-width:900px;margin-left:auto;margin-right:auto;width:100%;box-sizing:border-box}
-h1,h2,.font-display{font-family:'Fraunces',serif}
+h1,h2,.font-display{font-family:'Cormorant Garamond',serif}
 .progress-bar{transition:width .4s cubic-bezier(.4,0,.2,1)}
 .card{background:#fff;border-radius:1.1rem;border:1px solid rgba(15,23,42,.08);box-shadow:0 20px 45px rgba(2,6,23,.18)}
 .badge{display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .75rem;border-radius:999px;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:.82rem;font-weight:800;font-size:.84rem;cursor:pointer;transition:all .2s;border:1px solid transparent;letter-spacing:.06em;text-transform:uppercase;font-family:'IBM Plex Mono',monospace}
-.btn-primary{background:linear-gradient(130deg,var(--ui-accent),var(--ui-accent-soft));color:#251402;border-color:rgba(255,235,198,.72)}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(240,184,109,.35)}
+.btn-primary{background:linear-gradient(130deg,#C9A84C,#E8D49A);color:#090804;border-color:rgba(255,235,198,.72)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(201,168,76,.35)}
 .btn-success{background:linear-gradient(130deg,#70d8a1,#44b978);color:#052a14;border-color:rgba(146,245,188,.55)}
 .btn-success:hover{box-shadow:0 10px 24px rgba(68,185,120,.32)}
 .btn-danger{background:linear-gradient(130deg,#ff8c82,#f87171);color:#3b0a0a;border-color:rgba(255,184,180,.6)}
 .btn-danger:hover{box-shadow:0 10px 24px rgba(248,113,113,.34)}
 .btn-purple{background:linear-gradient(130deg,#b594ff,#8e71ff);color:#140c30;border-color:rgba(209,194,255,.58)}
 .btn-purple:hover{box-shadow:0 10px 24px rgba(142,113,255,.34)}
-.btn-amber{background:linear-gradient(130deg,#ffd189,#f0b86d);color:#2f1b06;border-color:rgba(255,221,163,.65)}
-.btn-amber:hover{box-shadow:0 10px 24px rgba(240,184,109,.34)}
+.btn-amber{background:linear-gradient(130deg,#ffd189,#C9A84C);color:#2f1b06;border-color:rgba(255,221,163,.65)}
+.btn-amber:hover{box-shadow:0 10px 24px rgba(201,168,76,.34)}
 .btn-secondary{background:white;color:#475569;border-color:#e2e8f0}
 .btn-secondary:hover{background:#f8fafc;box-shadow:0 4px 12px rgba(0,0,0,.08)}
 .btn-info{background:linear-gradient(130deg,#93c5fd,#60a5fa);color:#0c2d6b;border-color:rgba(96,165,250,.55)}
@@ -546,7 +546,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
   backdrop-filter:blur(16px);
 }
 #main-nav button{font-family:'IBM Plex Mono',monospace}
-#main-nav #nav-progress-fill{background:linear-gradient(90deg,var(--ui-accent),var(--ui-cyan)) !important}
+#main-nav #nav-progress-fill{background:linear-gradient(90deg,var(--ui-accent),var(--ui-accent)) !important}
 #chat-panel{
   background:rgba(15,23,42,.92) !important;
   border:1px solid var(--ui-line) !important;
@@ -557,7 +557,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 #home-gateway{backdrop-filter:blur(10px)}
 
 /* Slide palette harmonization */
-.slide{position:relative;isolation:isolate;--slide-overlay:linear-gradient(180deg,rgba(240,184,109,.05),rgba(125,211,252,.04));}
+.slide{position:relative;isolation:isolate;--slide-overlay:linear-gradient(180deg,rgba(201,168,76,.05),rgba(201,168,76,.04));}
 .slide::before{
   content:'';
   position:absolute;
@@ -570,13 +570,13 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 .slide[style*="background:#f8fafc"],
 .slide[style*="background:white"],
 .slide[style*="background:#fff"],
-.slide[style*="background:#fff5f5"]{--slide-overlay:linear-gradient(180deg,rgba(240,184,109,.06),rgba(125,211,252,.05));}
+.slide[style*="background:#fff5f5"]{--slide-overlay:linear-gradient(180deg,rgba(201,168,76,.06),rgba(201,168,76,.05));}
 .slide[style*="background:#0f172a"],
 .slide[style*="background:#0b172a"],
 .slide[style*="background:#0b1224"],
 .slide[style*="linear-gradient(135deg,#1e3a8a"],
 .slide[style*="linear-gradient(135deg,#1e3a5f"],
-.slide[style*="linear-gradient(135deg,#0f172a"]{--slide-overlay:linear-gradient(180deg,rgba(240,184,109,.11),rgba(125,211,252,.1));}
+.slide[style*="linear-gradient(135deg,#0f172a"]{--slide-overlay:linear-gradient(180deg,rgba(201,168,76,.11),rgba(201,168,76,.1));}
 
 /* Illustration and icon consistency */
 .slide img[src$=".png"],
@@ -605,50 +605,50 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
   z-index:200;
   overflow:hidden;
   background:
-    radial-gradient(42rem 22rem at 16% 0%, rgba(240,184,109,.17), transparent 60%),
-    radial-gradient(36rem 20rem at 82% 0%, rgba(125,211,252,.14), transparent 62%),
+    radial-gradient(42rem 22rem at 16% 0%, rgba(201,168,76,.17), transparent 60%),
+    radial-gradient(36rem 20rem at 82% 0%, rgba(201,168,76,.14), transparent 62%),
     linear-gradient(165deg,#090d15 0%, #101827 50%, #0a0f18 100%);
 }
 .auth-hero-panel{flex:1.12;display:flex;flex-direction:column;position:relative;overflow:hidden;min-width:0}
-.auth-hero-bg{position:absolute;inset:0;background:radial-gradient(60rem 36rem at 12% 10%, rgba(240,184,109,.12), transparent 58%),radial-gradient(48rem 26rem at 88% 4%, rgba(125,211,252,.12), transparent 60%),linear-gradient(160deg,#090d15 0%, #101827 50%, #0a0f18 100%);z-index:0}
+.auth-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 50% -10%,rgba(201,168,76,.06),transparent 65%),linear-gradient(170deg,#0d0c09 0%,#080806 60%,#050504 100%)}
 .auth-orb{position:absolute;border-radius:50%;z-index:1;animation:orbFloat 14s ease-in-out infinite}
-.auth-orb-cyan{width:420px;height:420px;background:radial-gradient(circle,rgba(125,211,252,.08) 0%,transparent 70%);top:-120px;right:-70px}
-.auth-orb-purple{width:360px;height:360px;background:radial-gradient(circle,rgba(240,184,109,.08) 0%,transparent 70%);bottom:-80px;left:-70px;animation-duration:18s;animation-direction:reverse}
-.auth-dot-grid{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:34px 34px;z-index:1;opacity:.45}
+.auth-orb-cyan{width:420px;height:420px;background:radial-gradient(circle,rgba(201,168,76,.08) 0%,transparent 70%);top:-120px;right:-70px}
+.auth-orb-purple{width:360px;height:360px;background:radial-gradient(circle,rgba(201,168,76,.04) 0%,transparent 70%);bottom:-80px;left:-70px;animation-duration:18s;animation-direction:reverse}
+.auth-dot-grid{display:none}
 .auth-hero-content{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;padding:2rem 2rem 1.6rem}
 .auth-logo-wrap{margin-bottom:1rem}
-.auth-brandbar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(14,20,32,.72);padding:.75rem .85rem;backdrop-filter:blur(12px)}
+.auth-brandbar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(11,10,8,.90);padding:.75rem .85rem;backdrop-filter:blur(12px)}
 .auth-brand{display:flex;align-items:center;gap:.75rem;min-width:0}
 .auth-brandmark{width:62px;height:62px;object-fit:contain;border-radius:14px;background:rgba(255,255,255,.05)}
-.auth-brandkicker{font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#7dd3fc}
-.auth-brandname{font-family:'Fraunces',serif;font-size:1.02rem;font-weight:800;line-height:1.08;color:#f8fbff}
-.auth-brandstatus{display:flex;align-items:center;gap:.42rem;font-family:'IBM Plex Mono',monospace;font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7ddf9f}
+.auth-brandkicker{font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C9A84C}
+.auth-brandname{font-family:'Cormorant Garamond',serif;font-size:1.02rem;font-weight:800;line-height:1.08;color:#f8fbff}
+.auth-brandstatus{display:flex;align-items:center;gap:.42rem;font-family:'IBM Plex Mono',monospace;font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#C9A84C}
 .auth-logo-lg{max-height:220px;max-width:520px;width:100%}
 .auth-headline-wrap{flex:1;display:flex;flex-direction:column;justify-content:center;padding:1.4rem 0 1rem}
-.auth-status-row{font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:700;color:#f0b86d;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
-.auth-status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#7ddf9f;box-shadow:0 0 10px rgba(125,223,159,.45)}
-.auth-status-online{color:#7ddf9f}
+.auth-status-row{font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:700;color:#C9A84C;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
+.auth-status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#C9A84C;box-shadow:0 0 10px rgba(201,168,76,.45)}
+.auth-status-online{color:#C9A84C}
 .auth-status-label{color:#9fb0c7}
-.auth-hero-title{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2.2rem,5vw,4.6rem);color:#f8fbff;line-height:.93;letter-spacing:-.03em;margin:0 0 .85rem;max-width:10ch}
-.auth-hero-title-accent{display:block;color:#7dd3fc;background:none;-webkit-text-fill-color:initial}
+.auth-hero-title{font-family:'Cormorant Garamond',serif;font-weight:800;font-size:clamp(2.2rem,5vw,4.6rem);color:#f8fbff;line-height:.93;letter-spacing:-.03em;margin:0 0 .85rem;max-width:10ch}
+.auth-hero-title-accent{display:block;color:#C9A84C;background:none;-webkit-text-fill-color:initial}
 #auth-tagline{margin:0;max-width:560px;color:#c4ccda;font-size:.98rem;line-height:1.68;font-weight:500}
 #auth-hero-img{margin-top:1.2rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;max-width:520px}
 .auth-hero-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:.9rem;min-height:120px}
 .auth-hero-icon{font-size:1.12rem;margin-bottom:.35rem}
-.auth-hero-code{font-family:'IBM Plex Mono',monospace;color:#7dd3fc;font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.auth-hero-code{font-family:'IBM Plex Mono',monospace;color:#C9A84C;font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
 .auth-hero-sub{color:#d6deed;font-size:.84rem;line-height:1.45;margin-top:.38rem}
-.auth-preview-card{overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(14,20,32,.72)}
+.auth-preview-card{overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(11,10,8,.90)}
 .auth-preview-media{aspect-ratio:1.22;overflow:hidden;background:rgba(255,255,255,.03)}
 .auth-preview-media img{width:100%;height:100%;object-fit:cover;display:block}
 .auth-preview-copy{padding:.8rem .9rem .95rem}
 .auth-preview-copy b{display:block;font:700 .93rem/1.2 'Syne',sans-serif;color:#f5f7fb}
 .auth-preview-copy small{display:block;margin-top:.25rem;font:700 .62rem/1.4 'IBM Plex Mono',monospace;color:#aeb7c8;letter-spacing:.08em;text-transform:uppercase}
 .auth-proof-band{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem;margin-top:1rem;max-width:760px}
-.auth-proof-stat{border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(14,20,32,.72);padding:.85rem}
-.auth-proof-stat strong{display:block;font-family:'Fraunces',serif;font-size:1.35rem;line-height:1;color:#f0b86d}
+.auth-proof-stat{border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(11,10,8,.90);padding:.85rem}
+.auth-proof-stat strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.35rem;line-height:1;color:#C9A84C}
 .auth-proof-stat span{display:block;margin-top:.24rem;font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#aeb7c8;line-height:1.35}
-.auth-quote{margin-top:1rem;max-width:700px;border:1px solid rgba(240,184,109,.22);border-radius:18px;background:linear-gradient(145deg,rgba(240,184,109,.1),rgba(255,255,255,.03));padding:1rem}
-.auth-quote-copy{display:block;font-family:'Fraunces',serif;font-size:1rem;line-height:1.62;color:#fff}
+.auth-quote{margin-top:1rem;max-width:700px;border:1px solid rgba(201,168,76,.22);border-radius:18px;background:linear-gradient(145deg,rgba(201,168,76,.1),rgba(255,255,255,.03));padding:1rem}
+.auth-quote-copy{display:block;font-family:'Cormorant Garamond',serif;font-size:1rem;line-height:1.62;color:#fff}
 .auth-quote-meta{display:block;margin-top:.55rem;font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#dfb56c}
 .auth-hero-footer{border-top:1px solid rgba(255,255,255,.1);padding-top:1rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
 #auth-copyright{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:#90a0ba;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
@@ -669,11 +669,11 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
   border-left:1px solid rgba(255,255,255,.14);
   backdrop-filter:blur(16px);
 }
-.auth-form-topbar{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#f0b86d,#7dd3fc,#7ddf9f)}
+.auth-form-topbar{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#C9A84C,#C9A84C,#C9A84C)}
 #mobile-logo-block{display:none;text-align:center;margin-bottom:1.3rem}
 .auth-mobile-logo{max-width:340px;margin:0 auto}
 .auth-tab-wrap{width:100%;margin-bottom:1.35rem}
-#auth-panel-title{font-family:'Fraunces',serif;font-weight:800;font-size:1.8rem;color:#f8fafc;margin-bottom:.35rem;line-height:1}
+#auth-panel-title{font-family:'Cormorant Garamond',serif;font-weight:800;font-size:1.8rem;color:#f8fafc;margin-bottom:.35rem;line-height:1}
 #auth-panel-sub{font-size:.84rem;color:#b8c0d1;margin-bottom:1.2rem;line-height:1.55}
 #auth-tab-switch{display:flex;padding:4px;gap:4px;background:rgba(255,255,255,.07) !important;border:1px solid rgba(255,255,255,.12);border-radius:14px !important}
 .auth-tab-btn{flex:1;padding:.72rem;border-radius:10px;border:none;font-family:'IBM Plex Mono',monospace;font-size:.79rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .2s;background:transparent;color:#9fb0c7}
@@ -685,9 +685,9 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 .auth-label{font-size:.68rem;font-weight:800;color:#ced8e6;text-transform:uppercase;letter-spacing:.09em;display:block;margin-bottom:.42rem;font-family:'IBM Plex Mono',monospace}
 .auth-label-sm{font-size:.66rem;margin-bottom:.35rem}
 .auth-error{display:none;background:rgba(255,124,108,.1);border:1px solid rgba(255,124,108,.25);border-radius:.85rem;padding:.8rem 1rem;font-size:.825rem;font-weight:700;color:#ff9589;text-align:center}
-.auth-btn-primary{padding:1rem;font-size:.86rem;margin-top:.25rem;border-radius:14px;background:linear-gradient(130deg,#f0b86d,#ffd79a);box-shadow:0 10px 26px rgba(240,184,109,.18);color:#261708;border:1px solid rgba(255,235,198,.65);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.06em}
+.auth-btn-primary{padding:1rem;font-size:.86rem;margin-top:.25rem;border-radius:14px;background:linear-gradient(130deg,#C9A84C,#ffd79a);box-shadow:0 10px 26px rgba(201,168,76,.18);color:#261708;border:1px solid rgba(255,235,198,.65);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.06em}
 .auth-btn-google{padding:.92rem;font-size:.84rem;border-radius:14px;background:rgba(255,255,255,.96);color:#0f172a;font-weight:800;border:1px solid rgba(255,255,255,.18);gap:.6rem;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.04em}
-.auth-btn-guest{padding:.88rem;font-size:.8rem;border-radius:14px;background:rgba(125,211,252,.08);color:#dfe8f7;font-weight:800;border:1px dashed rgba(125,211,252,.32);gap:.6rem;margin-top:.35rem;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.04em}
+.auth-btn-guest{padding:.88rem;font-size:.8rem;border-radius:14px;background:rgba(201,168,76,.08);color:#dfe8f7;font-weight:800;border:1px dashed rgba(201,168,76,.32);gap:.6rem;margin-top:.35rem;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.04em}
 .auth-btn-icon{font-size:1.05rem}
 .auth-divider{display:flex;align-items:center;gap:.5rem;margin:.9rem 0 .65rem}
 .auth-divider-line{flex:1;height:1px;background:rgba(255,255,255,.14)}
@@ -696,15 +696,15 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 .auth-note-top{margin-top:1.15rem}
 .auth-note-mid{margin-top:.9rem}
 .auth-note-tight{margin-top:.45rem}
-.auth-inline-link{background:none;border:none;color:#7dd3fc;font-weight:800;cursor:pointer;font-size:.75rem}
+.auth-inline-link{background:none;border:none;color:#C9A84C;font-weight:800;cursor:pointer;font-size:.75rem}
 .auth-inline-optional{font-weight:500;text-transform:none}
 .auth-demo-wrap{border-top:1px solid rgba(255,255,255,.12);padding-top:1.1rem;margin-top:1rem}
 .auth-demo-title{text-align:center;font-size:.7rem;font-weight:700;color:#9fb0c7;text-transform:uppercase;letter-spacing:.08em;margin:0 0 .75rem;font-family:'IBM Plex Mono',monospace}
-.auth-demo-btn{background:linear-gradient(135deg,#f0b86d,#d98c2d);color:#261708;border:1px solid rgba(255,235,198,.55);border-radius:14px;padding:.95rem;font-size:.84rem;font-weight:800;cursor:pointer;width:100%;box-shadow:0 8px 24px rgba(240,184,109,.22);display:flex;align-items:center;justify-content:center;gap:.6rem;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.auth-demo-btn{background:linear-gradient(135deg,#C9A84C,#d98c2d);color:#261708;border:1px solid rgba(255,235,198,.55);border-radius:14px;padding:.95rem;font-size:.84rem;font-weight:800;cursor:pointer;width:100%;box-shadow:0 8px 24px rgba(201,168,76,.22);display:flex;align-items:center;justify-content:center;gap:.6rem;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
 .auth-demo-btn-icon{font-size:1.1rem}
 .auth-demo-sub{text-align:center;font-size:.72rem;color:#9fb0c7;margin:.55rem 0 0;line-height:1.45}
 .auth-privacy{font-size:.7rem;color:#9fb0c7;text-align:center;line-height:1.6}
-.auth-btn-signup{padding:.98rem;font-size:.84rem;margin-top:.25rem;border-radius:14px;background:linear-gradient(130deg,#7dd3fc,#a9e5ff);color:#0a1523;font-weight:800;border:1px solid rgba(198,241,255,.55);cursor:pointer;box-shadow:0 10px 24px rgba(125,211,252,.16);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.auth-btn-signup{padding:.98rem;font-size:.84rem;margin-top:.25rem;border-radius:14px;background:linear-gradient(130deg,#C9A84C,#a9e5ff);color:#0a1523;font-weight:800;border:1px solid rgba(198,241,255,.55);cursor:pointer;box-shadow:0 10px 24px rgba(201,168,76,.16);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
 .auth-trust-row{width:100%;margin-top:1.35rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.12);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}
 .auth-trust-item{display:flex;align-items:center;justify-content:center;gap:.45rem;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.04);padding:.7rem .75rem}
 .auth-trust-icon{font-size:.9rem}
@@ -733,11 +733,11 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 #tut-back-btn{border:1px solid #e2e8f0;background:#f8fafc;color:#475569;padding:.6rem 1rem;border-radius:.85rem;font-weight:800;font-size:.88rem;cursor:pointer;display:none}
 .tutorial-nav-spacer{flex:1}
 #tut-next-btn{border:none;background:#2563eb;color:white;padding:.7rem 1.5rem;border-radius:.9rem;font-weight:900;font-size:.95rem;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.4)}
-#auth-form-panel #auth-panel-title{font-family:'Fraunces',serif !important;color:#f8fafc !important}
+#auth-form-panel #auth-panel-title{font-family:'Cormorant Garamond',serif !important;color:#f8fafc !important}
 #auth-form-panel #auth-panel-sub{color:#b8c0d1 !important}
 .auth-tab-btn{font-family:'IBM Plex Mono',monospace !important;letter-spacing:.04em}
 #auth-form-panel .input-field{background:rgba(255,255,255,.08) !important;border-color:rgba(255,255,255,.2) !important;color:#f8fafc}
-#auth-form-panel .input-field:focus{border-color:#7dd3fc !important;background:rgba(255,255,255,.12) !important}
+#auth-form-panel .input-field:focus{border-color:#C9A84C !important;background:rgba(255,255,255,.12) !important}
 #auth-form-panel .input-field::placeholder{color:#9ca3af}
 #auth-form-panel label{color:#c9d3e4 !important}
 .diagnosis-pill{padding:.5rem 1.25rem;border-radius:999px;font-weight:800;font-size:.75rem;cursor:pointer;transition:all .2s;border:2px solid transparent}
@@ -1150,11 +1150,11 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:rgba(255,255,255,.03);border-radius:999px}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.13);border-radius:999px}
-::-webkit-scrollbar-thumb:hover{background:rgba(240,184,109,.38)}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,168,76,.38)}
 *{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.13) rgba(255,255,255,.03)}
 
 /* 2 · SELECTION COLOR ─────────────────────────────────────────────── */
-::selection{background:rgba(240,184,109,.28);color:#f8fbff}
+::selection{background:rgba(201,168,76,.28);color:#f8fbff}
 
 /* 3 · PROGRESS BAR SHIMMER ───────────────────────────────────────── */
 @keyframes nyx-shimmer{from{background-position:-400px 0}to{background-position:400px 0}}
@@ -1180,18 +1180,18 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 .tutorial-header{background:linear-gradient(135deg,rgba(12,24,80,.97),rgba(30,20,75,.97),rgba(100,40,200,.9))!important;border-bottom:1px solid rgba(255,255,255,.1)!important}
 .tutorial-dots{background:rgba(3,6,16,.65)!important;border-bottom:1px solid rgba(255,255,255,.06)!important}
 .tutorial-dot{background:rgba(255,255,255,.1)!important;transition:background .3s}
-#tut-dot-0{background:#f0b86d!important}
+#tut-dot-0{background:#C9A84C!important}
 .tutorial-body{padding:1.25rem 1.5rem 0!important}
 #tut-body{color:#cfd9ec!important}
-.tutorial-tip{background:rgba(240,184,109,.1)!important;border-left-color:#f0b86d!important}
-.tutorial-tip-head{color:#f0b86d!important}
+.tutorial-tip{background:rgba(201,168,76,.1)!important;border-left-color:#C9A84C!important}
+.tutorial-tip-head{color:#C9A84C!important}
 #tut-tip{color:#ead6a8!important}
 .tutorial-nav{background:rgba(3,6,16,.45)!important;border-top:1px solid rgba(255,255,255,.06)!important}
 #tut-back-btn{border-color:rgba(255,255,255,.12)!important;background:rgba(255,255,255,.04)!important;color:#8a9ab5!important}
 #tut-next-btn{
-  background:linear-gradient(130deg,#f0b86d,#ffd79a)!important;
+  background:linear-gradient(130deg,#C9A84C,#ffd79a)!important;
   color:#261708!important;border:1px solid rgba(255,235,198,.55)!important;
-  box-shadow:0 8px 28px rgba(240,184,109,.3)!important;
+  box-shadow:0 8px 28px rgba(201,168,76,.3)!important;
   font-family:'IBM Plex Mono',monospace!important;letter-spacing:.06em!important
 }
 .tutorial-skip{background:rgba(255,255,255,.05)!important;border-color:rgba(255,255,255,.12)!important;font-family:'IBM Plex Mono',monospace!important;font-size:.65rem!important;letter-spacing:.06em!important;text-transform:uppercase!important}
@@ -1204,22 +1204,22 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
   backdrop-filter:blur(28px)!important
 }
 .modal-card-header{background:rgba(3,6,16,.55)!important;border-bottom-color:rgba(255,255,255,.07)!important}
-.modal-header-title{color:#edf2fb!important;font-family:'Fraunces',serif!important}
+.modal-header-title{color:#edf2fb!important;font-family:'Cormorant Garamond',serif!important}
 .modal-header-sub{color:#7a8cad!important}
 .modal-close-btn{background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.1)!important;color:#8a9ab5!important;border-radius:.55rem!important;transition:background .2s,color .2s}
 .modal-close-btn:hover{background:rgba(255,255,255,.12)!important;color:#edf2fb!important}
-.modal-section-title{color:#7dd3fc!important}
+.modal-section-title{color:#C9A84C!important}
 .modal-bg-gradient{background:linear-gradient(135deg,rgba(10,24,78,.98),rgba(40,20,84,.98))!important}
 
 /* account modal fields */
 .acct-card-field{background:rgba(255,255,255,.05)!important;border:1px solid rgba(255,255,255,.08)!important}
-.acct-card-field p:first-child{color:#7dd3fc!important}
+.acct-card-field p:first-child{color:#C9A84C!important}
 .acct-card-field p:last-child{color:#dde4f2!important}
 .acct-stats-grid{background:linear-gradient(135deg,rgba(6,10,22,.98),rgba(14,22,54,.97))!important;border:1px solid rgba(255,255,255,.08)!important}
-.acct-stats-value{color:#7dd3fc!important}
+.acct-stats-value{color:#C9A84C!important}
 .acct-stats-label{color:#5a6a84!important}
 #acct-lc-stat{color:#34d399!important}
-#acct-tier-stat{color:#f0b86d!important}
+#acct-tier-stat{color:#C9A84C!important}
 .acct-view-grid .acct-card-field p{color:#dde4f2!important}
 
 /* account edit/pw inputs */
@@ -1227,7 +1227,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
   background:rgba(255,255,255,.06)!important;
   border-color:rgba(255,255,255,.14)!important;color:#dde4f2!important
 }
-#acct-edit .input-field:focus,#acct-pw .input-field:focus{border-color:#7dd3fc!important;background:rgba(255,255,255,.1)!important}
+#acct-edit .input-field:focus,#acct-pw .input-field:focus{border-color:#C9A84C!important;background:rgba(255,255,255,.1)!important}
 #acct-edit h3,#acct-pw h3{color:#edf2fb!important}
 .acct-history .btn{font-family:'IBM Plex Mono',monospace!important}
 .modal-action-buttons{border-top-color:rgba(255,255,255,.07)!important}
@@ -1237,13 +1237,13 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 
 /* 7 · DRILL MODAL — DARK GLASS ────────────────────────────────────── */
 .drill-header-gradient{background:linear-gradient(135deg,rgba(8,14,32,.95),rgba(18,26,58,.97))!important;border-bottom-color:rgba(255,255,255,.08)!important}
-.drill-step-label{background:rgba(240,184,109,.12)!important;border-color:rgba(240,184,109,.28)!important;color:#f0b86d!important}
+.drill-step-label{background:rgba(201,168,76,.06)!important;border-color:rgba(201,168,76,.28)!important;color:#C9A84C!important}
 #drill-scenario-box,.lab-scenario-box,.scenario-box{background:rgba(255,255,255,.05)!important;border-color:rgba(255,255,255,.1)!important;color:#cfd9ec!important}
 #drill-score-panel{background:rgba(255,255,255,.04)!important;border-color:rgba(255,255,255,.08)!important}
 #drill-feedback{color:#b8c8de!important}
 .lab-response-textarea,.drill-response{background:rgba(255,255,255,.06)!important;border-color:rgba(255,255,255,.12)!important;color:#dde4f2!important}
-.lab-rules-box,.rules-box{background:rgba(240,184,109,.07)!important;border-color:rgba(240,184,109,.2)!important}
-.rules-title{color:#f0b86d!important}.rules-list{color:#d4b896!important}
+.lab-rules-box,.rules-box{background:rgba(201,168,76,.07)!important;border-color:rgba(201,168,76,.2)!important}
+.rules-title{color:#C9A84C!important}.rules-list{color:#d4b896!important}
 
 /* 8 · APP-WIDE INPUT FIELDS ──────────────────────────────────────── */
 #app .input-field:not([type=range]){
@@ -1251,14 +1251,14 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
   border-color:rgba(255,255,255,.14)!important;color:#dde4f2!important
 }
 #app .input-field:focus:not([type=range]){
-  border-color:#7dd3fc!important;background:rgba(255,255,255,.1)!important;
-  box-shadow:0 0 0 3px rgba(125,211,252,.12)!important;outline:none
+  border-color:#C9A84C!important;background:rgba(255,255,255,.1)!important;
+  box-shadow:0 0 0 3px rgba(201,168,76,.12)!important;outline:none
 }
 #app .input-field::placeholder{color:rgba(138,154,181,.6)!important}
 
 /* 9 · NAV BAR — LUXURY REFINEMENTS ──────────────────────────────── */
 #main-nav-main-row{
-  border-top:1px solid rgba(240,184,109,.07)!important;
+  border-top:1px solid rgba(201,168,76,.07)!important;
 }
 #nav-stats-group{border-right-color:rgba(255,255,255,.05)!important}
 #nav-slide-counter,#nav-level,#nav-xp,#nav-lc{font-family:'IBM Plex Mono',monospace!important}
@@ -1285,7 +1285,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
   box-shadow:0 16px 48px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.04)!important
 }
 #vance-portrait{transition:border-color .3s ease,box-shadow .35s ease!important}
-#vance-portrait:hover{border-color:#f0b86d!important;box-shadow:0 6px 28px rgba(240,184,109,.5)!important}
+#vance-portrait:hover{border-color:#C9A84C!important;box-shadow:0 6px 28px rgba(201,168,76,.5)!important}
 #avatar-mini{
   background:linear-gradient(135deg,#1a3ec0,rgba(100,36,200,.9))!important;
   border:1px solid rgba(255,255,255,.1)!important;
@@ -1312,20 +1312,20 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
     radial-gradient(circle at 18% 18%,rgba(59,130,246,.13),transparent 38%),
     radial-gradient(circle at 82% 12%,rgba(14,165,233,.1),transparent 34%),
     radial-gradient(circle at 28% 82%,rgba(124,58,237,.12),transparent 40%),
-    radial-gradient(circle at 72% 72%,rgba(240,184,109,.08),transparent 38%),
+    radial-gradient(circle at 72% 72%,rgba(201,168,76,.04),transparent 38%),
     #06090f!important
 }
 .hub-action-card{transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s ease!important}
 .hub-action-card:hover{transform:translateY(-5px) scale(1.01)!important}
-.hub-card-title,#hub-heading{font-family:'Fraunces',serif!important;font-weight:800!important}
+.hub-card-title,#hub-heading{font-family:'Cormorant Garamond',serif!important;font-weight:800!important}
 .hub-lead{font-family:'Syne',sans-serif!important;line-height:1.75!important}
 #hub-heading{letter-spacing:-.02em!important}
 
 /* 14 · APP LOADING SCREEN ────────────────────────────────────────── */
 #app-loading{
   background:
-    radial-gradient(circle at 28% 24%,rgba(240,184,109,.1),transparent 48%),
-    radial-gradient(circle at 74% 70%,rgba(125,211,252,.08),transparent 44%),
+    radial-gradient(circle at 28% 24%,rgba(201,168,76,.1),transparent 48%),
+    radial-gradient(circle at 74% 70%,rgba(201,168,76,.08),transparent 44%),
     #06090f!important
 }
 #app-loading p{font-family:'IBM Plex Mono',monospace!important;letter-spacing:.09em!important;font-size:.77rem!important}
@@ -1351,7 +1351,7 @@ h1,h2,.font-display{font-family:'Fraunces',serif}
 #admin-pin-modal h2{color:#edf2fb!important}
 #admin-pin-modal p{color:#7a8cad!important}
 #admin-pin-modal .input-field{background:rgba(255,255,255,.06)!important;border-color:rgba(255,255,255,.14)!important;color:#dde4f2!important;text-align:center}
-#admin-pin-modal .input-field:focus{border-color:#7dd3fc!important}
+#admin-pin-modal .input-field:focus{border-color:#C9A84C!important}
 
 /* 20 · ADMIN TAB BAR ────────────────────────────────────────────── */
 .admin-tab-bar{background:rgba(3,6,14,.65)!important;border-bottom-color:rgba(255,255,255,.07)!important}
@@ -1392,14 +1392,14 @@ h1,h2,.font-display{letter-spacing:-.02em}
 .nyx-brand-mark{
   display:inline-flex;align-items:center;gap:.45rem;
   font-family:'IBM Plex Mono',monospace;font-size:.58rem;font-weight:700;
-  letter-spacing:.16em;text-transform:uppercase;color:rgba(240,184,109,.55);
-  border:1px solid rgba(240,184,109,.15);border-radius:999px;
-  padding:.28rem .65rem;background:rgba(240,184,109,.05)
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(201,168,76,.55);
+  border:1px solid rgba(201,168,76,.15);border-radius:999px;
+  padding:.28rem .65rem;background:rgba(201,168,76,.05)
 }
 
 /* 31 · FOCUS RING — BRAND-ALIGNED ───────────────────────────────── */
 button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
-  outline:2px solid rgba(240,184,109,.6);outline-offset:3px;border-radius:4px
+  outline:2px solid rgba(201,168,76,.6);outline-offset:3px;border-radius:4px
 }
 
 /* 32 · TUBE HIGHLIGHT — INTERACTIVE CARD HOVER ──────────────────── */
@@ -1456,7 +1456,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 /* ── Buttons ─────────────────────────────────────────────────────── */
 [data-theme="light"] .btn-secondary{background:#f4efe8!important;border-color:rgba(0,0,0,.13)!important;color:#4a4560!important}
 [data-theme="light"] .btn-secondary:hover{background:#ede6db!important;box-shadow:0 4px 12px rgba(0,0,0,.1)!important}
-[data-theme="light"] .btn-primary{background:linear-gradient(130deg,#b8892a,#d4a848)!important;color:#fff!important;border-color:rgba(212,168,72,.55)!important}
+[data-theme="light"] .btn-primary{background:linear-gradient(130deg,#C9A84C,#E8D49A);color:#fff!important;border-color:rgba(212,168,72,.55)!important}
 [data-theme="light"] .btn-primary:hover{box-shadow:0 10px 26px rgba(184,137,42,.38)!important}
 
 /* ── Input fields (global + app) ─────────────────────────────────── */
@@ -1492,7 +1492,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
   radial-gradient(60rem 36rem at 12% 10%,rgba(184,137,42,.14),transparent 56%),
   radial-gradient(48rem 26rem at 88% 4%,rgba(100,158,210,.1),transparent 58%),
   linear-gradient(160deg,#fef9f2 0%,#f2e8d6 50%,#faf7f0 100%)!important}
-[data-theme="light"] .auth-dot-grid{background-image:radial-gradient(rgba(0,0,0,.07) 1px,transparent 1px)!important}
+[data-theme="light"] .auth-dot-grid{display:none}
 [data-theme="light"] .auth-brandbar{background:rgba(255,252,246,.94)!important;border-color:rgba(184,137,42,.18)!important}
 [data-theme="light"] .auth-brandname{color:#1a1825!important}
 [data-theme="light"] .auth-brandkicker{color:#b8892a!important}
@@ -1520,12 +1520,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 [data-theme="light"] .auth-divider-line{background:rgba(0,0,0,.1)!important}
 [data-theme="light"] .auth-divider-text{color:#9a94a8!important}
 [data-theme="light"] .auth-note{color:#6b6880!important}
-[data-theme="light"] .auth-inline-link{color:#b8892a!important}
-[data-theme="light"] .auth-inline-optional{color:#9a94a8!important}
-[data-theme="light"] .auth-privacy{color:#9a94a8!important}
-[data-theme="light"] #auth-privacy{color:#9a94a8!important}
-[data-theme="light"] #auth-copyright{color:#9a94a8!important}
-[data-theme="light"] .auth-btn-signup{background:linear-gradient(130deg,#b8892a,#d4a848)!important;color:#fff!important;border-color:rgba(212,168,72,.55)!important;box-shadow:0 8px 26px rgba(184,137,42,.3)!important}
+[data-theme="light"] .auth-inline-link{color:#C9A84C;color:#fff!important;border-color:rgba(212,168,72,.55)!important;box-shadow:0 8px 26px rgba(184,137,42,.3)!important}
 [data-theme="light"] .auth-btn-google{background:#fff!important;border-color:rgba(0,0,0,.14)!important;color:#1a1825!important}
 [data-theme="light"] .auth-btn-guest{background:rgba(0,0,0,.04)!important;border-color:rgba(0,0,0,.12)!important;color:#4a4560!important}
 [data-theme="light"] .auth-btn-login{background:linear-gradient(130deg,#b8892a,#d4a848)!important;color:#fff!important;border-color:rgba(212,168,72,.55)!important;box-shadow:0 8px 26px rgba(184,137,42,.3)!important}
@@ -1721,7 +1716,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) #chat-panel>div{
   background:rgba(255,255,255,.03)!important;border-color:rgba(255,255,255,.08)!important;
 }
-:root:not([data-theme="light"]) #chat-panel #chat-messages{background:#0c1018!important}
+:root:not([data-theme="light"]) #chat-panel #chat-messages{background:#080806!important}
 :root:not([data-theme="light"]) #chat-panel div[style*="color:#0f172a"],
 :root:not([data-theme="light"]) #chat-panel div[style*="font-weight:900"]{color:#eef2fb!important}
 :root:not([data-theme="light"]) #chat-panel #chat-subtitle,
@@ -1731,7 +1726,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
   background:rgba(255,255,255,.08)!important;border-color:rgba(255,255,255,.1)!important;color:#94a3b8!important;
 }
 :root:not([data-theme="light"]) #chat-panel textarea{
-  background:#0c1018!important;border-color:rgba(255,255,255,.1)!important;color:#f0f4fb!important;
+  background:#080806!important;border-color:rgba(255,255,255,.1)!important;color:#f0f4fb!important;
 }
 /* ── DARK MODE: video modal ── */
 :root:not([data-theme="light"]) #video-modal .card{
@@ -1766,13 +1761,13 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) .modal-badge-error{background:rgba(239,68,68,.1)!important;border-color:rgba(239,68,68,.25)!important}
 :root:not([data-theme="light"]) .modal-badge-success{background:rgba(34,197,94,.08)!important;border-color:rgba(34,197,94,.25)!important}
 /* ── DARK MODE: admin tab bar ── */
-:root:not([data-theme="light"]) .admin-tab-bar{background:#0c1018!important;border-bottom-color:rgba(255,255,255,.08)!important}
+:root:not([data-theme="light"]) .admin-tab-bar{background:#080806!important;border-bottom-color:rgba(255,255,255,.08)!important}
 :root:not([data-theme="light"]) .tab-btn-inactive{color:#94a3b8!important}
 :root:not([data-theme="light"]) .tab-btn-active{color:#60a5fa!important;border-bottom-color:#60a5fa!important}
 /* ── DARK MODE: lab / scenario boxes ── */
-:root:not([data-theme="light"]) .lab-scenario-box{background:#0c1018!important;border-color:rgba(255,255,255,.08)!important;color:#e2e8f0!important}
+:root:not([data-theme="light"]) .lab-scenario-box{background:#080806!important;border-color:rgba(255,255,255,.08)!important;color:#e2e8f0!important}
 :root:not([data-theme="light"]) .lab-score-panel{background:#111828!important;border-color:rgba(255,255,255,.08)!important}
-:root:not([data-theme="light"]) .scenario-box{background:#0c1018!important;border-color:rgba(255,255,255,.08)!important;color:#e2e8f0!important}
+:root:not([data-theme="light"]) .scenario-box{background:#080806!important;border-color:rgba(255,255,255,.08)!important;color:#e2e8f0!important}
 :root:not([data-theme="light"]) .lab-rules-box,
 :root:not([data-theme="light"]) .rules-box{background:rgba(251,146,60,.07)!important;border-color:rgba(251,146,60,.2)!important}
 :root:not([data-theme="light"]) .rules-title{color:#fb923c!important}
@@ -1804,14 +1799,14 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) .border-bottom{border-bottom-color:rgba(255,255,255,.08)!important}
 /* ── DARK MODE: tutorial / onboarding card ── */
 :root:not([data-theme="light"]) .tutorial-card{background:#111828!important}
-:root:not([data-theme="light"]) .tutorial-dots{background:#0c1018!important}
+:root:not([data-theme="light"]) .tutorial-dots{background:#080806!important}
 :root:not([data-theme="light"]) .tutorial-tip{background:rgba(37,99,235,.1)!important;border-left-color:#3b82f6!important}
 :root:not([data-theme="light"]) .tutorial-tip-head{color:#60a5fa!important}
 :root:not([data-theme="light"]) #tut-body{color:#d1d8e8!important}
 :root:not([data-theme="light"]) #tut-tip{color:#93c5fd!important}
 :root:not([data-theme="light"]) #tut-back-btn{background:rgba(255,255,255,.05)!important;border-color:rgba(255,255,255,.1)!important;color:#94a3b8!important}
 /* ── DARK MODE: global input fields ── */
-:root:not([data-theme="light"]) .input-field{background:#0c1018!important;border-color:rgba(255,255,255,.1)!important;color:#f0f4fb!important}
+:root:not([data-theme="light"]) .input-field{background:#080806!important;border-color:rgba(255,255,255,.1)!important;color:#f0f4fb!important}
 :root:not([data-theme="light"]) .input-field:focus{background:#0e1422!important;border-color:#60a5fa!important}
 
 /* ── DARK MODE: Prof. Vance speech bubble + controls ── */
@@ -1825,8 +1820,8 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 /* ── DARK MODE: lab modal inline elements ── */
 :root:not([data-theme="light"]) #lab-modal h3[style*="color:#0f172a"]{color:#eef2fb!important}
 :root:not([data-theme="light"]) #lab-modal div[style*="background:#ecfdf3"]{background:rgba(34,197,94,.1)!important;border-color:rgba(34,197,94,.2)!important;color:#86efac!important}
-:root:not([data-theme="light"]) #lab-modal div[style*="background:#f8fafc"]{background:#0c1018!important;border-color:rgba(255,255,255,.08)!important}
-:root:not([data-theme="light"]) #lab-scenario-box{background:#0c1018!important;border-color:rgba(255,255,255,.08)!important;color:#e2e8f0!important}
+:root:not([data-theme="light"]) #lab-modal div[style*="background:#f8fafc"]{background:#080806!important;border-color:rgba(255,255,255,.08)!important}
+:root:not([data-theme="light"]) #lab-scenario-box{background:#080806!important;border-color:rgba(255,255,255,.08)!important;color:#e2e8f0!important}
 :root:not([data-theme="light"]) #lab-modal div[style*="background:#fffaf5"]{background:rgba(251,146,60,.07)!important;border-color:rgba(251,146,60,.2)!important}
 :root:not([data-theme="light"]) #lab-modal h4[style*="color:#92400e"]{color:#fb923c!important}
 :root:not([data-theme="light"]) #lab-modal ul[style*="color:#92400e"]{color:#fdba74!important}
@@ -1836,7 +1831,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) #lab-feedback{color:#94a3b8!important}
 /* ── DARK MODE: drill modal inline elements ── */
 :root:not([data-theme="light"]) #drill-streak-display{background:rgba(245,158,11,.15)!important;border-color:rgba(245,158,11,.3)!important;color:#fbbf24!important}
-:root:not([data-theme="light"]) #drill-scenario-box{background:#0c1018!important;border-color:rgba(255,255,255,.08)!important;color:#e2e8f0!important}
+:root:not([data-theme="light"]) #drill-scenario-box{background:#080806!important;border-color:rgba(255,255,255,.08)!important;color:#e2e8f0!important}
 :root:not([data-theme="light"]) #drill-score-panel{background:#111828!important;border-color:rgba(255,255,255,.08)!important}
 :root:not([data-theme="light"]) #drill-score-panel div[style*="color:#0f172a"]{color:#eef2fb!important}
 :root:not([data-theme="light"]) #drill-feedback{color:#94a3b8!important}
@@ -1906,7 +1901,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) .modal-card.admin div[style*="background:linear-gradient(135deg,#f0f9ff"]{background:rgba(37,99,235,.07)!important;border-color:rgba(37,99,235,.3)!important}
 :root:not([data-theme="light"]) .modal-card.admin h3[style*="color:#1e3a8a"]{color:#93c5fd!important}
 /* HR nested white boxes (webhook, xAPI cards) */
-:root:not([data-theme="light"]) .modal-card.admin div[style*="background:white"]{background:#0c1018!important;border-color:rgba(255,255,255,.1)!important}
+:root:not([data-theme="light"]) .modal-card.admin div[style*="background:white"]{background:#080806!important;border-color:rgba(255,255,255,.1)!important}
 /* HR partner badge spans background:white */
 :root:not([data-theme="light"]) .modal-card.admin span[style*="background:white"]{background:rgba(255,255,255,.07)!important;border-color:rgba(255,255,255,.15)!important;color:#93c5fd!important}
 /* Lab settings score bonus boxes — A/C/D (B already caught) */
@@ -2079,7 +2074,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
         <!-- Auth error shown here so it's always visible on mobile -->
         <div id="auth-error" class="auth-error"></div>
         <button class="btn btn-primary w-full auth-btn-primary" onclick="doSignIn()">
-          Sign In 🔐
+          Sign In
         </button>
         <div class="auth-divider">
           <div class="auth-divider-line"></div>
@@ -2090,7 +2085,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
           <span class="auth-btn-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block"><path d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615Z" fill="#4285F4"/><path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18Z" fill="#34A853"/><path d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332Z" fill="#FBBC05"/><path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58Z" fill="#EA4335"/></svg></span> Continue with Google
         </button>
         <button class="btn w-full auth-btn-guest" onclick="doAnonSignIn()">
-          <span class="auth-btn-icon">👤</span> Continue as guest (anonymous)
+          Continue as Guest
         </button>
       </div>
       <p class="auth-note auth-note-top">
@@ -2104,7 +2099,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
       <div class="auth-demo-wrap">
         <p class="auth-demo-title">Exploring for your organization?</p>
         <button onclick="startDemoMode()" class="auth-demo-btn">
-          <span class="auth-demo-btn-icon">🎨</span> See the Platform in Action
+          See the Platform in Action
         </button>
         <p class="auth-demo-sub">Open the full experience and see how training, drills, and admin oversight connect.</p>
       </div>
@@ -2170,7 +2165,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
           <span class="auth-btn-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block"><path d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615Z" fill="#4285F4"/><path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18Z" fill="#34A853"/><path d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332Z" fill="#FBBC05"/><path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58Z" fill="#EA4335"/></svg></span> Continue with Google
         </button>
         <button class="btn w-full auth-btn-guest" onclick="doAnonSignIn()">
-          <span class="auth-btn-icon">👤</span> Continue as guest (anonymous)
+          Continue as Guest
         </button>
       </div>
       <p class="auth-note auth-note-mid">
@@ -2184,11 +2179,11 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
     <!-- Trust badges -->
     <div class="auth-trust-row">
       <div class="auth-trust-item">
-        <span class="auth-trust-icon">🔐</span>
+        <span class="auth-trust-icon">&#10022;</span>
         <span class="auth-trust-text">Secure Auth</span>
       </div>
       <div class="auth-trust-item">
-        <span class="auth-trust-icon">📲</span>
+        <span class="auth-trust-icon">&#9670;</span>
         <span class="auth-trust-text">Mobile Friendly</span>
       </div>
     </div>
@@ -2260,7 +2255,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
         </div>
         <span id="hub-progress-sub"></span>
       </div>
-      <p class="hub-privacy">🔒 Automatically signed out when this tab closes — your data stays private.</p>
+      <p class="hub-privacy">&#10022; Automatically signed out when this tab closes — your data stays private.</p>
       <!-- Cert renewal status (populated by JS) -->
       <div id="hub-cert-status"></div>
       <!-- Achievement badge wall (populated by JS) -->
@@ -2268,7 +2263,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
       <!-- Monthly team challenge (populated by JS) -->
       <div id="hub-challenge-wrap" style="display:none;margin:.45rem 0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:.875rem;padding:.8rem 1rem">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
-          <div style="font-size:.72rem;font-weight:900;color:#e2e8f0;text-transform:uppercase;letter-spacing:.06em">🏆 Monthly Team Challenge</div>
+          <div style="font-size:.72rem;font-weight:900;color:#e2e8f0;text-transform:uppercase;letter-spacing:.06em">Monthly Team Challenge</div>
           <div id="hub-challenge-days" style="font-size:.68rem;font-weight:700;color:#94a3b8"></div>
         </div>
         <div id="hub-challenge-label" style="font-size:.82rem;font-weight:700;color:#e2e8f0;margin-bottom:.4rem"></div>
@@ -2294,7 +2289,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
       <!-- Push notification opt-in -->
       <div id="hub-push-wrap">
         <button onclick="subscribeToPush()" class="hub-push-btn">
-          🔔 Enable Training Deadline Reminders
+          &#9670; Enable Training Deadline Reminders
         </button>
       </div>
     </div>
@@ -2341,7 +2336,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
             <div class="hub-drill-title">5-Min Daily Drill</div>
             <div class="hub-drill-body">One skill card — one live scenario — build your streak.</div>
           </div>
-          <div id="hub-streak-badge">🔥 0</div>
+          <div id="hub-streak-badge">&#9670; 0</div>
         </div>
       </button>
       <button onclick="openTutorial()" class="hub-tutorial-btn">
@@ -2359,7 +2354,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
       <button onclick="closeAdmin()" class="modal-close-btn admin">✕</button>
     </div>
     <div class="admin-tab-bar">
-      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-blue-600 text-blue-600 whitespace-nowrap" onclick="adminTab('leaderboard',this)">🏆 Leaderboard</button>
+      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-blue-600 text-blue-600 whitespace-nowrap" onclick="adminTab('leaderboard',this)">Leaderboard</button>
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('users',this)">👥 Users</button>
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('analytics',this)">📊 Analytics</button>
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('reports',this)">📋 Reports</button>
@@ -2402,15 +2397,15 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
           <div><label class="modal-label">Due Date</label><input id="umm-due" type="date" class="input-field"></div>
           <button onclick="document.getElementById('umm-due').value=''" class="btn btn-danger" style="padding:.55rem .875rem;font-size:.78rem;white-space:nowrap">Clear</button>
         </div>
-        <button onclick="saveUserManage()" class="btn btn-primary">💾 Save Changes</button>
+        <button onclick="saveUserManage()" class="btn btn-primary">Save Changes</button>
       </div>
       <div style="border-top:1px solid #f1f5f9;padding-top:1rem">
         <h3 class="modal-section-title">⚠️ Training Actions</h3>
         <div style="display:flex;flex-wrap:wrap;gap:.5rem">
-          <button onclick="adminResetTraining()" class="btn btn-amber" style="padding:.45rem .875rem;font-size:.78rem">🔄 Reset Training Year</button>
-          <button onclick="adminExtendDeadline(30)" class="btn btn-info" style="padding:.45rem .875rem;font-size:.78rem">📅 +30 Days</button>
-          <button onclick="adminExtendDeadline(90)" class="btn btn-success" style="padding:.45rem .875rem;font-size:.78rem">📅 +90 Days</button>
-          <button onclick="adminSendNudge()" class="btn btn-purple" style="padding:.45rem .875rem;font-size:.78rem">📣 Send Reminder</button>
+          <button onclick="adminResetTraining()" class="btn btn-amber" style="padding:.45rem .875rem;font-size:.78rem">Reset Training Year</button>
+          <button onclick="adminExtendDeadline(30)" class="btn btn-info" style="padding:.45rem .875rem;font-size:.78rem">+30 Days</button>
+          <button onclick="adminExtendDeadline(90)" class="btn btn-success" style="padding:.45rem .875rem;font-size:.78rem">+90 Days</button>
+          <button onclick="adminSendNudge()" class="btn btn-purple" style="padding:.45rem .875rem;font-size:.78rem">Send Reminder</button>
         </div>
       </div>
       <div style="border-top:1px solid #f1f5f9;padding-top:1rem;margin-top:.5rem">
@@ -2956,7 +2951,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 </script>
 <!-- Demo Mode Banner -->
 <div id="demo-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9998;background:linear-gradient(90deg,#f59e0b,#d97706);color:white;padding:.45rem 1.25rem;text-align:center;font-size:.8rem;font-weight:800;letter-spacing:.04em;box-shadow:0 2px 8px rgba(0,0,0,.25)">
-  🎨 DEMO MODE &nbsp;&mdash;&nbsp; Progress is not saved to any account
+  &#9670; DEMO MODE &nbsp;&mdash;&nbsp; Progress is not saved to any account
   <button onclick="doSignOut()" style="background:rgba(0,0,0,.2);color:white;border:none;border-radius:.4rem;padding:.15rem .875rem;font-size:.78rem;font-weight:800;cursor:pointer;margin-left:1rem">Exit Demo &times;</button>
 </div>
 
@@ -3033,7 +3028,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
       <button onclick="toggleAmbience()" id="ambience-btn" title="Toggle ambient sound" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.22);color:#93c5fd;padding:.38rem .6rem;border-radius:.65rem;font-size:.85rem;cursor:pointer;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">🎵</button>
       <button id="nav-admin-btn" onclick="openAdminPrompt()" title="Admin Dashboard" style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.26);color:#c4b5fd;padding:.38rem .6rem;border-radius:.65rem;font-size:.85rem;cursor:pointer;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">⚙️</button>
       <!-- Theme toggle -->
-      <button id="theme-toggle-btn" onclick="toggleTheme()" title="Switch to Gold & Silver Light Mode" style="background:rgba(184,137,42,.1);border:1px solid rgba(184,137,42,.3);color:#f0b86d;padding:.38rem .6rem;border-radius:.65rem;font-size:.78rem;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:.28rem;white-space:nowrap;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">✦ <span id="theme-toggle-label">Gold</span></button>
+      <button id="theme-toggle-btn" onclick="toggleTheme()" title="Switch to Gold & Silver Light Mode" style="background:rgba(184,137,42,.1);border:1px solid rgba(184,137,42,.3);color:#C9A84C;padding:.38rem .6rem;border-radius:.65rem;font-size:.78rem;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:.28rem;white-space:nowrap;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">✦ <span id="theme-toggle-label">Gold</span></button>
     </div>
 
     <!-- Divider -->
@@ -3060,7 +3055,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
     <button onclick="openChat();closeMobileNavSheet()">🎓 Prof. Vance</button>
     <button onclick="openLabRoom();closeMobileNavSheet()">🧪 Lab</button>
     <button onclick="openVideoModal();closeMobileNavSheet()">🎬 Videos</button>
-    <button onclick="openAccountModal();closeMobileNavSheet()">👤 My Account</button>
+    <button onclick="openAccountModal();closeMobileNavSheet()">My Account</button>
     <button onclick="toggleAmbience();closeMobileNavSheet()">🎵 Ambient</button>
     <button onclick="openAdminPrompt();closeMobileNavSheet()">⚙️ Admin</button>
     <button onclick="toggleTheme();closeMobileNavSheet()">✦ <span id="theme-toggle-label-mobile">Gold</span></button>
@@ -4625,7 +4620,7 @@ function getSlides14to27() { return `
 <!-- SLIDE 29 — CERTIFICATE DOWNLOAD (UNLOCKED AFTER QUIZ) -->
 <div class="slide" style="background:linear-gradient(135deg,#0b1224,#0f172a);padding-bottom:5rem">
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2rem;text-align:center">
-    <div style="font-size:4.5rem;margin-bottom:1rem">🏆</div>
+    <div style="font-size:4.5rem;margin-bottom:1rem"></div>
     <h2 style="font-size:clamp(1.85rem,5vw,3rem);font-weight:900;color:white;font-family:Montserrat,sans-serif;margin-bottom:.5rem">Certificate of Completion</h2>
     <p style="color:#a5b4fc;font-size:1rem;margin-bottom:2rem">Available after you score 93% or higher on the quiz (14/15).</p>
     <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:1.5rem;padding:2rem;max-width:640px;width:100%;backdrop-filter:blur(12px);box-shadow:0 14px 40px rgba(0,0,0,.25)">
@@ -4822,14 +4817,14 @@ function showAuthTab(tab) {
   const title = document.getElementById('auth-panel-title');
   const sub   = document.getElementById('auth-panel-sub');
   if(loginBtn) {
-    loginBtn.style.background = tab==='login' ? 'rgba(240,184,109,.95)' : 'transparent';
+    loginBtn.style.background = tab==='login' ? 'rgba(201,168,76,.95)' : 'transparent';
     loginBtn.style.color      = tab==='login' ? '#1f170b' : '#9fb0c7';
-    loginBtn.style.boxShadow  = tab==='login' ? '0 6px 18px rgba(240,184,109,.25)' : 'none';
+    loginBtn.style.boxShadow  = tab==='login' ? '0 6px 18px rgba(201,168,76,.25)' : 'none';
   }
   if(signupBtn) {
-    signupBtn.style.background = tab==='signup' ? 'rgba(125,211,252,.9)' : 'transparent';
+    signupBtn.style.background = tab==='signup' ? 'rgba(201,168,76,.9)' : 'transparent';
     signupBtn.style.color      = tab==='signup' ? '#0c1b2d' : '#9fb0c7';
-    signupBtn.style.boxShadow  = tab==='signup' ? '0 6px 18px rgba(125,211,252,.25)' : 'none';
+    signupBtn.style.boxShadow  = tab==='signup' ? '0 6px 18px rgba(201,168,76,.25)' : 'none';
   }
   if(title) title.textContent = tab==='login' ? 'Welcome back to NyxCodex' : 'Start your training workspace';
   if(sub)   sub.textContent   = tab==='login' ? 'Sign in to continue drills, labs, assigned scenarios, and progress tracking.' : 'Create your account to enter the platform and begin staff training.';
@@ -4902,7 +4897,7 @@ async function doSignIn() {
   } catch(e) {
     const msg = e.message.replace('Firebase: ','').replace(/\(.*?\)/g,'').trim() || 'Sign in failed. Check your email and password.';
     if(err){err.textContent=msg;err.style.display='block';}
-    if(btn){ btn.disabled=false; btn.textContent='Sign In 🔐'; btn.style.opacity='1'; }
+    if(btn){ btn.disabled=false; btn.textContent='Sign In'; btn.style.opacity='1'; }
   }
 }
 
@@ -7070,7 +7065,7 @@ async function printLoginCards() {
     const email = u.email || '';
     const name  = [u.firstName, u.lastName].filter(Boolean).join(' ') || u.name || email;
     const url   = baseUrl + (email ? '?email=' + encodeURIComponent(email) : '');
-    const dataUrl = await QRCode.toDataURL(url, { width: 200, margin: 1, color: { dark: '#0c1018', light: '#ffffff' } });
+    const dataUrl = await QRCode.toDataURL(url, { width: 200, margin: 1, color: { dark: '#080806', light: '#ffffff' } });
     return { name, email, dataUrl, dept: u.department || '' };
   }));
   const win = window.open('', '_blank');
@@ -7733,7 +7728,7 @@ async function loadSettings() {
 
       <!-- Grant Admin -->
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.5rem;margin-bottom:1.5rem">
-        <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:1rem">🔐 Grant Access Roles</h3>
+        <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:1rem">Grant Access Roles</h3>
         <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem">
           <select id="grant-admin-uid" class="input-field" style="flex:1;min-width:200px;font-size:.85rem">${userOptions}</select>
           <button onclick="grantAdminRole('admin')" class="btn" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;font-size:.82rem;padding:.55rem 1.25rem;font-weight:800">Grant Admin</button>
@@ -7763,7 +7758,7 @@ async function loadSettings() {
       </div>
       <!-- Two-Factor Authentication -->
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.5rem;margin-bottom:1.5rem">
-        <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">🔐 Two-Factor Authentication (Owner)</h3>
+        <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">Two-Factor Authentication (Owner)</h3>
         <p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">${settings?.ownerTotpEnabled ? '✅ 2FA is currently enabled on this account.' : '2FA is not enabled. Add an extra layer of security by scanning a TOTP secret into Google Authenticator, Authy, or similar.'}</p>
         ${settings?.ownerTotpEnabled
           ? `<button onclick="disableOwnerTotp()" class="btn btn-danger" style="font-size:.82rem;padding:.55rem 1.2rem">Disable 2FA</button>`
@@ -7907,9 +7902,9 @@ async function loadSettings() {
 
       <!-- Org Setup Wizard -->
       <div style="background:linear-gradient(135deg,#ede9fe,#dbeafe);border:1px solid #c4b5fd;border-radius:1.25rem;padding:1.5rem;margin-bottom:1.5rem">
-        <h3 style="font-weight:900;font-size:.875rem;color:#4c1d95;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.25rem">🎨 White-Label Org Setup</h3>
+        <h3 style="font-weight:900;font-size:.875rem;color:#4c1d95;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.25rem">White-Label Org Setup</h3>
         <p style="font-size:.78rem;color:#5b21b6;margin:0 0 1rem">Configure branding, colors, certification details, logo, and reminder webhooks for your organization. Settings are saved to Firebase and applied immediately on next login.</p>
-        <button onclick="openOnboardingWizard()" style="background:linear-gradient(135deg,#4c1d95,#1e3a8a);color:white;border:none;border-radius:.875rem;padding:.75rem 1.75rem;font-size:.9rem;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(76,29,149,.3)">🎨 Open Org Setup Wizard</button>
+        <button onclick="openOnboardingWizard()" style="background:linear-gradient(135deg,#4c1d95,#1e3a8a);color:white;border:none;border-radius:.875rem;padding:.75rem 1.75rem;font-size:.9rem;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(76,29,149,.3)">Open Org Setup Wizard</button>
       </div>
 
       <!-- Admin List -->
@@ -7947,7 +7942,7 @@ async function loadSettings() {
   }
         <!-- Monthly Team Challenge -->
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.5rem;margin-bottom:1.5rem">
-          <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">🏆 Monthly Team Challenge</h3>
+          <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">Monthly Team Challenge</h3>
           <p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">Set a month-long org-wide XP target. Staff see a live progress bar on their hub.</p>
           <div style="display:grid;gap:.65rem">
             <div><label style="font-size:.72rem;font-weight:800;color:#475569;display:block;margin-bottom:.3rem">Challenge Label</label><input id="setting-challenge-label" class="input-field" placeholder="e.g. March Mastery — 10,000 XP Together" value="${settings?.monthlyChallenge?.label||''}"></div>
@@ -8304,7 +8299,7 @@ function refreshDrillStreak() {
   if (!badge) return;
   if (streak > 0) {
     badge.style.display = 'block';
-    badge.textContent = '🔥 ' + streak;
+    badge.textContent = '&#9670; ' + streak;
   } else {
     badge.style.display = 'none';
   }
@@ -8322,14 +8317,14 @@ function openDrillModal() {
   const sd = document.getElementById('drill-streak-display');
   if (sd) {
     const s = ud.drillStreak || 0;
-    sd.textContent = s > 0 ? `🔥 ${s}-day streak` : '⭐ Start your streak!';
+    sd.textContent = s > 0 ? `&#9670; ${s}-day streak` : '⭐ Start your streak!';
   }
 
   if (alreadyDone) {
     document.getElementById('drill-done-today').style.display = 'block';
     document.getElementById('drill-steps-wrap').style.display = 'none';
     const dds = document.getElementById('drill-done-streak');
-    if (dds) dds.textContent = `🔥 ${ud.drillStreak || 1}-day streak`;
+    if (dds) dds.textContent = `&#9670; ${ud.drillStreak || 1}-day streak`;
   } else {
     document.getElementById('drill-done-today').style.display = 'none';
     document.getElementById('drill-steps-wrap').style.display = 'block';
@@ -8446,7 +8441,7 @@ async function submitDrill() {
     awardXP(finalXP);
     refreshDrillStreak();
     const sd = document.getElementById('drill-streak-display');
-    if (sd) sd.textContent = `🔥 ${newStreak}-day streak`;
+    if (sd) sd.textContent = `&#9670; ${newStreak}-day streak`;
   }
 
   document.getElementById('drill-score-panel').style.display = 'block';
@@ -8461,7 +8456,7 @@ async function submitDrill() {
 
   const vsb = document.getElementById('drill-streak-bonus');
   if (vsb) {
-    if (streakBonus > 0) { vsb.style.display = 'block'; vsb.textContent = `🔥 ${drillStreak}-day streak bonus: +${streakBonus} extra XP`; }
+    if (streakBonus > 0) { vsb.style.display = 'block'; vsb.textContent = `&#9670; ${drillStreak}-day streak bonus: +${streakBonus} extra XP`; }
     else vsb.style.display = 'none';
   }
 
@@ -8469,7 +8464,7 @@ async function submitDrill() {
   const fb = document.getElementById('drill-finish-btn');
   if (fb) fb.style.display = '';
 
-  if (finalXP > 0) showXPToast(finalXP, `Daily Drill 🔥${drillStreak > 1 ? '—' + drillStreak : ''}`);
+  if (finalXP > 0) showXPToast(finalXP, `Daily Drill &#9670;${drillStreak > 1 ? '—' + drillStreak : ''}`);
 
   window._fireWebhook && window._fireWebhook('drill_completed', {
     email: window._currentUser?.email,
@@ -9454,7 +9449,7 @@ const cardContent = {
   },
   escalation:{
     title:'CPI Crisis Escalation Stages',
-    icon:'📈',
+    icon:'&#9670;',
     color:'#92400e',
     items:[
       '1. BASELINE: Typical behavior — proactive engagement',
@@ -9753,12 +9748,12 @@ async function saveUserManage() {
     };
     await window._updateUserData(_ummUid, data);
     if (btn) { btn.textContent = '✅ Saved!'; btn.disabled = false; }
-    setTimeout(() => { if (btn) btn.textContent = '💾 Save Changes'; }, 2000);
+    setTimeout(() => { if (btn) btn.textContent = 'Save Changes'; }, 2000);
     await window._writeAudit('admin_edit_user', { targetUid: _ummUid, fields: Object.keys(data) });
     loadReports();
   } catch(e) {
     alert('Save failed: ' + e.message);
-    if (btn) { btn.textContent = '💾 Save Changes'; btn.disabled = false; }
+    if (btn) { btn.textContent = 'Save Changes'; btn.disabled = false; }
   }
 }
 
@@ -10285,7 +10280,7 @@ function _updateThemeUI(theme) {
     btn.title = isLight ? 'Switch to Dark Mode' : 'Switch to Gold & Silver Light Mode';
     btn.style.background = isLight ? 'rgba(167,139,250,.1)' : 'rgba(184,137,42,.1)';
     btn.style.borderColor = isLight ? 'rgba(167,139,250,.3)' : 'rgba(184,137,42,.3)';
-    btn.style.color = isLight ? '#a78bfa' : '#f0b86d';
+    btn.style.color = isLight ? '#a78bfa' : '#C9A84C';
     // update icon + label text (first text node + span)
     btn.childNodes[0].textContent = isLight ? '🌙 ' : '✦ ';
   }
