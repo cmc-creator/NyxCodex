@@ -293,25 +293,25 @@ const ACHIEVEMENTS = [
   { id:'first_lab',     icon:'L', name:'Lab Initiate',      desc:'Completed your first lab scenario',       check: u=> (u.scenariosCompleted||0) >= 1 },
   { id:'perfect_lab',   icon:'⭐', name:'Perfect Technique', desc:'Scored an A in a lab scenario',           check: u=> u._lastLabGrade === 'A' },
   { id:'all_patients',  icon:'S', name:'Full Spectrum',     desc:'Worked with all 3 patients in the lab',   check: u=> (u._labPatientSet||[]).length >= 3 },
-  { id:'streak_3',      icon:'&#9670;', name:'On Fire',           desc:'Built a 3-day daily drill streak',         check: u=> (u.drillStreak||0) >= 3 },
-  { id:'streak_7',      icon:'&#10022;', name:'Week Warrior',      desc:'Built a 7-day daily drill streak',         check: u=> (u.drillStreak||0) >= 7 },
+  { id:'streak_3',      icon:'◆', name:'On Fire',           desc:'Built a 3-day daily drill streak',         check: u=> (u.drillStreak||0) >= 3 },
+  { id:'streak_7',      icon:'✦', name:'Week Warrior',      desc:'Built a 7-day daily drill streak',         check: u=> (u.drillStreak||0) >= 7 },
   { id:'streak_14',     icon:'⚡', name:'Fortnight Fire',    desc:'Built a 14-day daily drill streak',        check: u=> (u.drillStreak||0) >= 14 },
-  { id:'streak_30',     icon:'&#9670;', name:'Iron Will',         desc:'Built a 30-day daily drill streak',        check: u=> (u.drillStreak||0) >= 30 },
-  { id:'mastery_ptsd',  icon:'&#10022;', name:'Trauma Specialist', desc:'Scored A or B on 3+ PTSD scenarios',       check: u=> (u.masteryCount?.ptsd||0) >= 3 },
-  { id:'mastery_autism',icon:'&#9670;', name:'Autism Specialist', desc:'Scored A or B on 3+ Autism scenarios',     check: u=> (u.masteryCount?.autism||0) >= 3 },
-  { id:'mastery_adhd',  icon:'&#10022;', name:'ADHD Specialist',   desc:'Scored A or B on 3+ ADHD scenarios',       check: u=> (u.masteryCount?.adhd||0) >= 3 },
-  { id:'mastery_schiz', icon:'&#9670;', name:'Psychosis Specialist',desc:'Scored A or B on 3+ Schizophrenia scenarios',check: u=> (u.masteryCount?.schizophrenia||0) >= 3 },
+  { id:'streak_30',     icon:'◆', name:'Iron Will',         desc:'Built a 30-day daily drill streak',        check: u=> (u.drillStreak||0) >= 30 },
+  { id:'mastery_ptsd',  icon:'✦', name:'Trauma Specialist', desc:'Scored A or B on 3+ PTSD scenarios',       check: u=> (u.masteryCount?.ptsd||0) >= 3 },
+  { id:'mastery_autism',icon:'◆', name:'Autism Specialist', desc:'Scored A or B on 3+ Autism scenarios',     check: u=> (u.masteryCount?.autism||0) >= 3 },
+  { id:'mastery_adhd',  icon:'✦', name:'ADHD Specialist',   desc:'Scored A or B on 3+ ADHD scenarios',       check: u=> (u.masteryCount?.adhd||0) >= 3 },
+  { id:'mastery_schiz', icon:'◆', name:'Psychosis Specialist',desc:'Scored A or B on 3+ Schizophrenia scenarios',check: u=> (u.masteryCount?.schizophrenia||0) >= 3 },
   { id:'mastery_bipolar',icon:'⚖️',name:'Bipolar Specialist', desc:'Scored A or B on 3+ Bipolar scenarios',   check: u=> (u.masteryCount?.bipolar||0) >= 3 },
-  { id:'mastery_bpd',   icon:'&#10022;', name:'BPD Specialist',    desc:'Scored A or B on 3+ BPD scenarios',        check: u=> (u.masteryCount?.bpd||0) >= 3 },
-  { id:'level_3',       icon:'&#9670;', name:'Rising Clinician', desc:'Reached Level 3',                          check: u=> (u.level||1) >= 3 },
-  { id:'level_5',       icon:'&#10022;', name:'Expert Clinician',  desc:'Reached Level 5',                          check: u=> (u.level||1) >= 5 },
-  { id:'cert_earned',   icon:'&#9670;', name:'Certified!',        desc:'Downloaded your completion certificate',   check: u=> !!u.completedAt },
+  { id:'mastery_bpd',   icon:'✦', name:'BPD Specialist',    desc:'Scored A or B on 3+ BPD scenarios',        check: u=> (u.masteryCount?.bpd||0) >= 3 },
+  { id:'level_3',       icon:'◆', name:'Rising Clinician', desc:'Reached Level 3',                          check: u=> (u.level||1) >= 3 },
+  { id:'level_5',       icon:'✦', name:'Expert Clinician',  desc:'Reached Level 5',                          check: u=> (u.level||1) >= 5 },
+  { id:'cert_earned',   icon:'◆', name:'Certified!',        desc:'Downloaded your completion certificate',   check: u=> !!u.completedAt },
   { id:'drill_10',      icon:'⚡', name:'Drill Devotee',     desc:'Completed 10 or more daily drills',        check: u=> (u.totalDrillsCompleted||0) >= 10 },
   { id:'slide_half',    icon:'⚡', name:'Halfway Hero',    desc:'Reached the halfway point of your training',  check: u=> (u.currentSlide||0) >= 15 },
-  { id:'quiz_perfect',  icon:'&#10022;', name:'Perfect Score',   desc:'Scored 15/15 on the final knowledge check',  check: u=> (u.finalQuizScore||0) >= 15 },
-  { id:'speed_learner', icon:'&#9670;', name:'Speed Learner',   desc:'Completed full training in under 3 hours',    check: u=> !!(u.completedAt && u.startDate && (u.completedAt - u.startDate) < 10800000) },
+  { id:'quiz_perfect',  icon:'✦', name:'Perfect Score',   desc:'Scored 15/15 on the final knowledge check',  check: u=> (u.finalQuizScore||0) >= 15 },
+  { id:'speed_learner', icon:'◆', name:'Speed Learner',   desc:'Completed full training in under 3 hours',    check: u=> !!(u.completedAt && u.startDate && (u.completedAt - u.startDate) < 10800000) },
   { id:'lab_veteran',   icon:'L', name:'Lab Veteran',     desc:'Completed 10 or more live lab scenarios',     check: u=> (u.scenariosDone||0) >= 10 },
-  { id:'elite_xp',      icon:'&#10022;', name:'Elite Clinician', desc:'Accumulated over 5 000 XP in total training',  check: u=> (u.xp||0) >= 5000 },
+  { id:'elite_xp',      icon:'✦', name:'Elite Clinician', desc:'Accumulated over 5 000 XP in total training',  check: u=> (u.xp||0) >= 5000 },
 ];
 window._showAchievementToast = function(a) {
   const old = document.getElementById('achievement-toast');
@@ -2179,11 +2179,11 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
     <!-- Trust badges -->
     <div class="auth-trust-row">
       <div class="auth-trust-item">
-        <span class="auth-trust-icon">&#10022;</span>
+        <span class="auth-trust-icon">✦</span>
         <span class="auth-trust-text">Secure Auth</span>
       </div>
       <div class="auth-trust-item">
-        <span class="auth-trust-icon">&#9670;</span>
+        <span class="auth-trust-icon">◆</span>
         <span class="auth-trust-text">Mobile Friendly</span>
       </div>
     </div>
@@ -2255,7 +2255,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
         </div>
         <span id="hub-progress-sub"></span>
       </div>
-      <p class="hub-privacy">&#10022; Automatically signed out when this tab closes — your data stays private.</p>
+      <p class="hub-privacy">✦ Automatically signed out when this tab closes — your data stays private.</p>
       <!-- Cert renewal status (populated by JS) -->
       <div id="hub-cert-status"></div>
       <!-- Achievement badge wall (populated by JS) -->
@@ -2289,7 +2289,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
       <!-- Push notification opt-in -->
       <div id="hub-push-wrap">
         <button onclick="subscribeToPush()" class="hub-push-btn">
-          &#9670; Enable Training Deadline Reminders
+          ◆ Enable Training Deadline Reminders
         </button>
       </div>
     </div>
@@ -2336,7 +2336,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
             <div class="hub-drill-title">5-Min Daily Drill</div>
             <div class="hub-drill-body">One skill card — one live scenario — build your streak.</div>
           </div>
-          <div id="hub-streak-badge">&#9670; 0</div>
+          <div id="hub-streak-badge">◆ 0</div>
         </div>
       </button>
       <button onclick="openTutorial()" class="hub-tutorial-btn">
@@ -2951,7 +2951,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 </script>
 <!-- Demo Mode Banner -->
 <div id="demo-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9998;background:linear-gradient(90deg,#f59e0b,#d97706);color:white;padding:.45rem 1.25rem;text-align:center;font-size:.8rem;font-weight:800;letter-spacing:.04em;box-shadow:0 2px 8px rgba(0,0,0,.25)">
-  &#9670; DEMO MODE &nbsp;&mdash;&nbsp; Progress is not saved to any account
+  ◆ DEMO MODE &nbsp;&mdash;&nbsp; Progress is not saved to any account
   <button onclick="doSignOut()" style="background:rgba(0,0,0,.2);color:white;border:none;border-radius:.4rem;padding:.15rem .875rem;font-size:.78rem;font-weight:800;cursor:pointer;margin-left:1rem">Exit Demo &times;</button>
 </div>
 
@@ -8299,7 +8299,7 @@ function refreshDrillStreak() {
   if (!badge) return;
   if (streak > 0) {
     badge.style.display = 'block';
-    badge.textContent = '&#9670; ' + streak;
+    badge.textContent = '◆ ' + streak;
   } else {
     badge.style.display = 'none';
   }
@@ -8317,14 +8317,14 @@ function openDrillModal() {
   const sd = document.getElementById('drill-streak-display');
   if (sd) {
     const s = ud.drillStreak || 0;
-    sd.textContent = s > 0 ? `&#9670; ${s}-day streak` : '⭐ Start your streak!';
+    sd.textContent = s > 0 ? `◆ ${s}-day streak` : '⭐ Start your streak!';
   }
 
   if (alreadyDone) {
     document.getElementById('drill-done-today').style.display = 'block';
     document.getElementById('drill-steps-wrap').style.display = 'none';
     const dds = document.getElementById('drill-done-streak');
-    if (dds) dds.textContent = `&#9670; ${ud.drillStreak || 1}-day streak`;
+    if (dds) dds.textContent = `◆ ${ud.drillStreak || 1}-day streak`;
   } else {
     document.getElementById('drill-done-today').style.display = 'none';
     document.getElementById('drill-steps-wrap').style.display = 'block';
@@ -8441,7 +8441,7 @@ async function submitDrill() {
     awardXP(finalXP);
     refreshDrillStreak();
     const sd = document.getElementById('drill-streak-display');
-    if (sd) sd.textContent = `&#9670; ${newStreak}-day streak`;
+    if (sd) sd.textContent = `◆ ${newStreak}-day streak`;
   }
 
   document.getElementById('drill-score-panel').style.display = 'block';
@@ -8456,7 +8456,7 @@ async function submitDrill() {
 
   const vsb = document.getElementById('drill-streak-bonus');
   if (vsb) {
-    if (streakBonus > 0) { vsb.style.display = 'block'; vsb.textContent = `&#9670; ${drillStreak}-day streak bonus: +${streakBonus} extra XP`; }
+    if (streakBonus > 0) { vsb.style.display = 'block'; vsb.textContent = `◆ ${drillStreak}-day streak bonus: +${streakBonus} extra XP`; }
     else vsb.style.display = 'none';
   }
 
@@ -8464,7 +8464,7 @@ async function submitDrill() {
   const fb = document.getElementById('drill-finish-btn');
   if (fb) fb.style.display = '';
 
-  if (finalXP > 0) showXPToast(finalXP, `Daily Drill &#9670;${drillStreak > 1 ? '—' + drillStreak : ''}`);
+  if (finalXP > 0) showXPToast(finalXP, `Daily Drill ◆${drillStreak > 1 ? '—' + drillStreak : ''}`);
 
   window._fireWebhook && window._fireWebhook('drill_completed', {
     email: window._currentUser?.email,
@@ -9449,7 +9449,7 @@ const cardContent = {
   },
   escalation:{
     title:'CPI Crisis Escalation Stages',
-    icon:'&#9670;',
+    icon:'◆',
     color:'#92400e',
     items:[
       '1. BASELINE: Typical behavior — proactive engagement',
