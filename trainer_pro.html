@@ -758,13 +758,14 @@ h1,h2,.font-display{font-family:'Cormorant Garamond',serif}
 @media(max-width:640px){
   /* Auth screen mobile layout */
   #auth-screen{flex-direction:column!important}
-  #auth-screen>div:first-child{flex:none!important;min-height:340px;padding:1.25rem 1.1rem .9rem!important}
+  #auth-screen>div:first-child{flex:none!important;min-height:340px;padding:1.25rem 1.1rem .9rem!important;overflow:hidden!important;max-width:100vw!important;box-sizing:border-box!important}
   #auth-screen>div:first-child h1{font-size:1.35rem!important;line-height:1.15!important}
   #auth-screen>div:last-child{width:100%!important;padding:1.5rem 1.25rem!important}
   #mobile-logo-block{display:block!important}
   .auth-hero-content{padding:1.1rem!important}
   .auth-brandbar{padding:.7rem .75rem!important}
-  #auth-hero-img,.auth-proof-band{grid-template-columns:1fr 1fr!important;max-width:none!important}
+  #auth-hero-img{display:none!important}
+  .auth-proof-band{grid-template-columns:1fr 1fr!important;max-width:100%!important;width:100%!important}
   .auth-quote{display:none!important}
   
   /* Hide decorative orbs on mobile to improve performance */
@@ -2170,7 +2171,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
         <button onclick="startDemoMode()" class="auth-demo-btn">
           See the Platform in Action
         </button>
-        <p class="auth-demo-sub">Open the full experience and see how training, drills, and admin oversight connect.</p>
+        <p class="auth-demo-sub"><span style="text-wrap:balance;display:block">Open the full experience and see how training, drills, and admin oversight connect.</span></p>
       </div>
     </div>
 
@@ -4949,7 +4950,7 @@ async function doForgotPassword() {
   }
 }
 
-async async function doSignIn() {
+async function doSignIn() {
   const email = document.getElementById('li-email').value.trim();
   const pass  = document.getElementById('li-pass').value;
   const err   = document.getElementById('auth-error');
@@ -4970,7 +4971,7 @@ async async function doSignIn() {
   }
 }
 
-async async function doSignUp() {
+async function doSignUp() {
   const fname = document.getElementById('su-fname').value.trim();
   const lname = document.getElementById('su-lname').value.trim();
   const email = document.getElementById('su-email').value.trim();
@@ -8043,7 +8044,7 @@ async function loadSettings() {
         </div>
 }
 
-async async function saveAllowedDomain() {
+async function saveAllowedDomain() {
   const val = document.getElementById('setting-allowed-domain')?.value.trim().toLowerCase().replace(/^@/,'');
   if(val === undefined) return;
   await window._saveSettings({ allowedDomain: val });
