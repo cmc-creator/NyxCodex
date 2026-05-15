@@ -45,6 +45,15 @@
     .header-brand-text{display:flex;flex-direction:column;gap:.2rem}
     .header-name{font:600 1rem/1 'Cormorant Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-pale)}
     .header-tagline{font:400 .75rem/1 'IBM Plex Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+    .header-signin{
+      display:inline-flex;align-items:center;
+      padding:.55rem 1.35rem;
+      font:600 .8rem/1 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--gold);border:1px solid var(--gold-border);border-radius:2px;
+      text-decoration:none;background:transparent;
+      transition:background .2s,color .2s,border-color .2s;
+    }
+    .header-signin:hover{background:var(--gold);color:#080806;border-color:var(--gold);}
     .header-status{display:flex;align-items:center;gap:.45rem;font:400 .75rem/1 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
     .status-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:glimmer 3.5s ease-in-out infinite}
 
@@ -165,9 +174,12 @@
           <div class="header-tagline">The Definitive Training Standard</div>
         </div>
       </a>
-      <div class="header-status" aria-label="System status">
-        <span class="status-dot" aria-hidden="true"></span>
-        Platform Active
+      <div style="display:flex;align-items:center;gap:1rem">
+        <div class="header-status" aria-label="System status">
+          <span class="status-dot" aria-hidden="true"></span>
+          Platform Active
+        </div>
+        <a class="header-signin" href="trainer_pro.html?auth=login">Sign&nbsp;In</a>
       </div>
     </header>
 
