@@ -9,56 +9,7 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#2563eb">
 <!-- Theme restore: apply before CSS paints to prevent flash of wrong theme -->
-<script>(function(){var t=localStorage.getItem('nyxTheme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})()</script>
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="NyxCodex—">
-<link rel="apple-touch-icon" href="nyxcodex-logo.png">
-<link rel="icon" type="image/png" href="nyxcodex-logo.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-<script src="tenant.config.js"></script>
 
-<!-- Service Worker registration -->
-<script>
-(function() {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js', { scope: '/' })
-        .then(reg => {
-          // Check for updates in the background
-          reg.addEventListener('updatefound', () => {
-            const newSW = reg.installing;
-            newSW && newSW.addEventListener('statechange', () => {
-              if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
-                // New version available — notify user softly
-                console.info('[SW] New version available — reload to update.'); 
-              }
-            });
-          });
-        })
-        .catch(err => console.warn('[SW] Registration failed:', err));
-    });
-  }
-
-  // Handle PWA shortcut URL params
-  const sp = new URLSearchParams(location.search);
-  const shortcut = sp.get('shortcut');
-  if (shortcut) {
-    window._pwaShortcut = shortcut; // picked up after login
-    history.replaceState(null, '', location.pathname);
-  }
-  // Prefill email from QR login card
-  const prefillEmail = sp.get('email');
-  if (prefillEmail) {
-    window._prefillEmail = decodeURIComponent(prefillEmail);
-    history.replaceState(null, '', location.pathname);
-  }
-})();
-</script>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
