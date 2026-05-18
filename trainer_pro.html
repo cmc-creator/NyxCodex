@@ -5280,9 +5280,16 @@ function showSlide(n) {
         window._saveUserData({ [mKey]: true }).catch(()=>{});
       }
     }
-    // Add gold pulse to Vance portrait so user knows commentary is available (click to hear)
-    const _portrait = document.getElementById('vance-portrait');
-    if(_portrait) _portrait.classList.add('has-commentary');
+    // Vance speaks about this slide (first visit only; cancelVance() at start of showSlide stops any prior speech)
+    const _ud = window._userData || {};
+    const _u  = window._currentUser;
+    const _fn = _ud.firstName || (_u?.displayName||'').split(' ')[0] || 'there';
+    if(target === 0) {
+      scheduleVance(()=>showAvatarAndSpeak('_direct_', _fn, `Welcome, ${_fn}! Are you ready to begin? I'm here to help and guide you through every module on this journey.`), 400);
+    } else {
+      const tipFn = slideTips[target] || slideTips[slideTips.length-1];
+      scheduleVance(()=>showAvatarAndSpeak('_direct_', _fn, tipFn(_fn)), 400);
+    }
   }
   // Reset idle nudge timer on every slide navigation
   resetSlideIdleTimer();
