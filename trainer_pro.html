@@ -1950,6 +1950,38 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) .modal-card.admin div[style*="background:#fef2f2"]{background:rgba(239,68,68,.1)!important;border-color:rgba(239,68,68,.25)!important;color:#fca5a5!important}
 /* TOTP URL monospace display */
 :root:not([data-theme="light"]) #totp-setup-url{background:rgba(255,255,255,.06)!important;color:#e2e8f0!important}
+
+/* === COLLAPSIBLE SIDEBAR NAV === */
+:root{--sb-w:220px}
+#main-nav{position:fixed!important;left:0!important;top:0!important;bottom:0!important;right:auto!important;width:var(--sb-w)!important;z-index:80;display:flex;flex-direction:column;background:rgba(8,12,24,.97);backdrop-filter:blur(22px);border-right:1px solid rgba(255,255,255,.08);transition:width .22s cubic-bezier(.4,0,.2,1);overflow:hidden}
+.sb-icon{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;display:block}
+.sb-label{overflow:hidden;white-space:nowrap;max-width:160px;opacity:1;transition:opacity .15s,max-width .22s}
+body.sb-collapsed{--sb-w:60px}
+body.sb-collapsed .sb-label{opacity:0!important;max-width:0!important}
+#main-nav-main-row{flex:1;display:flex!important;flex-direction:column!important;overflow-y:auto;overflow-x:hidden;padding:0!important;gap:0!important;align-items:stretch!important;background:transparent!important;border:none!important}
+#nav-sidebar-toggle{display:flex;align-items:center;justify-content:flex-start;gap:.65rem;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.75);padding:.85rem 1.1rem;cursor:pointer;font-size:.78rem;font-weight:800;letter-spacing:.08em;transition:background .15s;width:100%;box-sizing:border-box;flex-shrink:0}
+#nav-sidebar-toggle:hover{background:rgba(255,255,255,.07)}
+body.sb-collapsed #nav-sidebar-toggle{justify-content:center;padding:.85rem .5rem}
+.sb-nav-btn{display:flex!important;align-items:center!important;gap:.65rem!important;width:100%!important;padding:.7rem 1.1rem!important;background:transparent!important;border:none!important;border-bottom:1px solid rgba(255,255,255,.03)!important;cursor:pointer;font-size:.8rem;font-weight:700;text-align:left;transition:background .15s;box-sizing:border-box;border-radius:0!important;flex-shrink:0}
+.sb-nav-btn:hover{background:rgba(255,255,255,.07)!important}
+body.sb-collapsed .sb-nav-btn{justify-content:center!important;padding:.7rem .5rem!important}
+.sb-divider{height:1px;background:rgba(255,255,255,.07);margin:.35rem .6rem;flex-shrink:0}
+.sb-nav-controls{display:flex;align-items:center;justify-content:center;gap:.3rem;padding:.5rem .8rem;flex-shrink:0}
+body.sb-collapsed .sb-nav-controls{flex-direction:column;gap:.2rem;padding:.4rem}
+#nav-stats-group{padding:.6rem .9rem;border-top:1px solid rgba(255,255,255,.07);display:flex!important;flex-direction:column!important;gap:.2rem;flex-shrink:0;background:transparent!important;align-items:flex-start!important}
+body.sb-collapsed #nav-stats-group{align-items:center!important;padding:.5rem .3rem}
+/* Content area shift */
+.slide{margin-left:var(--sb-w)!important;width:calc(100vw - var(--sb-w))!important;padding-bottom:1rem!important;transition:margin-left .22s cubic-bezier(.4,0,.2,1),width .22s cubic-bezier(.4,0,.2,1)}
+#side-arrow-prev{left:var(--sb-w)!important;transition:left .22s cubic-bezier(.4,0,.2,1)}
+/* Full-screen overlays stay full viewport */
+#auth-gateway,#lab-modal-overlay,#shortcuts-overlay{left:0!important;width:100vw!important}
+/* Mobile: hide sidebar, restore original layout */
+@media(max-width:768px){
+  :root{--sb-w:0px}
+  #main-nav{display:none!important}
+  .slide{margin-left:0!important;width:100vw!important;padding-bottom:5rem!important}
+  #side-arrow-prev{left:0!important}
+}
 </style>
 </head>
 <body>
@@ -3034,56 +3066,68 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 <button id="side-arrow-prev" onclick="prevSlide()" title="Previous slide" style="position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:79;width:52px;height:80px;background:rgba(10,15,30,.65);border:none;color:white;font-size:1.6rem;cursor:pointer;border-radius:0 .75rem .75rem 0;backdrop-filter:blur(8px);transition:background .2s" onmouseover="this.style.background='rgba(37,99,235,.7)'" onmouseout="this.style.background='rgba(10,15,30,.65)'">&#8249;</button>
 <button id="side-arrow-next" onclick="nextSlide()" title="Next slide" style="position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:79;width:52px;height:80px;background:rgba(37,99,235,.7);border:none;color:white;font-size:1.6rem;cursor:pointer;border-radius:.75rem 0 0 .75rem;backdrop-filter:blur(8px);transition:background .2s" onmouseover="this.style.background='rgba(37,99,235,.92)'" onmouseout="this.style.background='rgba(37,99,235,.7)'">&#8250;</button>
 
-<!-- ----------------------- BOTTOM NAV BAR — NyxCodex® -- -->
-<nav id="main-nav" style="position:fixed;bottom:0;left:0;right:0;z-index:80">
-  <!-- Slim progress strip at very top of nav -->
-  <div style="height:3px;background:rgba(255,255,255,.05)"><div id="nav-progress-fill" style="height:100%;width:0%;background:linear-gradient(90deg,#2563eb,#7c3aed);transition:width .4s ease"></div></div>
-  <!-- Main row -->
-  <div id="main-nav-main-row" style="background:rgba(8,12,24,.97);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,.06);padding:.4rem .85rem;display:flex;align-items:center;gap:.4rem">
-
-    <!-- ? Stats group -->
-    <div id="nav-stats-group" style="display:flex;align-items:center;gap:.4rem;flex-shrink:0;padding-right:.65rem;border-right:1px solid rgba(255,255,255,.07)">
-      <span id="nav-slide-counter" style="font-size:.7rem;font-weight:800;color:#B0A880;min-width:44px">1 / 33</span>
-      <div style="display:flex;align-items:center;gap:.2rem;font-size:.65rem;font-weight:800">
-        <span style="color:#8A8070">Lv</span>
-        <span id="nav-level" style="color:#C9A84C">1</span>
-        <span style="color:#6A6050;margin:0 .1rem">·</span>
-        <span id="nav-xp" style="color:#C9A84C">0 XP</span>
-        <span style="color:#6A6050;margin:0 .1rem">·</span>
-        <span style="font-size:.7rem">◆</span>
-        <span id="nav-lc" style="color:#E8D49A">0 LC</span>
-      </div>
+<!-- ----------------------- LEFT SIDEBAR NAV — NyxCodex® -- -->
+<nav id="main-nav">
+  <div style="height:3px;background:rgba(255,255,255,.05);flex-shrink:0"><div id="nav-progress-fill" style="height:100%;width:0%;background:linear-gradient(90deg,#2563eb,#7c3aed);transition:width .4s ease"></div></div>
+  <button id="nav-sidebar-toggle" onclick="toggleSidebar()" title="Collapse / Expand sidebar">
+    <svg class="sb-icon" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+    <span class="sb-label" style="color:#C9A84C;font-size:.73rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase">NyxCodex&#174;</span>
+  </button>
+  <div id="main-nav-main-row">
+    <div id="nav-feature-group" style="display:contents">
+    <button id="nav-chat-btn" class="sb-nav-btn" onclick="openChat()" title="Ask Professor Vance" style="color:#93c5fd;" onmouseover="this.style.background='rgba(96,165,250,.1)'" onmouseout="this.style.background='transparent'">
+      <svg class="sb-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <span class="sb-label">Prof. Vance</span>
+    </button>
+    <button id="nav-lab-btn" class="sb-nav-btn" onclick="openLabRoom()" title="NyxCodex Laboratory Room" style="color:#6ee7b7;" onmouseover="this.style.background='rgba(16,185,129,.1)'" onmouseout="this.style.background='transparent'">
+      <svg class="sb-icon" viewBox="0 0 24 24"><path d="M9 3v8L5 17a2 2 0 001.74 3h10.52A2 2 0 0019 17l-4-6V3"/><line x1="9" y1="3" x2="15" y2="3"/></svg>
+      <span class="sb-label">Laboratory</span>
+    </button>
+    <button id="nav-videos-btn" class="sb-nav-btn" onclick="openVideoModal()" title="Training Videos" style="color:#fde68a;" onmouseover="this.style.background='rgba(251,191,36,.1)'" onmouseout="this.style.background='transparent'">
+      <svg class="sb-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      <span class="sb-label">Videos</span>
+    </button>
+    <button id="ambience-btn" class="sb-nav-btn" onclick="toggleAmbience()" title="Toggle ambient sound" style="color:#93c5fd;" onmouseover="this.style.background='rgba(59,130,246,.1)'" onmouseout="this.style.background='transparent'">
+      <svg class="sb-icon" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      <span class="sb-label">Ambient Sound</span>
+    </button>
+    <button id="nav-admin-btn" class="sb-nav-btn" onclick="openAdminPrompt()" title="Admin Dashboard" style="color:#c4b5fd;" onmouseover="this.style.background='rgba(124,58,237,.1)'" onmouseout="this.style.background='transparent'">
+      <svg class="sb-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      <span class="sb-label">Admin</span>
+    </button>
+    <button id="theme-toggle-btn" class="sb-nav-btn" onclick="toggleTheme()" title="Switch Theme" style="color:#C9A84C;" onmouseover="this.style.background='rgba(184,137,42,.1)'" onmouseout="this.style.background='transparent'">
+      <svg class="sb-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <span class="sb-label">&#10022; <span id="theme-toggle-label">Gold</span></span>
+    </button>
     </div>
-
-    <div style="flex:1"></div>
-
-    <!-- ? Feature buttons — uniform pill style -->
-    <div id="nav-feature-group" style="display:flex;align-items:center;gap:.28rem">
-      <button id="nav-chat-btn" onclick="openChat()" title="Ask Professor Vance" style="display:flex;align-items:center;gap:.32rem;background:linear-gradient(135deg,rgba(96,165,250,.2),rgba(124,58,237,.18));border:1px solid rgba(96,165,250,.38);color:#93c5fd;padding:.38rem .7rem;border-radius:.65rem;font-size:.76rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">🎓 <span>Prof. Vance</span></button>
-      <button id="nav-lab-btn" onclick="openLabRoom()" title="NyxCodex Laboratory Room" style="display:flex;align-items:center;gap:.32rem;background:rgba(16,185,129,.14);border:1px solid rgba(16,185,129,.32);color:#6ee7b7;padding:.38rem .7rem;border-radius:.65rem;font-size:.76rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">🧪 <span>Lab</span></button>
-      <button id="nav-videos-btn" onclick="openVideoModal()" title="Training Videos" style="display:flex;align-items:center;gap:.32rem;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);color:#fde68a;padding:.38rem .7rem;border-radius:.65rem;font-size:.76rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">🎬 <span>Videos</span></button>
-      <button onclick="toggleAmbience()" id="ambience-btn" title="Toggle ambient sound" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.22);color:#93c5fd;padding:.38rem .6rem;border-radius:.65rem;font-size:.85rem;cursor:pointer;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">🎵</button>
-      <button id="nav-admin-btn" onclick="openAdminPrompt()" title="Admin Dashboard" style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.26);color:#c4b5fd;padding:.38rem .6rem;border-radius:.65rem;font-size:.85rem;cursor:pointer;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">⚙️</button>
-      <!-- Theme toggle -->
-      <button id="theme-toggle-btn" onclick="toggleTheme()" title="Switch to Gold & Silver Light Mode" style="background:rgba(184,137,42,.1);border:1px solid rgba(184,137,42,.3);color:#C9A84C;padding:.38rem .6rem;border-radius:.65rem;font-size:.78rem;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:.28rem;white-space:nowrap;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em;transition:filter .15s" onmouseover="this.style.filter='brightness(1.3)'" onmouseout="this.style.filter=''">✦ <span id="theme-toggle-label">Gold</span></button>
+    <div class="sb-divider" id="nav-divider"></div>
+    <div id="nav-controls-group" class="sb-nav-controls">
+      <button id="nav-prev-btn" onclick="prevSlide()" title="Previous slide" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:white;width:32px;height:32px;border-radius:.5rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.18)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">&#8249;</button>
+      <button id="nav-home-btn" onclick="showHomeGateway()" title="Home Hub" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#64748b;width:32px;height:32px;border-radius:.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .15s" onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748b'"><svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></button>
+      <button id="nav-next-btn" onclick="nextSlide()" title="Next slide" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;width:32px;height:32px;border-radius:.5rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(37,99,235,.5);transition:filter .15s" onmouseover="this.style.filter='brightness(1.15)'" onmouseout="this.style.filter=''">&#8250;</button>
+      <button id="nav-more-btn" onclick="toggleMobileNavSheet()" title="More actions" aria-expanded="false" style="display:none;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:white;width:32px;height:32px;border-radius:.5rem;font-size:1rem;cursor:pointer;align-items:center;justify-content:center">&#8943;</button>
     </div>
-
-    <!-- Divider -->
-    <div id="nav-divider" style="width:1px;height:26px;background:rgba(255,255,255,.07);margin:0 .3rem;flex-shrink:0"></div>
-
-    <!-- ? Navigation controls -->
-    <div id="nav-controls-group" style="display:flex;align-items:center;gap:.28rem;flex-shrink:0">
-      <button id="nav-prev-btn" onclick="prevSlide()" title="Previous slide" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:white;width:36px;height:36px;border-radius:.65rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.18)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">&#8249;</button>
-      <button id="nav-home-btn" onclick="showHomeGateway()" title="Home Hub" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#64748b;width:36px;height:36px;border-radius:.65rem;font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .15s" onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748b'">🏠</button>
-      <button id="nav-next-btn" onclick="nextSlide()" title="Next slide" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;width:36px;height:36px;border-radius:.65rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(37,99,235,.5);transition:filter .15s" onmouseover="this.style.filter='brightness(1.15)'" onmouseout="this.style.filter=''">&#8250;</button>
-      <button id="nav-more-btn" onclick="toggleMobileNavSheet()" title="More actions" aria-expanded="false" style="display:none;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:white;width:36px;height:36px;border-radius:.65rem;font-size:1rem;cursor:pointer;align-items:center;justify-content:center">⋯</button>
-      <!-- Account pill -->
-      <button id="nav-account-btn" onclick="openAccountModal()" title="My Account" style="display:flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);cursor:pointer;padding:.28rem .55rem .28rem .28rem;border-radius:.65rem;flex-shrink:0;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.05)'">
-        <div id="nav-avatar-initials" style="width:24px;height:24px;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:.68rem;flex-shrink:0"></div>
-        <span id="nav-name" style="color:white;font-weight:800;font-size:.72rem;white-space:nowrap">Account</span>
-      </button>
-      <button id="nav-signout-btn" onclick="doSignOut()" title="Sign out" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18);color:#fca5a5;padding:.35rem .55rem;border-radius:.65rem;font-size:.72rem;font-weight:800;cursor:pointer;white-space:nowrap;transition:background .15s" onmouseover="this.style.background='rgba(239,68,68,.22)'" onmouseout="this.style.background='rgba(239,68,68,.08)'">Sign Out</button>
-<!-- Mobile overflow sheet for bottom nav -->
+    <div class="sb-divider"></div>
+    <button id="nav-account-btn" class="sb-nav-btn" onclick="openAccountModal()" title="My Account" style="color:white;" onmouseover="this.style.background='rgba(255,255,255,.08)'" onmouseout="this.style.background='transparent'">
+      <div id="nav-avatar-initials" style="width:26px;height:26px;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:.68rem;flex-shrink:0"></div>
+      <span id="nav-name" class="sb-label" style="font-weight:800;font-size:.8rem;white-space:nowrap">Account</span>
+    </button>
+    <button id="nav-signout-btn" class="sb-nav-btn" onclick="doSignOut()" title="Sign out" style="color:#fca5a5;" onmouseover="this.style.background='rgba(239,68,68,.12)'" onmouseout="this.style.background='transparent'">
+      <svg class="sb-icon" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      <span class="sb-label">Sign Out</span>
+    </button>
+  </div>
+  <div id="nav-stats-group">
+    <div style="display:flex;align-items:center;gap:.25rem">
+      <span id="nav-slide-counter" class="sb-label" style="font-size:.67rem;font-weight:800;color:#B0A880">1 / 33</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:.18rem;font-size:.63rem;font-weight:800">
+      <span style="color:#8A8070">Lv</span>
+      <span id="nav-level" style="color:#C9A84C">1</span>
+      <span style="color:#6A6050;margin:0 .1rem">&#183;</span>
+      <span id="nav-xp" style="color:#C9A84C">0 XP</span>
+      <span style="color:#6A6050;margin:0 .1rem">&#183;</span>
+      <span id="nav-lc" style="color:#E8D49A">0 LC</span>
     </div>
   </div>
 </nav>
@@ -10383,6 +10427,16 @@ function _updateThemeUI(theme) {
   }
 }
 // ---------------------------------------------------------------------------
+</script>
+
+<script>
+function toggleSidebar(){
+  document.body.classList.toggle('sb-collapsed');
+  try{localStorage.setItem('sbCollapsed',document.body.classList.contains('sb-collapsed')?'1':'0');}catch(e){}
+}
+(function(){
+  try{if(localStorage.getItem('sbCollapsed')==='1')document.body.classList.add('sb-collapsed');}catch(e){}
+})();
 </script>
 </body>
 </html>
