@@ -2018,6 +2018,11 @@ body.sb-collapsed #nav-stats-group{align-items:center!important;padding:.5rem .3
 body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 /* Letter-spacing refinement for small uppercase labels */
 [style*="letter-spacing"][style*="text-transform:uppercase"]{font-family:'Inter',sans-serif}
+/* ── DARK MODE: training slide backgrounds ── */
+:root:not([data-theme="light"]) .slide{background:#080806!important}
+/* Vance portrait — gold ring + “has commentary” pulse */
+#vance-portrait.has-commentary{box-shadow:0 0 0 3px #C9A84C,0 4px 14px rgba(201,168,76,.5)!important;animation:vancePulse 2s ease-in-out infinite}
+@keyframes vancePulse{0%,100%{box-shadow:0 0 0 3px #C9A84C,0 4px 18px rgba(201,168,76,.5)!important}50%{box-shadow:0 0 0 5px #C9A84C,0 4px 22px rgba(201,168,76,.7)!important}}
 </style>
 </head>
 <body>
@@ -3081,7 +3086,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
   </div>
   <!-- Avatar face (Professor Vance photo portrait) -->
   <div id="avatar-drag-handle" style="position:relative;width:90px;height:90px;cursor:grab">
-    <img id="vance-portrait" src="prof.png" onclick="toggleAvatar()" style="width:90px;height:90px;border-radius:50%;object-fit:cover;object-position:top center;border:3px solid #2563eb;box-shadow:0 4px 14px rgba(37,99,235,.45);cursor:pointer;display:block;transition:border-color .3s" alt="Professor Vance">
+    <img id="vance-portrait" src="prof.png" onclick="showGuide()" title="Click to hear Prof. Vance" style="width:90px;height:90px;border-radius:50%;object-fit:cover;object-position:top center;border:3px solid #C9A84C;box-shadow:0 4px 14px rgba(201,168,76,.5);cursor:pointer;display:block;transition:border-color .3s" alt="Professor Vance">
     <button onclick="toggleAvatar()" style="position:absolute;top:-6px;right:-6px;width:20px;height:20px;background:#ef4444;color:white;border-radius:50%;border:none;font-size:10px;cursor:pointer;font-weight:900;line-height:1" title="Dismiss Professor Vance">✕</button>
   </div>
   <!-- Name label -->
@@ -5275,16 +5280,9 @@ function showSlide(n) {
         window._saveUserData({ [mKey]: true }).catch(()=>{});
       }
     }
-    // Vance speaks about this slide
-    const _ud = window._userData || {};
-    const _u  = window._currentUser;
-    const _fn = _ud.firstName || (_u?.displayName||'').split(' ')[0] || 'there';
-    if(target === 0) {
-      scheduleVance(()=>showAvatarAndSpeak('_direct_', _fn, `Welcome, ${_fn}! Are you ready to begin? I'm here to help and guide you through every module on this journey.`), 400);
-    } else {
-      const tipFn = slideTips[target] || slideTips[slideTips.length-1];
-      scheduleVance(()=>showAvatarAndSpeak('_direct_', _fn, tipFn(_fn)), 400);
-    }
+    // Add gold pulse to Vance portrait so user knows commentary is available (click to hear)
+    const _portrait = document.getElementById('vance-portrait');
+    if(_portrait) _portrait.classList.add('has-commentary');
   }
   // Reset idle nudge timer on every slide navigation
   resetSlideIdleTimer();
@@ -6370,6 +6368,9 @@ function showGuide() {
   const fn = window._currentUser;
   const firstName = ud.firstName || (fn?.displayName||'').split(' ')[0] || 'there';
   const tipFn = slideTips[currentSlide] || slideTips[slideTips.length-1];
+  // Remove commentary-available indicator
+  const p = document.getElementById('vance-portrait');
+  if(p) p.classList.remove('has-commentary');
   showAvatarAndSpeak('_direct_', firstName, tipFn(firstName));
 }
 
