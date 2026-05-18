@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <script>
 // Kill any lingering service workers and caches immediately
@@ -20,6 +20,13 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#2563eb">
 <!-- Theme restore: apply before CSS paints to prevent flash of wrong theme -->
+<script>
+(function(){
+  // Apply stored theme before first paint — prevents white flash on dark users
+  var t = (function(){try{return localStorage.getItem('nyxTheme');}catch(e){return null;}}()) || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
 
 
 <script type="module">
@@ -1959,7 +1966,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 body.sb-collapsed{--sb-w:60px}
 body.sb-collapsed .sb-label{opacity:0!important;max-width:0!important}
 #main-nav-main-row{flex:1;display:flex!important;flex-direction:column!important;overflow-y:auto;overflow-x:hidden;padding:0!important;gap:0!important;align-items:stretch!important;background:transparent!important;border:none!important}
-#nav-sidebar-toggle{display:flex;align-items:center;justify-content:flex-start;gap:.65rem;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.75);padding:.85rem 1.1rem;cursor:pointer;font-size:.78rem;font-weight:800;letter-spacing:.08em;transition:background .15s;width:100%;box-sizing:border-box;flex-shrink:0}
+#nav-sidebar-toggle{display:flex;align-items:center;justify-content:flex-start;gap:.65rem;background:transparent;border:none;border-bottom:1px solid rgba(201,168,76,.2);color:rgba(255,255,255,.85);padding:.85rem 1.1rem;cursor:pointer;font-size:.78rem;font-weight:800;letter-spacing:.08em;transition:background .15s,border-color .15s;width:100%;box-sizing:border-box;flex-shrink:0}
 #nav-sidebar-toggle:hover{background:rgba(255,255,255,.07)}
 body.sb-collapsed #nav-sidebar-toggle{justify-content:center;padding:.85rem .5rem}
 .sb-nav-btn{display:flex!important;align-items:center!important;gap:.65rem!important;width:100%!important;padding:.7rem 1.1rem!important;background:transparent!important;border:none!important;border-bottom:1px solid rgba(255,255,255,.03)!important;cursor:pointer;font-size:.8rem;font-weight:700;text-align:left;transition:background .15s;box-sizing:border-box;border-radius:0!important;flex-shrink:0}
@@ -5194,6 +5201,8 @@ function initApp() {
 
 // --- Slide Navigation ------------------------------------
 function showSlide(n) {
+  // Stop any ongoing Vance audio/speech when user navigates — prevents wrong-slide voiceover
+  if(typeof cancelVance === 'function') cancelVance();
   const slides = document.querySelectorAll('.slide');
   const certIndex = slides.length ? slides.length-1 : 0;
   let target = Math.max(0, Math.min(n, slides.length-1));
@@ -10280,7 +10289,7 @@ function shareLeaderboard() {
     </tr>`;
   }).join('');
   const generatedAt = new Date().toLocaleString();
-  const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+  const html = `<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>${T?.name || 'Training'} Leaderboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
