@@ -8573,6 +8573,8 @@ function openLabRoom() {
 function closeLabRoom() {
   document.getElementById('lab-modal').style.display='none';
   cancelVance();
+  // Return to hub instead of leaving the slide view behind
+  showHomeGateway();
 }
 
 function openVideoModal() {
