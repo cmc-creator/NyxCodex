@@ -5291,30 +5291,6 @@ function showSlide(n) {
       scheduleVance(()=>showAvatarAndSpeak('_direct_', _fn, tipFn(_fn)), 400);
     }
   }
-  // Reset idle nudge timer on every slide navigation
-  resetSlideIdleTimer();
-}
-
-// -- Idle nudge timer: Vance speaks if trainee lingers 45s without navigating --
-let slideIdleTimer = null;
-function resetSlideIdleTimer() {
-  clearTimeout(slideIdleTimer);
-  slideIdleTimer = setTimeout(() => {
-    const hub = document.getElementById('home-gateway');
-    if(hub && hub.style.display === 'flex') return;
-    if(paxMuted) return;
-    if(currentSlide === 0) return;  // never nudge on the welcome/title slide
-    const labModal = document.getElementById('lab-modal');
-    if(labModal && labModal.style.display === 'flex') return;  // never nudge while lab is open
-    const nudges = [
-      'Don\'t miss the detail on the right - that could be a safety breach.',
-      'This concept maps directly to how we approach Marcus. Think about the timing.',
-      'This is certification exam material. Lock it in before moving on.',
-      'Think of Marcus right now - how would this principle change your next move?'
-    ];
-    const n = nudges[Math.floor(Math.random() * nudges.length)];
-    showAvatarAndSpeak('_direct_', currentFirstName(), n);
-  }, 45000);
 }
 
 function nextSlide() {
