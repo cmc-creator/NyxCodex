@@ -584,7 +584,7 @@ h1,h2,.font-display{font-family:'Cormorant Garamond',serif}
 .auth-orb-cyan{width:420px;height:420px;background:radial-gradient(circle,rgba(201,168,76,.08) 0%,transparent 70%);top:-120px;right:-70px}
 .auth-orb-purple{width:360px;height:360px;background:radial-gradient(circle,rgba(201,168,76,.04) 0%,transparent 70%);bottom:-80px;left:-70px;animation-duration:18s;animation-direction:reverse}
 .auth-dot-grid{display:none}
-.auth-hero-content{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;padding:2rem 2rem 1.6rem}
+.auth-hero-content{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;padding:1.6rem 2rem 1.2rem;justify-content:flex-start;gap:0}
 .auth-logo-wrap{margin-bottom:1rem}
 .auth-brandbar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(11,10,8,.90);padding:.75rem .85rem;backdrop-filter:blur(12px)}
 .auth-brand{display:flex;align-items:center;gap:.75rem;min-width:0}
@@ -598,10 +598,10 @@ h1,h2,.font-display{font-family:'Cormorant Garamond',serif}
 .auth-status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#C9A84C;box-shadow:0 0 10px rgba(201,168,76,.45)}
 .auth-status-online{color:#C9A84C}
 .auth-status-label{color:#9fb0c7}
-.auth-hero-title{font-family:'Cormorant Garamond',serif;font-weight:800;font-size:clamp(1.6rem,4.2vw,3.8rem);color:#f8fbff;line-height:1.0;letter-spacing:-.03em;margin:0 0 .5rem}
-.auth-hero-title-accent{display:block;color:#C9A84C;background:none;-webkit-text-fill-color:initial}
-#auth-tagline{margin:0;max-width:560px;color:#c4ccda;font-size:.98rem;line-height:1.68;font-weight:500text-wrap:balance}
-#auth-hero-img{margin-top:.5rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;max-width:520px}
+.auth-hero-title{font-family:'Cormorant Garamond',serif;font-weight:800;font-size:clamp(1.6rem,4.2vw,3.8rem);color:#f8fbff;line-height:1.0;letter-spacing:-.03em;margin:0 0 .4rem}
+.auth-hero-title-accent{display:block;color:#C9A84C;background:none;-webkit-text-fill-color:initial;margin:0;padding:0;line-height:1.0}
+#auth-tagline{margin:0 0 .5rem;max-width:560px;color:#c4ccda;font-size:.88rem;line-height:1.5;font-weight:500;text-wrap:balance}
+#auth-hero-img{margin-top:.4rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;max-width:520px;flex-shrink:1;min-height:0;overflow:hidden}
 .auth-hero-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:.9rem;min-height:120px}
 .auth-hero-icon{font-size:1.12rem;margin-bottom:.35rem}
 .auth-hero-code{font-family:'IBM Plex Mono',monospace;color:#C9A84C;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
@@ -1996,10 +1996,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
           <span class="auth-status-online">SYSTEM_ONLINE</span>
           <span class="auth-status-label">&nbsp;//&nbsp; STAFF PORTAL</span>
         </div>
-        <h1 class="auth-hero-title">
-          Build Clinical&nbsp;Calm
-          <span class="auth-hero-title-accent"><br>Before the Crisis&nbsp;Peaks.</span>
-        </h1>
+        <h1 class="auth-hero-title"><span style="display:block;white-space:nowrap">Build Clinical Calm</span><span class="auth-hero-title-accent" style="white-space:nowrap">Before the Crisis Peaks.</span></h1>
         <div id="auth-tagline">
           NyxCodex gives psychiatric healthcare teams a place to rehearse difficult moments before they happen on shift with AI coaching, scenario labs, debriefing, and manager-ready visibility.
         </div>
