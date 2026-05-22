@@ -18,7 +18,7 @@
 
 <!-- PWA -->
 <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#2563eb">
+<meta name="theme-color" content="#080806">
 <!-- Theme restore: apply before CSS paints to prevent flash of wrong theme -->
 <script>
 (function(){
@@ -294,7 +294,7 @@ window._showAchievementToast = function(a) {
   if(old) old.remove();
   const t = document.createElement('div');
   t.id = 'achievement-toast';
-  t.style.cssText = 'position:fixed;bottom:8rem;left:50%;transform:translateX(-50%) scale(.5);z-index:4000;background:linear-gradient(135deg,#1e3a8a,#7c3aed);color:#fff;border-radius:1.5rem;padding:.9rem 1.5rem;box-shadow:0 8px 36px rgba(124,58,237,.5);display:flex;align-items:center;gap:.85rem;pointer-events:none;white-space:nowrap;animation:badge-pop .4s cubic-bezier(.34,1.56,.64,1) forwards';
+  t.style.cssText = 'position:fixed;bottom:8rem;left:50%;transform:translateX(-50%) scale(.5);z-index:4000;background:linear-gradient(135deg,#3d2800,#B8892A);color:#fff;border-radius:1.5rem;padding:.9rem 1.5rem;box-shadow:0 8px 36px rgba(201,168,76,.4);display:flex;align-items:center;gap:.85rem;pointer-events:none;white-space:nowrap;animation:badge-pop .4s cubic-bezier(.34,1.56,.64,1) forwards';
   t.innerHTML = `<span style="font-size:2rem">${a.icon}</span><div><div style="font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.8;margin-bottom:.15rem">Achievement Unlocked</div><div style="font-size:.97rem;font-weight:900">${a.name}</div><div style="font-size:.72rem;opacity:.7;margin-top:.1rem">${a.desc}</div></div>`;
   document.body.appendChild(t);
   setTimeout(() => {
@@ -510,7 +510,7 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 .btn-info{background:linear-gradient(130deg,#93c5fd,#60a5fa);color:#0c2d6b;border-color:rgba(96,165,250,.55)}
 .btn-info:hover{box-shadow:0 10px 24px rgba(96,165,250,.32)}
 .lab-tab-btn{padding:.65rem 1.1rem;font-size:.85rem;font-weight:800;border:none;cursor:pointer;border-bottom:3px solid transparent;color:#64748b;background:transparent;margin-bottom:-2px;transition:color .2s,border-color .2s}
-.lab-tab-btn.active{color:#2563eb;border-bottom-color:#2563eb}
+.lab-tab-btn.active{color:#C9A84C;border-bottom-color:#C9A84C}
 .input-field{width:100%;padding:.875rem 1rem;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:.82rem;font-family:inherit;font-size:1.05rem;font-weight:600;outline:none;transition:border-color .2s,background .2s;color:#0f172a}
 .input-field:focus{border-color:#60a5fa;background:#fff}
 
@@ -698,17 +698,17 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 #tut-subtitle{font-size:.8rem;font-weight:600;opacity:.75;margin-top:.1rem}
 .tutorial-dots{display:flex;justify-content:center;gap:.55rem;padding:.65rem 1.5rem .1rem;background:#f8fafc}
 .tutorial-dot{width:9px;height:9px;border-radius:50%;background:#cbd5e1;transition:background .3s}
-#tut-dot-0{background:#2563eb}
+#tut-dot-0{background:#C9A84C}
 .tutorial-body{padding:1.2rem 1.5rem 0}
 #tut-icon{font-size:2rem;margin-bottom:.4rem}
 #tut-body{color:#374151;font-weight:600;font-size:.96rem;line-height:1.72;margin:0 0 .9rem}
-.tutorial-tip{background:#eff6ff;border-left:4px solid #2563eb;border-radius:0 .6rem .6rem 0;padding:.7rem 1rem;margin-bottom:1.1rem}
+.tutorial-tip{background:rgba(201,168,76,.08);border-left:4px solid #C9A84C;border-radius:0 .6rem .6rem 0;padding:.7rem 1rem;margin-bottom:1.1rem}
 .tutorial-tip-head{font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#1d4ed8;margin-bottom:.25rem}
 #tut-tip{color:#1e3a8a;font-weight:700;font-size:.87rem;line-height:1.65;margin:0;font-style:italic}
 .tutorial-nav{display:flex;align-items:center;gap:.75rem;padding:.7rem 1.5rem 1.2rem}
 #tut-back-btn{border:1px solid #e2e8f0;background:#f8fafc;color:#475569;padding:.6rem 1rem;border-radius:.85rem;font-weight:800;font-size:.88rem;cursor:pointer;display:none}
 .tutorial-nav-spacer{flex:1}
-#tut-next-btn{border:none;background:#2563eb;color:white;padding:.7rem 1.5rem;border-radius:.9rem;font-weight:900;font-size:.95rem;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.4)}
+#tut-next-btn{border:none;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;padding:.7rem 1.5rem;border-radius:.9rem;font-weight:900;font-size:.95rem;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.4)}
 #auth-form-panel #auth-panel-title{font-family:'Playfair Display',serif !important;color:#f8fafc !important}
 #auth-form-panel #auth-panel-sub{color:#b8c0d1 !important}
 .auth-tab-btn{font-family:'Inter',sans-serif !important;letter-spacing:.04em}
@@ -923,7 +923,7 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 .hub-role-label{font-size:.7rem;font-weight:900;color:#64748b;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.45rem}
 #hub-role-pills{display:flex;flex-wrap:wrap;gap:.35rem}
 #hub-push-wrap{margin-top:.35rem}
-.hub-push-btn{width:100%;background:rgba(124,58,237,.07);border:1px solid rgba(124,58,237,.18);color:#7c3aed;border-radius:.875rem;padding:.5rem 1rem;font-size:.75rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.45rem}
+.hub-push-btn{width:100%;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.22);color:#C9A84C;border-radius:.875rem;padding:.5rem 1rem;font-size:.75rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.45rem}
 .hub-actions{display:grid;grid-template-columns:1fr;gap:1rem}
 .hub-action-card{border:none;cursor:pointer;padding:0;border-radius:1.1rem;text-align:left;overflow:hidden;position:relative;transition:transform .2s,box-shadow .2s;min-height:110px}
 .hub-action-card:hover{transform:translateY(-2px)}
@@ -942,7 +942,7 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 .hub-overlay-drill{background:linear-gradient(135deg,#f59e0b,#d97706)}
 .hub-card-copy{position:relative;z-index:1;padding:1.4rem 1.2rem;color:white}
 .hub-card-stack{display:flex;flex-direction:column;gap:.45rem}
-.hub-card-title{font-size:1.45rem;font-weight:900;font-family:'Playfair Display',serif;color:#000!important}
+.hub-card-title{font-size:1.45rem;font-weight:900;font-family:'Playfair Display',serif;color:#C9A84C!important}
 .hub-card-body{font-size:.95rem;font-weight:600;opacity:.9}
 .hub-card-meta{font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
 .hub-drill-copy{position:relative;z-index:1;padding:1.1rem 1.2rem;color:white;display:flex;align-items:center;gap:1rem}
@@ -1014,7 +1014,7 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 .admin-tab-panel.active{display:block}
 /* Lab modal structure */
 .lab-header-info{display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem;background:#0f172a;border-radius:.875rem;padding:.6rem 1rem}
-.lab-patient-avatar-wrap{width:36px;height:36px;border-radius:50%;border:2px solid #2563eb;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.75rem;color:white;background:#2563eb}
+.lab-patient-avatar-wrap{width:36px;height:36px;border-radius:50%;border:2px solid #C9A84C;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.75rem;color:white;background:#2563eb}
 .lab-patient-avatar-img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .lab-scenario-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:1rem;align-items:start}
 .lab-scenario-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem;min-height:140px;color:#0f172a;font-weight:600;line-height:1.6}
@@ -1043,7 +1043,7 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 .btn-tiny-extend-30{background:#dbeafe;color:#1d4ed8;border-color:#bfdbfe}
 .btn-tiny-nudge{background:#ede9fe;color:#5b21b6;border-color:#ddd6fe}
 .btn-color-danger{background:#fee2e2;color:#dc2626;border-color:#fecaca;font-size:.78rem;font-weight:800;cursor:pointer;border-radius:.5rem;border:1px solid;padding:.55rem .875rem;white-space:nowrap}
-.btn-color-info{width:100%;padding:.75rem;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;border-radius:.875rem;font-weight:900;cursor:pointer;font-size:.875rem}
+.btn-color-info{width:100%;padding:.75rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;border:none;border-radius:.875rem;font-weight:900;cursor:pointer;font-size:.875rem}
 .btn-color-cancel{width:100%;padding:.75rem;background:#f1f5f9;color:#475569;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem}
 .btn-color-cancel-light{width:100%;padding:.7rem;background:#f1f5f9;color:#475569;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem}
 .modal-form-group{display:flex;flex-direction:column;gap:.6rem}
@@ -1102,7 +1102,7 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 .color-neutral{color:#475569}
 /* Tab button styles */
 .tab-btn-base{padding:.65rem 1.1rem;font-size:.85rem;font-weight:800;border:none;cursor:pointer;margin-bottom:-2px}
-.tab-btn-active{border-bottom:3px solid #2563eb;color:#2563eb;background:transparent}
+.tab-btn-active{border-bottom:3px solid #C9A84C;color:#C9A84C;background:transparent}
 .tab-btn-inactive{border-bottom:3px solid transparent;color:#64748b;background:transparent}
 .tab-content{display:none}
 .tab-active{display:block}
@@ -1986,8 +1986,11 @@ body.sb-collapsed #nav-stats-group{align-items:center!important;padding:.5rem .3
 @media(max-width:768px){
   :root{--sb-w:0px}
   #main-nav{display:none!important}
-  .slide{margin-left:0!important;width:100vw!important;padding-bottom:5rem!important}
+  #mobile-topbar{display:flex!important}
+  .slide{margin-left:0!important;width:100vw!important;padding-top:52px!important;padding-bottom:5rem!important}
   #side-arrow-prev{left:0!important}
+  #home-gateway{padding-top:60px!important}
+  #auth-screen{padding-top:0!important}
 }
 
 /* === GLOBAL LUXURY TYPOGRAPHY OVERRIDES === */
@@ -2026,6 +2029,24 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 </style>
 </head>
 <body>
+<!-- MOBILE TOP BAR (visible <768px only) -->
+<div id="mobile-topbar" style="display:none;position:fixed;top:0;left:0;right:0;height:52px;background:rgba(8,8,6,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,.18);z-index:100;align-items:center;justify-content:space-between;padding:0 1rem;">
+  <span style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#C9A84C;letter-spacing:.06em;">NyxCodex&#174;</span>
+  <button onclick="toggleMobileMenu()" style="background:none;border:none;color:#C9A84C;cursor:pointer;padding:.4rem;">
+    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+  </button>
+</div>
+<!-- MOBILE SLIDE-OUT NAV (visible <768px only) -->
+<div id="mobile-nav-overlay" style="display:none;position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.6);" onclick="toggleMobileMenu()"></div>
+<div id="mobile-nav-drawer" style="display:none;position:fixed;top:0;left:0;bottom:0;width:260px;z-index:100;background:rgba(8,12,24,.98);backdrop-filter:blur(22px);border-right:1px solid rgba(201,168,76,.15);padding:1rem;overflow-y:auto;transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1);">
+  <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#C9A84C;letter-spacing:.06em;margin-bottom:1.5rem;padding-top:.5rem;">NyxCodex&#174;</div>
+  <button onclick="closeAndGo(openChat)" style="width:100%;text-align:left;background:none;border:none;color:#e2c97e;font-family:'Inter',sans-serif;font-size:.95rem;padding:.65rem .5rem;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.06);">Prof. Vance</button>
+  <button onclick="closeAndGo(openLabRoom)" style="width:100%;text-align:left;background:none;border:none;color:#e2c97e;font-family:'Inter',sans-serif;font-size:.95rem;padding:.65rem .5rem;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.06);">Laboratory</button>
+  <button onclick="closeAndGo(openVideoModal)" style="width:100%;text-align:left;background:none;border:none;color:#e2c97e;font-family:'Inter',sans-serif;font-size:.95rem;padding:.65rem .5rem;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.06);">Videos</button>
+  <button onclick="closeAndGo(toggleAmbience)" style="width:100%;text-align:left;background:none;border:none;color:#e2c97e;font-family:'Inter',sans-serif;font-size:.95rem;padding:.65rem .5rem;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.06);">Ambient Sound</button>
+  <button onclick="closeAndGo(openAdminPrompt)" style="width:100%;text-align:left;background:none;border:none;color:#e2c97e;font-family:'Inter',sans-serif;font-size:.95rem;padding:.65rem .5rem;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.06);">Admin</button>
+  <button onclick="closeAndGo(doSignOut)" style="width:100%;text-align:left;background:none;border:none;color:#f87171;font-family:'Inter',sans-serif;font-size:.95rem;padding:.65rem .5rem;cursor:pointer;margin-top:1rem;">Sign Out</button>
+</div>
 
 <!-- ----------------------------------------------- AUTH SCREEN -- -->
 <div id="auth-screen">
@@ -2378,7 +2399,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         </div>
         <div id="hub-challenge-label" style="font-size:.82rem;font-weight:700;color:#e2e8f0;margin-bottom:.4rem"></div>
         <div style="background:rgba(255,255,255,.1);border-radius:999px;height:7px;overflow:hidden">
-          <div id="hub-challenge-fill" style="height:7px;background:linear-gradient(90deg,#2563eb,#7c3aed);border-radius:999px;width:0%;transition:width .9s ease"></div>
+          <div id="hub-challenge-fill" style="height:7px;background:linear-gradient(90deg,#B8892A,#C9A84C);border-radius:999px;width:0%;transition:width .9s ease"></div>
         </div>
         <div id="hub-challenge-sub" style="font-size:.72rem;color:#94a3b8;margin-top:.3rem;font-weight:600"></div>
       </div>
@@ -2617,7 +2638,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <div id="patient-selector" style="display:flex;gap:.5rem;margin-bottom:.65rem;flex-wrap:wrap"></div>
         <!-- Patient Status Bar -->
         <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem;background:#0f172a;border-radius:.875rem;padding:.6rem 1rem">
-          <div id="lab-patient-avatar-wrap" style="width:36px;height:36px;border-radius:50%;border:2px solid #2563eb;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.75rem;color:white;background:#2563eb">
+          <div id="lab-patient-avatar-wrap" style="width:36px;height:36px;border-radius:50%;border:2px solid #C9A84C;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.75rem;color:white;background:#2563eb">
             <img id="lab-patient-avatar-img" src="prof.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block" alt="">
           </div>
           <div style="flex:1">
@@ -2730,7 +2751,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
           </div>
           <div style="display:flex;align-items:center;gap:.75rem">
             <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:.75rem;padding:.35rem .75rem;font-size:.82rem;font-weight:800;color:#15803d">Score: <span id="microexp-score">0</span>/<span id="microexp-total">0</span></div>
-            <button onclick="startMicroExpDrill()" style="border:none;background:#2563eb;color:white;padding:.55rem 1.1rem;border-radius:.85rem;font-weight:900;font-size:.85rem;cursor:pointer">? Start Drill</button>
+            <button onclick="startMicroExpDrill()" style="border:none;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;padding:.55rem 1.1rem;border-radius:.85rem;font-weight:900;font-size:.85rem;cursor:pointer">? Start Drill</button>
           </div>
         </div>
         <div style="background:#1e293b;border-radius:1rem;overflow:hidden;margin-bottom:.85rem">
@@ -2752,17 +2773,17 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
               <span id="microexp-result-badge" style="display:none;padding:.35rem .9rem;border-radius:1rem;font-weight:900;font-size:.88rem"></span>
             </div>
             <div style="text-align:center;margin-top:.75rem">
-              <button id="microexp-next-btn" onclick="nextMicroExpRound()" style="display:none;border:none;background:#2563eb;color:white;font-weight:900;padding:.65rem 1.8rem;border-radius:.875rem;font-size:.92rem;cursor:pointer;letter-spacing:.01em">Next Round ?</button>
+              <button id="microexp-next-btn" onclick="nextMicroExpRound()" style="display:none;border:none;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;font-weight:900;padding:.65rem 1.8rem;border-radius:.875rem;font-size:.92rem;cursor:pointer;letter-spacing:.01em">Next Round ?</button>
             </div>
           </div>
         </div>
         <div id="microexp-buttons" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;margin-bottom:.85rem">
           <button onclick="answerMicroExp('Anger')" style="border:2px solid #fca5a5;background:#fff5f5;color:#b91c1c;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😠 Anger</button>
           <button onclick="answerMicroExp('Fear')" style="border:2px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😨 Fear</button>
-          <button onclick="answerMicroExp('Sadness')" style="border:2px solid #e9d5ff;background:#faf5ff;color:#7c3aed;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😢 Sadness</button>
+          <button onclick="answerMicroExp('Sadness')" style="border:2px solid rgba(201,168,76,.3);background:rgba(201,168,76,.06);color:#C9A84C;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😢 Sadness</button>
           <button onclick="answerMicroExp('Neutral')" style="border:2px solid #d1fae5;background:#f0fdf4;color:#065f46;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😐 Neutral</button>
         </div>
-        <div id="microexp-vance-tip" style="background:#eff6ff;border-left:4px solid #2563eb;border-radius:0 .6rem .6rem 0;padding:.7rem 1rem;display:none">
+        <div id="microexp-vance-tip" style="background:rgba(201,168,76,.08);border-left:4px solid #C9A84C;border-radius:0 .6rem .6rem 0;padding:.7rem 1rem;display:none">
           <div style="font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#1d4ed8;margin-bottom:.2rem">Prof. Vance</div>
           <p id="microexp-vance-text" style="color:#1e3a8a;font-size:.87rem;font-weight:700;margin:0;font-style:italic"></p>
         </div>
@@ -2874,13 +2895,13 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 <div id="admin-pin-modal" class="modal-overlay pincode">
   <div class="modal-card" style="max-width:420px">
     <div style="padding:2rem;text-align:center">
-      <div style="width:56px;height:56px;background:linear-gradient(135deg,#7c3aed,#2563eb);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.5rem">🔐</div>
+      <div style="width:56px;height:56px;background:linear-gradient(135deg,#C9A84C,#B8892A);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.5rem">🔐</div>
       <h2 style="font-size:1.15rem;font-weight:900;color:#0f172a;margin-bottom:.35rem">Admin Access</h2>
       <p id="admin-access-msg" style="font-size:.82rem;color:#64748b;margin-bottom:1.25rem">Checking your access level—</p>
       <!-- Checking state -->
       <div id="admin-access-checking" style="display:block">
-        <div style="display:flex;align-items:center;justify-content:center;gap:.625rem;color:#7c3aed;font-weight:700;font-size:.875rem">
-          <div style="width:18px;height:18px;border:2px solid #7c3aed;border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite"></div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:.625rem;color:#C9A84C;font-weight:700;font-size:.875rem">
+          <div style="width:18px;height:18px;border:2px solid #C9A84C;border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite"></div>
           Verifying…
         </div>
       </div>
@@ -2901,14 +2922,14 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <input id="owner-code-new" type="password" placeholder="Create access code" class="input-field" style="width:100%;margin-bottom:.5rem;text-align:center;font-weight:800" autocomplete="off">
         <input id="owner-code-conf" type="password" placeholder="Confirm access code" class="input-field" style="width:100%;margin-bottom:.85rem;text-align:center;font-weight:800" autocomplete="off">
         <div id="owner-code-error" style="display:none;color:#dc2626;font-size:.8rem;font-weight:800;margin-bottom:.6rem"></div>
-        <button onclick="claimOwnerAccount()" style="width:100%;padding:.75rem;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;border-radius:.875rem;font-weight:900;cursor:pointer;font-size:.875rem;margin-bottom:.625rem">👑 Claim Owner + Set Code</button>
+        <button onclick="claimOwnerAccount()" style="width:100%;padding:.75rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;border-radius:.875rem;font-weight:900;cursor:pointer;font-size:.875rem;margin-bottom:.625rem">👑 Claim Owner + Set Code</button>
         <button onclick="closePinModal()" style="width:100%;padding:.75rem;background:#f1f5f9;color:#475569;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem">Cancel</button>
       </div>
       <!-- Code entry -->
       <div id="admin-code-entry" style="display:none">
         <input id="admin-access-code" type="password" placeholder="Enter access code" class="input-field" style="width:100%;margin-bottom:.65rem;text-align:center;font-weight:800" autocomplete="off">
         <div id="admin-code-error" style="display:none;color:#dc2626;font-size:.8rem;font-weight:800;margin-bottom:.6rem"></div>
-        <button onclick="verifyAdminCode()" style="width:100%;padding:.75rem;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;border-radius:.875rem;font-weight:900;cursor:pointer;font-size:.875rem;margin-bottom:.625rem">Unlock Command Center</button>
+        <button onclick="verifyAdminCode()" style="width:100%;padding:.75rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;border-radius:.875rem;font-weight:900;cursor:pointer;font-size:.875rem;margin-bottom:.625rem">Unlock Command Center</button>
         <button onclick="closePinModal()" style="width:100%;padding:.7rem;background:#f1f5f9;color:#475569;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem">Cancel</button>
       </div>
     </div>
@@ -2920,7 +2941,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
   <div class="modal-card">
     <div class="modal-card-header">
       <div style="display:flex;align-items:center;gap:.875rem">
-        <div id="acct-avatar-circle" style="width:52px;height:52px;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:1.1rem"></div>
+        <div id="acct-avatar-circle" style="width:52px;height:52px;background:linear-gradient(135deg,#B8892A,#C9A84C);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:1.1rem"></div>
         <div>
           <h2 style="font-size:1.1rem;font-weight:900;color:#0f172a;font-family:Montserrat,sans-serif" id="acct-header-name">My Account</h2>
           <p style="font-size:.7rem;color:#94a3b8;font-weight:600" id="acct-header-sub"></p>
@@ -3070,7 +3091,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
   <div id="avatar-speech" style="position:relative;background:#fff;border-radius:1.1rem;border-bottom-right-radius:.3rem;padding:1rem 1.1rem;width:min(320px,90vw);box-shadow:0 8px 32px rgba(0,0,0,.2);font-size:1.05rem;font-weight:600;color:#0f172a;display:none;line-height:1.65;margin-bottom:.6rem;cursor:pointer;max-width:100%" title="Click to open chat">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.35rem">
       <div style="display:flex;flex-direction:column;gap:.08rem">
-        <div style="font-size:.65rem;font-weight:900;color:#2563eb;text-transform:uppercase;letter-spacing:.08em">Prof. Vance</div>
+        <div style="font-size:.65rem;font-weight:900;color:#C9A84C;text-transform:uppercase;letter-spacing:.08em">Prof. Vance</div>
         <div style="font-size:.62rem;font-weight:600;color:#94a3b8;font-style:italic">(Click &amp; drag if I'm in your way)</div>
       </div>
       <div style="display:flex;gap:.35rem">
@@ -3080,7 +3101,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     </div>
     <span id="avatar-speech-text"></span>
     <div style="margin-top:.6rem;text-align:right">
-      <button onclick="openChatFromPax(event)" style="border:none;background:#2563eb;color:white;font-weight:800;font-size:.75rem;padding:.35rem .65rem;border-radius:.6rem;cursor:pointer">Open chat</button>
+      <button onclick="openChatFromPax(event)" style="border:none;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;font-weight:800;font-size:.75rem;padding:.35rem .65rem;border-radius:.6rem;cursor:pointer">Open chat</button>
     </div>
     <div style="position:absolute;bottom:-8px;right:16px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #fff"></div>
   </div>
@@ -3094,13 +3115,13 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 </div>
 
 <!-- Minimized pill -->
-<div id="avatar-mini" style="display:none;position:fixed;bottom:5rem;right:1rem;z-index:91;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;padding:.5rem .75rem;border-radius:.9rem;font-weight:900;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:.82rem" onclick="restorePax()">🎓 Vance (listening)</div>
+<div id="avatar-mini" style="display:none;position:fixed;bottom:5rem;right:1rem;z-index:91;background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;padding:.5rem .75rem;border-radius:.9rem;font-weight:900;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:.82rem" onclick="restorePax()">🎓 Vance (listening)</div>
 
 <!-- Persistent Prof. Vance FAB — always visible during training -->
-<button id="vance-fab" onclick="openChat()" title="Ask Professor Vance" style="display:none;position:fixed;bottom:5.4rem;right:1.1rem;z-index:92;background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:white;border:none;border-radius:50%;width:52px;height:52px;font-size:1.4rem;cursor:pointer;box-shadow:0 6px 20px rgba(37,99,235,.55);transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 8px 28px rgba(37,99,235,.7)'" onmouseout="this.style.transform='';this.style.boxShadow='0 6px 20px rgba(37,99,235,.55)'">🎓</button>
+<button id="vance-fab" onclick="openChat()" title="Ask Professor Vance" style="display:none;position:fixed;bottom:5.4rem;right:1.1rem;z-index:92;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;border:none;border-radius:50%;width:52px;height:52px;font-size:1.4rem;cursor:pointer;box-shadow:0 6px 20px rgba(37,99,235,.55);transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 8px 28px rgba(37,99,235,.7)'" onmouseout="this.style.transform='';this.style.boxShadow='0 6px 20px rgba(37,99,235,.55)'">🎓</button>
 
 <div style="position:fixed;top:0;left:0;right:0;height:4px;background:#1e293b;z-index:100">
-  <div id="progress-bar" class="progress-bar" style="height:100%;background:linear-gradient(90deg,#2563eb,#7c3aed);width:3.7%;transition:width .4s ease"></div>
+  <div id="progress-bar" class="progress-bar" style="height:100%;background:linear-gradient(90deg,#B8892A,#C9A84C);width:3.7%;transition:width .4s ease"></div>
 </div>
 
 <!-- floating slide edge nav arrows -->
@@ -3109,7 +3130,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 
 <!-- ----------------------- LEFT SIDEBAR NAV — NyxCodex® -- -->
 <nav id="main-nav">
-  <div style="height:3px;background:rgba(255,255,255,.05);flex-shrink:0"><div id="nav-progress-fill" style="height:100%;width:0%;background:linear-gradient(90deg,#2563eb,#7c3aed);transition:width .4s ease"></div></div>
+  <div style="height:3px;background:rgba(255,255,255,.05);flex-shrink:0"><div id="nav-progress-fill" style="height:100%;width:0%;background:linear-gradient(90deg,#B8892A,#C9A84C);transition:width .4s ease"></div></div>
   <button id="nav-sidebar-toggle" onclick="toggleSidebar()" title="Collapse / Expand sidebar">
     <svg class="sb-icon" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
     <span class="sb-label" style="color:#C9A84C;font-size:.73rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase">NyxCodex&#174;</span>
@@ -3145,12 +3166,12 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     <div id="nav-controls-group" class="sb-nav-controls">
       <button id="nav-prev-btn" onclick="prevSlide()" title="Previous slide" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:white;width:32px;height:32px;border-radius:.5rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.18)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">&#8249;</button>
       <button id="nav-home-btn" onclick="showHomeGateway()" title="Home Hub" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#64748b;width:32px;height:32px;border-radius:.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .15s" onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748b'"><svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></button>
-      <button id="nav-next-btn" onclick="nextSlide()" title="Next slide" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;width:32px;height:32px;border-radius:.5rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(37,99,235,.5);transition:filter .15s" onmouseover="this.style.filter='brightness(1.15)'" onmouseout="this.style.filter=''">&#8250;</button>
+      <button id="nav-next-btn" onclick="nextSlide()" title="Next slide" style="background:linear-gradient(135deg,#B8892A,#C9A8ed8);color:white;width:32px;height:32px;border-radius:.5rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(37,99,235,.5);transition:filter .15s" onmouseover="this.style.filter='brightness(1.15)'" onmouseout="this.style.filter=''">&#8250;</button>
       <button id="nav-more-btn" onclick="toggleMobileNavSheet()" title="More actions" aria-expanded="false" style="display:none;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:white;width:32px;height:32px;border-radius:.5rem;font-size:1rem;cursor:pointer;align-items:center;justify-content:center">&#8943;</button>
     </div>
     <div class="sb-divider"></div>
     <button id="nav-account-btn" class="sb-nav-btn" onclick="openAccountModal()" title="My Account" style="color:white;" onmouseover="this.style.background='rgba(255,255,255,.08)'" onmouseout="this.style.background='transparent'">
-      <div id="nav-avatar-initials" style="width:26px;height:26px;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:.68rem;flex-shrink:0"></div>
+      <div id="nav-avatar-initials" style="width:26px;height:26px;background:linear-gradient(135deg,#B8892A,#C9A84C);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:.68rem;flex-shrink:0"></div>
       <span id="nav-name" class="sb-label" style="font-weight:800;font-size:.8rem;white-space:nowrap">Account</span>
     </button>
     <button id="nav-signout-btn" class="sb-nav-btn" onclick="doSignOut()" title="Sign out" style="color:#fca5a5;" onmouseover="this.style.background='rgba(239,68,68,.12)'" onmouseout="this.style.background='transparent'">
@@ -3186,7 +3207,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 </div>
 
 <!-- XP Toast notification -->
-<div id="xp-toast" style="display:none;position:fixed;bottom:6.5rem;left:50%;transform:translateX(-50%);z-index:300;background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:white;font-weight:900;font-size:.95rem;padding:.5rem 1.3rem;border-radius:2rem;box-shadow:0 6px 20px rgba(37,99,235,.45);pointer-events:none;white-space:nowrap">+XP</div>
+<div id="xp-toast" style="display:none;position:fixed;bottom:6.5rem;left:50%;transform:translateX(-50%);z-index:300;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;font-weight:900;font-size:.95rem;padding:.5rem 1.3rem;border-radius:2rem;box-shadow:0 6px 20px rgba(201,168,76,.4);pointer-events:none;white-space:nowrap">+XP</div>
 
 <!-- Keyboard shortcuts overlay -->
 <div id="shortcuts-overlay" onclick="closeShortcuts()" style="display:none;position:fixed;inset:0;z-index:5000;background:rgba(0,0,20,.72);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:1.5rem">
@@ -3242,7 +3263,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     <textarea id="chat-input" rows="2" placeholder="Type your response or ask Professor Vance a clinical question..." style="width:100%;border:1px solid #e2e8f0;border-radius:.75rem;padding:.7rem;font-size:.95rem;font-weight:700;resize:vertical;background:white" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChatMessage();}"></textarea>
     <div style="display:flex;gap:.5rem;align-items:center;justify-content:space-between">
       <span style="font-size:.8rem;color:#64748b;font-weight:700">If I'm unsure, I'll suggest asking a supervisor/leadership.</span>
-      <button id="chat-send-btn" onclick="sendChatMessage()" style="border:none;background:#2563eb;color:white;font-weight:900;padding:.6rem 1rem;border-radius:.85rem;font-size:1.05rem;cursor:pointer">Send</button>
+      <button id="chat-send-btn" onclick="sendChatMessage()" style="border:none;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;font-weight:900;padding:.6rem 1rem;border-radius:.85rem;font-size:1.05rem;cursor:pointer">Send</button>
     </div>
   </div>
 </div>
@@ -3565,12 +3586,12 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
   </div>
   <div style="padding:0 2rem 2rem;display:flex;gap:2rem;align-items:center;flex-wrap:wrap">
     <div style="flex:1;min-width:280px">
-      <div id="box-breath-anim" style="width:220px;height:220px;border:6px solid #2563eb;border-radius:2rem;margin:0 auto 1.5rem;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;transition:all .3s" onclick="startBoxBreathing()">
+      <div id="box-breath-anim" style="width:220px;height:220px;border:6px solid #C9A84C;border-radius:2rem;margin:0 auto 1.5rem;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;transition:all .3s" onclick="startBoxBreathing()">
         <div style="text-align:center">
           <div id="box-phase" style="font-size:1.25rem;font-weight:900;color:#1d4ed8;font-family:Montserrat,sans-serif">TAP TO START</div>
           <div id="box-count" style="font-size:3rem;font-weight:900;color:#0f172a">?</div>
         </div>
-        <div id="box-indicator" style="position:absolute;width:16px;height:16px;background:#2563eb;border-radius:50%;top:0;left:50%;transform:translateX(-50%) translateY(-50%);box-shadow:0 0 12px rgba(37,99,235,.6);transition:all 1s linear"></div>
+        <div id="box-indicator" style="position:absolute;width:16px;height:16px;background:#C9A84C;border-radius:50%;top:0;left:50%;transform:translateX(-50%) translateY(-50%);box-shadow:0 0 12px rgba(37,99,235,.6);transition:all 1s linear"></div>
       </div>
       <p style="text-align:center;font-size:.8rem;color:#64748b;font-weight:600">Click the box to begin a guided round</p>
     </div>
@@ -4747,7 +4768,7 @@ function getSlides14to27() { return `
     <p style="color:#a5b4fc;font-size:1rem;margin-bottom:2rem">Available after you score 93% or higher on the quiz (14/15).</p>
     <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:1.5rem;padding:2rem;max-width:640px;width:100%;backdrop-filter:blur(12px);box-shadow:0 14px 40px rgba(0,0,0,.25)">
       <p id="cert-locked-msg" style="color:#cbd5e1;font-weight:700;font-size:.95rem;margin-bottom:1rem">Pass the quiz to unlock your certificate.</p>
-      <button id="cert-btn" onclick="downloadCertificate()" disabled style="width:100%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;font-weight:900;font-size:1rem;padding:1rem;border-radius:1rem;border:none;cursor:pointer;font-family:Montserrat,sans-serif;letter-spacing:.02em;box-shadow:0 8px 24px rgba(37,99,235,.4);opacity:.8;margin-bottom:1rem">
+      <button id="cert-btn" onclick="downloadCertificate()" disabled style="width:100%;background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;font-weight:900;font-size:1rem;padding:1rem;border-radius:1rem;border:none;cursor:pointer;font-family:Montserrat,sans-serif;letter-spacing:.02em;box-shadow:0 8px 24px rgba(37,99,235,.4);opacity:.8;margin-bottom:1rem">
         ⬇️ Download Certificate
       </button>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;text-align:left;color:#cbd5e1;font-weight:700;font-size:.9rem">
@@ -4899,7 +4920,7 @@ const LAB_PATIENTS = [
     dxKey:'ptsd',
     bio:'Veteran — acute flashback episode — evaluation pending',
     avatar:'prof.png',
-    initials:'MR', color:'#2563eb',
+    initials:'MR', color:'#C9A84C',
     persona:`You are Marcus, 38, a military veteran admitted to a psychiatric unit with combat PTSD. You do NOT know you are in a training simulation. Respond in first person, in character, exactly as Marcus would in this moment.`
   },
   {
@@ -4908,7 +4929,7 @@ const LAB_PATIENTS = [
     dxKey:'bipolar',
     bio:'First hospitalization — manic episode day 3 — flight of ideas',
     avatar:null,
-    initials:'DL', color:'#7c3aed',
+    initials:'DL', color:'#B8892A',
     persona:`You are Delilah, 25, admitted for a first psychiatric hospitalization in the middle of a severe manic episode — day 3, little to no sleep. You are racing with ideas, feel invincible and misunderstood, and do NOT know you are in a training simulation. Respond in first person with rapid, pressured speech. You are not hostile by default but feel deeply that no one understands your brilliance right now.`
   },
   {
@@ -5580,7 +5601,7 @@ async function showHomeGateway() {
     wrap.style.display = 'block';
     const completedCount = checks.filter(c=>c.done).length;
     wrap.innerHTML = `
-      <div style="font-size:.7rem;font-weight:900;color:#7c3aed;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">Getting Started — ${completedCount}/${checks.length}</div>
+      <div style="font-size:.7rem;font-weight:900;color:#C9A84C;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">Getting Started — ${completedCount}/${checks.length}</div>
       <div style="display:flex;flex-direction:column;gap:.3rem">
         ${checks.map(c=>`<div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:700;color:${c.done?'#94a3b8':'#e2e8f0'};text-decoration:${c.done?'line-through':'none'}"><span style="font-size:.9rem">${c.done?'✅':'⬜'}</span>${c.label}</div>`).join('')}
       </div>`;
@@ -6559,7 +6580,7 @@ function renderTutStep() {
   // Dots
   TUTORIAL_STEPS.forEach((_,i) => {
     const d = el(`tut-dot-${i}`);
-    if(d) d.style.background = i === tutCurrentStep ? '#2563eb' : '#cbd5e1';
+    if(d) d.style.background = i === tutCurrentStep ? '#C9A84C' : 'rgba(255,255,255,.15)';
   });
   // Back button
   const back = el('tut-back-btn');
@@ -6920,7 +6941,7 @@ async function verifyAdminCode() {
       <p style="font-size:.83rem;color:#94a3b8;text-align:center;margin:0 0 1.5rem">Enter the 6-digit code from your authenticator app.</p>
       <input id="totp-admin-code" maxlength="6" placeholder="000000" style="width:100%;box-sizing:border-box;padding:.75rem;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:white;border-radius:.875rem;font-size:1.4rem;font-weight:900;text-align:center;letter-spacing:.2em;outline:none;margin-bottom:.75rem">
       <div id="totp-admin-error" style="display:none;color:#f87171;font-size:.8rem;font-weight:700;text-align:center;margin-bottom:.5rem"></div>
-      <button onclick="verifyTotpAdmin('${settings.ownerTotpSecret}')" style="width:100%;padding:.75rem;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;border-radius:.875rem;font-weight:900;cursor:pointer;font-size:1.05rem;margin-bottom:.5rem">Verify</button>
+      <button onclick="verifyTotpAdmin('${settings.ownerTotpSecret}')" style="width:100%;padding:.75rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;border-radius:.875rem;font-weight:900;cursor:pointer;font-size:1.05rem;margin-bottom:.5rem">Verify</button>
       <button onclick="document.getElementById('totp-modal').remove()" style="width:100%;padding:.6rem;background:transparent;color:#64748b;border:1px solid rgba(255,255,255,.08);border-radius:.875rem;font-weight:700;cursor:pointer;font-size:.82rem">Cancel</button>
     </div>`;
     document.body.appendChild(tot);
@@ -6998,7 +7019,7 @@ async function loadLeaderboard() {
     const totalSl = (T?.moduleCount||31);
     el.innerHTML = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
       <p style="font-weight:900;font-size:1.05rem;color:#0f172a;margin:0">${sorted.length} staff members ranked by XP</p>
-      <button onclick="exportUsersCSV()" style="background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;padding:.45rem .85rem;border-radius:.7rem;font-weight:800;font-size:.75rem;cursor:pointer">📊 Export CSV</button>
+      <button onclick="exportUsersCSV()" style="background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;padding:.45rem .85rem;border-radius:.7rem;font-weight:800;font-size:.75rem;cursor:pointer">📊 Export CSV</button>
       <button onclick="shareLeaderboard()" style="background:linear-gradient(135deg,#0369a1,#0891b2);color:white;border:none;padding:.45rem .85rem;border-radius:.7rem;font-weight:800;font-size:.75rem;cursor:pointer">🔗 Share</button>
     </div>
     <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:.85rem">
@@ -7020,8 +7041,8 @@ async function loadLeaderboard() {
           <td style="padding:.875rem;font-weight:700;color:#0f172a">${nm}</td>
           <td style="padding:.875rem;color:#64748b;font-size:.8rem">${u.department||'—'}</td>
           <td style="padding:.875rem;text-align:center"><span class="badge" style="background:#dbeafe;color:#1d4ed8">Lvl ${u.level||1}</span></td>
-          <td style="padding:.875rem;text-align:center;font-weight:800;color:#2563eb">${(u.xp||0).toLocaleString()}</td>
-          <td style="padding:.875rem;text-align:center"><div style="background:#e2e8f0;border-radius:999px;height:8px;width:80px;margin:auto"><div style="background:#2563eb;height:8px;border-radius:999px;width:${pct}%"></div></div></td>
+          <td style="padding:.875rem;text-align:center;font-weight:800;color:#C9A84C">${(u.xp||0).toLocaleString()}</td>
+          <td style="padding:.875rem;text-align:center"><div style="background:#e2e8f0;border-radius:999px;height:8px;width:80px;margin:auto"><div style="background:linear-gradient(90deg,#B8892A,#C9A84C);height:8px;border-radius:999px;width:${pct}%"></div></div></td>
           <td style="padding:.875rem;text-align:center"><span style="background:${done?'#dcfce7':'#fef9c3'};color:${done?'#15803d':'#92400e'};padding:.2rem .6rem;border-radius:999px;font-size:.72rem;font-weight:800">${done?'? Done':'? '+pct+'%'}</span></td>
         </tr>`;
       }).join('')}
@@ -7074,7 +7095,7 @@ function _renderUsersGrid(users) {
       <input id="user-search-box" type="text" placeholder="🔍 Search name, email or department—"
         oninput="filterAdminUsers(this.value)"
         style="flex:1;min-width:200px;padding:.55rem .9rem;border:1px solid #e2e8f0;border-radius:.65rem;font-size:.85rem;font-weight:600;color:#0f172a;outline:none">
-      <button onclick="openBulkDueDateModal()" style="background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;padding:.5rem 1rem;border-radius:.65rem;font-size:.8rem;font-weight:800;cursor:pointer;white-space:nowrap">Bulk Deadline</button>
+      <button onclick="openBulkDueDateModal()" style="background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;padding:.5rem 1rem;border-radius:.65rem;font-size:.8rem;font-weight:800;cursor:pointer;white-space:nowrap">Bulk Deadline</button>
       <button onclick="printLoginCards()" style="background:linear-gradient(135deg,#0f766e,#0891b2);color:white;border:none;padding:.5rem 1rem;border-radius:.65rem;font-size:.8rem;font-weight:800;cursor:pointer;white-space:nowrap">🪪 Print Cards</button>
       <span id="user-count-badge" style="font-size:.8rem;color:#94a3b8;font-weight:700">${entries.length} user${entries.length!==1?'s':''}</span>
     </div>
@@ -7099,14 +7120,14 @@ function _renderUsersGrid(users) {
         return `<div data-uid="${uid}" data-search="${searchKey}"
           style="background:#f8fafc;border-radius:1rem;padding:.875rem 1rem;display:flex;align-items:center;justify-content:space-between;border:1px solid #e2e8f0;margin-bottom:.65rem;gap:1rem;flex-wrap:wrap">
           <div style="display:flex;align-items:center;gap:.875rem;flex:1;min-width:0">
-            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;font-weight:900;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">${initials}</div>
+            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;font-weight:900;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">${initials}</div>
             <div style="min-width:0">
               <p style="font-weight:800;font-size:.875rem;color:#0f172a;margin:0">${name}</p>
               <p style="font-size:.72rem;color:#64748b;margin:.1rem 0 0">${u.email||''}${u.department?' — '+u.department:''}</p>
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
-            <span style="font-size:.78rem;font-weight:700;color:#2563eb">Lvl ${u.level||1} — ${(u.xp||0).toLocaleString()} XP</span>
+            <span style="font-size:.78rem;font-weight:700;color:#C9A84C">Lvl ${u.level||1} — ${(u.xp||0).toLocaleString()} XP</span>
             <span style="background:${done?'#dcfce7':'#fef9c3'};color:${done?'#15803d':'#92400e'};padding:.2rem .6rem;border-radius:999px;font-size:.72rem;font-weight:800">${done?'? Done':'? Slide '+(u.currentSlide||0)}</span>
             ${dueBadge}
             <span style="font-size:.72rem;color:#94a3b8;font-weight:600">Last: ${lastSeen}</span>
@@ -7114,7 +7135,7 @@ function _renderUsersGrid(users) {
               ? `<span style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;border-radius:999px;padding:.2rem .55rem;font-size:.72rem;font-weight:800;display:inline-flex;align-items:center;gap:.35rem" title="Approved by ${(u.supervisorApproval.approverName||'').replace(/"/g,'&quot;')} on ${u.supervisorApproval.approvedAt ? new Date(u.supervisorApproval.approvedAt).toLocaleDateString() : ''}">✓ Approved <button onclick="revokeTraineeApproval('${uid}','${name.replace(/'/g,"\\'")}' )" style="background:none;border:none;color:#15803d;cursor:pointer;font-size:.7rem;padding:0;line-height:1;font-weight:900" title="Revoke">✕</button></span>`
               : `<button onclick="approveTrainee('${uid}','${name.replace(/'/g,"\\'")}' )" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;border-radius:.5rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;cursor:pointer">✓ Approve</button>`
             }
-            <button onclick="openSetDueDateModal('${uid}','${name.replace(/'/g,"\\'")}',${u.dueDate||'null'})" style="background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;border-radius:.5rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;cursor:pointer">Deadline</button>
+            <button onclick="openSetDueDateModal('${uid}','${name.replace(/'/g,"\\'")}',${u.dueDate||'null'})" style="background:rgba(201,168,76,.08);color:#C9A84C;border:1px solid rgba(201,168,76,.3);border-radius:.5rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;cursor:pointer">Deadline</button>
             <button onclick="confirmDeleteUser('${uid}','${name.replace(/'/g,"\\'")}' )" style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca;border-radius:.5rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;cursor:pointer">Remove</button>
           </div>
         </div>`;
@@ -7214,7 +7235,31 @@ async function printLoginCards() {
         </div>`).join('')}
     </div>
     <script>window.onload=()=>window.print();<\/script>
-  </body></html>`);
+  
+<script>
+function toggleMobileMenu(){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(!drawer) return;
+  var open = drawer.style.transform === 'translateX(0px)' || drawer.style.transform === 'translateX(0%)';
+  drawer.style.display = 'block';
+  overlay.style.display = 'block';
+  requestAnimationFrame(function(){
+    drawer.style.transform = open ? 'translateX(-100%)' : 'translateX(0%)';
+    overlay.style.opacity = open ? '0' : '1';
+    setTimeout(function(){
+      if(open){ drawer.style.display='none'; overlay.style.display='none'; }
+    }, open ? 280 : 0);
+  });
+}
+function closeAndGo(fn){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(drawer){ drawer.style.transform='translateX(-100%)'; setTimeout(function(){ drawer.style.display='none'; overlay.style.display='none'; },280); }
+  if(typeof fn === 'function') setTimeout(fn, 100);
+}
+</script>
+</body></html>`);
   win.document.close();
 }
 
@@ -7260,7 +7305,7 @@ async function loadAnalytics() {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
         <div style="background:#faf5ff;padding:1.25rem;border-radius:1rem;text-align:center">
           <div style="font-size:2rem;font-weight:900;color:#6d28d9">${avgXP.toLocaleString()}</div>
-          <p style="font-size:.72rem;color:#7c3aed;font-weight:800;text-transform:uppercase;margin-top:.25rem">Avg XP</p>
+          <p style="font-size:.72rem;color:#C9A84C;font-weight:800;text-transform:uppercase;margin-top:.25rem">Avg XP</p>
         </div>
         <div style="background:#fffbeb;padding:1.25rem;border-radius:1rem;text-align:center">
           <div style="font-size:2rem;font-weight:900;color:#92400e">${avgLvl}</div>
@@ -7270,7 +7315,7 @@ async function loadAnalytics() {
       <div style="background:#f8fafc;border-radius:1rem;padding:1.25rem;border:1px solid #e2e8f0;margin-bottom:1.25rem">
         <p style="font-size:.8rem;font-weight:900;color:#0f172a;margin-bottom:.875rem;text-transform:uppercase">Overall Completion Rate</p>
         <div style="background:#e2e8f0;border-radius:999px;height:14px;overflow:hidden">
-          <div style="background:linear-gradient(90deg,#2563eb,#7c3aed);height:14px;border-radius:999px;width:${complPct}%;transition:width .6s ease"></div>
+          <div style="background:linear-gradient(90deg,#B8892A,#C9A84C);height:14px;border-radius:999px;width:${complPct}%;transition:width .6s ease"></div>
         </div>
         <p style="font-size:.75rem;color:#64748b;margin-top:.5rem;font-weight:700">${complPct}% of ${total} users completed all ${totalSl} slides</p>
       </div>
@@ -7326,7 +7371,7 @@ async function loadReports() {
             <span style="font-size:.75rem;font-weight:800;color:#475569;min-width:2.5rem">${pct}%</span>
           </div>
         </td>
-        <td style="padding:.75rem 1rem;text-align:center;color:#7c3aed;font-weight:700">${Math.round(d.totalXP/d.total).toLocaleString()}</td>
+        <td style="padding:.75rem 1rem;text-align:center;color:#C9A84C;font-weight:700">${Math.round(d.totalXP/d.total).toLocaleString()}</td>
       </tr>`;
     }).join('');
 
@@ -7346,7 +7391,7 @@ async function loadReports() {
         <td style="padding:.6rem 1rem;color:#64748b;font-size:.8rem">${u.department||'—'}</td>
         <td style="padding:.6rem 1rem;color:#64748b;font-size:.8rem">${u.jobTitle||'—'}</td>
         <td style="padding:.6rem 1rem;text-align:center"><span style="background:${done?'#dcfce7':'#fef9c3'};color:${done?'#15803d':'#92400e'};padding:.2rem .65rem;border-radius:999px;font-size:.72rem;font-weight:800">${done?'? Complete':'? Slide '+(u.currentSlide||0)+'/'+totalSl}</span></td>
-        <td style="padding:.6rem 1rem;text-align:center;font-weight:700;color:#7c3aed">${(u.xp||0).toLocaleString()}</td>
+        <td style="padding:.6rem 1rem;text-align:center;font-weight:700;color:#C9A84C">${(u.xp||0).toLocaleString()}</td>
         <td style="padding:.6rem 1rem;text-align:center;font-weight:700;color:${u.finalQuizScore>=14?'#15803d':u.finalQuizScore>0?'#92400e':'#94a3b8'}">${quizScore}</td>
         <td style="padding:.6rem 1rem;text-align:center;color:#475569;font-size:.8rem">${completedDate}</td>
         <td style="padding:.6rem 1rem;text-align:center;font-size:.8rem;font-weight:700">${u.dueDate&&!done?`<span style="color:${Math.ceil((u.dueDate-Date.now())/864e5)<0?'#dc2626':Math.ceil((u.dueDate-Date.now())/864e5)<=3?'#d97706':'#2563eb'};">${Math.ceil((u.dueDate-Date.now())/864e5)<0?'⚠️ Overdue':'📅 '+new Date(u.dueDate).toLocaleDateString()}</span>`:done?'—':'Not set'}</td>
@@ -7357,7 +7402,7 @@ async function loadReports() {
 
     el.innerHTML = `
       <div style="display:flex;justify-content:flex-end;gap:.75rem;margin-bottom:1.25rem;flex-wrap:wrap">
-        <button onclick="openBulkDueDateModal()" class="btn" style="background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;font-size:.8rem;padding:.5rem 1rem">📅 Bulk Deadline</button>
+        <button onclick="openBulkDueDateModal()" class="btn" style="background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;font-size:.8rem;padding:.5rem 1rem">📅 Bulk Deadline</button>
         <button onclick="exportCSV()" class="btn btn-primary" style="font-size:.8rem;padding:.5rem 1.25rem">📊 Export CSV</button>
         <button onclick="generateCompliancePDF()" class="btn" style="background:linear-gradient(135deg,#0369a1,#0891b2);color:white;border:none;font-size:.8rem;padding:.5rem 1.25rem">📋 Compliance PDF</button>
       </div>
@@ -7512,7 +7557,31 @@ async function generateCompliancePDF() {
     <span>Generated by ${T.certProvider || 'Training System'} • ${reportDate} • Confidential</span>
   </div>
   <p style='font-size:.65rem;color:#cbd5e1;margin-top:.75rem;text-align:center'>This document may be used for Joint Commission compliance review, state licensing audits, and internal HR records. Retain for a minimum of 3 years.</p>
-  </div></body></html>`;
+  </div>
+<script>
+function toggleMobileMenu(){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(!drawer) return;
+  var open = drawer.style.transform === 'translateX(0px)' || drawer.style.transform === 'translateX(0%)';
+  drawer.style.display = 'block';
+  overlay.style.display = 'block';
+  requestAnimationFrame(function(){
+    drawer.style.transform = open ? 'translateX(-100%)' : 'translateX(0%)';
+    overlay.style.opacity = open ? '0' : '1';
+    setTimeout(function(){
+      if(open){ drawer.style.display='none'; overlay.style.display='none'; }
+    }, open ? 280 : 0);
+  });
+}
+function closeAndGo(fn){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(drawer){ drawer.style.transform='translateX(-100%)'; setTimeout(function(){ drawer.style.display='none'; overlay.style.display='none'; },280); }
+  if(typeof fn === 'function') setTimeout(fn, 100);
+}
+</script>
+</body></html>`;
   await html2pdf().set({
     margin: [0,0,0,0],
     filename: `${(T.orgId||'org').toUpperCase()}_Compliance_${new Date().toISOString().slice(0,10)}.pdf`,
@@ -7573,7 +7642,7 @@ function openSetDueDateModal(uid, name, currentDue) {
       <div style="display:flex;gap:.75rem;justify-content:flex-end">
         ${existing ? `<button onclick="clearDueDate('${uid}')" style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca;padding:.55rem 1rem;border-radius:.65rem;font-weight:800;font-size:.85rem;cursor:pointer;margin-right:auto">Remove Deadline</button>` : ''}
         <button onclick="document.getElementById('due-date-modal')?.remove()" style="background:#f1f5f9;color:#64748b;border:none;padding:.6rem 1.25rem;border-radius:.65rem;font-weight:700;font-size:.875rem;cursor:pointer">Cancel</button>
-        <button onclick="saveDueDate('${uid}')" style="background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;padding:.6rem 1.5rem;border-radius:.65rem;font-weight:900;font-size:.875rem;cursor:pointer">Save</button>
+        <button onclick="saveDueDate('${uid}')" style="background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;padding:.6rem 1.5rem;border-radius:.65rem;font-weight:900;font-size:.875rem;cursor:pointer">Save</button>
       </div>
     </div>`;
   document.body.appendChild(modal);
@@ -7646,7 +7715,7 @@ function openBulkDueDateModal() {
 
       <div style="display:flex;gap:.75rem;justify-content:flex-end">
         <button onclick="document.getElementById('bulk-due-modal')?.remove()" style="background:#f1f5f9;color:#64748b;border:none;padding:.6rem 1.25rem;border-radius:.65rem;font-weight:700;font-size:.875rem;cursor:pointer">Cancel</button>
-        <button onclick="applyBulkAssignment()" style="background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;padding:.6rem 1.5rem;border-radius:.65rem;font-weight:900;font-size:.875rem;cursor:pointer">✅ Apply to Staff</button>
+        <button onclick="applyBulkAssignment()" style="background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;padding:.6rem 1.5rem;border-radius:.65rem;font-weight:900;font-size:.875rem;cursor:pointer">✅ Apply to Staff</button>
       </div>
     </div>`;
   document.body.appendChild(modal);
@@ -7708,7 +7777,7 @@ async function loadCompletion() {
         : (isDone ? 'Date not recorded' : '');
       const score = u.finalQuizScore != null ? u.finalQuizScore : null;
       return `<div style="display:flex;align-items:center;gap:.875rem;padding:.75rem 1rem;border-bottom:1px solid #f1f5f9">
-        <div style="width:36px;height:36px;border-radius:50%;background:${isDone?'linear-gradient(135deg,#16a34a,#22c55e)':'linear-gradient(135deg,#2563eb,#7c3aed)'};color:white;font-weight:900;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">${initials}</div>
+        <div style="width:36px;height:36px;border-radius:50%;background:${isDone?'linear-gradient(135deg,#16a34a,#22c55e)':'linear-gradient(135deg,#B8892A,#C9A84C)'};color:white;font-weight:900;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">${initials}</div>
         <div style="flex:1;min-width:0">
           <p style="font-weight:800;font-size:.85rem;color:#0f172a;margin:0">${name}</p>
           <p style="font-size:.72rem;color:#64748b;margin:.1rem 0 0">${u.department||u.jobTitle||u.email||''}</p>
@@ -7721,7 +7790,7 @@ async function loadCompletion() {
              <span style="background:#dcfce7;color:#15803d;padding:.25rem .65rem;border-radius:999px;font-size:.72rem;font-weight:800;flex-shrink:0">? Done</span>`
           : `<div style="width:90px;flex-shrink:0">
                <div style="background:#e2e8f0;border-radius:999px;height:6px;margin-bottom:.2rem">
-                 <div style="background:#2563eb;width:${pct}%;height:6px;border-radius:999px"></div>
+                 <div style="background:linear-gradient(90deg,#B8892A,#C9A84C);width:${pct}%;height:6px;border-radius:999px"></div>
                </div>
                <p style="font-size:.7rem;color:#94a3b8;font-weight:700;text-align:right">${pct}% — Slide ${u.currentSlide||0}</p>
              </div>`
@@ -7735,7 +7804,7 @@ async function loadCompletion() {
           <p style="font-weight:900;font-size:.95rem;color:#0f172a;margin:0">Training Completion Status</p>
           <p style="font-size:.72rem;color:#64748b;margin:.2rem 0 0">${done.length} completed — ${pending.length} in progress or not started</p>
         </div>
-        <button onclick="exportUsersCSV()" style="background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;padding:.55rem 1rem;border-radius:.75rem;font-weight:800;font-size:.8rem;cursor:pointer">? Export CSV</button>
+        <button onclick="exportUsersCSV()" style="background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;padding:.55rem 1rem;border-radius:.75rem;font-weight:800;font-size:.8rem;cursor:pointer">? Export CSV</button>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
         <div style="border:1px solid #e2e8f0;border-radius:1rem;overflow:hidden">
@@ -7919,7 +7988,7 @@ async function loadSettings() {
         </div>
         <div style="margin-top:1rem;display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem">
           <div style="font-size:.78rem;font-weight:800;color:#15803d;background:#ecfdf3;border:1px solid #bbf7d0;border-radius:.75rem;padding:.5rem">A Bonus: <input id="setting-bonus-a" type="number" value="${(labSettings.labScoreBonus||{}).A||50}" style="width:80px;text-align:center;font-weight:800"></div>
-          <div style="font-size:.78rem;font-weight:800;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:.75rem;padding:.5rem">B Bonus: <input id="setting-bonus-b" type="number" value="${(labSettings.labScoreBonus||{}).B||30}" style="width:80px;text-align:center;font-weight:800"></div>
+          <div style="font-size:.78rem;font-weight:800;color:#C9A84C;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:.75rem;padding:.5rem">B Bonus: <input id="setting-bonus-b" type="number" value="${(labSettings.labScoreBonus||{}).B||30}" style="width:80px;text-align:center;font-weight:800"></div>
           <div style="font-size:.78rem;font-weight:800;color:#f59e0b;background:#fff7ed;border:1px solid #fed7aa;border-radius:.75rem;padding:.5rem">C Bonus: <input id="setting-bonus-c" type="number" value="${(labSettings.labScoreBonus||{}).C||15}" style="width:80px;text-align:center;font-weight:800"></div>
           <div style="font-size:.78rem;font-weight:800;color:#dc2626;background:#fef2f2;border:1px solid #fecaca;border-radius:.75rem;padding:.5rem">D Bonus: <input id="setting-bonus-d" type="number" value="${(labSettings.labScoreBonus||{}).D||5}" style="width:80px;text-align:center;font-weight:800"></div>
         </div>
@@ -8789,7 +8858,31 @@ function exportDebriefNote() {
   const dateStr = new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   const win = window.open('','_blank');
   if(!win) { alert('Pop-up blocked. Please allow pop-ups for this site.'); return; }
-  win.document.write(`<!DOCTYPE html><html><head><title>Clinical Supervision Note</title><style>body{font-family:Georgia,serif;max-width:680px;margin:2rem auto;padding:1.5rem;color:#0f172a;line-height:1.7}h1{font-size:1.3rem;border-bottom:2px solid #2563eb;padding-bottom:.5rem;margin-bottom:1rem}h2{font-size:1rem;color:#1e3a8a;margin-top:1.5rem}p{margin:.5rem 0}.footer{margin-top:2rem;font-size:.8rem;color:#64748b;border-top:1px solid #e2e8f0;padding-top:.75rem}@media print{button{display:none}}</style></head><body><h1>${org} — Clinical Supervision Note</h1><p><strong>Date:</strong> ${dateStr}</p><p><strong>Staff Member:</strong> ${name}</p><p><strong>Department:</strong> ${ud.department||'—'}</p><h2>Incident Description</h2><p>${incident.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</p><h2>Clinical Mentor Feedback (Prof. Vance)</h2><p>${feedback.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</p><div class="footer">Generated by ${org} Training Platform &middot; ${new Date().toISOString()}</div><br><button onclick="window.print()">🖨️ Print / Save as PDF</button></body></html>`);
+  win.document.write(`<!DOCTYPE html><html><head><title>Clinical Supervision Note</title><style>body{font-family:Georgia,serif;max-width:680px;margin:2rem auto;padding:1.5rem;color:#0f172a;line-height:1.7}h1{font-size:1.3rem;border-bottom:2px solid #2563eb;padding-bottom:.5rem;margin-bottom:1rem}h2{font-size:1rem;color:#1e3a8a;margin-top:1.5rem}p{margin:.5rem 0}.footer{margin-top:2rem;font-size:.8rem;color:#64748b;border-top:1px solid #e2e8f0;padding-top:.75rem}@media print{button{display:none}}</style></head><body><h1>${org} — Clinical Supervision Note</h1><p><strong>Date:</strong> ${dateStr}</p><p><strong>Staff Member:</strong> ${name}</p><p><strong>Department:</strong> ${ud.department||'—'}</p><h2>Incident Description</h2><p>${incident.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</p><h2>Clinical Mentor Feedback (Prof. Vance)</h2><p>${feedback.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</p><div class="footer">Generated by ${org} Training Platform &middot; ${new Date().toISOString()}</div><br><button onclick="window.print()">🖨️ Print / Save as PDF</button>
+<script>
+function toggleMobileMenu(){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(!drawer) return;
+  var open = drawer.style.transform === 'translateX(0px)' || drawer.style.transform === 'translateX(0%)';
+  drawer.style.display = 'block';
+  overlay.style.display = 'block';
+  requestAnimationFrame(function(){
+    drawer.style.transform = open ? 'translateX(-100%)' : 'translateX(0%)';
+    overlay.style.opacity = open ? '0' : '1';
+    setTimeout(function(){
+      if(open){ drawer.style.display='none'; overlay.style.display='none'; }
+    }, open ? 280 : 0);
+  });
+}
+function closeAndGo(fn){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(drawer){ drawer.style.transform='translateX(-100%)'; setTimeout(function(){ drawer.style.display='none'; overlay.style.display='none'; },280); }
+  if(typeof fn === 'function') setTimeout(fn, 100);
+}
+</script>
+</body></html>`);
   win.document.close();
 }
 
@@ -9346,7 +9439,31 @@ Key techniques to watch for:
 function printScript() {
   const content = document.getElementById('slide-script-output').textContent;
   const w = window.open('','_blank');
-  w.document.write(`<html><head><title>NyxCodex® Training Script</title><style>body{font-family:'Courier New',monospace;font-size:11px;line-height:1.6;padding:2rem;white-space:pre-wrap}</style></head><body>${content}</body></html>`);
+  w.document.write(`<html><head><title>NyxCodex® Training Script</title><style>body{font-family:'Courier New',monospace;font-size:11px;line-height:1.6;padding:2rem;white-space:pre-wrap}</style></head><body>${content}
+<script>
+function toggleMobileMenu(){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(!drawer) return;
+  var open = drawer.style.transform === 'translateX(0px)' || drawer.style.transform === 'translateX(0%)';
+  drawer.style.display = 'block';
+  overlay.style.display = 'block';
+  requestAnimationFrame(function(){
+    drawer.style.transform = open ? 'translateX(-100%)' : 'translateX(0%)';
+    overlay.style.opacity = open ? '0' : '1';
+    setTimeout(function(){
+      if(open){ drawer.style.display='none'; overlay.style.display='none'; }
+    }, open ? 280 : 0);
+  });
+}
+function closeAndGo(fn){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(drawer){ drawer.style.transform='translateX(-100%)'; setTimeout(function(){ drawer.style.display='none'; overlay.style.display='none'; },280); }
+  if(typeof fn === 'function') setTimeout(fn, 100);
+}
+</script>
+</body></html>`);
   w.document.close(); w.print();
 }
 
@@ -9620,7 +9737,31 @@ function downloadCard(type) {
     }).save().then(()=>d.remove());
   } else {
     const w=window.open('','_blank');
-    w.document.write(`<html><head><style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');body{margin:0;padding:0}</style></head><body>${html}</body></html>`);
+    w.document.write(`<html><head><style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');body{margin:0;padding:0}</style></head><body>${html}
+<script>
+function toggleMobileMenu(){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(!drawer) return;
+  var open = drawer.style.transform === 'translateX(0px)' || drawer.style.transform === 'translateX(0%)';
+  drawer.style.display = 'block';
+  overlay.style.display = 'block';
+  requestAnimationFrame(function(){
+    drawer.style.transform = open ? 'translateX(-100%)' : 'translateX(0%)';
+    overlay.style.opacity = open ? '0' : '1';
+    setTimeout(function(){
+      if(open){ drawer.style.display='none'; overlay.style.display='none'; }
+    }, open ? 280 : 0);
+  });
+}
+function closeAndGo(fn){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(drawer){ drawer.style.transform='translateX(-100%)'; setTimeout(function(){ drawer.style.display='none'; overlay.style.display='none'; },280); }
+  if(typeof fn === 'function') setTimeout(fn, 100);
+}
+</script>
+</body></html>`);
     w.document.close(); w.print(); d.remove();
   }
 }
@@ -9834,7 +9975,7 @@ async function openUserManageModal(uid) {
     const daysAgo = u.lastLogin ? Math.round((Date.now() - u.lastLogin) / 864e5) : null;
     const loginStr = daysAgo === 0 ? 'Today' : daysAgo === 1 ? 'Yesterday' : daysAgo != null ? `${daysAgo}d ago` : '—';
     document.getElementById('umm-stats').innerHTML = [
-      { label: 'XP', val: (u.xp || 0).toLocaleString(), color: '#7c3aed' },
+      { label: 'XP', val: (u.xp || 0).toLocaleString(), color: '#C9A84C' },
       { label: 'Status', val: done ? '✅ Done' : `Slide ${u.currentSlide || 0}/${totalSl}`, color: done ? '#15803d' : '#d97706' },
       { label: 'Last Login', val: loginStr, color: '#475569' },
     ].map(s => `<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem;padding:.6rem;text-align:center"><div style="font-size:1rem;font-weight:900;color:${s.color}">${s.val}</div><div style="font-size:.65rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em">${s.label}</div></div>`).join('');
@@ -9927,7 +10068,7 @@ async function adminSendNudge() {
 // ===========================================================================
 async function sendDueDateReminders() {
   const resultEl = document.getElementById('reminder-result');
-  if (resultEl) resultEl.innerHTML = '<p style="font-size:.8rem;color:#2563eb;font-weight:700">⏳ Sending reminders…</p>';
+  if (resultEl) resultEl.innerHTML = '<p style="font-size:.8rem;color:#C9A84C;font-weight:700">⏳ Sending reminders…</p>';
   try {
     const settings = await window._getSettings();
     const reminderDays = parseInt(document.getElementById('reminder-days-input')?.value || settings?.reminderDays || 3);
@@ -9987,8 +10128,8 @@ async function openOnboardingWizard() {
     document.getElementById('wiz-address').value   = settings?.address      || T?.address         || '';
     document.getElementById('wiz-logo').value      = settings?.logoUrl      || T?.logoUrl         || '';
     document.getElementById('wiz-cprimary').value  = settings?.colorPrimary || '#1e3a8a';
-    document.getElementById('wiz-caccent').value   = settings?.colorAccent  || '#7c3aed';
-    document.getElementById('wiz-cbutton').value   = settings?.colorButton  || '#2563eb';
+    document.getElementById('wiz-caccent').value   = settings?.colorAccent  || '#C9A84C';
+    document.getElementById('wiz-cbutton').value   = settings?.colorButton  || '#B8892A';
     document.getElementById('wiz-cbg').value       = settings?.colorBg      || '#0f172a';
     document.getElementById('wiz-certtype').value  = settings?.certType          || T?.certType          || '';
     document.getElementById('wiz-certhours').value = settings?.certContactHours  || T?.certContactHours  || '';
@@ -10064,7 +10205,7 @@ async function subscribeToPush() {
     const resultEl = document.getElementById('push-campaign-result');
     if(!msg) { alert('Enter a message first.'); return; }
     if(!confirm(`Send push notification to all subscribed staff?\n\n"${msg}"`)) return;
-    if(resultEl) resultEl.innerHTML = '<p style="font-size:.8rem;color:#2563eb;font-weight:700">⏳ Sending…</p>';
+    if(resultEl) resultEl.innerHTML = '<p style="font-size:.8rem;color:#C9A84C;font-weight:700">⏳ Sending…</p>';
     try {
       const res = await fetch('/api/push', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ action:'broadcast', message: msg, adminUid: window._currentUser?.uid }) });
       const data = await res.json();
@@ -10261,10 +10402,10 @@ function shareLeaderboard() {
       <td style="padding:.75rem 1rem;font-weight:900;font-size:1.05rem;color:#0f172a;white-space:nowrap">${medals[i] || i + 1}</td>
       <td style="padding:.75rem 1rem;font-weight:700;color:#0f172a">${nm}</td>
       <td style="padding:.75rem 1rem;color:#64748b;font-size:.82rem">${u.department || '—'}</td>
-      <td style="padding:.75rem 1rem;text-align:center;font-weight:900;color:#2563eb">${(u.xp || 0).toLocaleString()}</td>
+      <td style="padding:.75rem 1rem;text-align:center;font-weight:900;color:#C9A84C">${(u.xp || 0).toLocaleString()}</td>
       <td style="padding:.75rem 1rem;text-align:center">
         <div style="background:#e2e8f0;border-radius:999px;height:8px;width:80px;margin:auto">
-          <div style="background:#2563eb;height:8px;border-radius:999px;width:${pct}%"></div>
+          <div style="background:linear-gradient(90deg,#B8892A,#C9A84C);height:8px;border-radius:999px;width:${pct}%"></div>
         </div>
       </td>
       <td style="padding:.75rem 1rem;text-align:center">
@@ -10300,6 +10441,30 @@ thead tr{background:#f1f5f9}th{padding:.875rem 1rem;text-align:left;font-weight:
   </table>
   <div class="footer">NyxCodex™ &mdash; De-escalation Training &mdash; <a href="https://nyxcollectivellc.com" target="_blank" rel="noopener" style="color:inherit">Nyx Collective LLC</a> &mdash; Confidential. For internal use only.</div>
 </div>
+
+<script>
+function toggleMobileMenu(){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(!drawer) return;
+  var open = drawer.style.transform === 'translateX(0px)' || drawer.style.transform === 'translateX(0%)';
+  drawer.style.display = 'block';
+  overlay.style.display = 'block';
+  requestAnimationFrame(function(){
+    drawer.style.transform = open ? 'translateX(-100%)' : 'translateX(0%)';
+    overlay.style.opacity = open ? '0' : '1';
+    setTimeout(function(){
+      if(open){ drawer.style.display='none'; overlay.style.display='none'; }
+    }, open ? 280 : 0);
+  });
+}
+function closeAndGo(fn){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(drawer){ drawer.style.transform='translateX(-100%)'; setTimeout(function(){ drawer.style.display='none'; overlay.style.display='none'; },280); }
+  if(typeof fn === 'function') setTimeout(fn, 100);
+}
+</script>
 </body></html>`;
   const blob = new Blob([html], { type: 'text/html' });
   const url  = URL.createObjectURL(blob);
@@ -10459,6 +10624,30 @@ function toggleSidebar(){
 (function(){
   try{if(localStorage.getItem('sbCollapsed')==='1')document.body.classList.add('sb-collapsed');}catch(e){}
 })();
+</script>
+
+<script>
+function toggleMobileMenu(){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(!drawer) return;
+  var open = drawer.style.transform === 'translateX(0px)' || drawer.style.transform === 'translateX(0%)';
+  drawer.style.display = 'block';
+  overlay.style.display = 'block';
+  requestAnimationFrame(function(){
+    drawer.style.transform = open ? 'translateX(-100%)' : 'translateX(0%)';
+    overlay.style.opacity = open ? '0' : '1';
+    setTimeout(function(){
+      if(open){ drawer.style.display='none'; overlay.style.display='none'; }
+    }, open ? 280 : 0);
+  });
+}
+function closeAndGo(fn){
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  if(drawer){ drawer.style.transform='translateX(-100%)'; setTimeout(function(){ drawer.style.display='none'; overlay.style.display='none'; },280); }
+  if(typeof fn === 'function') setTimeout(fn, 100);
+}
 </script>
 </body>
 </html>
