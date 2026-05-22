@@ -258,3 +258,46 @@ For issues or enhancement requests:
 **Version**: 2.0  
 **Last Updated**: February 2026  
 **Created for**: Destiny Springs Healthcare Psychiatric Acute Care
+
+---
+
+## Firebase Realtime Database Schema
+
+### Subscription Record
+Path: `orgs/{orgId}/subscription`
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `status` | string | `active` \| `inactive` \| `canceled` \| `past_due` |
+| `plan` | string | `small` \| `medium` \| `enterprise` |
+| `seatsMax` | number | Max users: 25 (small), 100 (medium), -1 unlimited (enterprise) |
+| `stripeCustomerId` | string | Stripe Customer ID (e.g. `cus_xxx`) |
+| `stripeSubscriptionId` | string | Stripe Subscription ID (e.g. `sub_xxx`) |
+| `currentPeriodEnd` | number | Unix timestamp when current billing period ends |
+| `orgName` | string | Human-readable org name |
+| `adminEmail` | string | Primary admin email |
+| `activatedAt` | number | Unix timestamp when subscription was activated |
+
+### User Record
+Path: `orgs/{orgId}/users/{uid}`
+
+All user training data scoped under their org. The `_ref()` helper in trainer_pro.html
+automatically prefixes all reads/writes with `orgs/{orgId}/`.
+
+### Seat Enforcement
+- On signup, user count at `orgs/{orgId}/users/` is compared to `seatsMax`
+- Enterprise orgs (`seatsMax === -1`) have no limit
+- New signups over the limit are rejected with an error message
+
+### Subscription Check Flow
+1. User logs in via Firebase Auth
+2. `checkSubscriptionThenLoad()` reads `orgs/{orgId}/subscription`
+3. If `status !== 'active'` or `currentPeriodEnd` is past: paywall screen shown
+4. Exception: `orgId === 'destiny-springs'` is always allowed (owner org)
+5. Network errors fail open (users not locked out on connectivity issues)
+
+### Stripe Webhook Events
+- `checkout.session.completed` -> creates/activates subscription record
+- `customer.subscription.updated` -> updates plan/status
+- `customer.subscription.deleted` -> sets status to `canceled`
+- `invoice.payment_failed` -> sets status to `past_due`

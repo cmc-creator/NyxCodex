@@ -52,6 +52,7 @@ const db = getDatabase(app);
 // Multi-tenant path helper — all Firebase data scoped under orgs/{orgId}/ for client isolation
 const _ref = path => ref(db, `orgs/${window.TENANT?.orgId || 'destiny-springs'}/${path}`);
 window._auth = auth; window._db = db; window._ref = ref;
+window._ref_raw = path => ref(db, path);
 window._set = set; window._get = get; window._update = update;
 window._onValue = onValue; window._remove = remove;
 window._updateProfile = updateProfile;
@@ -80,9 +81,7 @@ onAuthStateChanged(auth, user => {
   firstAuthEvent = false;
   if (user) {
     document.getElementById('auth-screen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    loadUserData(user);
-    applyTheme(); // sync theme toggle button & nav inline styles
+    checkSubscriptionThenLoad(user);
   } else {
     document.getElementById('auth-screen').style.display = 'flex';
     document.getElementById('app').style.display = 'none';
@@ -91,6 +90,40 @@ onAuthStateChanged(auth, user => {
     if(hub) hub.style.display = 'none';
   }
 });
+async function checkSubscriptionThenLoad(user) {
+  const orgId = (window.TENANT && window.TENANT.orgId) ? window.TENANT.orgId : 'destiny-springs';
+  // Destiny Springs is the owner/dev org - always active
+  let subActive = (orgId === 'destiny-springs');
+
+  if (!subActive && window._ref_raw && window._get) {
+    try {
+      const snap = await window._get(window._ref_raw('orgs/' + orgId + '/subscription'));
+      if (snap.exists()) {
+        const sub = snap.val();
+        const now = Math.floor(Date.now() / 1000);
+        subActive = (sub.status === 'active') &&
+                    (!sub.currentPeriodEnd || sub.currentPeriodEnd > now);
+        window._orgSubscription = sub;
+      }
+    } catch(e) {
+      console.warn('Subscription check failed, allowing access:', e);
+      subActive = true; // Fail open - never lock users out on network errors
+    }
+  }
+
+  if (!subActive) {
+    const paywall = document.getElementById('paywall-screen');
+    if (paywall) paywall.style.display = 'flex';
+    return;
+  }
+
+  const paywall = document.getElementById('paywall-screen');
+  if (paywall) paywall.style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  loadUserData(user);
+  applyTheme();
+}
+
 async function loadUserData(user) {
   try {
     const fallbackEmail = user.email || `${user.uid}@guest.local`; // supports anonymous users
@@ -2482,7 +2515,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
   <div class="modal-card admin">
     <div class="modal-card-header admin">
       <div><h2 class="modal-header-title">NyxCodex® Command Center</h2><p id="admin-role-badge" class="modal-header-sub">NyxCodex™ — Training Management</p></div>
-      <button onclick="closeAdmin()" class="modal-close-btn admin">✕</button>
+      <button onclick="openBillingPortal()" title="Manage Subscription" style="background:transparent;border:1px solid rgba(201,168,76,.4);color:#C9A84C;font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .9rem;border-radius:1px;cursor:pointer;margin-right:.6rem;">Manage Billing</button><button onclick="closeAdmin()" class="modal-close-btn admin">✕</button>
     </div>
     <div class="admin-tab-bar">
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-blue-600 text-blue-600 whitespace-nowrap" onclick="adminTab('leaderboard',this)">Leaderboard</button>
@@ -3054,6 +3087,35 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 <!-- Avatar is inside #app so it only shows after login -->
 
 <!-- ----------------------------------------------- NAV BAR -- -->
+<!-- PAYWALL SCREEN -->
+<div id="paywall-screen" style="display:none;position:fixed;inset:0;z-index:500;background:#080806;align-items:center;justify-content:center;flex-direction:column;font-family:'Inter',sans-serif;">
+  <div style="max-width:520px;width:92%;text-align:center;padding:3rem 2rem;border:1px solid rgba(201,168,76,.3);background:linear-gradient(160deg,#151210,#0d0b09);">
+    <img src="nyxcodex-logo.png" alt="NyxCodex" style="height:56px;margin-bottom:2rem;filter:drop-shadow(0 4px 16px rgba(201,168,76,.2));">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:#f5f0e8;margin:0 0 .5rem;">Subscription Required</h2>
+    <p style="font-size:.95rem;color:#9a8f7a;margin:0 0 2rem;line-height:1.6;">Your organization does not have an active NyxCodex&#8482; subscription.<br>Choose a plan to restore access for your team.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;">
+      <div style="border:1px solid rgba(201,168,76,.2);padding:1.2rem .8rem;">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;color:#C9A84C;font-size:.9rem;margin-bottom:.4rem;">Foundations</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;color:#f5f0e8;margin-bottom:.2rem;">$199<span style="font-size:.75rem;color:#9a8f7a;">/mo</span></div>
+        <div style="font-size:.7rem;color:#9a8f7a;">Up to 25 staff</div>
+      </div>
+      <div style="border:1px solid #C9A84C;padding:1.2rem .8rem;background:rgba(201,168,76,.05);">
+        <div style="font-size:.6rem;color:#C9A84C;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.2rem;">Popular</div>
+        <div style="font-family:'Playfair Display',serif;font-style:italic;color:#C9A84C;font-size:.9rem;margin-bottom:.4rem;">Professional</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;color:#f5f0e8;margin-bottom:.2rem;">$499<span style="font-size:.75rem;color:#9a8f7a;">/mo</span></div>
+        <div style="font-size:.7rem;color:#9a8f7a;">Up to 100 staff</div>
+      </div>
+      <div style="border:1px solid rgba(201,168,76,.2);padding:1.2rem .8rem;">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;color:#C9A84C;font-size:.9rem;margin-bottom:.4rem;">Enterprise</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;color:#f5f0e8;margin-bottom:.2rem;">$999<span style="font-size:.75rem;color:#9a8f7a;">/mo</span></div>
+        <div style="font-size:.7rem;color:#9a8f7a;">Unlimited staff</div>
+      </div>
+    </div>
+    <a href="/#pricing" style="display:inline-block;padding:.85rem 2.5rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#080806;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:1px;">View Plans &amp; Subscribe</a>
+    <div style="margin-top:1.5rem;"><button onclick="window._signOut&&window._signOut()" style="background:none;border:none;color:#6a6258;font-size:.8rem;cursor:pointer;text-decoration:underline;">Sign out</button></div>
+  </div>
+</div>
+
 <div id="app" style="display:none">
 
 <!-- Loading overlay: covers the app while Firebase loads user data -->
@@ -5080,6 +5142,19 @@ async function doSignUp() {
   }
   if(btn){btn.disabled=true;btn.textContent='Creating account...';btn.style.opacity='0.7';}
   try {
+    // Seat limit enforcement
+    if (window._orgSubscription && window._orgSubscription.seatsMax > 0) {
+      try {
+        const _usersSnap = await window._get(window._ref('users'));
+        const _userCount = _usersSnap.exists() ? Object.keys(_usersSnap.val()).length : 0;
+        if (_userCount >= window._orgSubscription.seatsMax) {
+          err.textContent = 'Your organization has reached its seat limit (' + window._orgSubscription.seatsMax + ' users). Please contact your administrator or upgrade at nyxcodex.com/#pricing';
+          err.style.display='block';
+          if(btn){btn.disabled=false;btn.textContent='Create Account →';}
+          return;
+        }
+      } catch(e){ console.warn('Seat limit check failed:', e); }
+    }
     await window._signUp(fname, lname, email, pass, phone, title, dept, empid);
     if(btn){btn.disabled=false;btn.textContent='Account created! Redirecting...';btn.style.opacity='1';}
   } catch(e){
@@ -6965,6 +7040,29 @@ async function verifyTotpAdmin(secret) {
   openAdminDashboard();
 }
 function closePinModal() { document.getElementById('admin-pin-modal').style.display='none'; }
+async function openBillingPortal() {
+  const sub = window._orgSubscription;
+  if (!sub || !sub.stripeCustomerId) {
+    alert('No billing information found. Contact support at support@nyxcodex.com');
+    return;
+  }
+  try {
+    const res = await fetch('/api/stripe-portal', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stripeCustomerId: sub.stripeCustomerId, returnUrl: window.location.href })
+    });
+    const data = await res.json();
+    if (data.portalUrl) {
+      window.open(data.portalUrl, '_blank');
+    } else {
+      alert('Could not open billing portal. Please try again or contact support.');
+    }
+  } catch(e) {
+    alert('Could not open billing portal: ' + e.message);
+  }
+}
+
 function closeAdmin()    { document.getElementById('admin-modal').style.display='none'; currentAdminRole=null; }
 
 function adminTab(name, el) {

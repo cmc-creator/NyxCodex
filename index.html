@@ -171,7 +171,87 @@
       object-fit:contain;
       margin-bottom:2rem;
       filter:drop-shadow(0 8px 32px rgba(201,168,76,.18));
-    }  </style>
+    }
+    /* Pricing Section */
+    .pricing-section{padding:5rem 2rem;max-width:1100px;margin:0 auto;text-align:center;}
+    .pricing-eyebrow{font-family:'Playfair Display',serif;font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:#C9A84C;margin-bottom:1rem;}
+    .pricing-heading{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#f5f0e8;margin:0 0 1rem;}
+    .pricing-subhead{font-family:'Inter',sans-serif;font-size:1rem;color:#9a8f7a;margin:0 0 3.5rem;letter-spacing:.02em;}
+    .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;align-items:start;}
+    .pricing-card{background:linear-gradient(160deg,#151210 0%,#0d0b09 100%);border:1px solid rgba(201,168,76,.2);border-radius:2px;padding:2.5rem 2rem;position:relative;transition:border-color .25s,transform .25s;}
+    .pricing-card:hover{border-color:rgba(201,168,76,.5);transform:translateY(-4px);}
+    .pricing-card--featured{border-color:#C9A84C;background:linear-gradient(160deg,#1a1508 0%,#100e06 100%);}
+    .pricing-card--featured:hover{border-color:#e5c97a;}
+    .pricing-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#B8892A,#C9A84C);color:#080806;font-family:'Inter',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.3rem 1.1rem;border-radius:1px;white-space:nowrap;}
+    .pricing-tier{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:#C9A84C;margin-bottom:1.2rem;letter-spacing:.04em;}
+    .pricing-price{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:700;color:#f5f0e8;line-height:1;margin-bottom:.5rem;}
+    .pricing-dollar{font-size:1.8rem;vertical-align:top;margin-top:.4rem;display:inline-block;color:#C9A84C;}
+    .pricing-period{font-family:'Inter',sans-serif;font-size:1rem;color:#9a8f7a;font-weight:400;}
+    .pricing-seats{font-family:'Inter',sans-serif;font-size:.85rem;color:#9a8f7a;letter-spacing:.05em;margin-bottom:2rem;border-bottom:1px solid rgba(201,168,76,.1);padding-bottom:1.2rem;}
+    .pricing-features{list-style:none;padding:0;margin:0 0 2rem;text-align:left;}
+    .pricing-features li{font-family:'Inter',sans-serif;font-size:.9rem;color:#c8c0b0;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.04);}
+    .pricing-features li::before{content:'\2014';color:#C9A84C;margin-right:.6rem;}
+    .pricing-cta{width:100%;padding:.85rem 1.5rem;background:transparent;border:1px solid rgba(201,168,76,.5);color:#C9A84C;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:1px;cursor:pointer;transition:all .2s;}
+    .pricing-cta:hover{background:rgba(201,168,76,.1);border-color:#C9A84C;}
+    .pricing-cta--featured{background:linear-gradient(135deg,#B8892A,#C9A84C);border-color:transparent;color:#080806;}
+    .pricing-cta--featured:hover{filter:brightness(1.1);}
+    .pricing-note{font-family:'Inter',sans-serif;font-size:.8rem;color:#6a6258;margin-top:2.5rem;letter-spacing:.04em;}
+    .checkout-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(4px);}
+    .checkout-modal-inner{background:linear-gradient(160deg,#151210,#0d0b09);border:1px solid rgba(201,168,76,.3);border-radius:2px;padding:2.5rem;width:min(480px,92vw);position:relative;}
+    .checkout-modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:#9a8f7a;font-size:1.5rem;cursor:pointer;line-height:1;padding:.2rem .5rem;}
+    .checkout-modal-close:hover{color:#C9A84C;}
+    .checkout-modal-inner h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:#f5f0e8;margin:0 0 .4rem;}
+    .checkout-modal-plan{font-family:'Inter',sans-serif;font-size:.85rem;color:#C9A84C;margin:0 0 1.8rem;letter-spacing:.05em;}
+    #checkout-form label{display:block;font-family:'Inter',sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#9a8f7a;margin-bottom:.4rem;}
+    #checkout-form input{width:100%;box-sizing:border-box;background:#080806;border:1px solid rgba(201,168,76,.25);color:#f5f0e8;font-family:'Inter',sans-serif;font-size:.95rem;padding:.75rem 1rem;border-radius:1px;margin-bottom:1.2rem;outline:none;}
+    #checkout-form input:focus{border-color:#C9A84C;}
+    .checkout-submit{width:100%;padding:.9rem;background:linear-gradient(135deg,#B8892A,#C9A84C);border:none;color:#080806;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:1px;cursor:pointer;transition:filter .2s;}
+    .checkout-submit:hover{filter:brightness(1.1);}
+    .checkout-submit:disabled{opacity:.6;cursor:not-allowed;}
+    .checkout-error{font-family:'Inter',sans-serif;font-size:.85rem;color:#dc2626;margin-top:.8rem;text-align:center;}
+    @media(max-width:600px){.pricing-grid{grid-template-columns:1fr;}.pricing-section{padding:3rem 1rem;}}
+
+
+    /* Pricing Section */
+    .pricing-section{padding:5rem 2rem;max-width:1100px;margin:0 auto;text-align:center;}
+    .pricing-eyebrow{font-family:'Playfair Display',serif;font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:#C9A84C;margin-bottom:1rem;}
+    .pricing-heading{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#f5f0e8;margin:0 0 1rem;}
+    .pricing-subhead{font-family:'Inter',sans-serif;font-size:1rem;color:#9a8f7a;margin:0 0 3.5rem;letter-spacing:.02em;}
+    .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;align-items:start;}
+    .pricing-card{background:linear-gradient(160deg,#151210 0%,#0d0b09 100%);border:1px solid rgba(201,168,76,.2);border-radius:2px;padding:2.5rem 2rem;position:relative;transition:border-color .25s,transform .25s;}
+    .pricing-card:hover{border-color:rgba(201,168,76,.5);transform:translateY(-4px);}
+    .pricing-card--featured{border-color:#C9A84C;background:linear-gradient(160deg,#1a1508 0%,#100e06 100%);}
+    .pricing-card--featured:hover{border-color:#e5c97a;}
+    .pricing-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#B8892A,#C9A84C);color:#080806;font-family:'Inter',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.3rem 1.1rem;border-radius:1px;white-space:nowrap;}
+    .pricing-tier{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:#C9A84C;margin-bottom:1.2rem;letter-spacing:.04em;}
+    .pricing-price{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:700;color:#f5f0e8;line-height:1;margin-bottom:.5rem;}
+    .pricing-dollar{font-size:1.8rem;vertical-align:top;margin-top:.4rem;display:inline-block;color:#C9A84C;}
+    .pricing-period{font-family:'Inter',sans-serif;font-size:1rem;color:#9a8f7a;font-weight:400;}
+    .pricing-seats{font-family:'Inter',sans-serif;font-size:.85rem;color:#9a8f7a;letter-spacing:.05em;margin-bottom:2rem;border-bottom:1px solid rgba(201,168,76,.1);padding-bottom:1.2rem;}
+    .pricing-features{list-style:none;padding:0;margin:0 0 2rem;text-align:left;}
+    .pricing-features li{font-family:'Inter',sans-serif;font-size:.9rem;color:#c8c0b0;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.04);}
+    .pricing-features li::before{content:'\2014';color:#C9A84C;margin-right:.6rem;}
+    .pricing-cta{width:100%;padding:.85rem 1.5rem;background:transparent;border:1px solid rgba(201,168,76,.5);color:#C9A84C;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:1px;cursor:pointer;transition:all .2s;}
+    .pricing-cta:hover{background:rgba(201,168,76,.1);border-color:#C9A84C;}
+    .pricing-cta--featured{background:linear-gradient(135deg,#B8892A,#C9A84C);border-color:transparent;color:#080806;}
+    .pricing-cta--featured:hover{filter:brightness(1.1);}
+    .pricing-note{font-family:'Inter',sans-serif;font-size:.8rem;color:#6a6258;margin-top:2.5rem;letter-spacing:.04em;}
+    .checkout-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(4px);}
+    .checkout-modal-inner{background:linear-gradient(160deg,#151210,#0d0b09);border:1px solid rgba(201,168,76,.3);border-radius:2px;padding:2.5rem;width:min(480px,92vw);position:relative;}
+    .checkout-modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:#9a8f7a;font-size:1.5rem;cursor:pointer;line-height:1;padding:.2rem .5rem;}
+    .checkout-modal-close:hover{color:#C9A84C;}
+    .checkout-modal-inner h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:#f5f0e8;margin:0 0 .4rem;}
+    .checkout-modal-plan{font-family:'Inter',sans-serif;font-size:.85rem;color:#C9A84C;margin:0 0 1.8rem;letter-spacing:.05em;}
+    #checkout-form label{display:block;font-family:'Inter',sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#9a8f7a;margin-bottom:.4rem;}
+    #checkout-form input{width:100%;box-sizing:border-box;background:#080806;border:1px solid rgba(201,168,76,.25);color:#f5f0e8;font-family:'Inter',sans-serif;font-size:.95rem;padding:.75rem 1rem;border-radius:1px;margin-bottom:1.2rem;outline:none;}
+    #checkout-form input:focus{border-color:#C9A84C;}
+    .checkout-submit{width:100%;padding:.9rem;background:linear-gradient(135deg,#B8892A,#C9A84C);border:none;color:#080806;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:1px;cursor:pointer;transition:filter .2s;}
+    .checkout-submit:hover{filter:brightness(1.1);}
+    .checkout-submit:disabled{opacity:.6;cursor:not-allowed;}
+    .checkout-error{font-family:'Inter',sans-serif;font-size:.85rem;color:#dc2626;margin-top:.8rem;text-align:center;}
+    @media(max-width:600px){.pricing-grid{grid-template-columns:1fr;}.pricing-section{padding:3rem 1rem;}}
+
+  </style>
 </head>
 <body>
   <div class="bg" aria-hidden="true"></div>
@@ -276,6 +356,152 @@
         <div class="cred-est">Est.&thinsp;2026 &nbsp;&middot;&nbsp; Nyx Collective Professional Development</div>
       </section>
 
+    
+      <hr class="divider" aria-hidden="true">
+
+      <section id="pricing" class="pricing-section" aria-labelledby="pricing-heading">
+        <div class="pricing-eyebrow">Organizational Licensing</div>
+        <h2 id="pricing-heading" class="pricing-heading">Choose Your Plan</h2>
+        <p class="pricing-subhead">Flat monthly rate. No per-seat complexity. Cancel anytime.</p>
+
+        <div class="pricing-grid">
+          <div class="pricing-card" data-plan="small">
+            <div class="pricing-tier">Foundations</div>
+            <div class="pricing-price"><span class="pricing-dollar">$</span>199<span class="pricing-period">/mo</span></div>
+            <div class="pricing-seats">Up to 25 staff</div>
+            <ul class="pricing-features">
+              <li>All 31 training modules</li>
+              <li>AI de-escalation lab</li>
+              <li>Completion certificates</li>
+              <li>Admin dashboard</li>
+              <li>Email support</li>
+            </ul>
+            <button class="pricing-cta" onclick="openCheckout('small')">Get Started</button>
+          </div>
+          <div class="pricing-card pricing-card--featured" data-plan="medium">
+            <div class="pricing-badge">Most Popular</div>
+            <div class="pricing-tier">Professional</div>
+            <div class="pricing-price"><span class="pricing-dollar">$</span>499<span class="pricing-period">/mo</span></div>
+            <div class="pricing-seats">Up to 100 staff</div>
+            <ul class="pricing-features">
+              <li>Everything in Foundations</li>
+              <li>Priority email support</li>
+              <li>Compliance reporting</li>
+              <li>Custom org branding</li>
+              <li>Quarterly usage reports</li>
+            </ul>
+            <button class="pricing-cta pricing-cta--featured" onclick="openCheckout('medium')">Get Started</button>
+          </div>
+          <div class="pricing-card" data-plan="enterprise">
+            <div class="pricing-tier">Enterprise</div>
+            <div class="pricing-price"><span class="pricing-dollar">$</span>999<span class="pricing-period">/mo</span></div>
+            <div class="pricing-seats">Unlimited staff</div>
+            <ul class="pricing-features">
+              <li>Everything in Professional</li>
+              <li>Dedicated onboarding</li>
+              <li>Custom scenarios</li>
+              <li>HRIS integration support</li>
+              <li>Priority phone support</li>
+            </ul>
+            <button class="pricing-cta" onclick="openCheckout('enterprise')">Get Started</button>
+          </div>
+        </div>
+
+        <p class="pricing-note">All plans include a 14-day free trial &mdash; no credit card required to start.</p>
+      </section>
+
+      <div id="checkout-modal" class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title" style="display:none">
+        <div class="checkout-modal-inner">
+          <button class="checkout-modal-close" onclick="closeCheckout()" aria-label="Close">&times;</button>
+          <h3 id="checkout-modal-title">Start Your Subscription</h3>
+          <p class="checkout-modal-plan" id="checkout-modal-plan-label"></p>
+          <form id="checkout-form" onsubmit="submitCheckout(event)">
+            <label for="co-org-name">Organization Name</label>
+            <input type="text" id="co-org-name" name="orgName" required placeholder="e.g. Destiny Springs Health System" autocomplete="organization">
+            <label for="co-admin-email">Admin Email</label>
+            <input type="email" id="co-admin-email" name="adminEmail" required placeholder="admin@yourorg.com" autocomplete="email">
+            <button type="submit" class="checkout-submit" id="checkout-submit-btn">
+              <span id="checkout-submit-text">Continue to Payment</span>
+              <span id="checkout-submit-loading" style="display:none">Processing&#8230;</span>
+            </button>
+            <p id="checkout-error" class="checkout-error" style="display:none"></p>
+          </form>
+        </div>
+      </div>
+
+    
+      <hr class="divider" aria-hidden="true">
+
+      <section id="pricing" class="pricing-section" aria-labelledby="pricing-heading">
+        <div class="pricing-eyebrow">Organizational Licensing</div>
+        <h2 id="pricing-heading" class="pricing-heading">Choose Your Plan</h2>
+        <p class="pricing-subhead">Flat monthly rate. No per-seat complexity. Cancel anytime.</p>
+
+        <div class="pricing-grid">
+          <div class="pricing-card" data-plan="small">
+            <div class="pricing-tier">Foundations</div>
+            <div class="pricing-price"><span class="pricing-dollar">$</span>199<span class="pricing-period">/mo</span></div>
+            <div class="pricing-seats">Up to 25 staff</div>
+            <ul class="pricing-features">
+              <li>All 31 training modules</li>
+              <li>AI de-escalation lab</li>
+              <li>Completion certificates</li>
+              <li>Admin dashboard</li>
+              <li>Email support</li>
+            </ul>
+            <button class="pricing-cta" onclick="openCheckout('small')">Get Started</button>
+          </div>
+          <div class="pricing-card pricing-card--featured" data-plan="medium">
+            <div class="pricing-badge">Most Popular</div>
+            <div class="pricing-tier">Professional</div>
+            <div class="pricing-price"><span class="pricing-dollar">$</span>499<span class="pricing-period">/mo</span></div>
+            <div class="pricing-seats">Up to 100 staff</div>
+            <ul class="pricing-features">
+              <li>Everything in Foundations</li>
+              <li>Priority email support</li>
+              <li>Compliance reporting</li>
+              <li>Custom org branding</li>
+              <li>Quarterly usage reports</li>
+            </ul>
+            <button class="pricing-cta pricing-cta--featured" onclick="openCheckout('medium')">Get Started</button>
+          </div>
+          <div class="pricing-card" data-plan="enterprise">
+            <div class="pricing-tier">Enterprise</div>
+            <div class="pricing-price"><span class="pricing-dollar">$</span>999<span class="pricing-period">/mo</span></div>
+            <div class="pricing-seats">Unlimited staff</div>
+            <ul class="pricing-features">
+              <li>Everything in Professional</li>
+              <li>Dedicated onboarding</li>
+              <li>Custom scenarios</li>
+              <li>HRIS integration support</li>
+              <li>Priority phone support</li>
+            </ul>
+            <button class="pricing-cta" onclick="openCheckout('enterprise')">Get Started</button>
+          </div>
+        </div>
+
+        <p class="pricing-note">All plans include a 14-day free trial &mdash; no credit card required to start.</p>
+      </section>
+
+      <div id="checkout-modal" class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title" style="display:none">
+        <div class="checkout-modal-inner">
+          <button class="checkout-modal-close" onclick="closeCheckout()" aria-label="Close">&times;</button>
+          <h3 id="checkout-modal-title">Start Your Subscription</h3>
+          <p class="checkout-modal-plan" id="checkout-modal-plan-label"></p>
+          <form id="checkout-form" onsubmit="submitCheckout(event)">
+            <label for="co-org-name">Organization Name</label>
+            <input type="text" id="co-org-name" name="orgName" required placeholder="e.g. Destiny Springs Health System" autocomplete="organization">
+            <label for="co-admin-email">Admin Email</label>
+            <input type="email" id="co-admin-email" name="adminEmail" required placeholder="admin@yourorg.com" autocomplete="email">
+            <button type="submit" class="checkout-submit" id="checkout-submit-btn">
+              <span id="checkout-submit-text">Continue to Payment</span>
+              <span id="checkout-submit-loading" style="display:none">Processing&#8230;</span>
+            </button>
+            <p id="checkout-error" class="checkout-error" style="display:none"></p>
+          </form>
+        </div>
+      </div>
+
     </main>
 
     <footer>
@@ -288,6 +514,178 @@
     </footer>
 
   </div>
+
+  <script>
+    (function(){
+      var _selectedPlan = null;
+      var PLAN_LABELS = {
+        small:      'Foundations \u2014 $199/mo (up to 25 staff)',
+        medium:     'Professional \u2014 $499/mo (up to 100 staff)',
+        enterprise: 'Enterprise \u2014 $999/mo (unlimited staff)'
+      };
+
+      window.openCheckout = function(planId) {
+        _selectedPlan = planId;
+        var modal = document.getElementById('checkout-modal');
+        var label = document.getElementById('checkout-modal-plan-label');
+        var err   = document.getElementById('checkout-error');
+        label.textContent = PLAN_LABELS[planId] || planId;
+        err.style.display = 'none';
+        modal.style.display = 'flex';
+        document.getElementById('co-org-name').focus();
+      };
+
+      window.closeCheckout = function() {
+        document.getElementById('checkout-modal').style.display = 'none';
+        _selectedPlan = null;
+      };
+
+      window.submitCheckout = async function(e) {
+        e.preventDefault();
+        if (!_selectedPlan) return;
+        var orgName    = document.getElementById('co-org-name').value.trim();
+        var adminEmail = document.getElementById('co-admin-email').value.trim();
+        if (!orgName || !adminEmail) return;
+
+        var orgId = orgName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g,'').slice(0,40);
+
+        var submitBtn  = document.getElementById('checkout-submit-btn');
+        var submitText = document.getElementById('checkout-submit-text');
+        var loadingTxt = document.getElementById('checkout-submit-loading');
+        var errEl      = document.getElementById('checkout-error');
+
+        submitBtn.disabled = true;
+        submitText.style.display = 'none';
+        loadingTxt.style.display = 'inline';
+        errEl.style.display = 'none';
+
+        try {
+          var res = await fetch('/api/stripe-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ orgId: orgId, orgName: orgName, adminEmail: adminEmail, planId: _selectedPlan })
+          });
+          var data = await res.json();
+          if (!res.ok || !data.sessionUrl) throw new Error(data.error || 'Checkout failed');
+          window.location.href = data.sessionUrl;
+        } catch(err) {
+          errEl.textContent = err.message || 'Something went wrong. Please try again.';
+          errEl.style.display = 'block';
+          submitBtn.disabled = false;
+          submitText.style.display = 'inline';
+          loadingTxt.style.display = 'none';
+        }
+      };
+
+      // Close modal on backdrop click
+      document.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'checkout-modal') closeCheckout();
+      });
+
+      // Scroll to pricing if hash is #pricing
+      if (window.location.hash === '#pricing') {
+        setTimeout(function(){
+          var el = document.getElementById('pricing');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+
+      // Show canceled message
+      if (new URLSearchParams(window.location.search).get('checkout') === 'canceled') {
+        setTimeout(function(){
+          var el = document.getElementById('pricing');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 200);
+      }
+    })();
+  </script>
+
+
+  <script>
+    (function(){
+      var _selectedPlan = null;
+      var PLAN_LABELS = {
+        small:      'Foundations \u2014 $199/mo (up to 25 staff)',
+        medium:     'Professional \u2014 $499/mo (up to 100 staff)',
+        enterprise: 'Enterprise \u2014 $999/mo (unlimited staff)'
+      };
+
+      window.openCheckout = function(planId) {
+        _selectedPlan = planId;
+        var modal = document.getElementById('checkout-modal');
+        var label = document.getElementById('checkout-modal-plan-label');
+        var err   = document.getElementById('checkout-error');
+        label.textContent = PLAN_LABELS[planId] || planId;
+        err.style.display = 'none';
+        modal.style.display = 'flex';
+        document.getElementById('co-org-name').focus();
+      };
+
+      window.closeCheckout = function() {
+        document.getElementById('checkout-modal').style.display = 'none';
+        _selectedPlan = null;
+      };
+
+      window.submitCheckout = async function(e) {
+        e.preventDefault();
+        if (!_selectedPlan) return;
+        var orgName    = document.getElementById('co-org-name').value.trim();
+        var adminEmail = document.getElementById('co-admin-email').value.trim();
+        if (!orgName || !adminEmail) return;
+
+        var orgId = orgName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g,'').slice(0,40);
+
+        var submitBtn  = document.getElementById('checkout-submit-btn');
+        var submitText = document.getElementById('checkout-submit-text');
+        var loadingTxt = document.getElementById('checkout-submit-loading');
+        var errEl      = document.getElementById('checkout-error');
+
+        submitBtn.disabled = true;
+        submitText.style.display = 'none';
+        loadingTxt.style.display = 'inline';
+        errEl.style.display = 'none';
+
+        try {
+          var res = await fetch('/api/stripe-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ orgId: orgId, orgName: orgName, adminEmail: adminEmail, planId: _selectedPlan })
+          });
+          var data = await res.json();
+          if (!res.ok || !data.sessionUrl) throw new Error(data.error || 'Checkout failed');
+          window.location.href = data.sessionUrl;
+        } catch(err) {
+          errEl.textContent = err.message || 'Something went wrong. Please try again.';
+          errEl.style.display = 'block';
+          submitBtn.disabled = false;
+          submitText.style.display = 'inline';
+          loadingTxt.style.display = 'none';
+        }
+      };
+
+      // Close modal on backdrop click
+      document.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'checkout-modal') closeCheckout();
+      });
+
+      // Scroll to pricing if hash is #pricing
+      if (window.location.hash === '#pricing') {
+        setTimeout(function(){
+          var el = document.getElementById('pricing');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+
+      // Show canceled message
+      if (new URLSearchParams(window.location.search).get('checkout') === 'canceled') {
+        setTimeout(function(){
+          var el = document.getElementById('pricing');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 200);
+      }
+    })();
+  </script>
+
 </body>
 </html>
 
