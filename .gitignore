@@ -23,3 +23,8 @@ Thumbs.db
 Training-Lab/
 .vercel
 .env*.local
+
+# Firebase service account keys - NEVER commit these
+*adminsdk*.json
+serviceAccount*.json
+firebase-*.json
