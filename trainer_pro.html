@@ -3082,28 +3082,29 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
           </button>
           <div id="lab-mic-status" style="display:none;font-size:.75rem;color:#dc2626;font-weight:700;text-align:center"></div>
         </div>
-        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem;display:flex;flex-direction:column;gap:.75rem">
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:1rem;padding:1rem;display:flex;flex-direction:column;gap:.75rem;align-self:start">
           <button id="lab-submit-btn" class="btn btn-success" onclick="submitLabScenario()" style="width:100%">Submit Response</button>
-          <div id="lab-score-panel" style="display:none;background:white;border:1px solid #e2e8f0;border-radius:.875rem;padding:.75rem">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <div style="font-weight:900;color:#0f172a;font-size:1rem">Score: <span id="lab-score-letter">·</span></div>
-              <div style="font-weight:900;color:#16a34a;font-size:.95rem">+<span id="lab-lc-earned">0</span> LC</div>
+        </div>
+      </div>
+      <!-- Full-width professor feedback panel — outside the grid so it has no height constraint -->
+      <div id="lab-score-panel" style="display:none;margin-top:1rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:1rem;padding:1.25rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid rgba(255,255,255,.1)">
+          <div style="font-weight:900;color:#f1f5f9;font-size:1.05rem">Score: <span id="lab-score-letter" style="font-size:1.4rem;margin-left:.25rem">·</span></div>
+          <div style="font-weight:900;color:#4ade80;font-size:1rem">+<span id="lab-lc-earned">0</span> LC</div>
+        </div>
+        <div id="lab-feedback" style="color:#e2e8f0;font-size:.9rem;line-height:1.75;white-space:pre-wrap"></div>
+        <div id="lab-cooldown" style="margin-top:.6rem;color:#f87171;font-weight:800;display:none;font-size:.82rem"></div>
+        <!-- Marcus in-character reply -->
+        <div id="marcus-reply-wrap" style="display:none;margin-top:1rem;background:#0f172a;border-radius:.875rem;overflow:hidden;border:1px solid rgba(255,255,255,.08)">
+          <div style="padding:.5rem .85rem;background:#1e293b;display:flex;align-items:center;gap:.6rem">
+            <div id="reply-patient-avatar-wrap" style="width:28px;height:28px;border-radius:50%;border:2px solid #475569;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.65rem;color:white;background:#475569">
+              <img id="reply-patient-avatar-img" src="prof.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block" alt="">
             </div>
-            <div id="lab-feedback" style="margin-top:.5rem;color:#64748b;white-space:pre-wrap;font-size:.85rem;line-height:1.5"></div>
-            <div id="lab-cooldown" style="margin-top:.4rem;color:#dc2626;font-weight:800;display:none;font-size:.82rem"></div>
-            <!-- Marcus in-character reply -->
-            <div id="marcus-reply-wrap" style="display:none;margin-top:.85rem;background:#0f172a;border-radius:.875rem;overflow:hidden">
-              <div style="padding:.4rem .85rem;background:#1e293b;display:flex;align-items:center;gap:.6rem">
-                <div id="reply-patient-avatar-wrap" style="width:24px;height:24px;border-radius:50%;border:2px solid #475569;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.6rem;color:white;background:#475569">
-                  <img id="reply-patient-avatar-img" src="prof.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block" alt="">
-                </div>
-                <span id="reply-patient-label" style="font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8">Marcus responds</span>
-                <span id="marcus-reply-state-dot" style="margin-left:auto;font-size:.72rem;font-weight:800;padding:.15rem .55rem;border-radius:1rem"></span>
-              </div>
-              <div style="padding:.75rem 1rem">
-                <p id="marcus-reply-text" style="margin:0;color:#e2e8f0;font-size:1.05rem;font-weight:600;line-height:1.65;font-style:italic">—</p>
-              </div>
-            </div>
+            <span id="reply-patient-label" style="font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8">Marcus responds</span>
+            <span id="marcus-reply-state-dot" style="margin-left:auto;font-size:.75rem;font-weight:800;padding:.2rem .6rem;border-radius:1rem"></span>
+          </div>
+          <div style="padding:.875rem 1.1rem">
+            <p id="marcus-reply-text" style="margin:0;color:#e2e8f0;font-size:1.1rem;font-weight:600;line-height:1.7;font-style:italic">—</p>
           </div>
         </div>
       </div>
@@ -9611,10 +9612,14 @@ function submitLabScenario() {
   }
 
   // UI updates
-  document.getElementById('lab-score-panel').style.display='block';
-  document.getElementById('lab-score-letter').textContent = grade;
+  const _panel = document.getElementById('lab-score-panel');
+  _panel.style.display='block';
+  setTimeout(() => _panel.scrollIntoView({ behavior:'smooth', block:'start' }), 80);
+  const _gradeColMap = {A:'#4ade80',B:'#60a5fa',C:'#fbbf24',D:'#f87171'};
+  const _gradeLEl = document.getElementById('lab-score-letter');
+  if(_gradeLEl){ _gradeLEl.textContent = grade; _gradeLEl.style.color = _gradeColMap[grade]||'#f1f5f9'; }
   document.getElementById('lab-lc-earned').textContent = lcEarned;
-  document.getElementById('lab-feedback').innerHTML = '<span style="color:#94a3b8;font-size:.82rem;font-style:italic">Prof. Vance is reviewing your response·</span>';
+  document.getElementById('lab-feedback').innerHTML = '<span style="color:#94a3b8;font-size:.82rem;font-style:italic">Prof. Vance is reviewing your response…</span>';
   document.getElementById('lab-modal-credits').textContent = labCredits.toLocaleString();
   document.getElementById('lab-submit-btn').disabled=true;
 
