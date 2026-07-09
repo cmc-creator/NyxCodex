@@ -1125,8 +1125,7 @@ body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
     border:0;
   }
   
-  /* Avatar container - hide on mobile */
-  #avatar-container{display:none!important}
+  /* Avatar container - repositioned on mobile via JS */
   
   /* Welcome card on first slide */
   #welcome-card{padding:1.5rem!important;max-width:100%!important}
@@ -6211,10 +6210,18 @@ async function showHomeGateway() {
   // Update hub heading with user's first name
   const hubHeading = document.getElementById('hub-heading');
   if(hubHeading) hubHeading.textContent = isReturning ? `Welcome back, ${fname}! \uD83D\uDC4B` : `Welcome to ${window.TENANT?.brandName || 'the platform'}, ${fname}!`;
-  scheduleVance(()=>showAvatarAndSpeak('_direct_', fname, hubMsg), 300);
+  // Use a dedicated hub timer (not the cancellable scheduleVance) so slide navigation
+  // timers can't accidentally swallow the welcome message before it fires
+  clearTimeout(window._hubVanceTimer);
+  window._hubVanceTimer = setTimeout(() => {
+    const cont = document.getElementById('avatar-container');
+    if(cont) cont.style.display = 'flex';
+    showAvatarAndSpeak('_direct_', fname, hubMsg);
+  }, 500);
 }
 
 function hideHomeGateway() {
+  clearTimeout(window._hubVanceTimer); // cancel welcome message if user navigated away quickly
   const hub = document.getElementById('home-gateway');
   if(hub) animatePanelOut(hub);
   // Restore slide navigation arrows
