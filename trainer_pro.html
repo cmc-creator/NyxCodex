@@ -6218,10 +6218,21 @@ async function showHomeGateway() {
     if(cont) cont.style.display = 'flex';
     showAvatarAndSpeak('_direct_', fname, hubMsg);
   }, 500);
+  // Bulletproof fallback: if avatar still hidden after 1.5s, force-show
+  clearTimeout(window._hubVanceFallback);
+  window._hubVanceFallback = setTimeout(() => {
+    const cont = document.getElementById('avatar-container');
+    const hub2 = document.getElementById('home-gateway');
+    if(!cont || !hub2 || hub2.style.display !== 'flex') return;
+    if(cont.style.display !== 'flex') {
+      cont.style.display = 'flex';
+      showAvatarAndSpeak('_direct_', fname, hubMsg);
+    }
+  }, 1500);
 }
 
 function hideHomeGateway() {
-  clearTimeout(window._hubVanceTimer); // cancel welcome message if user navigated away quickly
+  clearTimeout(window._hubVanceTimer); clearTimeout(window._hubVanceFallback); // cancel welcome message if user navigated away quickly
   const hub = document.getElementById('home-gateway');
   if(hub) animatePanelOut(hub);
   // Restore slide navigation arrows
@@ -7176,11 +7187,12 @@ function tutStep(dir) {
 function closeTutorial() {
   const overlay = document.getElementById('tutorial-overlay');
   if(overlay) overlay.style.display = 'none';
+  // Set in memory BEFORE calling showHomeGateway so hasOnboarded check passes
+  if(window._userData) window._userData.hasOnboarded = true;
   if(window._currentUser) _saveUserData({ hasOnboarded: true });
   if(window._vanceAudio) { window._vanceAudio.pause(); window._vanceAudio.currentTime = 0; }
-  // After tutorial, show the hub so they can choose where to go
-  const hub = document.getElementById('home-gateway');
-  if(hub) hub.style.display = 'flex';
+  // Show hub via showHomeGateway so Vance gets properly scheduled
+  showHomeGateway();
 }
 
 // --- XP Toast --------------------------------------------
