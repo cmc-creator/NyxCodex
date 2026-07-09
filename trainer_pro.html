@@ -2517,6 +2517,10 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <button type="button" class="btn w-full auth-btn-guest" onclick="doAnonSignIn()">
           Continue as Guest
         </button>
+        <button type="button" class="btn w-full" onclick="launchHospitalDemo()" style="padding:.82rem;font-size:.8rem;border-radius:14px;background:linear-gradient(135deg,rgba(56,189,248,.1),rgba(99,102,241,.1));color:#93c5fd;font-weight:800;border:1px dashed rgba(99,102,241,.4);gap:.6rem;margin-top:.35rem;font-family:'Inter',sans-serif;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;display:flex;align-items:center;justify-content:center;width:100%">
+          <svg style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          &nbsp;View Hospital Demo
+        </button>
       </div>
       <p class="auth-note auth-note-top">
         Don't have an account?
@@ -2797,7 +2801,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('analytics',this)">📊 Analytics</button>
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('reports',this)">📋 Reports</button>
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('completion',this)"><span style="margin-right:.3rem">&#9632;</span> Completion</button>
-      <button id="settings-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('settings',this)">⚙️ Settings</button>
+      <button id="settings-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('settings'); checkAdminSettingsStatus(,this)">⚙️ Settings</button>
       <button id="audit-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('audit',this)">📜 Audit Log</button>
       <button id="scenarios-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('scenarios',this)">📚 Scenarios</button>
     </div>
@@ -2807,7 +2811,90 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <div id="at-analytics" class="admin-tab-panel"></div>
       <div id="at-reports" class="admin-tab-panel"></div>
       <div id="at-completion" class="admin-tab-panel"></div>
-      <div id="at-settings" class="admin-tab-panel"></div>
+      <div id="at-settings" class="admin-tab-panel">
+  <div style="padding:1.5rem;max-width:900px">
+
+    <!-- Stripe Setup Status -->
+    <div style="margin-bottom:2rem">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#C9A84C;margin-bottom:.75rem">Payment & Billing</div>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:.85rem;padding:1.25rem 1.5rem">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
+          <div>
+            <div style="font-weight:700;color:#f1f5f9;margin-bottom:.25rem">Stripe Integration</div>
+            <div id="stripe-status-msg" style="font-size:.82rem;color:#94a3b8">Checking configuration...</div>
+          </div>
+          <span id="stripe-status-badge" style="display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .85rem;border-radius:20px;font-size:.7rem;font-weight:700;background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.25)">&#9670; Checking</span>
+        </div>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.07)">
+          <div style="font-size:.75rem;font-weight:700;color:#94a3b8;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.08em">Required Vercel Environment Variables</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.5rem;font-family:monospace;font-size:.72rem">
+            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">STRIPE_SECRET_KEY</div>
+            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">STRIPE_WEBHOOK_SECRET</div>
+            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">STRIPE_PRICE_SMALL</div>
+            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">STRIPE_PRICE_MEDIUM</div>
+            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">STRIPE_PRICE_ENTERPRISE</div>
+            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">FIREBASE_SERVICE_ACCOUNT</div>
+            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">FIREBASE_DATABASE_URL</div>
+            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">BASE_URL</div>
+          </div>
+          <div style="margin-top:.75rem;font-size:.73rem;color:#64748b">Full setup guide: <a href="STRIPE_SETUP.md" target="_blank" style="color:#C9A84C">STRIPE_SETUP.md</a> &nbsp;|&nbsp; Configure at: <a href="https://vercel.com/dashboard" target="_blank" style="color:#C9A84C">vercel.com/dashboard</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CSV Bulk Import -->
+    <div style="margin-bottom:2rem">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#C9A84C;margin-bottom:.75rem">Bulk Staff Import</div>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:.85rem;padding:1.25rem 1.5rem">
+        <div style="font-size:.84rem;color:#94a3b8;margin-bottom:1rem">Upload a CSV file to invite multiple staff members at once. Required columns: <code style="background:rgba(255,255,255,.07);padding:.1rem .4rem;border-radius:.3rem;font-size:.8rem">name, email</code> — Optional: <code style="background:rgba(255,255,255,.07);padding:.1rem .4rem;border-radius:.3rem;font-size:.8rem">department, role</code></div>
+
+        <!-- File drop zone -->
+        <div id="csv-dropzone" onclick="document.getElementById('csv-file-input').click()" style="border:2px dashed rgba(201,168,76,.3);border-radius:.75rem;padding:2rem;text-align:center;cursor:pointer;transition:all .2s;background:rgba(201,168,76,.03)" onmouseover="this.style.background='rgba(201,168,76,.07)';this.style.borderColor='rgba(201,168,76,.6)'" onmouseout="this.style.background='rgba(201,168,76,.03)';this.style.borderColor='rgba(201,168,76,.3)'" ondragover="event.preventDefault();this.style.background='rgba(201,168,76,.1)'" ondragleave="this.style.background='rgba(201,168,76,.03)'" ondrop="handleCsvDrop(event)">
+          <svg style="width:32px;height:32px;stroke:rgba(201,168,76,.6);fill:none;stroke-width:1.5;margin:0 auto .75rem;display:block" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <div style="font-weight:700;color:#C9A84C;font-size:.88rem">Drop CSV file here or click to browse</div>
+          <div style="font-size:.72rem;color:#64748b;margin-top:.35rem">Accepts .csv files up to 500 rows</div>
+        </div>
+        <input type="file" id="csv-file-input" accept=".csv" style="display:none" onchange="handleCsvFile(this.files[0])">
+
+        <!-- Preview table -->
+        <div id="csv-preview" style="display:none;margin-top:1.25rem">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
+            <div style="font-weight:700;color:#f1f5f9;font-size:.85rem">Import Preview</div>
+            <div id="csv-count-badge" style="font-size:.7rem;font-weight:700;padding:.25rem .65rem;border-radius:20px;background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.25)"></div>
+          </div>
+          <div style="overflow-x:auto;border-radius:.5rem;border:1px solid rgba(255,255,255,.07)">
+            <table style="width:100%;border-collapse:collapse;font-size:.78rem" id="csv-preview-table">
+              <thead><tr style="background:rgba(255,255,255,.05)"><th style="padding:.5rem .75rem;text-align:left;color:#94a3b8;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Name</th><th style="padding:.5rem .75rem;text-align:left;color:#94a3b8;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Email</th><th style="padding:.5rem .75rem;text-align:left;color:#94a3b8;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Department</th><th style="padding:.5rem .75rem;text-align:left;color:#94a3b8;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Status</th></tr></thead>
+              <tbody id="csv-preview-body" style="color:#cbd5e1"></tbody>
+            </table>
+          </div>
+          <div id="csv-error-box" style="display:none;margin-top:.75rem;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:.5rem;padding:.75rem 1rem;font-size:.78rem;color:#fca5a5"></div>
+          <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap">
+            <button id="csv-import-btn" onclick="executeCsvImport()" style="padding:.72rem 1.5rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#1a0f00;border:none;border-radius:.6rem;font-weight:800;font-size:.8rem;cursor:pointer;letter-spacing:.06em;text-transform:uppercase">Import Staff</button>
+            <button onclick="clearCsvImport()" style="padding:.72rem 1.25rem;background:rgba(255,255,255,.07);color:#94a3b8;border:1px solid rgba(255,255,255,.12);border-radius:.6rem;font-weight:700;font-size:.8rem;cursor:pointer">Clear</button>
+          </div>
+        </div>
+        <div style="margin-top:.75rem;font-size:.7rem;color:#475569">Download template: <a href="#" onclick="downloadCsvTemplate();return false" style="color:#C9A84C">staff_import_template.csv</a></div>
+      </div>
+    </div>
+
+    <!-- AI / Gemini Key -->
+    <div>
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#C9A84C;margin-bottom:.75rem">AI Scenario Grading</div>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:.85rem;padding:1.25rem 1.5rem">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:.85rem">
+          <div>
+            <div style="font-weight:700;color:#f1f5f9;margin-bottom:.25rem">Gemini AI Grading</div>
+            <div id="gemini-status-label" style="font-size:.82rem;color:#94a3b8">Configure in tenant.config.js</div>
+          </div>
+          <span id="gemini-status-badge" style="display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .85rem;border-radius:20px;font-size:.7rem;font-weight:700;background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.25)">&#9670; Not Configured</span>
+        </div>
+        <div style="font-size:.78rem;color:#64748b">Get a free API key at <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:#C9A84C">aistudio.google.com</a>, then add <code style="background:rgba(255,255,255,.07);padding:.1rem .4rem;border-radius:.3rem">window.GEMINI_KEY = "YOUR_KEY"</code> in <code style="background:rgba(255,255,255,.07);padding:.1rem .4rem;border-radius:.3rem">tenant.config.js</code>.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
       <div id="at-audit" class="admin-tab-panel"></div>
       <div id="at-scenarios" class="admin-tab-panel"></div>
     </div>
@@ -8213,6 +8300,7 @@ async function applyBulkAssignment() {
 
 // --- Completion roster ------------------------------------
 async async function loadCompletion() {
+  if (window.DEMO_MODE && window._DEMO_STAFF_DATA) { return renderDemoCompletion(); }
   const el = document.getElementById('at-completion');
   if(!el) return;
   el.innerHTML='<p style="color:#94a3b8;font-size:.875rem;padding:1rem">Loading...</p>';
@@ -9676,25 +9764,49 @@ const scenarios = {
     `James, 28, ASD Level 2, is eating in the dining room. The TV was turned on at high volume by another patient. He begins rocking rapidly, covers his ears, and makes a high-pitched sound. Staff approached him from behind and touched his shoulder. He spun around and shoved them away. He is now standing in the corner, rocking, eyes shut. He hasn't responded to verbal prompts for 4 minutes.`,
     `Maria, 19, non-verbal ASD, has been pacing the hallway for 30 minutes. Her AAC device fell earlier and hasn't been given back. She is now hitting the wall repeatedly with her palm and appears to be escalating.`,
     `Eli, 24, ASD Level 1, is in group therapy when the facilitator changes the scheduled topic without warning. He immediately stands up, knocks his chair back, and begins repeating "This is wrong, this is wrong" loudly. He refuses to sit and is blocking the doorway.`,
-    `Sophie, 31, ASD/ID, completed her morning routine in the wrong order due to a staff scheduling change. She is now sitting on the floor of the bathroom, rocking, holding her toothbrush, and crying. She has not come to breakfast and refuses to leave.`
+    `Sophie, 31, ASD/ID, completed her morning routine in the wrong order due to a staff scheduling change. She is now sitting on the floor of the bathroom, rocking, holding her toothbrush, and crying. She has not come to breakfast and refuses to leave.`,
+    `Noah, 17, ASD Level 2, is in the milieu during a loud argument between two other patients. He has plugged his ears, climbed under a table, and begun scripting TV lines rapidly. He kicks at staff who try to approach him.`,
+    `Amara, 22, ASD Level 3 and minimally verbal, has a strict eating schedule disrupted by an emergency drill. She is banging her wrist against the cafeteria door frame rhythmically and refuses all offered alternatives.`,
+    `Darius, 33, ASD Level 1, is at the nurses station demanding an immediate meeting with the program director because his assigned therapist was absent. He calls it a "breach of his treatment agreement" and will not lower his voice.`,
+    `Gabrielle, 15, ASD/ADHD, returned from group to find her belongings moved to make room for a new roommate. She is standing in the doorway of her room refusing to enter, repeating "That is not how it is supposed to be."`,
+    `Felix, 44, ASD Level 2, was given the wrong meal tray despite documented food texture sensitivities. He pushed the tray off the table and is now seated with his hands over his face, rocking.`,
+    `Preet, 28, ASD Level 1 and anxious, overheard staff discussing a possible unit rule change during shift handoff. He is now following every staff member asking rapid-fire clarification questions and cannot be redirected until he gets a definitive answer.`
   ],
   adhd:[
     `Devon, 14, ADHD combined type, was told he must wait 30 minutes before his phone time. He immediately began yelling "This is stupid!" and threw a pillow across the room. He's now pacing rapidly and muttering to himself.`,
     `Lexi, 22, ADHD-I, has been sitting in group for 45 minutes. She is now standing up, pushing her chair back, and declaring she "can't do this anymore" — she's moving toward the door.`,
     `Marcus T., 17, ADHD/ODD, was asked to put his phone away three times during evening programming. On the third ask he threw the phone across the room, said "You can't make me do anything," and is now standing in the corner of the day room refusing to engage.`,
-    `Destiny, 29, ADHD combined type, became frustrated during an art group when another patient took her supplies. She has been speaking loudly and rapidly for 10 minutes about "everything being unfair here" and is starting to draw attention from other patients.`
+    `Destiny, 29, ADHD combined type, became frustrated during an art group when another patient took her supplies. She has been speaking loudly and rapidly for 10 minutes about "everything being unfair here" and is starting to draw attention from other patients.`,
+    `Jaylen, 13, ADHD/ODD, was moved from 1:1 to group monitoring this morning. He immediately began running in the hallway, disrupting peers, and throwing a water cup. When redirected he shouted "You can't make me do anything" and ran to his room.`,
+    `Amelia, 25, ADHD-PI with generalized anxiety, became overwhelmed during a 3-hour DBT group. She is standing near the window saying "I have to leave, I can't do this" repeatedly. A previous staff member blocked the door physically, which escalated her.`,
+    `Tyrone, 31, ADHD combined type in a hypomanic episode, has not slept and has completed three craft projects. He is now interrupting every staff interaction offering to "help run the place." He is not aggressive but is derailing all programming.`,
+    `Kezia, 16, ADHD with trauma history, was told her weekend visit with her father was cancelled. She immediately escalated, overturned a chair, and is now in the stairwell crying and refusing to come out. Any reference to her father makes it worse.`,
+    `Omar, 38, ADHD combined type, is on day 5 of a new stimulant. He is arguing with another patient about the TV — both are escalating. You need to separate them without triggering either.`,
+    `Nadia, 21, ADHD-I and PTSD, was asked to return her phone after an extended call time. She agreed verbally but then continued scrolling. On the second ask she shoved the phone under her pillow and said "I'm not hurting anyone, just leave me alone." She is tearful.`
   ],
   schizophrenia:[
     `Robert, 45, schizophrenia paranoid type, approaches you in the hallway and says the night staff have been poisoning his food. He's not eaten in 36 hours. He's escalating and says he needs to "get out before they hurt him." He's blocking the hallway exit.`,
     `Diane, 34, is responding to internal stimuli during a quiet hour. She's whispering rapidly and pointing at the wall. Another patient approaches to see what's happening — Diane suddenly shouts "Get away from me, I know what you are!"`,
     `Victor, 58, schizophrenia with command hallucinations, refused his evening medications saying "the voice told me not to take them — they'll kill me if I do." He is pacing the hallway, agitated, and has refused to return to his room.`,
-    `Camille, 42, has been calm for two days but this morning woke up believing she is being filmed for a government surveillance program. She is covering every reflective surface in her room with cloth and refuses to allow staff in. She is not threatening but is clearly distressed and disorganized.`
+    `Camille, 42, has been calm for two days but this morning woke up believing she is being filmed for a government surveillance program. She is covering every reflective surface in her room with cloth and refuses to allow staff in. She is not threatening but is clearly distressed and disorganized.`,
+    `Antoine, 29, schizophrenia disorganized type, has been found in the hallway arranging chairs in a very specific pattern. When staff ask him to stop he becomes agitated and says "The pattern protects us — you're going to get us all killed if you move them."`,
+    `Lena, 52, schizoaffective disorder, has been refused a phone call because it was after designated hours. She now believes the staff are "part of the system that kept her away from her family for years" and is yelling this at the nursing station.`,
+    `Edwin, 67, late-onset schizophrenia, woke up this morning and does not recognize his room. He is confused, frightened, and telling staff he was "transported here against his will." He asks where his wife is repeatedly and becomes distressed when given information.`,
+    `Rosa, 35, paranoid schizophrenia, walked into another patient's room by mistake. That patient yelled at her. Rosa now believes the patient was "sent to threaten her" and is barricaded in her own room, pushing furniture against the door.`,
+    `Theo, 44, schizophrenia with tardive dyskinesia, is embarrassed about his involuntary movements and refuses to come to the common room or meals. He is becoming socially isolated, not eating, and says "I don't want people to stare at me anymore."`,
+    `Keisha, 31, first-break psychosis and newly admitted, approaches you and says the water from the tap "tastes like chemicals." She has not had anything to drink in 18 hours. She is not threatening but appears frightened and suspicious of all staff.`
   ],
   bipolar:[
     `Tyler, 30, bipolar I, manic episode, has been awake for 48 hours. He's writing a 40-page business plan, insists he doesn't need medication today, and has been speaking so fast staff cannot interrupt. He's asked 6 times to use the phone.`,
     `Sarah, 26, bipolar I, depressive phase, has not left her room in 18 hours. Staff found her lying on the floor staring at the ceiling. She says "What's the point of anything" and won't respond to further prompts.`,
     `James, 35, bipolar I manic, is in the common room loudly announcing that he is the CEO of a major corporation and that the other patients "work for him." He has been giving out his personal belongings to other patients as "bonuses" and is becoming irritable when staff try to redirect.`,
-    `Priya, 22, bipolar II in a mixed state, was found crying in her room at 3AM and then 20 minutes later was laughing uncontrollably. She has now called the nurses station three times in the past hour. She states she has a plan to hurt herself but "doesn't really want to." She appears to be high risk.`
+    `Priya, 22, bipolar II in a mixed state, was found crying in her room at 3AM and then 20 minutes later was laughing uncontrollably. She has now called the nurses station three times in the past hour. She states she has a plan to hurt herself but "doesn't really want to." She appears to be high risk.`,
+    `Elias, 24, bipolar I, manic phase, is making sexual comments to female staff and other patients. He laughs when redirected and says "I'm just being friendly, everyone loves me." Two patients have complained.`,
+    `Natasha, 40, bipolar I currently depressed, was supposed to call her children this evening. The call was accidentally missed due to staff error. She is now in her room crying, not responding, and has said "What is the point of even trying."`,
+    `Leon, 55, bipolar I manic, spent three hours last night writing letters to the President. He now wants to call news stations and is requesting the nurses station phone. He becomes verbally hostile when denied access.`,
+    `Simone, 28, bipolar II, mixed episode, has been escalating all afternoon. She is crying at the nurses station one moment, then yelling about "this entire place being a scam" the next. She is demanding to be discharged immediately.`,
+    `David, 38, bipolar I on a new medication, has a tremor that started this morning. He is convinced it is a permanent neurological injury caused by staff negligence and is threatening to sue. He is escalating and other patients are watching.`,
+    `Mai, 33, bipolar I, grandiose episode, told other patients she is a medical doctor and has been advising them to refuse medications. The charge nurse has asked you to address this without humiliating her in front of peers.`
   ],
   ptsd:[
     `A male nurse entered Ana's room without knocking while she was changing. Ana is a trauma survivor. She has now barricaded behind her bed, is hyperventilating, and keeps shouting "Don't come near me." She doesn't appear to recognize staff.`,
@@ -9710,7 +9822,13 @@ const scenarios = {
     `Leah, 25, BPD, feels her discharge date was changed without her input. She approached the nursing desk crying and then began shouting that "nobody here cares about me." She said "I'll hurt myself if you discharge me." She's now in her room with the door locked.`,
     `Jaylen, 32, BPD, had a positive interaction with Staff A. When Staff B took over for the shift, Jaylen immediately said "You're the mean one — I hate when you work here." Staff B has set a limit. Jaylen is now escalating.`,
     `Monique, 27, BPD, overheard two staff members laughing near the nurses station during a difficult moment for her. She has now approached the station demanding to know "what's so funny" and is raising her voice. She's threatening to file a formal complaint and says "I know you were laughing at me."`,
-    `Daniel, 20, BPD/MDD, was placed on 1:1 monitoring following a self-harm incident last night. He tells you he feels "like a prisoner" and that the monitoring itself is making him want to hurt himself more. He becomes tearful and says "You're punishing me for being sick." His affect is rapidly shifting from tearful to angry.`
+    `Daniel, 20, BPD/MDD, was placed on 1:1 monitoring following a self-harm incident last night. He tells you he feels "like a prisoner" and that the monitoring itself is making him want to hurt himself more. He becomes tearful and says "You're punishing me for being sick." His affect is rapidly shifting from tearful to angry.`,
+    `Aria, 23, BPD, has been on the unit for 10 days and has formed a strong attachment to one staff member. Today that staff member called out sick. Aria is now refusing to eat, refusing medications, and says "The one person who gets me isn't here and you don't care."`,
+    `Marcus R., 29, BPD/PTSD, was told he cannot have sharp scissors for art group due to his safety plan. He began calmly but is now raising his voice, saying "You're treating me like a child. I know my own triggers."`,
+    `Tessa, 26, BPD, dissociated briefly during group and was asked to step out by staff. She is now in the hallway telling other patients the staff "forcibly removed" her and is building a peer alliance against staff.`,
+    `Imani, 34, BPD, made a serious suicide threat an hour ago and was placed on 15-minute checks. She is now calm and appears irritated by the checks, saying "I was just venting. Stop hovering. You're making me want to actually do it."`,
+    `Cole, 21, BPD newly admitted, has been testing every limit since arrival: meal refusals, room restrictions violations, and mild verbal provocations. He has now asked you directly: "What will it take to get you to actually care about me?"`,
+    `Destiny P., 30, BPD/eating disorder, was served a meal that did not align with her documented preferences. She has pushed the tray away, said "No one reads my chart," and is now crying. She has a history of using meal refusal as a way to communicate emotional pain.`
   ],
   medication_refusal:[
     `Marcus, 38, PTSD, is refusing his morning Prazosin. He tells you: "Last time I took that stuff I had nightmares so bad I woke up screaming. I'm not doing it again." He is sitting with his arms crossed, tone firm but calm. He has not been aggressive.`,
@@ -10290,6 +10408,233 @@ function toggleFullscreen() {
     document.addEventListener('DOMContentLoaded', toggleHighContrast);
   }
 })();
+
+
+// ── Hospital Demo Mode ─────────────────────────────────────────────────────
+function launchHospitalDemo() {
+  window.DEMO_MODE = true;
+  window._userData = {
+    uid: 'demo-user-001', name: 'Demo Staff', email: 'demo@nyxcodex.com',
+    role: 'admin', orgId: 'demo-hospital', plan: 'professional',
+    currentSlide: 0, xp: 450, level: 3, lc: 12,
+    finalQuizScore: 13, quizPassed: true, completedAt: Date.now() - 86400000,
+    scenariosCompleted: { ptsd: 3, bpd: 2, schizophrenia: 1 },
+  };
+  // Show the main app
+  const gateway = document.getElementById('home-gateway') || document.getElementById('auth-screen');
+  if (document.getElementById('auth-screen')) {
+    document.getElementById('auth-screen').style.display = 'none';
+  }
+  if (document.getElementById('home-gateway')) {
+    document.getElementById('home-gateway').style.display = 'flex';
+  }
+  // Populate nav display
+  const nameEl = document.getElementById('nav-name');
+  if (nameEl) nameEl.textContent = 'Demo Admin';
+  const initials = document.getElementById('nav-avatar-initials');
+  if (initials) initials.textContent = 'DA';
+  const levelEl = document.getElementById('nav-level');
+  if (levelEl) levelEl.textContent = '3';
+  const xpEl = document.getElementById('nav-xp');
+  if (xpEl) xpEl.textContent = '450 XP';
+  // Show a banner
+  const banner = document.createElement('div');
+  banner.id = 'demo-banner';
+  banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(90deg,rgba(56,189,248,.15),rgba(99,102,241,.15));border-bottom:1px solid rgba(99,102,241,.3);padding:.5rem 1rem;text-align:center;font-size:.73rem;font-weight:700;color:#93c5fd;font-family:'Inter',sans-serif;letter-spacing:.06em;display:flex;align-items:center;justify-content:center;gap:.75rem';
+  banner.innerHTML = '<span>&#9632; DEMO MODE &mdash; View only. <a href="index.html#pricing" style="color:#C9A84C;text-decoration:underline">Purchase a license</a> to activate for your organization.</span><button onclick="this.parentElement.style.display='none'" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:1rem;padding:0 .25rem">&times;</button>';
+  document.body.prepend(banner);
+  showSlide(0);
+  showToast('Hospital Demo Mode Active — explore the full platform', 'info');
+}
+
+// Pre-populate demo admin dashboard data
+window._DEMO_STAFF_DATA = [
+  {name:'Sarah Martinez',email:'smartinez@demo.org',dept:'Adult Psych',currentSlide:31,finalQuizScore:14,quizPassed:true,completedAt:Date.now()-172800000,xp:520,level:3},
+  {name:'James Okafor',email:'jokafor@demo.org',dept:'Adolescent Unit',currentSlide:31,finalQuizScore:13,quizPassed:true,completedAt:Date.now()-259200000,xp:490,level:3},
+  {name:'Lisa Chen',email:'lchen@demo.org',dept:'Crisis Stabilization',currentSlide:31,finalQuizScore:15,quizPassed:true,completedAt:Date.now()-86400000,xp:610,level:4},
+  {name:'Marcus Williams',email:'mwilliams@demo.org',dept:'Adult Psych',currentSlide:18,finalQuizScore:null,quizPassed:false,completedAt:null,xp:210,level:2},
+  {name:'Patricia Nguyen',email:'pnguyen@demo.org',dept:'Forensic Unit',currentSlide:25,finalQuizScore:null,quizPassed:false,completedAt:null,xp:310,level:2},
+  {name:'Derek Thompson',email:'dthompson@demo.org',dept:'Adult Psych',currentSlide:31,finalQuizScore:12,quizPassed:false,completedAt:Date.now()-432000000,xp:380,level:2},
+  {name:'Aisha Brown',email:'abrown@demo.org',dept:'Crisis Stabilization',currentSlide:7,finalQuizScore:null,quizPassed:false,completedAt:null,xp:80,level:1},
+  {name:'Ryan Torres',email:'rtorres@demo.org',dept:'Adolescent Unit',currentSlide:31,finalQuizScore:14,quizPassed:true,completedAt:Date.now()-518400000,xp:510,level:3},
+  {name:'Deborah Kim',email:'dkim@demo.org',dept:'Adult Psych',currentSlide:22,finalQuizScore:null,quizPassed:false,completedAt:null,xp:240,level:2},
+  {name:'Anthony Davis',email:'adavis@demo.org',dept:'Forensic Unit',currentSlide:31,finalQuizScore:13,quizPassed:true,completedAt:Date.now()-691200000,xp:460,level:3},
+  {name:'Gloria Washington',email:'gwashington@demo.org',dept:'Crisis Stabilization',currentSlide:31,finalQuizScore:11,quizPassed:false,completedAt:Date.now()-777600000,xp:400,level:2},
+  {name:'Carlos Reyes',email:'creyes@demo.org',dept:'Adolescent Unit',currentSlide:5,finalQuizScore:null,quizPassed:false,completedAt:null,xp:55,level:1},
+  {name:'Tracy Johnson',email:'tjohnson@demo.org',dept:'Adult Psych',currentSlide:31,finalQuizScore:15,quizPassed:true,completedAt:Date.now()-345600000,xp:630,level:4},
+  {name:'Marcus Lee',email:'mlee@demo.org',dept:'Adult Psych',currentSlide:14,finalQuizScore:null,quizPassed:false,completedAt:null,xp:150,level:1},
+  {name:'Sandra Price',email:'sprice@demo.org',dept:'Crisis Stabilization',currentSlide:31,finalQuizScore:14,quizPassed:true,completedAt:Date.now()-604800000,xp:500,level:3},
+];
+
+function getDemoCompletionData() {
+  if (!window.DEMO_MODE) return null;
+  return window._DEMO_STAFF_DATA;
+}
+
+
+// ── CSV Bulk Import ────────────────────────────────────────────────────────
+var _csvRows = [];
+
+function handleCsvDrop(e) {
+  e.preventDefault();
+  document.getElementById('csv-dropzone').style.background = 'rgba(201,168,76,.03)';
+  const file = e.dataTransfer.files[0];
+  if (file) handleCsvFile(file);
+}
+
+function handleCsvFile(file) {
+  if (!file || !file.name.endsWith('.csv')) {
+    showCsvError('Please upload a valid .csv file.'); return;
+  }
+  const reader = new FileReader();
+  reader.onload = function(e) { parseCsv(e.target.result); };
+  reader.readAsText(file);
+}
+
+function parseCsv(text) {
+  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+  if (lines.length < 2) { showCsvError('CSV must have a header row and at least one data row.'); return; }
+  const headers = lines[0].toLowerCase().split(',').map(h => h.trim().replace(/["\']/g,''));
+  const nameIdx = headers.findIndex(h => h.includes('name'));
+  const emailIdx = headers.findIndex(h => h.includes('email'));
+  const deptIdx = headers.findIndex(h => h.includes('dept') || h.includes('department'));
+  if (nameIdx < 0 || emailIdx < 0) { showCsvError('CSV must have "name" and "email" columns.'); return; }
+  _csvRows = [];
+  for (let i = 1; i < Math.min(lines.length, 501); i++) {
+    const cols = lines[i].split(',').map(c => c.trim().replace(/^["\']|["\']$/g,''));
+    const row = { name: cols[nameIdx]||'', email: cols[emailIdx]||'', dept: deptIdx>=0 ? cols[deptIdx]||'' : '', status: 'Ready' };
+    if (!row.email.includes('@')) row.status = 'Invalid email';
+    if (!row.name) row.status = 'Missing name';
+    _csvRows.push(row);
+  }
+  renderCsvPreview();
+}
+
+function renderCsvPreview() {
+  const preview = document.getElementById('csv-preview');
+  const tbody = document.getElementById('csv-preview-body');
+  const countBadge = document.getElementById('csv-count-badge');
+  if (!preview || !tbody) return;
+  preview.style.display = 'block';
+  const valid = _csvRows.filter(r => r.status === 'Ready').length;
+  if (countBadge) countBadge.textContent = valid + ' staff ready to import';
+  tbody.innerHTML = _csvRows.slice(0, 50).map(r => {
+    const statusColor = r.status==='Ready' ? '#4ade80' : '#f87171';
+    return '<tr style="border-bottom:1px solid rgba(255,255,255,.04)">'
+      + '<td style="padding:.5rem .75rem">' + (r.name||'—') + '</td>'
+      + '<td style="padding:.5rem .75rem;color:#93c5fd">' + (r.email||'—') + '</td>'
+      + '<td style="padding:.5rem .75rem;color:#94a3b8">' + (r.dept||'—') + '</td>'
+      + '<td style="padding:.5rem .75rem"><span style="color:'+statusColor+';font-size:.7rem;font-weight:700">'+r.status+'</span></td>'
+      + '</tr>';
+  }).join('');
+  if (_csvRows.length > 50) {
+    tbody.innerHTML += '<tr><td colspan="4" style="padding:.5rem .75rem;color:#64748b;font-style:italic">... and ' + (_csvRows.length - 50) + ' more rows</td></tr>';
+  }
+}
+
+function showCsvError(msg) {
+  const box = document.getElementById('csv-error-box');
+  if (box) { box.style.display = 'block'; box.textContent = msg; }
+}
+
+async function executeCsvImport() {
+  const valid = _csvRows.filter(r => r.status === 'Ready');
+  if (!valid.length) { showToast('No valid rows to import', 'error'); return; }
+  const btn = document.getElementById('csv-import-btn');
+  if (btn) btn.textContent = 'Importing...';
+  let success = 0, failed = 0;
+  const orgId = window._userData?.orgId || window.TENANT?.orgId || 'destiny-springs';
+  for (const row of valid) {
+    try {
+      const key = 'invited_' + row.email.replace(/[.#$\[\]]/g,'_');
+      await set(ref(db, 'orgs/' + orgId + '/invites/' + key), {
+        name: row.name, email: row.email, dept: row.dept,
+        invitedAt: Date.now(), status: 'pending', role: 'staff'
+      });
+      row.status = 'Invited'; success++;
+    } catch(e) { row.status = 'Failed'; failed++; }
+  }
+  renderCsvPreview();
+  if (btn) btn.textContent = 'Import Staff';
+  showToast(success + ' staff invited' + (failed ? ', ' + failed + ' failed' : ''), success ? 'success' : 'error');
+}
+
+function clearCsvImport() {
+  _csvRows = [];
+  const preview = document.getElementById('csv-preview');
+  if (preview) preview.style.display = 'none';
+  const input = document.getElementById('csv-file-input');
+  if (input) input.value = '';
+}
+
+function downloadCsvTemplate() {
+  const csv = 'name,email,department,role\nJohn Smith,jsmith@hospital.org,Adult Psych,staff\nJane Doe,jdoe@hospital.org,Crisis Unit,staff\n';
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'staff_import_template.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+// ── Admin Settings: check Stripe + Gemini status ──────────────────────────
+function checkAdminSettingsStatus() {
+  // Stripe check: ping our API
+  const stripeMsg = document.getElementById('stripe-status-msg');
+  const stripeBadge = document.getElementById('stripe-status-badge');
+  fetch('/api/stripe-checkout', { method: 'OPTIONS' })
+    .then(r => {
+      if (stripeMsg) stripeMsg.textContent = 'Vercel API reachable — set env vars to activate payments';
+      if (stripeBadge) { stripeBadge.textContent = '\u25C6 API Online'; stripeBadge.style.background='rgba(251,191,36,.1)'; stripeBadge.style.color='#fbbf24'; }
+    })
+    .catch(() => {
+      if (stripeMsg) stripeMsg.textContent = 'Vercel API not reachable — configure deployment first';
+      if (stripeBadge) { stripeBadge.textContent = '\u25CF Not Reachable'; stripeBadge.style.background='rgba(239,68,68,.1)'; stripeBadge.style.color='#f87171'; }
+    });
+  // Gemini check
+  const geminiMsg = document.getElementById('gemini-status-label');
+  const geminiBadge = document.getElementById('gemini-status-badge');
+  const hasKey = typeof GEMINI_API_KEY !== 'undefined' && GEMINI_API_KEY && GEMINI_API_KEY.length > 8;
+  if (geminiMsg) geminiMsg.textContent = hasKey ? 'API key configured — AI grading active' : 'Add window.GEMINI_KEY in tenant.config.js';
+  if (geminiBadge) {
+    if (hasKey) { geminiBadge.textContent = '\u2713 Active'; geminiBadge.style.background='rgba(34,197,94,.1)'; geminiBadge.style.color='#4ade80'; geminiBadge.style.borderColor='rgba(34,197,94,.25)'; }
+    else { geminiBadge.textContent = '\u25C6 Not Configured'; }
+  }
+}
+
+
+function renderDemoCompletion() {
+  const el = document.getElementById('at-completion');
+  if (!el) return;
+  const staff = window._DEMO_STAFF_DATA || [];
+  const total = 31;
+  const done = staff.filter(u => (u.currentSlide||0) >= total-1);
+  const inProg = staff.filter(u => (u.currentSlide||0) > 0 && (u.currentSlide||0) < total-1);
+  const notStarted = staff.filter(u => !u.currentSlide || u.currentSlide === 0);
+  el.innerHTML = '<div style="padding:1.5rem;max-width:900px">'
+    + '<div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:.6rem;padding:.6rem 1rem;margin-bottom:1.25rem;font-size:.75rem;font-weight:700;color:#C9A84C;display:flex;align-items:center;gap:.5rem"><span>&#9670;</span> Demo Mode — Sample Hospital Data (15 staff)</div>'
+    + '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem">'
+    + '<div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:.75rem;padding:1rem;text-align:center"><div style="font-size:1.75rem;font-weight:900;color:#4ade80">' + done.length + '</div><div style="font-size:.72rem;color:#94a3b8;margin-top:.25rem;text-transform:uppercase;letter-spacing:.08em">Completed</div></div>'
+    + '<div style="background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:.75rem;padding:1rem;text-align:center"><div style="font-size:1.75rem;font-weight:900;color:#fbbf24">' + inProg.length + '</div><div style="font-size:.72rem;color:#94a3b8;margin-top:.25rem;text-transform:uppercase;letter-spacing:.08em">In Progress</div></div>'
+    + '<div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:.75rem;padding:1rem;text-align:center"><div style="font-size:1.75rem;font-weight:900;color:#f87171">' + notStarted.length + '</div><div style="font-size:.72rem;color:#94a3b8;margin-top:.25rem;text-transform:uppercase;letter-spacing:.08em">Not Started</div></div>'
+    + '</div>'
+    + '<div style="overflow-x:auto;border-radius:.75rem;border:1px solid rgba(255,255,255,.08)">'
+    + '<table style="width:100%;border-collapse:collapse;font-size:.78rem">'
+    + '<thead><tr style="background:rgba(255,255,255,.05)"><th style="padding:.6rem 1rem;text-align:left;color:#94a3b8;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Staff Member</th><th style="padding:.6rem 1rem;text-align:left;color:#94a3b8;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Department</th><th style="padding:.6rem 1rem;text-align:left;color:#94a3b8;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Progress</th><th style="padding:.6rem 1rem;text-align:left;color:#94a3b8;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Score</th><th style="padding:.6rem 1rem;text-align:left;color:#94a3b8;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Last Active</th></tr></thead>'
+    + '<tbody>' + staff.map(u => {
+        const pct = Math.round(((u.currentSlide||0)/total)*100);
+        const scoreColor = (u.scenarioScore||0) >= 80 ? '#4ade80' : (u.scenarioScore||0) >= 60 ? '#fbbf24' : '#f87171';
+        const statusColor = pct >= 100 ? '#4ade80' : pct > 0 ? '#fbbf24' : '#64748b';
+        const statusLabel = pct >= 100 ? 'Certified' : pct > 0 ? pct + '%' : 'Not Started';
+        const lastSeen = u.lastActive ? new Date(u.lastActive).toLocaleDateString() : '—';
+        return '<tr style="border-bottom:1px solid rgba(255,255,255,.04)">'
+          + '<td style="padding:.6rem 1rem"><div style="font-weight:700;color:#f1f5f9">' + u.displayName + '</div><div style="font-size:.7rem;color:#64748b">' + u.email + '</div></td>'
+          + '<td style="padding:.6rem 1rem;color:#94a3b8">' + (u.department||'—') + '</td>'
+          + '<td style="padding:.6rem 1rem"><div style="display:flex;align-items:center;gap:.5rem"><div style="flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden"><div style="width:'+pct+'%;height:100%;background:linear-gradient(90deg,#B8892A,#C9A84C);border-radius:3px"></div></div><span style="font-size:.7rem;color:'+statusColor+';font-weight:700;min-width:50px">'+statusLabel+'</span></div></td>'
+          + '<td style="padding:.6rem 1rem;color:'+scoreColor+';font-weight:700">' + (u.scenarioScore ? u.scenarioScore + '%' : '—') + '</td>'
+          + '<td style="padding:.6rem 1rem;color:#64748b;font-size:.73rem">' + lastSeen + '</td>'
+          + '</tr>';
+    }).join('')
+    + '</tbody></table></div></div>';
+}
 
 function doSignOut() {
   if(breathInterval) clearInterval(breathInterval);

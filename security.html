@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security & Compliance — NyxCodex™</title>
+  <meta name="description" content="NyxCodex security architecture, HIPAA considerations, data privacy, and compliance documentation for healthcare organizations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #C9A84C; --gold-dark: #B8892A; --bg: #0b0a08; --surface: #111008;
+      --border: rgba(201,168,76,.18); --text: #e2e8f0; --muted: #94a3b8;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.7; }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(11,10,8,.95); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-brand { display: flex; align-items: center; gap: .75rem; }
+    .header-brand img { height: 36px; }
+    .header-brand-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--gold); }
+    .header-nav { display: flex; gap: 1.5rem; font-size: .83rem; font-weight: 600; }
+    .header-nav a { color: var(--muted); transition: color .2s; }
+    .header-nav a:hover { color: var(--gold); text-decoration: none; }
+    .header-cta { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); color: #1a0f00; padding: .5rem 1.2rem; border-radius: 8px; font-size: .8rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; transition: filter .2s; }
+    .header-cta:hover { filter: brightness(1.1); text-decoration: none; }
+
+    /* ── HERO ── */
+    .security-hero {
+      background: linear-gradient(135deg, #0b0a08 0%, #111210 50%, #0f1308 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.25);
+      border-radius: 20px; padding: .35rem 1rem;
+      font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+      color: #4ade80; margin-bottom: 1.5rem;
+    }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); font-weight: 800; color: #f8fafc; margin-bottom: 1rem; }
+    .hero-title span { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 620px; margin: 0 auto 2.5rem; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+    .hero-badge {
+      display: flex; align-items: center; gap: .4rem;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 8px; padding: .5rem 1rem;
+      font-size: .75rem; font-weight: 700; color: #cbd5e1;
+    }
+    .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; }
+
+    /* ── CONTENT ── */
+    .content-wrap { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
+    .section { margin-bottom: 3.5rem; }
+    .section-label {
+      font-size: .68rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .75rem;
+    }
+    .section h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #f1f5f9; margin-bottom: 1rem; }
+    .section p { color: #cbd5e1; margin-bottom: .85rem; }
+    .section ul { color: #cbd5e1; padding-left: 1.5rem; }
+    .section ul li { margin-bottom: .5rem; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+    .sec-card {
+      background: rgba(255,255,255,.03); border: 1px solid var(--border);
+      border-radius: 1rem; padding: 1.5rem;
+    }
+    .sec-card-icon { font-size: 1.6rem; margin-bottom: .75rem; }
+    .sec-card h3 { font-size: 1rem; font-weight: 700; color: #f1f5f9; margin-bottom: .5rem; }
+    .sec-card p { font-size: .84rem; color: var(--muted); margin: 0; }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(201,168,76,.08), rgba(184,137,42,.04));
+      border: 1px solid rgba(201,168,76,.25); border-left: 4px solid var(--gold);
+      border-radius: .75rem; padding: 1.25rem 1.5rem; margin: 1.5rem 0;
+    }
+    .highlight-box strong { color: var(--gold); }
+
+    .status-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    .status-table th { text-align: left; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: .6rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .status-table td { padding: .75rem 1rem; border-bottom: 1px solid rgba(255,255,255,.05); font-size: .88rem; color: #cbd5e1; }
+    .status-table tr:last-child td { border-bottom: none; }
+    .status-badge { display: inline-flex; align-items: center; gap: .35rem; font-size: .72rem; font-weight: 700; padding: .25rem .65rem; border-radius: 20px; }
+    .status-active { background: rgba(34,197,94,.1); color: #4ade80; border: 1px solid rgba(34,197,94,.25); }
+    .status-roadmap { background: rgba(251,191,36,.08); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .status-na { background: rgba(148,163,184,.07); color: #94a3b8; border: 1px solid rgba(148,163,184,.15); }
+
+    .divider { height: 1px; background: var(--border); margin: 3rem 0; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.5rem; margin-top: .75rem; font-size: .8rem; color: var(--muted); }
+    .footer-links a { color: var(--muted); }
+    .footer-links a:hover { color: var(--gold); }
+
+    @media (max-width: 640px) {
+      .site-header { padding: .75rem 1rem; }
+      .header-nav { display: none; }
+      .security-hero { padding: 3rem 1.25rem 2.5rem; }
+      .content-wrap { padding: 2.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-brand">
+      <img src="nyxcodex-logo.png" alt="NyxCodex logo">
+      <span class="header-brand-name">NyxCodex&#8482;</span>
+    </div>
+    <nav class="header-nav">
+      <a href="index.html">Home</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="mailto:info@nyxcollectivellc.com">Contact</a>
+    </nav>
+    <a href="trainer_pro.html" class="header-cta">Sign In</a>
+  </header>
+
+  <!-- HERO -->
+  <section class="security-hero">
+    <div class="hero-eyebrow"><span class="dot"></span> Security & Compliance</div>
+    <h1 class="hero-title">Built for <span>Healthcare Security</span> Standards</h1>
+    <p class="hero-sub">NyxCodex is designed with hospital-grade security considerations, zero PHI storage, and a compliance architecture aligned with HIPAA, Joint Commission, and CMS requirements.</p>
+    <div class="hero-badges">
+      <span class="hero-badge"><span class="dot"></span> No PHI Stored</span>
+      <span class="hero-badge"><span class="dot"></span> TLS 1.3 Encryption</span>
+      <span class="hero-badge"><span class="dot"></span> Firebase BAA Available</span>
+      <span class="hero-badge"><span class="dot"></span> HIPAA-Aware Architecture</span>
+      <span class="hero-badge"><span class="dot"></span> Role-Based Access Control</span>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <div class="content-wrap">
+
+    <!-- No PHI -->
+    <section class="section">
+      <div class="section-label">Data Privacy</div>
+      <h2>No Protected Health Information Is Ever Stored</h2>
+      <p>NyxCodex is a <strong>staff training platform</strong>, not a clinical system. It does not collect, process, or store any patient data, medical records, or Protected Health Information (PHI) as defined under HIPAA 45 CFR &sect;160.103.</p>
+      <p>The only personal data stored is staff user accounts: name, work email address, training progress scores, and completion timestamps. This data is isolated per organization and never shared across tenants.</p>
+      <div class="highlight-box">
+        <strong>Why this matters:</strong> Because NyxCodex stores no PHI, it does not trigger HIPAA's Covered Entity obligations on its own. However, Google Firebase (our backend) offers a Business Associate Agreement (BAA) for organizations that require one as a matter of policy.
+      </div>
+    </section>
+
+    <!-- Encryption -->
+    <section class="section">
+      <div class="section-label">Encryption & Transport</div>
+      <h2>Data Encrypted In Transit and At Rest</h2>
+      <div class="card-grid">
+        <div class="sec-card">
+          <div class="sec-card-icon">&#128274;</div>
+          <h3>TLS 1.3 in Transit</h3>
+          <p>All communication between users and NyxCodex servers uses TLS 1.3 encryption. HTTP connections are automatically redirected to HTTPS.</p>
+        </div>
+        <div class="sec-card">
+          <div class="sec-card-icon">🗄</div>
+          <h3>Firebase at Rest</h3>
+          <p>Training data is stored in Google Firebase Realtime Database and Firestore, which encrypt data at rest using AES-256 by default.</p>
+        </div>
+        <div class="sec-card">
+          <div class="sec-card-icon">&#127760;</div>
+          <h3>Multi-Tenant Isolation</h3>
+          <p>Each organization's data is stored under a unique org path in Firebase. Firebase Security Rules prevent any cross-organization data access.</p>
+        </div>
+        <div class="sec-card">
+          <div class="sec-card-icon">&#128272;</div>
+          <h3>Auth via Firebase</h3>
+          <p>User authentication is handled by Google Firebase Authentication. Passwords are never stored in plaintext — Firebase uses bcrypt hashing.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Access Control -->
+    <section class="section">
+      <div class="section-label">Access Control</div>
+      <h2>Role-Based Access with Org Isolation</h2>
+      <p>NyxCodex implements a three-tier role model enforced at both the application and database levels:</p>
+      <ul>
+        <li><strong>Staff</strong> — Access to training content, their own progress, and their own certificate only</li>
+        <li><strong>Admin</strong> — Access to org-level dashboards, completion reports, and staff management for their org only</li>
+        <li><strong>Owner</strong> — Full access including billing, settings, and white-label configuration</li>
+      </ul>
+      <p style="margin-top:.85rem">Firebase Security Rules enforce that no user can read or write data outside their organization's path (<code>orgs/{orgId}/</code>), regardless of role.</p>
+    </section>
+
+    <!-- Compliance Table -->
+    <section class="section">
+      <div class="section-label">Compliance Status</div>
+      <h2>Regulatory Alignment</h2>
+      <table class="status-table">
+        <thead>
+          <tr><th>Standard / Requirement</th><th>Status</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HIPAA — No PHI storage</td>
+            <td><span class="status-badge status-active">&#10003; Active</span></td>
+            <td>Platform stores no patient data by design</td>
+          </tr>
+          <tr>
+            <td>Firebase BAA availability</td>
+            <td><span class="status-badge status-active">&#10003; Available</span></td>
+            <td>Provided by Google for Firebase enterprise customers</td>
+          </tr>
+          <tr>
+            <td>TLS 1.3 encryption</td>
+            <td><span class="status-badge status-active">&#10003; Active</span></td>
+            <td>Enforced on all connections via GitHub Pages / Vercel</td>
+          </tr>
+          <tr>
+            <td>Role-Based Access Control</td>
+            <td><span class="status-badge status-active">&#10003; Active</span></td>
+            <td>Staff / Admin / Owner roles with DB-level enforcement</td>
+          </tr>
+          <tr>
+            <td>Audit Logging</td>
+            <td><span class="status-badge status-active">&#10003; Active</span></td>
+            <td>Login, completion, quiz, and admin events logged per user</td>
+          </tr>
+          <tr>
+            <td>Joint Commission Staff Training</td>
+            <td><span class="status-badge status-active">&#10003; Aligned</span></td>
+            <td>Content aligned with EC.04.01.01 and HR.01.05.03</td>
+          </tr>
+          <tr>
+            <td>CMS CoP § 482.13(f) Restraint/Seclusion</td>
+            <td><span class="status-badge status-active">&#10003; Covered</span></td>
+            <td>Dedicated module on least-restrictive interventions</td>
+          </tr>
+          <tr>
+            <td>SOC 2 Type II</td>
+            <td><span class="status-badge status-roadmap">&#9670; Roadmap</span></td>
+            <td>Planned for 2027 as platform scales to enterprise</td>
+          </tr>
+          <tr>
+            <td>HITRUST CSF</td>
+            <td><span class="status-badge status-roadmap">&#9670; Roadmap</span></td>
+            <td>Under evaluation for hospital enterprise tier</td>
+          </tr>
+          <tr>
+            <td>Penetration Testing</td>
+            <td><span class="status-badge status-roadmap">&#9670; Roadmap</span></td>
+            <td>Scheduled for Q3 2027 with third-party firm</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Incident Response -->
+    <section class="section">
+      <div class="section-label">Incident Response</div>
+      <h2>Security Incident Procedures</h2>
+      <p>In the event of a security incident affecting training data, NyxCodex commits to:</p>
+      <ul>
+        <li>Notification of affected organizations within <strong>72 hours</strong> of discovery</li>
+        <li>Root cause analysis and written incident report within <strong>14 days</strong></li>
+        <li>Immediate revocation of compromised access credentials</li>
+        <li>Cooperation with organizational security and compliance teams</li>
+      </ul>
+      <p style="margin-top:.85rem">To report a suspected security issue: <a href="mailto:security@nyxcollectivellc.com">security@nyxcollectivellc.com</a></p>
+    </section>
+
+    <!-- Vendor / Subprocessors -->
+    <section class="section">
+      <div class="section-label">Sub-Processors</div>
+      <h2>Third-Party Services Used</h2>
+      <table class="status-table">
+        <thead>
+          <tr><th>Vendor</th><th>Purpose</th><th>Data Processed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Google Firebase</td><td>Authentication, database, storage</td><td>Email, name, training progress scores</td></tr>
+          <tr><td>Google Gemini API</td><td>AI scenario grading (optional)</td><td>Anonymized scenario text only — no user identifiers</td></tr>
+          <tr><td>Stripe</td><td>Payment processing</td><td>Billing data only — not stored in NyxCodex systems</td></tr>
+          <tr><td>Vercel</td><td>API serverless hosting</td><td>Request metadata only (no user data persisted)</td></tr>
+          <tr><td>ElevenLabs</td><td>AI voice synthesis for Professor Vance</td><td>Static script text only — no user data</td></tr>
+          <tr><td>GitHub Pages</td><td>Static asset hosting</td><td>No user data processed</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Questions CTA -->
+    <div class="highlight-box" style="text-align:center;padding:2rem">
+      <p style="color:#f1f5f9;font-weight:700;font-size:1.05rem;margin-bottom:.5rem">Questions about security for your organization?</p>
+      <p style="margin-bottom:1.25rem">Our team is happy to provide a security review packet, answer IT questionnaires, or arrange a technical call with your security team.</p>
+      <a href="mailto:info@nyxcollectivellc.com?subject=Security%20Review%20Request" style="display:inline-block;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#1a0f00;padding:.75rem 2rem;border-radius:8px;font-weight:800;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase">Request Security Review Packet</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gold)">NyxCodex&#8482;</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="trainer_pro.html">Sign In</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="mailto:info@nyxcollectivellc.com">Contact</a>
+    </div>
+    <div style="margin-top:.75rem;font-size:.72rem;color:#475569">&copy; 2026 Nyx Collective LLC &mdash; All Rights Reserved</div>
+  </footer>
+
+</body>
+</html>

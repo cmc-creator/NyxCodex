@@ -1,4 +1,4 @@
-// ─────────────────────────────────────────────────────────────────────────────
+﻿// ─────────────────────────────────────────────────────────────────────────────
 // TENANT CONFIGURATION — NyxCodex™ by Nyx Collective LLC
 // ─────────────────────────────────────────────────────────────────────────────
 // To white-label this platform for a new organization:
@@ -78,6 +78,12 @@ window.TENANT = {
   bootstrapOwnerEmails: ['ccooper@destinysprings.com'],
 
 };
+
+// ── AI Grading (Gemini) ───────────────────────────────────────────────────
+// Get a FREE key at: https://aistudio.google.com/app/apikey
+// Paste it below to enable real AI-powered scenario grading.
+// Leave as empty string "" to use enhanced keyword-based grading instead.
+window.GEMINI_KEY = "";   // <── PASTE YOUR FREE GEMINI API KEY HERE
 
 // ── Inject CSS Custom Properties immediately ───────────────────────────────
 // Runs synchronously so every stylesheet and inline style that references
