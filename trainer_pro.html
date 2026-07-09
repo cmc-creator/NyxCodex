@@ -6212,23 +6212,12 @@ async function showHomeGateway() {
   if(hubHeading) hubHeading.textContent = isReturning ? `Welcome back, ${fname}! \uD83D\uDC4B` : `Welcome to ${window.TENANT?.brandName || 'the platform'}, ${fname}!`;
   // Use a dedicated hub timer (not the cancellable scheduleVance) so slide navigation
   // timers can't accidentally swallow the welcome message before it fires
+  // Show Vance immediately — no timer needed (hub is already flex at this point)
   clearTimeout(window._hubVanceTimer);
-  window._hubVanceTimer = setTimeout(() => {
-    const cont = document.getElementById('avatar-container');
-    if(cont) cont.style.display = 'flex';
-    showAvatarAndSpeak('_direct_', fname, hubMsg);
-  }, 500);
-  // Bulletproof fallback: if avatar still hidden after 1.5s, force-show
   clearTimeout(window._hubVanceFallback);
-  window._hubVanceFallback = setTimeout(() => {
-    const cont = document.getElementById('avatar-container');
-    const hub2 = document.getElementById('home-gateway');
-    if(!cont || !hub2 || hub2.style.display !== 'flex') return;
-    if(cont.style.display !== 'flex') {
-      cont.style.display = 'flex';
-      showAvatarAndSpeak('_direct_', fname, hubMsg);
-    }
-  }, 1500);
+  const _vCont = document.getElementById('avatar-container');
+  if(_vCont) _vCont.style.display = 'flex';
+  showAvatarAndSpeak('_direct_', fname, hubMsg);
 }
 
 function hideHomeGateway() {
