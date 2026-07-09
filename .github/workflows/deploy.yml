@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+﻿name: Deploy to GitHub Pages
 
 on:
   push:
@@ -16,7 +16,63 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  validate:
+    name: JS Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Extract and check all non-module script blocks in trainer_pro.html
+        run: |
+          node - <<'JSEOF'
+          const fs   = require('fs');
+          const path = require('path');
+          const cp   = require('child_process');
+          const os   = require('os');
+
+          const html  = fs.readFileSync('trainer_pro.html', 'utf8');
+          const re    = /<script([^>]*)>([\s\S]*?)<\/script>/g;
+          let m, block = 0, failures = 0;
+
+          while ((m = re.exec(html)) !== null) {
+            const attrs   = m[1] || '';
+            const content = m[2];
+            block++;
+            // Skip module scripts (use ESM imports), src= scripts, and tiny inline scripts < 100 chars
+            if (attrs.includes('module') || attrs.includes('src=') || content.trim().length < 100) continue;
+
+            const tmp = path.join(os.tmpdir(), `blk_${block}.js`);
+            fs.writeFileSync(tmp, content, 'utf8');
+            const r = cp.spawnSync(process.execPath, ['--check', tmp], { encoding: 'utf8' });
+            if (r.status !== 0) {
+              // Map temp file line back to approximate HTML line
+              const htmlLine = html.slice(0, m.index).split('\n').length;
+              console.error(`\n❌  Block ${block} (HTML ~line ${htmlLine}) has a syntax error:\n${r.stderr}`);
+              failures++;
+            } else {
+              console.log(`✅  Block ${block} OK (${content.length.toLocaleString()} chars)`);
+            }
+          }
+
+          if (failures > 0) {
+            console.error(`\n${failures} script block(s) failed syntax check. Fix before deploying.`);
+            process.exit(1);
+          }
+          console.log('\nAll script blocks passed syntax check.');
+          JSEOF
+
+      - name: Validate canonical documentation URLs
+        run: node scripts/validate-doc-urls.mjs
+
   deploy:
+    name: Deploy to Pages
+    needs: validate
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -26,9 +82,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Validate canonical documentation URLs
-        run: node scripts/validate-doc-urls.mjs
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -43,6 +96,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
   smoke-test:
+    name: Post-Deploy Smoke Test
     needs: deploy
     runs-on: ubuntu-latest
     steps:

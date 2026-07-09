@@ -538,7 +538,7 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 .btn-purple:hover{box-shadow:0 10px 24px rgba(142,113,255,.34)}
 .btn-amber{background:linear-gradient(130deg,#ffd189,#C9A84C);color:#2f1b06;border-color:rgba(255,221,163,.65)}
 .btn-amber:hover{box-shadow:0 10px 24px rgba(201,168,76,.34)}
-.btn-secondary{background:white;color:#475569;border-color:#e2e8f0}
+.btn-secondary{background:white;color:#64748b;border-color:#e2e8f0}
 .btn-secondary:hover{background:#f8fafc;box-shadow:0 4px 12px rgba(0,0,0,.08)}
 .btn-info{background:linear-gradient(130deg,#93c5fd,#60a5fa);color:#0c2d6b;border-color:rgba(96,165,250,.55)}
 .btn-info:hover{box-shadow:0 10px 24px rgba(96,165,250,.32)}
@@ -742,7 +742,7 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 .tutorial-tip-head{font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#1d4ed8;margin-bottom:.25rem}
 #tut-tip{color:#1e3a8a;font-weight:700;font-size:.87rem;line-height:1.65;margin:0;font-style:italic}
 .tutorial-nav{display:flex;align-items:center;gap:.75rem;padding:.7rem 1.5rem 1.2rem}
-#tut-back-btn{border:1px solid #e2e8f0;background:#f8fafc;color:#475569;padding:.6rem 1rem;border-radius:.85rem;font-weight:800;font-size:.88rem;cursor:pointer;display:none}
+#tut-back-btn{border:1px solid #e2e8f0;background:#f8fafc;color:#64748b;padding:.6rem 1rem;border-radius:.85rem;font-weight:800;font-size:.88rem;cursor:pointer;display:none}
 .tutorial-nav-spacer{flex:1}
 #tut-next-btn{border:none;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;padding:.7rem 1.5rem;border-radius:.9rem;font-weight:900;font-size:.95rem;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.4)}
 #auth-form-panel #auth-panel-title{font-family:'Playfair Display',serif !important;color:#f8fafc !important}
@@ -796,11 +796,11 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
   border-radius: .75rem;
 }
 .green-box, [class*="green-box"],
-div[style*="background:#dcfce7"], div[style*="background:#d1fae5"] {
+div[style*="background:rgba(220,252,231,.15)"], div[style*="background:#d1fae5"] {
   border-left: 4px solid #22c55e !important;
 }
 .red-box, [class*="red-box"],
-div[style*="background:#fee2e2"], div[style*="background:#fef2f2"] {
+div[style*="background:#fee2e2"], div[style*="background:rgba(254,226,226,.15)"] {
   border-left: 4px solid #ef4444 !important;
 }
 /* Scenario choice buttons - more polished */
@@ -1289,13 +1289,13 @@ body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
 .grid-two-equal{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .space-y-3>*+*{margin-top:.75rem}
 .flex-col-gap{display:flex;flex-direction:column;gap:.6rem}
-.modal-label{font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem}
+.modal-label{font-size:.7rem;font-weight:800;color:#64748b;display:block;margin-bottom:.25rem}
 .modal-label.section{font-size:.75rem;font-weight:900;color:#0f172a;text-transform:uppercase;letter-spacing:.06em}
 .modal-action-buttons{display:flex;gap:.75rem;justify-content:flex-end;padding-top:.75rem;border-top:1px solid #e2e8f0}
 .modal-action-buttons.full-width{flex-wrap:wrap;gap:.5rem}
 .modal-bg-gradient{background:linear-gradient(135deg,#1e3a8a,#4c1d95);border-radius:1.5rem 1.5rem 0 0;padding:1.75rem;color:white}
-.modal-badge-info{background:#eff6ff;border:1px solid #bfdbfe;border-radius:.875rem;padding:1rem;margin-bottom:1rem}
-.modal-badge-error{background:#fef2f2;border:1px solid #fecaca;border-radius:.875rem;padding:1rem;margin-bottom:1rem}
+.modal-badge-info{background:rgba(219,234,254,.12);border:1px solid #bfdbfe;border-radius:.875rem;padding:1rem;margin-bottom:1rem}
+.modal-badge-error{background:rgba(254,226,226,.15);border:1px solid #fecaca;border-radius:.875rem;padding:1rem;margin-bottom:1rem}
 .modal-badge-success{background:#ecfdf5;border:2px solid #86efac;border-radius:1.25rem;padding:1.75rem;text-align:center}
 /* Admin modal tab system */
 .admin-tab-bar{display:flex;gap:0;border-bottom:2px solid #e2e8f0;padding:0 1.25rem;overflow-x:auto;background:#f8fafc;flex-shrink:0}
@@ -1330,13 +1330,13 @@ body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
 .acct-stats-label{font-size:.65rem;color:#64748b;font-weight:700;text-transform:uppercase}
 /* Utility button classes for modal actions */
 .btn-tiny-auto{font-size:.78rem;font-weight:800;cursor:pointer;border-radius:.5rem;border:1px solid;padding:.45rem .875rem;white-space:nowrap}
-.btn-tiny-reset{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.btn-tiny-reset{background:#fef3c7;color:#fbbf24;border-color:#fde68a}
 .btn-tiny-extend-30{background:#dbeafe;color:#1d4ed8;border-color:#bfdbfe}
 .btn-tiny-nudge{background:#ede9fe;color:#5b21b6;border-color:#ddd6fe}
 .btn-color-danger{background:#fee2e2;color:#dc2626;border-color:#fecaca;font-size:.78rem;font-weight:800;cursor:pointer;border-radius:.5rem;border:1px solid;padding:.55rem .875rem;white-space:nowrap}
 .btn-color-info{width:100%;padding:.75rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;border:none;border-radius:.875rem;font-weight:900;cursor:pointer;font-size:.875rem}
-.btn-color-cancel{width:100%;padding:.75rem;background:#f1f5f9;color:#475569;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem}
-.btn-color-cancel-light{width:100%;padding:.7rem;background:#f1f5f9;color:#475569;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem}
+.btn-color-cancel{width:100%;padding:.75rem;background:#f1f5f9;color:#64748b;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem}
+.btn-color-cancel-light{width:100%;padding:.7rem;background:#f1f5f9;color:#64748b;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem}
 .modal-form-group{display:flex;flex-direction:column;gap:.6rem}
 .modal-form-section-header{font-size:.75rem;font-weight:900;color:#0f172a;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid #e2e8f0;padding-bottom:.4rem;margin:0 0 .875rem}
 /* Hidden by JS - display toggled dynamically */
@@ -1390,7 +1390,7 @@ body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
 .color-warning{color:#92400e}
 .color-success{color:#15803d}
 .color-info{color:#1d4ed8}
-.color-neutral{color:#475569}
+.color-neutral{color:#64748b}
 /* Tab button styles */
 .tab-btn-base{padding:.65rem 1.1rem;font-size:.85rem;font-weight:800;border:none;cursor:pointer;margin-bottom:-2px}
 .tab-btn-active{border-bottom:3px solid #C9A84C;color:#C9A84C;background:transparent}
@@ -1401,14 +1401,14 @@ body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
 .scenario-box{background:white;border:1px solid #e2e8f0;border-radius:.875rem;padding:1rem;min-height:140px;color:#0f172a;font-weight:600;line-height:1.6}
 .rules-box{background:#fffaf5;border:1px solid #fed7aa;border-radius:1rem;padding:1rem}
 .rules-title{margin:0 0 .5rem;font-size:.95rem;font-weight:900;color:#92400e}
-.rules-list{margin:0;padding-left:1.1rem;color:#92400e;font-weight:700;font-size:.86rem;line-height:1.6}
+.rules-list{margin:0;padding-left:1.1rem;color:#fbbf24;font-weight:700;font-size:.86rem;line-height:1.6}
 .rules-footer{margin-top:.65rem;font-size:.82rem;color:#b45309;font-weight:700}
 /* Input field styles */
 .input-select{flex:1;min-width:180px}
 .input-select-fixed{width:180px}
 /* Badge and state styles */
-.badge-patient{padding:.3rem .85rem;border-radius:1rem;font-weight:900;font-size:.8rem;background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
-.badge-credits{background:#ecfdf3;border:1px solid #bbf7d0;padding:.4rem .75rem;border-radius:.75rem;font-weight:800;color:#15803d;font-size:.85rem}
+.badge-patient{padding:.3rem .85rem;border-radius:1rem;font-weight:900;font-size:.8rem;background:rgba(220,252,231,.15);color:#166534;border:1px solid #bbf7d0}
+.badge-credits{background:#ecfdf3;border:1px solid #bbf7d0;padding:.4rem .75rem;border-radius:.75rem;font-weight:800;color:#4ade80;font-size:.85rem}
 
 /* ═══════════════════════════════════════════════════════════════════
    NYXCOLLECTIVE LLC — LUXURY DESIGN SYSTEM
@@ -1959,7 +1959,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) [style*="color:#1e293b"],
 :root:not([data-theme="light"]) [style*="color:#0e1b2e"]{color:#E8D49A!important}
 :root:not([data-theme="light"]) [style*="color:#64748b"],
-:root:not([data-theme="light"]) [style*="color:#475569"],
+:root:not([data-theme="light"]) [style*="color:#64748b"],
 :root:not([data-theme="light"]) [style*="color:#94a3b8"]{color:#B0A890!important}
 :root:not([data-theme="light"]) [style*="color:#374151"],
 :root:not([data-theme="light"]) [style*="color:#1f2937"],
@@ -1970,7 +1970,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) [style*="color:#0f172a"],
 :root:not([data-theme="light"]) [style*="color:#1e293b"],
 :root:not([data-theme="light"]) [style*="color:#334155"],
-:root:not([data-theme="light"]) [style*="color:#475569"] { color:#D0C8B0 !important }
+:root:not([data-theme="light"]) [style*="color:#64748b"] { color:#D0C8B0 !important }
 
 :root:not([data-theme="light"]) [style*="color:#1e3a8a"],
 :root:not([data-theme="light"]) [style*="color:#1d4ed8"],
@@ -2003,12 +2003,12 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) .slide h4[style*="color:#0f172a"] { color:#E8D49A !important }
 
 :root:not([data-theme="light"]) .slide p[style*="color:#64748b"],
-:root:not([data-theme="light"]) .slide p[style*="color:#475569"],
+:root:not([data-theme="light"]) .slide p[style*="color:#64748b"],
 :root:not([data-theme="light"]) .slide p[style*="color:#94a3b8"],
 :root:not([data-theme="light"]) .slide p[style*="color:#6b7280"] { color:#B0A890 !important }
 /* Nav bar — fix dark text on dark background */
 #main-nav #nav-slide-counter{color:#B0A880!important}
-#main-nav [style*="color:#64748b"],[style*="color:#475569"],[style*="color:#334155"]{color:#8A8070!important}
+#main-nav [style*="color:#64748b"],[style*="color:#64748b"],[style*="color:#334155"]{color:#8A8070!important}
 /* Semantic card variants → dark glass with retained accent borders */
 :root:not([data-theme="light"]) .slide .red-box{
   background:linear-gradient(135deg,rgba(239,68,68,.14),rgba(220,38,38,.08))!important;
@@ -2058,7 +2058,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) #chat-panel div[style*="color:#0f172a"],
 :root:not([data-theme="light"]) #chat-panel div[style*="font-weight:900"]{color:#eef2fb!important}
 :root:not([data-theme="light"]) #chat-panel #chat-subtitle,
-:root:not([data-theme="light"]) #chat-panel div[style*="color:#475569"],
+:root:not([data-theme="light"]) #chat-panel div[style*="color:#64748b"],
 :root:not([data-theme="light"]) #chat-panel span[style*="color:#64748b"]{color:#b8c0d1!important}
 :root:not([data-theme="light"]) #chat-panel button[onclick="closeChat()"]{
   background:rgba(255,255,255,.08)!important;border-color:rgba(255,255,255,.1)!important;color:#94a3b8!important;
@@ -2074,7 +2074,7 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
   border-bottom-color:rgba(255,255,255,.08)!important;
 }
 :root:not([data-theme="light"]) #video-modal h3{color:#eef2fb!important}
-:root:not([data-theme="light"]) #video-modal p[style*="color:#475569"]{color:#b8c0d1!important}
+:root:not([data-theme="light"]) #video-modal p[style*="color:#64748b"]{color:#b8c0d1!important}
 :root:not([data-theme="light"]) #video-modal button[onclick="closeVideoModal()"]{
   background:rgba(255,255,255,.08)!important;border-color:transparent!important;color:#94a3b8!important;
 }
@@ -2192,17 +2192,17 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) button[onclick*="answerMicroExp('Anger')"]{background:rgba(239,68,68,.1)!important;border-color:rgba(239,68,68,.3)!important;color:#fca5a5!important}
 :root:not([data-theme="light"]) button[onclick*="answerMicroExp('Sadness')"]{background:rgba(124,58,237,.1)!important;border-color:rgba(124,58,237,.25)!important;color:#c4b5fd!important}
 /* ── DARK MODE: broad catch for orphaned dark text + light buttons inside modal cards ── */
-:root:not([data-theme="light"]) .modal-card div[style*="color:#475569"],
-:root:not([data-theme="light"]) .modal-card span[style*="color:#475569"],
-:root:not([data-theme="light"]) .modal-card p[style*="color:#475569"]{color:#94a3b8!important}
+:root:not([data-theme="light"]) .modal-card div[style*="color:#64748b"],
+:root:not([data-theme="light"]) .modal-card span[style*="color:#64748b"],
+:root:not([data-theme="light"]) .modal-card p[style*="color:#64748b"]{color:#94a3b8!important}
 :root:not([data-theme="light"]) .modal-card button[style*="background:#f1f5f9"]{background:rgba(255,255,255,.07)!important;color:#b8c0d1!important}
 /* ── DARK MODE: chat message bubbles (dynamically rendered) ── */
 :root:not([data-theme="light"]) #chat-messages div[style*="background:#dbeafe"]{background:rgba(37,99,235,.2)!important;border-color:rgba(37,99,235,.3)!important;color:#bfdbfe!important}
-:root:not([data-theme="light"]) #chat-messages div[style*="background:#eff6ff"]{background:rgba(99,102,241,.12)!important;border-color:rgba(99,102,241,.2)!important;color:#c7d2fe!important}
+:root:not([data-theme="light"]) #chat-messages div[style*="background:rgba(219,234,254,.12)"]{background:rgba(99,102,241,.12)!important;border-color:rgba(99,102,241,.2)!important;color:#c7d2fe!important}
 :root:not([data-theme="light"]) #chat-messages div[style*="color:#1d4ed8"]{color:#60a5fa!important}
-:root:not([data-theme="light"]) #chat-messages div[style*="color:#475569"]{color:#94a3b8!important}
+:root:not([data-theme="light"]) #chat-messages div[style*="color:#64748b"]{color:#94a3b8!important}
 /* ── DARK MODE: admin modal inner info/light boxes ── */
-:root:not([data-theme="light"]) .modal-card.admin div[style*="background:#eff6ff"],
+:root:not([data-theme="light"]) .modal-card.admin div[style*="background:rgba(219,234,254,.12)"],
 :root:not([data-theme="light"]) .modal-card.admin div[style*="background:#f0f9ff"]{background:rgba(37,99,235,.08)!important;border-color:rgba(37,99,235,.2)!important}
 :root:not([data-theme="light"]) .modal-card.admin p[style*="color:#1e40af"],
 :root:not([data-theme="light"]) .modal-card.admin p[style*="color:#1d4ed8"],
@@ -2210,12 +2210,12 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) .modal-card.admin div[style*="color:#2563eb"]{color:#60a5fa!important}
 :root:not([data-theme="light"]) .modal-card.admin p[style*="color:#3b82f6"],
 :root:not([data-theme="light"]) .modal-card.admin p[style*="color:#1e3a8a"]{color:#93c5fd!important}
-:root:not([data-theme="light"]) .modal-card.admin tr[style*="background:#eff6ff"]{background:rgba(37,99,235,.1)!important}
-:root:not([data-theme="light"]) .modal-card.admin button[style*="background:#eff6ff"]{background:rgba(37,99,235,.1)!important;border-color:rgba(37,99,235,.25)!important;color:#93c5fd!important}
+:root:not([data-theme="light"]) .modal-card.admin tr[style*="background:rgba(219,234,254,.12)"]{background:rgba(37,99,235,.1)!important}
+:root:not([data-theme="light"]) .modal-card.admin button[style*="background:rgba(219,234,254,.12)"]{background:rgba(37,99,235,.1)!important;border-color:rgba(37,99,235,.25)!important;color:#93c5fd!important}
 /* ── DARK MODE: slide inline blue tip boxes ── */
-:root:not([data-theme="light"]) .slide div[style*="background:#eff6ff"]{background:rgba(37,99,235,.1)!important;border-left-color:#3b82f6!important}
-:root:not([data-theme="light"]) .slide div[style*="background:#eff6ff"] p{color:#93c5fd!important}
-:root:not([data-theme="light"]) .slide div[style*="background:#eff6ff"] p[style*="font-weight:800"]{color:#60a5fa!important}
+:root:not([data-theme="light"]) .slide div[style*="background:rgba(219,234,254,.12)"]{background:rgba(37,99,235,.1)!important;border-left-color:#3b82f6!important}
+:root:not([data-theme="light"]) .slide div[style*="background:rgba(219,234,254,.12)"] p{color:#93c5fd!important}
+:root:not([data-theme="light"]) .slide div[style*="background:rgba(219,234,254,.12)"] p[style*="font-weight:800"]{color:#60a5fa!important}
 
 /* ── DARK MODE: chat bubble text (color:#1e293b → near-black, invisible on dark) ── */
 :root:not([data-theme="light"]) #chat-messages div[style*="color:#1e293b"]{color:#e2e8f0!important}
@@ -2226,13 +2226,13 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 /* Section headings h3/h4 color:#0f172a */
 :root:not([data-theme="light"]) .modal-card.admin h3[style*="color:#0f172a"],
 :root:not([data-theme="light"]) .modal-card.admin h4[style*="color:#0f172a"]{color:#eef2fb!important}
-/* Field labels color:#475569 */
-:root:not([data-theme="light"]) .modal-card.admin label[style*="color:#475569"]{color:#94a3b8!important}
+/* Field labels color:#64748b */
+:root:not([data-theme="light"]) .modal-card.admin label[style*="color:#64748b"]{color:#94a3b8!important}
 /* Table cell user names color:#0f172a */
 :root:not([data-theme="light"]) .modal-card.admin td[style*="color:#0f172a"]{color:#eef2fb!important}
 /* Completion panel — done header (#f0fdf4) and in-progress header (#fef9c3) */
 :root:not([data-theme="light"]) .modal-card.admin div[style*="background:#f0fdf4"]{background:rgba(34,197,94,.1)!important;border-color:rgba(34,197,94,.2)!important}
-:root:not([data-theme="light"]) .modal-card.admin div[style*="background:#fef9c3"]{background:rgba(245,158,11,.1)!important;border-color:rgba(245,158,11,.2)!important}
+:root:not([data-theme="light"]) .modal-card.admin div[style*="background:rgba(254,249,195,.12)"]{background:rgba(245,158,11,.1)!important;border-color:rgba(245,158,11,.2)!important}
 :root:not([data-theme="light"]) .modal-card.admin span[style*="color:#15803d"]{color:#86efac!important}
 :root:not([data-theme="light"]) .modal-card.admin span[style*="color:#92400e"]{color:#fb923c!important}
 /* HR integrations gradient panel */
@@ -2244,8 +2244,8 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 :root:not([data-theme="light"]) .modal-card.admin span[style*="background:white"]{background:rgba(255,255,255,.07)!important;border-color:rgba(255,255,255,.15)!important;color:#93c5fd!important}
 /* Lab settings score bonus boxes — A/C/D (B already caught) */
 :root:not([data-theme="light"]) .modal-card.admin div[style*="background:#ecfdf3"]{background:rgba(34,197,94,.1)!important;border-color:rgba(34,197,94,.25)!important;color:#86efac!important}
-:root:not([data-theme="light"]) .modal-card.admin div[style*="background:#fff7ed"]{background:rgba(245,158,11,.1)!important;border-color:rgba(245,158,11,.25)!important;color:#fbbf24!important}
-:root:not([data-theme="light"]) .modal-card.admin div[style*="background:#fef2f2"]{background:rgba(239,68,68,.1)!important;border-color:rgba(239,68,68,.25)!important;color:#fca5a5!important}
+:root:not([data-theme="light"]) .modal-card.admin div[style*="background:rgba(255,237,213,.12)"]{background:rgba(245,158,11,.1)!important;border-color:rgba(245,158,11,.25)!important;color:#fbbf24!important}
+:root:not([data-theme="light"]) .modal-card.admin div[style*="background:rgba(254,226,226,.15)"]{background:rgba(239,68,68,.1)!important;border-color:rgba(239,68,68,.25)!important;color:#fca5a5!important}
 /* TOTP URL monospace display */
 :root:not([data-theme="light"]) #totp-setup-url{background:rgba(255,255,255,.06)!important;color:#e2e8f0!important}
 
@@ -2874,7 +2874,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
             <button onclick="clearCsvImport()" style="padding:.72rem 1.25rem;background:rgba(255,255,255,.07);color:#94a3b8;border:1px solid rgba(255,255,255,.12);border-radius:.6rem;font-weight:700;font-size:.8rem;cursor:pointer">Clear</button>
           </div>
         </div>
-        <div style="margin-top:.75rem;font-size:.7rem;color:#475569">Download template: <a href="#" onclick="downloadCsvTemplate();return false" style="color:#C9A84C">staff_import_template.csv</a></div>
+        <div style="margin-top:.75rem;font-size:.7rem;color:#64748b">Download template: <a href="#" onclick="downloadCsvTemplate();return false" style="color:#C9A84C">staff_import_template.csv</a></div>
       </div>
     </div>
 
@@ -3013,7 +3013,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <p style="margin:0;color:#64748b;font-weight:600;font-size:.85rem">Earn Lab Credits by running live de-escalation scenarios.</p>
       </div>
       <div style="display:flex;align-items:center;gap:.75rem">
-        <div style="background:#ecfdf3;border:1px solid #bbf7d0;padding:.4rem .75rem;border-radius:.75rem;font-weight:800;color:#15803d;font-size:.85rem">Credits: <span id="lab-modal-credits">0</span></div>
+        <div style="background:#ecfdf3;border:1px solid #bbf7d0;padding:.4rem .75rem;border-radius:.75rem;font-weight:800;color:#4ade80;font-size:.85rem">Credits: <span id="lab-modal-credits">0</span></div>
         <button onclick="closeLabRoom()" class="modal-close-btn">✕</button>
       </div>
     </div>
@@ -3036,10 +3036,10 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
             <img id="lab-patient-avatar-img" src="prof.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block" alt="">
           </div>
           <div style="flex:1">
-            <div style="font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#475569">Patient Status</div>
+            <div style="font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#64748b">Patient Status</div>
             <div id="lab-patient-name" style="font-weight:800;color:white;font-size:.9rem">Marcus <span style="font-size:.75rem;font-weight:600;color:#94a3b8">— Combat PTSD, evaluation pending</span></div>
           </div>
-          <div id="marcus-state-badge" style="padding:.3rem .85rem;border-radius:1rem;font-weight:900;font-size:.8rem;background:#dcfce7;color:#166534;border:1px solid #bbf7d0">&#x26AB; Neutral</div>
+          <div id="marcus-state-badge" style="padding:.3rem .85rem;border-radius:1rem;font-weight:900;font-size:.8rem;background:rgba(220,252,231,.15);color:#166534;border:1px solid #bbf7d0">&#x26AB; Neutral</div>
         </div>
         <div class="grid-two-varied">
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem">
@@ -3064,7 +3064,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         </div>
         <div style="background:#fffaf5;border:1px solid #fed7aa;border-radius:1rem;padding:1rem">
           <h4 style="margin:0 0 .5rem;font-size:.95rem;font-weight:900;color:#92400e">Earning Rules</h4>
-          <ul style="margin:0;padding-left:1.1rem;color:#92400e;font-weight:700;font-size:.86rem;line-height:1.6">
+          <ul style="margin:0;padding-left:1.1rem;color:#fbbf24;font-weight:700;font-size:.86rem;line-height:1.6">
             <li>Base: 50 Lab Credits per completed scenario.</li>
             <li>Score bonus: A +50, B +30, C +15, D +5.</li>
             <li>Run each scenario once per day for credits (replays allowed, no credits).</li>
@@ -3077,7 +3077,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <div style="display:flex;flex-direction:column;gap:.5rem">
           <textarea id="lab-response" class="input-field" placeholder="Type your de-escalation response..." style="height:180px;resize:vertical"></textarea>
           <button id="lab-mic-btn" onclick="toggleLabMic()" title="Record spoken response"
-            style="display:none;align-items:center;justify-content:center;gap:.45rem;padding:.45rem .9rem;border-radius:.65rem;border:1.5px solid #e2e8f0;background:#f8fafc;color:#475569;font-size:.8rem;font-weight:800;cursor:pointer;width:100%;transition:all .2s">
+            style="display:none;align-items:center;justify-content:center;gap:.45rem;padding:.45rem .9rem;border-radius:.65rem;border:1.5px solid #e2e8f0;background:#f8fafc;color:#64748b;font-size:.8rem;font-weight:800;cursor:pointer;width:100%;transition:all .2s">
             🎤 <span id="lab-mic-label">Speak response</span>
           </button>
           <div id="lab-mic-status" style="display:none;font-size:.75rem;color:#dc2626;font-weight:700;text-align:center"></div>
@@ -3089,7 +3089,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
               <div style="font-weight:900;color:#0f172a;font-size:1rem">Score: <span id="lab-score-letter">·</span></div>
               <div style="font-weight:900;color:#16a34a;font-size:.95rem">+<span id="lab-lc-earned">0</span> LC</div>
             </div>
-            <div id="lab-feedback" style="margin-top:.5rem;color:#475569;white-space:pre-wrap;font-size:.85rem;line-height:1.5"></div>
+            <div id="lab-feedback" style="margin-top:.5rem;color:#64748b;white-space:pre-wrap;font-size:.85rem;line-height:1.5"></div>
             <div id="lab-cooldown" style="margin-top:.4rem;color:#dc2626;font-weight:800;display:none;font-size:.82rem"></div>
             <!-- Marcus in-character reply -->
             <div id="marcus-reply-wrap" style="display:none;margin-top:.85rem;background:#0f172a;border-radius:.875rem;overflow:hidden">
@@ -3114,12 +3114,12 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <p style="margin:0 0 1rem;color:#64748b;font-size:.88rem;font-weight:700">Describe a real or practice incident. Professor Vance will review it and provide structured clinical feedback.</p>
         <div class="grid-two-equal">
           <div style="display:flex;flex-direction:column;gap:.5rem">
-            <label style="font-size:.75rem;font-weight:800;color:#475569;text-transform:uppercase;letter-spacing:.06em">📝 What happened?</label>
+            <label style="font-size:.75rem;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.06em">📝 What happened?</label>
             <textarea id="debrief-input" class="input-field" placeholder="Describe the incident, what you tried, and how it went. Be specific..." style="height:280px;resize:vertical"></textarea>
             <button id="debrief-btn" class="btn btn-primary" onclick="runDebrief()" style="width:100%">Get Clinical Feedback &#9654;</button>
           </div>
           <div style="display:flex;flex-direction:column;gap:.5rem">
-            <label style="font-size:.75rem;font-weight:800;color:#475569;text-transform:uppercase;letter-spacing:.06em">🧠 Clinical Mentor Analysis</label>
+            <label style="font-size:.75rem;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.06em">🧠 Clinical Mentor Analysis</label>
             <div id="debrief-output" style="flex:1;min-height:280px;background:#1e1b4b;border:1px solid #4338ca;border-radius:.875rem;padding:1rem;color:#c7d2fe;font-size:.875rem;line-height:1.6;font-weight:600;overflow-y:auto;white-space:pre-wrap"><span style="opacity:.5">Your mentor's feedback will appear here...</span></div>
                       <button id="debrief-export-btn" onclick="exportDebriefNote()" style="display:none;background:#ede9fe;color:#5b21b6;border:1px solid #c4b5fd;border-radius:.75rem;padding:.55rem 1.25rem;font-weight:800;font-size:.82rem;cursor:pointer">📄 Export as Clinical Note</button>
           </div>
@@ -3173,7 +3173,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         </div>
         <div id="microexp-buttons" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;margin-bottom:.85rem">
           <button onclick="answerMicroExp('Anger')" style="border:2px solid #fca5a5;background:#fff5f5;color:#b91c1c;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😠 Anger</button>
-          <button onclick="answerMicroExp('Fear')" style="border:2px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😨 Fear</button>
+          <button onclick="answerMicroExp('Fear')" style="border:2px solid #bfdbfe;background:rgba(219,234,254,.12);color:#1d4ed8;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😨 Fear</button>
           <button onclick="answerMicroExp('Sadness')" style="border:2px solid rgba(201,168,76,.3);background:rgba(201,168,76,.06);color:#C9A84C;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😢 Sadness</button>
           <button onclick="answerMicroExp('Neutral')" style="border:2px solid #d1fae5;background:#f0fdf4;color:#065f46;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😐 Neutral</button>
         </div>
@@ -3199,8 +3199,8 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:.75rem">
-        <div id="drill-streak-display" style="background:#fef3c7;border:2px solid #fcd34d;border-radius:1rem;padding:.4rem .9rem;font-weight:900;color:#92400e;font-size:.88rem">Start your streak!</div>
-        <button onclick="closeDrillModal()" class="modal-close-btn" style="background:#f1f5f9;border:none;font-weight:900;color:#475569">✕</button>
+        <div id="drill-streak-display" style="background:#fef3c7;border:2px solid #fcd34d;border-radius:1rem;padding:.4rem .9rem;font-weight:900;color:#fbbf24;font-size:.88rem">Start your streak!</div>
+        <button onclick="closeDrillModal()" class="modal-close-btn" style="background:#f1f5f9;border:none;font-weight:900;color:#64748b">✕</button>
       </div>
     </div>
     <div style="flex:1;overflow-y:auto;padding:1.25rem">
@@ -3208,7 +3208,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <!-- Already-done banner -->
       <div id="drill-done-today" style="display:none;background:linear-gradient(135deg,#ecfdf5,#f0fdf4);border:2px solid #86efac;border-radius:1.25rem;padding:1.75rem;text-align:center">
         <div style="font-size:2.5rem;margin-bottom:.5rem">✅</div>
-        <h3 style="font-weight:900;color:#15803d;margin:0 0 .4rem">Drill complete for today!</h3>
+        <h3 style="font-weight:900;color:#4ade80;margin:0 0 .4rem">Drill complete for today!</h3>
         <p style="color:#166534;font-weight:700;font-size:.88rem;margin:0 0 1rem">Your streak is safe. Come back tomorrow to keep it going.</p>
         <div id="drill-done-streak" style="font-size:1.5rem;font-weight:900;color:#15803d"></div>
       </div>
@@ -3260,7 +3260,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
           </div>
           <div id="drill-scenario-box" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem;margin-bottom:.85rem;font-weight:600;color:#0f172a;line-height:1.65;font-size:.88rem;min-height:90px">Loading…</div>
           <div style="margin-bottom:.75rem">
-            <div style="font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:#475569;margin-bottom:.4rem">Your de-escalation response</div>
+            <div style="font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:#64748b;margin-bottom:.4rem">Your de-escalation response</div>
             <textarea id="drill-response" class="input-field" placeholder="How do you respond to this patient right now? Mention space, tone, validation, or choices offered—" style="height:130px;resize:vertical;font-size:.875rem"></textarea>
           </div>
 
@@ -3270,7 +3270,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
               <div style="font-weight:900;color:#0f172a;font-size:1rem">Score: <span id="drill-grade">·</span></div>
               <div id="drill-xp-badge" style="font-weight:900;font-size:.88rem;color:#16a34a"></div>
             </div>
-            <div id="drill-feedback" style="color:#475569;font-size:.85rem;line-height:1.55;white-space:pre-wrap"></div>
+            <div id="drill-feedback" style="color:#64748b;font-size:.85rem;line-height:1.55;white-space:pre-wrap"></div>
             <div id="drill-streak-bonus" style="margin-top:.5rem;font-size:.82rem;font-weight:800;color:#a16207;display:none"></div>
           </div>
 
@@ -3305,7 +3305,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
           <p style="color:#dc2626;font-weight:800;font-size:.875rem">🚫 Access Denied</p>
           <p style="color:#ef4444;font-size:.78rem;margin-top:.35rem">Your account does not have admin privileges. Contact your Owner administrator.</p>
         </div>
-        <button onclick="closePinModal()" style="width:100%;padding:.75rem;background:#f1f5f9;color:#475569;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.875rem">Close</button>
+        <button onclick="closePinModal()" style="width:100%;padding:.75rem;background:#f1f5f9;color:#64748b;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.875rem">Close</button>
       </div>
       <!-- First-time setup -->
       <div id="admin-first-setup" style="display:none">
@@ -3317,14 +3317,14 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <input id="owner-code-conf" type="password" placeholder="Confirm access code" class="input-field" style="width:100%;margin-bottom:.85rem;text-align:center;font-weight:800" autocomplete="off">
         <div id="owner-code-error" style="display:none;color:#dc2626;font-size:.8rem;font-weight:800;margin-bottom:.6rem"></div>
         <button onclick="claimOwnerAccount()" style="width:100%;padding:.75rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;border-radius:.875rem;font-weight:900;cursor:pointer;font-size:.875rem;margin-bottom:.625rem">👑 Claim Owner + Set Code</button>
-        <button onclick="closePinModal()" style="width:100%;padding:.75rem;background:#f1f5f9;color:#475569;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem">Cancel</button>
+        <button onclick="closePinModal()" style="width:100%;padding:.75rem;background:#f1f5f9;color:#64748b;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem">Cancel</button>
       </div>
       <!-- Code entry -->
       <div id="admin-code-entry" style="display:none">
         <input id="admin-access-code" type="password" placeholder="Enter access code" class="input-field" style="width:100%;margin-bottom:.65rem;text-align:center;font-weight:800" autocomplete="off">
         <div id="admin-code-error" style="display:none;color:#dc2626;font-size:.8rem;font-weight:800;margin-bottom:.6rem"></div>
         <button onclick="verifyAdminCode()" style="width:100%;padding:.75rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;border-radius:.875rem;font-weight:900;cursor:pointer;font-size:.875rem;margin-bottom:.625rem">Unlock Command Center</button>
-        <button onclick="closePinModal()" style="width:100%;padding:.7rem;background:#f1f5f9;color:#475569;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem">Cancel</button>
+        <button onclick="closePinModal()" style="width:100%;padding:.7rem;background:#f1f5f9;color:#64748b;border:none;border-radius:.875rem;font-weight:800;cursor:pointer;font-size:.82rem">Cancel</button>
       </div>
     </div>
   </div>
@@ -3409,7 +3409,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
           <input id="edit-dept" class="input-field" type="text" placeholder="Department">
         </div>
         <input id="edit-empid" class="input-field" type="text" placeholder="Employee ID (optional)">
-        <div id="acct-edit-error" style="display:none;color:#dc2626;font-size:.8rem;font-weight:700;padding:.5rem;background:#fef2f2;border-radius:.5rem"></div>
+        <div id="acct-edit-error" style="display:none;color:#dc2626;font-size:.8rem;font-weight:700;padding:.5rem;background:rgba(254,226,226,.15);border-radius:.5rem"></div>
         <div style="display:flex;gap:.75rem">
           <button class="btn btn-success" style="flex:1" onclick="saveAccountEdit()">Save Changes</button>
           <button class="btn btn-secondary" style="flex:1" onclick="cancelAccountEdit()">Cancel</button>
@@ -3424,7 +3424,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <input id="pw-current" class="input-field" type="password" placeholder="Current Password">
         <input id="pw-new" class="input-field" type="password" placeholder="New Password (min 6 chars)">
         <input id="pw-conf" class="input-field" type="password" placeholder="Confirm New Password">
-        <div id="acct-pw-error" style="display:none;color:#dc2626;font-size:.8rem;font-weight:700;padding:.5rem;background:#fef2f2;border-radius:.5rem"></div>
+        <div id="acct-pw-error" style="display:none;color:#dc2626;font-size:.8rem;font-weight:700;padding:.5rem;background:rgba(254,226,226,.15);border-radius:.5rem"></div>
         <div id="acct-pw-success" style="display:none;color:#059669;font-size:.8rem;font-weight:700;padding:.5rem;background:#f0fdf4;border-radius:.5rem">Password updated successfully!</div>
         <div style="display:flex;gap:.75rem">
           <button class="btn btn-primary" style="flex:1" onclick="doChangePassword()">Update Password</button>
@@ -3437,7 +3437,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     <div id="acct-history" style="display:none;padding:1.5rem">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
         <h3 style="font-size:1.05rem;font-weight:900;color:#0f172a;margin:0">Recent Lab Sessions</h3>
-        <button class="btn" style="font-size:.78rem;padding:.35rem .85rem;background:#f1f5f9;color:#475569" onclick="cancelAccountHistory()">← Back</button>
+        <button class="btn" style="font-size:.78rem;padding:.35rem .85rem;background:#f1f5f9;color:#64748b" onclick="cancelAccountHistory()">← Back</button>
       </div>
       <div id="acct-history-list" style="display:flex;flex-direction:column;gap:.5rem;max-height:55vh;overflow-y:auto"></div>
     </div>
@@ -3484,7 +3484,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
   <div class="logo-inline" style="max-height:130px;max-width:420px;width:100%;margin:0 auto"></div>
   <div style="width:48px;height:48px;border:4px solid rgba(255,255,255,.15);border-top-color:#60a5fa;border-radius:50%;animation:spin .8s linear infinite"></div>
   <p style="color:#94a3b8;font-size:1.05rem;font-weight:600">Loading your training profile&hellip;</p>
-  <p id="app-loading-hint" style="color:#475569;font-size:.75rem;font-weight:600;display:none">Taking longer than usual &mdash; <a href="" onclick="location.reload();return false;" style="color:#60a5fa;text-decoration:underline">tap here to reload</a></p>
+  <p id="app-loading-hint" style="color:#64748b;font-size:.75rem;font-weight:600;display:none">Taking longer than usual &mdash; <a href="" onclick="location.reload();return false;" style="color:#60a5fa;text-decoration:underline">tap here to reload</a></p>
 </div>
 <script>
 // Failsafe: if the app never initialises within 10 s, show a reload hint.
@@ -3518,8 +3518,8 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <div style="font-size:.62rem;font-weight:600;color:#94a3b8;font-style:italic">(Click &amp; drag if I'm in your way)</div>
       </div>
       <div style="display:flex;gap:.35rem">
-        <button id="pax-mute-btn" onclick="togglePaxMute(event)" style="border:none;background:#f1f5f9;color:#475569;border-radius:.6rem;padding:.25rem .5rem;font-weight:800;font-size:.75rem;cursor:pointer" title="Mute / Unmute">🔇</button>
-        <button id="pax-minimize-btn" onclick="minimizePax(event)" style="border:none;background:#f1f5f9;color:#475569;border-radius:.6rem;padding:.25rem .55rem;font-weight:800;font-size:.75rem;cursor:pointer" title="Minimize">—</button>
+        <button id="pax-mute-btn" onclick="togglePaxMute(event)" style="border:none;background:#f1f5f9;color:#64748b;border-radius:.6rem;padding:.25rem .5rem;font-weight:800;font-size:.75rem;cursor:pointer" title="Mute / Unmute">🔇</button>
+        <button id="pax-minimize-btn" onclick="minimizePax(event)" style="border:none;background:#f1f5f9;color:#64748b;border-radius:.6rem;padding:.25rem .55rem;font-weight:800;font-size:.75rem;cursor:pointer" title="Minimize">—</button>
       </div>
     </div>
     <span id="avatar-speech-text"></span>
@@ -3669,7 +3669,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .75rem;background:rgba(255,255,255,.05);border-radius:.65rem"><span style="color:#94a3b8">Dismiss Vance / close panel</span><kbd style="background:#1e293b;color:#e2e8f0;padding:.2rem .55rem;border-radius:.35rem;font-family:monospace;font-size:.78rem;border:1px solid rgba(255,255,255,.1)">Esc</kbd></div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:.5rem .75rem;background:rgba(255,255,255,.05);border-radius:.65rem"><span style="color:#94a3b8">This help screen</span><kbd style="background:#1e293b;color:#e2e8f0;padding:.2rem .55rem;border-radius:.35rem;font-family:monospace;font-size:.78rem;border:1px solid rgba(255,255,255,.1)">?</kbd></div>
     </div>
-    <p style="margin-top:1.2rem;font-size:.72rem;color:#475569;text-align:center">Click anywhere outside or press Esc to close</p>
+    <p style="margin-top:1.2rem;font-size:.72rem;color:#64748b;text-align:center">Click anywhere outside or press Esc to close</p>
   </div>
 </div>
 
@@ -3680,7 +3680,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <div style="font-size:1.8rem">🎓</div>
       <div>
         <h3 style="margin:0;font-size:1.2rem;font-weight:900;color:#0f172a">You're certified!</h3>
-        <p style="margin:.2rem 0 0;color:#475569;font-weight:600;font-size:.92rem">Pick how you want to continue.</p>
+        <p style="margin:.2rem 0 0;color:#64748b;font-weight:600;font-size:.92rem">Pick how you want to continue.</p>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:.65rem">
@@ -3696,12 +3696,12 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
   <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-bottom:1px solid #e2e8f0;background:#f8fafc">
     <div>
       <div style="font-weight:900;color:#0f172a;font-size:1.05rem">Ask Prof. Vance</div>
-      <div id="chat-subtitle" style="font-size:.8rem;color:#475569;font-weight:700">Clinical de-escalation coach</div>
+      <div id="chat-subtitle" style="font-size:.8rem;color:#64748b;font-weight:700">Clinical de-escalation coach</div>
     </div>
-    <button onclick="closeChat()" style="width:28px;height:28px;border-radius:50%;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:900;color:#475569;cursor:pointer">✕</button>
+    <button onclick="closeChat()" style="width:28px;height:28px;border-radius:50%;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:900;color:#64748b;cursor:pointer">✕</button>
   </div>
   <div style="padding:.65rem 1rem;border-bottom:1px solid #e2e8f0;display:flex;gap:.4rem;align-items:center">
-    <div style="font-size:.8rem;color:#475569;font-weight:700">Secure backend chat enabled for staff.</div>
+    <div style="font-size:.8rem;color:#64748b;font-weight:700">Secure backend chat enabled for staff.</div>
   </div>
   <div id="chat-messages" style="flex:1;overflow-y:auto;padding:1rem;background:#fff"></div>
   <div style="padding:.6rem 1rem;border-top:1px solid #e2e8f0;background:#f8fafc;display:flex;gap:.5rem;flex-direction:column">
@@ -3719,9 +3719,9 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid #e2e8f0">
       <div>
         <h3 style="margin:0;font-size:1.1rem;font-weight:900;color:#0f172a">🎬 Training Example Videos</h3>
-        <p style="margin:0;color:#475569;font-weight:700;font-size:.9rem">Current links from YouTube/Facebook; swap with internal clips anytime.</p>
+        <p style="margin:0;color:#64748b;font-weight:700;font-size:.9rem">Current links from YouTube/Facebook; swap with internal clips anytime.</p>
       </div>
-      <button onclick="closeVideoModal()" style="width:36px;height:36px;border-radius:50%;background:#f1f5f9;border:none;font-weight:900;color:#475569;cursor:pointer">✕</button>
+      <button onclick="closeVideoModal()" style="width:36px;height:36px;border-radius:50%;background:#f1f5f9;border:none;font-weight:900;color:#64748b;cursor:pointer">✕</button>
     </div>
     <div style="padding:1rem;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem">
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:.85rem;display:flex;flex-direction:column;gap:.6rem">
@@ -3729,32 +3729,32 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <div style="position:relative;padding-top:56.25%;border-radius:.75rem;overflow:hidden;border:1px solid #e2e8f0;background:#000">
           <iframe src="https://www.youtube.com/embed/yqdV8wCRET0" title="De-escalation coaching" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
         </div>
-        <p style="font-size:1.05rem;color:#475569;font-weight:600;line-height:1.55">Short clip illustrating calming tone and slow pacing during initial contact.</p>
+        <p style="font-size:1.05rem;color:#64748b;font-weight:600;line-height:1.55">Short clip illustrating calming tone and slow pacing during initial contact.</p>
       </div>
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:.85rem;display:flex;flex-direction:column;gap:.6rem">
         <div style="font-weight:900;color:#0f172a;font-size:1.02rem">Staff Safety Scenario (YouTube)</div>
         <div style="position:relative;padding-top:56.25%;border-radius:.75rem;overflow:hidden;border:1px solid #e2e8f0;background:#000">
           <iframe src="https://www.youtube.com/embed/x7T5Eukokgs" title="Staff safety scenario" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
         </div>
-        <p style="font-size:1.05rem;color:#475569;font-weight:600;line-height:1.55">Body positioning and teamwork during an escalating interaction.</p>
+        <p style="font-size:1.05rem;color:#64748b;font-weight:600;line-height:1.55">Body positioning and teamwork during an escalating interaction.</p>
       </div>
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:.85rem;display:flex;flex-direction:column;gap:.6rem">
         <div style="font-weight:900;color:#0f172a;font-size:1.02rem">Trauma-Informed Example (YouTube)</div>
         <div style="position:relative;padding-top:56.25%;border-radius:.75rem;overflow:hidden;border:1px solid #e2e8f0;background:#000">
           <iframe src="https://www.youtube.com/embed/Jit68JYo0Us" title="Trauma-informed example" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
         </div>
-        <p style="font-size:1.05rem;color:#475569;font-weight:600;line-height:1.55">Example scripting that stays consent-focused and avoids re-traumatization.</p>
+        <p style="font-size:1.05rem;color:#64748b;font-weight:600;line-height:1.55">Example scripting that stays consent-focused and avoids re-traumatization.</p>
       </div>
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:.85rem;display:flex;flex-direction:column;gap:.6rem">
         <div style="font-weight:900;color:#0f172a;font-size:1.02rem">Rapid Tips (YouTube Short)</div>
         <div style="position:relative;padding-top:56.25%;border-radius:.75rem;overflow:hidden;border:1px solid #e2e8f0;background:#000">
           <iframe src="https://www.youtube.com/embed/LXCxqJw5rDg" title="Rapid de-escalation tips" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
         </div>
-        <p style="font-size:1.05rem;color:#475569;font-weight:600;line-height:1.55">Quick-hit reminders for tone, posture, and choice-offering.</p>
+        <p style="font-size:1.05rem;color:#64748b;font-weight:600;line-height:1.55">Quick-hit reminders for tone, posture, and choice-offering.</p>
       </div>
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:.85rem;display:flex;flex-direction:column;gap:.6rem">
         <div style="font-weight:900;color:#0f172a;font-size:1.02rem">Facebook Clip</div>
-        <p style="font-size:1.05rem;color:#475569;font-weight:600;line-height:1.55">Opens externally due to Facebook permissions.</p>
+        <p style="font-size:1.05rem;color:#64748b;font-weight:600;line-height:1.55">Opens externally due to Facebook permissions.</p>
         <a href="https://www.facebook.com/share/r/1DN8AiFLVR/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:.45rem;background:#2563eb;color:white;font-weight:900;padding:.65rem .9rem;border-radius:.75rem;text-decoration:none">Open in Facebook ?</a>
       </div>
     </div>
@@ -3776,7 +3776,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       NyxCodex®<br><span style="background:linear-gradient(90deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent">De-escalation</span>
     </h1>
     <p id="slide1-subtitle" style="color:#94a3b8;font-size:1rem;margin-bottom:.25rem;font-weight:600">Mastery Lab — NyxCodex™</p>
-    <p id="slide1-footer" style="color:#475569;font-size:.8rem;margin-bottom:3rem">© 2026 NyxCodex® · <a href="https://nyxcollectivellc.com" target="_blank" rel="noopener" style="color:#475569">Nyx Collective LLC</a> — All Rights Reserved — Clinical Training Platform</p>
+    <p id="slide1-footer" style="color:#64748b;font-size:.8rem;margin-bottom:3rem">© 2026 NyxCodex® · <a href="https://nyxcollectivellc.com" target="_blank" rel="noopener" style="color:#64748b">Nyx Collective LLC</a> — All Rights Reserved — Clinical Training Platform</p>
     <div id="welcome-card" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:1.5rem;padding:2rem;max-width:520px;width:100%;margin-bottom:2.5rem;backdrop-filter:blur(12px)">
       <p id="welcome-greeting" style="color:#94a3b8;font-size:.85rem;margin-bottom:.5rem">Welcome,</p>
       <p id="welcome-name" style="color:white;font-size:1.75rem;font-weight:900;font-family:Montserrat,sans-serif;margin-bottom:1rem">&nbsp;</p>
@@ -3812,7 +3812,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       </ul>
     </div>
     <div class="card green-box p-6">
-      <h3 style="font-size:1.1rem;font-weight:900;color:#15803d;margin-bottom:1rem;text-transform:uppercase"><span style="color:#22c55e;margin-right:.4rem">&#10003;</span> De-escalating Posture</h3>
+      <h3 style="font-size:1.1rem;font-weight:900;color:#4ade80;margin-bottom:1rem;text-transform:uppercase"><span style="color:#22c55e;margin-right:.4rem">&#10003;</span> De-escalating Posture</h3>
       <ul style="font-size:1.05rem;color:#14532d;font-weight:600;line-height:2">
         <li>45° angle — never square-on</li>
         <li>Open palms visible at sides</li>
@@ -3855,7 +3855,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     </div>
     <div class="card p-5" style="border-top:5px solid #94a3b8;text-align:center">
       <div style="font-size:1.75rem;font-weight:900;color:#64748b">10+ ft</div>
-      <div style="font-size:.75rem;font-weight:900;color:#475569;text-transform:uppercase;margin:.5rem 0">Public Zone</div>
+      <div style="font-size:.75rem;font-weight:900;color:#64748b;text-transform:uppercase;margin:.5rem 0">Public Zone</div>
       <p style="font-size:.78rem;color:#64748b;line-height:1.6">Too distant — feels dismissive. Use for group settings or initial approach only.</p>
     </div>
   </div>
@@ -3873,12 +3873,12 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
   </div>
   <div style="padding:0 2rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
     <div class="card green-box p-6">
-      <h3 style="font-weight:900;color:#15803d;margin-bottom:1rem;text-transform:uppercase;font-size:.95rem"><span style="color:#6ee7b7;margin-right:.3rem">&#9835;</span> Calming Vocal Qualities</h3>
+      <h3 style="font-weight:900;color:#4ade80;margin-bottom:1rem;text-transform:uppercase;font-size:.95rem"><span style="color:#6ee7b7;margin-right:.3rem">&#9835;</span> Calming Vocal Qualities</h3>
       <div style="display:flex;flex-direction:column;gap:.75rem">
-        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:40px;height:40px;background:#dcfce7;border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0">🎵</div><div><p style="font-weight:800;font-size:.85rem;color:#166534">Low Pitch</p><p style="font-size:.75rem;color:#15803d">Lower frequencies signal calm and safety to the limbic system</p></div></div>
-        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:40px;height:40px;background:#dcfce7;border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0">🐢</div><div><p style="font-weight:800;font-size:.85rem;color:#166534">Slower Pacing</p><p style="font-size:.75rem;color:#15803d">Rushed speech signals anxiety; slow = safe</p></div></div>
-        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:40px;height:40px;background:#dcfce7;border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0">🔇</div><div><p style="font-weight:800;font-size:.85rem;color:#166534">Quieter Volume</p><p style="font-size:.75rem;color:#15803d">Speak softer than them — they'll match you</p></div></div>
-        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:40px;height:40px;background:#dcfce7;border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0">😌</div><div><p style="font-weight:800;font-size:.85rem;color:#166534">Neutral Affect</p><p style="font-size:.75rem;color:#15803d">No excitement, no judgment — steady and warm</p></div></div>
+        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:40px;height:40px;background:rgba(220,252,231,.15);border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0">🎵</div><div><p style="font-weight:800;font-size:.85rem;color:#166534">Low Pitch</p><p style="font-size:.75rem;color:#15803d">Lower frequencies signal calm and safety to the limbic system</p></div></div>
+        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:40px;height:40px;background:rgba(220,252,231,.15);border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0">🐢</div><div><p style="font-weight:800;font-size:.85rem;color:#166534">Slower Pacing</p><p style="font-size:.75rem;color:#15803d">Rushed speech signals anxiety; slow = safe</p></div></div>
+        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:40px;height:40px;background:rgba(220,252,231,.15);border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0">🔇</div><div><p style="font-weight:800;font-size:.85rem;color:#166534">Quieter Volume</p><p style="font-size:.75rem;color:#15803d">Speak softer than them — they'll match you</p></div></div>
+        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:40px;height:40px;background:rgba(220,252,231,.15);border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0">😌</div><div><p style="font-weight:800;font-size:.85rem;color:#166534">Neutral Affect</p><p style="font-size:.75rem;color:#15803d">No excitement, no judgment — steady and warm</p></div></div>
       </div>
     </div>
     <div class="card red-box p-6">
@@ -3899,7 +3899,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 <!-- SLIDE 5 — VALIDATION & EMPATHY -->
 <div class="slide" style="background:white;padding-bottom:5rem">
   <div style="padding:2.5rem 2rem 1rem">
-    <span class="badge" style="background:#dcfce7;color:#166534;margin-bottom:1rem">Module 2 — Core Techniques</span>
+    <span class="badge" style="background:rgba(220,252,231,.15);color:#166534;margin-bottom:1rem">Module 2 — Core Techniques</span>
     <h2 style="font-size:2rem;font-weight:900;color:#0f172a;font-family:Montserrat,sans-serif">Validation & Empathy</h2>
     <p style="color:#64748b;font-weight:600;margin-top:.4rem;font-size:.9rem">The two most powerful de-escalation tools. They cost nothing and work every time.</p>
   </div>
@@ -3907,7 +3907,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     <div class="card p-6">
       <div style="font-size:2rem;margin-bottom:.75rem">💙</div>
       <h3 style="font-size:1.1rem;font-weight:900;color:#0f172a;margin-bottom:.75rem">Validation</h3>
-      <p style="font-size:.85rem;color:#475569;font-style:italic;margin-bottom:1rem;padding:.75rem;background:#f8fafc;border-radius:.75rem">"Your feelings are real and make sense, even if I don't fully understand the situation."</p>
+      <p style="font-size:.85rem;color:#64748b;font-style:italic;margin-bottom:1rem;padding:.75rem;background:#f8fafc;border-radius:.75rem">"Your feelings are real and make sense, even if I don't fully understand the situation."</p>
       <div style="margin-bottom:1rem"><p style="font-size:.8rem;font-weight:800;color:#374151;margin-bottom:.5rem">WHY IT WORKS:</p><p style="font-size:.8rem;color:#6b7280;line-height:1.6">Validation signals to the amygdala that the threat is acknowledged — not dismissed. This begins the neurological shift from fight-or-flight back to reasoning mode.</p></div>
       <p style="font-size:.8rem;font-weight:800;color:#374151;margin-bottom:.5rem">EXAMPLE PHRASES:</p>
       <ul style="font-size:.8rem;color:#4b5563;line-height:2">
@@ -3921,7 +3921,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <div style="font-size:2rem;margin-bottom:.75rem">❤️</div>
       <h3 style="font-size:1.1rem;font-weight:900;color:#0f172a;margin-bottom:.75rem">Empathy (vs. Sympathy)</h3>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem">
-        <div style="background:#fef2f2;padding:.75rem;border-radius:.75rem"><p style="font-size:.7rem;font-weight:900;color:#dc2626;text-transform:uppercase;margin-bottom:.4rem">Sympathy ?</p><p style="font-size:.75rem;color:#7f1d1d">"At least you have family who loves you..."<br><em>(minimizes)</em></p></div>
+        <div style="background:rgba(254,226,226,.15);padding:.75rem;border-radius:.75rem"><p style="font-size:.7rem;font-weight:900;color:#dc2626;text-transform:uppercase;margin-bottom:.4rem">Sympathy ?</p><p style="font-size:.75rem;color:#7f1d1d">"At least you have family who loves you..."<br><em>(minimizes)</em></p></div>
         <div style="background:#f0fdf4;padding:.75rem;border-radius:.75rem"><p style="font-size:.7rem;font-weight:900;color:#16a34a;text-transform:uppercase;margin-bottom:.4rem">Empathy ?</p><p style="font-size:.75rem;color:#166534">"It sounds like you're carrying a lot right now. I'm here."<br><em>(connects)</em></p></div>
       </div>
       <p style="font-size:.8rem;font-weight:800;color:#374151;margin-bottom:.5rem">HOW TO SHOW IT:</p>
@@ -3939,7 +3939,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 <!-- SLIDE 6 — ACTIVE LISTENING -->
 <div class="slide" style="background:#f8fafc;padding-bottom:5rem">
   <div style="padding:2.5rem 2rem 1rem">
-    <span class="badge" style="background:#fef3c7;color:#92400e;margin-bottom:1rem">Module 2 — Core Techniques</span>
+    <span class="badge" style="background:#fef3c7;color:#fbbf24;margin-bottom:1rem">Module 2 — Core Techniques</span>
     <h2 style="font-size:2rem;font-weight:900;color:#0f172a;font-family:Montserrat,sans-serif">Active Listening</h2>
     <p style="color:#64748b;font-weight:600;margin-top:.4rem;font-size:.9rem">Most people listen to reply. Your job is to listen to understand.</p>
   </div>
@@ -3947,14 +3947,14 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     <div class="card p-5" style="border-top:4px solid #f59e0b">
       <div style="font-size:1.75rem;margin-bottom:.75rem">🪞</div>
       <h3 style="font-weight:900;font-size:1.05rem;color:#0f172a;margin-bottom:.75rem;text-transform:uppercase">Reflect</h3>
-      <p style="font-size:.8rem;color:#475569;line-height:1.6">Mirror back what you heard in your own words — not parrot-style.</p>
-      <div style="background:#fffbeb;padding:.75rem;border-radius:.75rem;margin-top:.75rem"><p style="font-size:.75rem;color:#92400e;font-style:italic">"So what I'm hearing is — you feel like nobody is taking you seriously. Is that right?"</p></div>
+      <p style="font-size:.8rem;color:#64748b;line-height:1.6">Mirror back what you heard in your own words — not parrot-style.</p>
+      <div style="background:#fffbeb;padding:.75rem;border-radius:.75rem;margin-top:.75rem"><p style="font-size:.75rem;color:#fbbf24;font-style:italic">"So what I'm hearing is — you feel like nobody is taking you seriously. Is that right?"</p></div>
     </div>
     <div class="card p-5" style="border-top:4px solid #3b82f6">
       <div style="font-size:1.75rem;margin-bottom:.75rem">❓</div>
       <h3 style="font-weight:900;font-size:1.05rem;color:#0f172a;margin-bottom:.75rem;text-transform:uppercase">Open Questions</h3>
-      <p style="font-size:.8rem;color:#475569;line-height:1.6">Questions that can't be answered with yes/no open dialogue.</p>
-      <div style="background:#eff6ff;padding:.75rem;border-radius:.75rem;margin-top:.75rem">
+      <p style="font-size:.8rem;color:#64748b;line-height:1.6">Questions that can't be answered with yes/no open dialogue.</p>
+      <div style="background:rgba(219,234,254,.12);padding:.75rem;border-radius:.75rem;margin-top:.75rem">
         <p style="font-size:.75rem;color:#1d4ed8"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> <em>"What would help you feel safer right now?"</em></p>
         <p style="font-size:.75rem;color:#1d4ed8;margin-top:.4rem"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> <em>"Help me understand what happened."</em></p>
         <p style="font-size:.75rem;color:#dc2626;margin-top:.4rem"><span style="color:#ef4444;margin-right:.3rem">&#10007;</span> <em>"Did you take your meds?"</em></p>
@@ -3963,11 +3963,11 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     <div class="card p-5" style="border-top:4px solid #8b5cf6">
       <div style="font-size:1.75rem;margin-bottom:.75rem">🤫</div>
       <h3 style="font-weight:900;font-size:1.05rem;color:#0f172a;margin-bottom:.75rem;text-transform:uppercase">Strategic Silence</h3>
-      <p style="font-size:.8rem;color:#475569;line-height:1.6">5 seconds of silence feels like 30 to a distressed person. Resist filling it.</p>
+      <p style="font-size:.8rem;color:#64748b;line-height:1.6">5 seconds of silence feels like 30 to a distressed person. Resist filling it.</p>
       <div style="background:#faf5ff;padding:.75rem;border-radius:.75rem;margin-top:.75rem"><p style="font-size:.75rem;color:#6d28d9;font-style:italic">After asking a question, count silently to 10 before speaking again. They will fill the silence — and that's where truth lives.</p></div>
     </div>
     <div class="card p-5 amber-box" style="grid-column:1/-1">
-      <h3 style="font-weight:900;font-size:1.05rem;color:#92400e;margin-bottom:.75rem">🚫 WORDS TO NEVER SAY DURING CRISIS</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#fbbf24;margin-bottom:.75rem">🚫 WORDS TO NEVER SAY DURING CRISIS</h3>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;font-size:.8rem">
         <div style="background:white;padding:.5rem .75rem;border-radius:.5rem;color:#dc2626;font-weight:700">"Calm down!" — invalidating</div>
         <div style="background:white;padding:.5rem .75rem;border-radius:.5rem;color:#dc2626;font-weight:700">"I know how you feel" — dismissive</div>
@@ -4064,37 +4064,37 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <div style="font-size:3rem;margin-bottom:.75rem;display:inline-block" class="anim-bounce">❄️</div>
       <h3 style="font-weight:900;color:#0e7490;margin-bottom:.5rem;font-size:1rem">Cold Compress / Ice Water</h3>
       <p style="font-size:.7rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem">Vagus Nerve Activation</p>
-      <p style="font-size:.8rem;color:#475569;line-height:1.6">Cold on face/wrists triggers the dive reflex — instantly slows heart rate and activates parasympathetic response. Fastest biological de-escalator available.</p>
+      <p style="font-size:.8rem;color:#64748b;line-height:1.6">Cold on face/wrists triggers the dive reflex — instantly slows heart rate and activates parasympathetic response. Fastest biological de-escalator available.</p>
     </div>
     <div class="card p-6" style="border-top:5px solid #f97316;text-align:center">
       <div style="font-size:3rem;margin-bottom:.75rem">🍋</div>
       <h3 style="font-weight:900;color:#c2410c;margin-bottom:.5rem;font-size:1rem">Sour / Strong Flavor</h3>
       <p style="font-size:.7rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem">Sensory Interrupt</p>
-      <p style="font-size:.8rem;color:#475569;line-height:1.6">A sudden intense taste/smell breaks the rumination loop. Lemon candy, sour gummy, strong peppermint — pulls attention forcibly to the present moment.</p>
+      <p style="font-size:.8rem;color:#64748b;line-height:1.6">A sudden intense taste/smell breaks the rumination loop. Lemon candy, sour gummy, strong peppermint — pulls attention forcibly to the present moment.</p>
     </div>
     <div class="card p-6" style="border-top:5px solid #8b5cf6;text-align:center">
       <div style="font-size:3rem;margin-bottom:.75rem">🤲</div>
       <h3 style="font-weight:900;color:#6d28d9;margin-bottom:.5rem;font-size:1rem">Deep Pressure / Weight</h3>
       <p style="font-size:.7rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem">Proprioceptive Input</p>
-      <p style="font-size:.8rem;color:#475569;line-height:1.6">Weighted blankets, firm hand squeeze (with consent), or pressing feet firmly to floor — activates proprioceptors and signals bodily safety to the CNS.</p>
+      <p style="font-size:.8rem;color:#64748b;line-height:1.6">Weighted blankets, firm hand squeeze (with consent), or pressing feet firmly to floor — activates proprioceptors and signals bodily safety to the CNS.</p>
     </div>
     <div class="card p-6" style="border-top:5px solid #22c55e;text-align:center">
       <div style="font-size:3rem;margin-bottom:.75rem">🎵</div>
-      <h3 style="font-weight:900;color:#15803d;margin-bottom:.5rem;font-size:1rem">Sound / Music</h3>
+      <h3 style="font-weight:900;color:#4ade80;margin-bottom:.5rem;font-size:1rem">Sound / Music</h3>
       <p style="font-size:.7rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem">Auditory Regulation</p>
-      <p style="font-size:.8rem;color:#475569;line-height:1.6">Low-frequency calm music or white noise can reduce cortisol. Avoid silence in high-tension rooms — offer a quiet familiar sound if available.</p>
+      <p style="font-size:.8rem;color:#64748b;line-height:1.6">Low-frequency calm music or white noise can reduce cortisol. Avoid silence in high-tension rooms — offer a quiet familiar sound if available.</p>
     </div>
     <div class="card p-6" style="border-top:5px solid #eab308;text-align:center">
       <div style="font-size:3rem;margin-bottom:.75rem">✋</div>
-      <h3 style="font-weight:900;color:#92400e;margin-bottom:.5rem;font-size:1rem">Fidget / Textured Object</h3>
+      <h3 style="font-weight:900;color:#fbbf24;margin-bottom:.5rem;font-size:1rem">Fidget / Textured Object</h3>
       <p style="font-size:.7rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem">Tactile Focus Tool</p>
-      <p style="font-size:.8rem;color:#475569;line-height:1.6">Silly putty, rubber band, stress ball — gives the nervous system a safe outlet for excess energy. Particularly effective with ADHD and Autism presentations.</p>
+      <p style="font-size:.8rem;color:#64748b;line-height:1.6">Silly putty, rubber band, stress ball — gives the nervous system a safe outlet for excess energy. Particularly effective with ADHD and Autism presentations.</p>
     </div>
     <div class="card p-6" style="border-top:5px solid #ec4899;text-align:center">
       <div style="font-size:3rem;margin-bottom:.75rem">💨</div>
       <h3 style="font-weight:900;color:#9d174d;margin-bottom:.5rem;font-size:1rem">Breath Focus</h3>
       <p style="font-size:.7rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem">Mindful Anchor</p>
-      <p style="font-size:.8rem;color:#475569;line-height:1.6">Slow exhale longer than inhale (4 in, 6 out) reliably activates the vagal brake. Combine with a visual focus point for maximum effect.</p>
+      <p style="font-size:.8rem;color:#64748b;line-height:1.6">Slow exhale longer than inhale (4 in, 6 out) reliably activates the vagal brake. Combine with a visual focus point for maximum effect.</p>
     </div>
   </div>
 </div>
@@ -4185,13 +4185,13 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 <!-- SLIDE 12 — ADHD -->
 <div class="slide" style="background:white;padding-bottom:5rem">
   <div style="padding:2.5rem 2rem 1rem">
-    <span class="badge" style="background:#fef3c7;color:#92400e;margin-bottom:1rem">Module 4 — Diagnosis-Specific Care</span>
+    <span class="badge" style="background:#fef3c7;color:#fbbf24;margin-bottom:1rem">Module 4 — Diagnosis-Specific Care</span>
     <h2 style="font-size:2rem;font-weight:900;color:#0f172a;font-family:Montserrat,sans-serif"><span style="color:#93c5fd;margin-right:.3rem">&#9670;</span> ADHD</h2>
     <p style="color:#64748b;font-weight:600;margin-top:.4rem;font-size:.9rem">Executive dysfunction is neurological, not laziness. The brain genuinely cannot regulate attention and impulse without support.</p>
   </div>
   <div style="padding:0 2rem 2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem">
     <div class="card p-5" style="border-top:4px solid #f59e0b">
-      <h3 style="font-weight:900;font-size:1.05rem;color:#92400e;text-transform:uppercase;margin-bottom:.875rem">🔍 Clinical Indicators</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#fbbf24;text-transform:uppercase;margin-bottom:.875rem">🔍 Clinical Indicators</h3>
       <ul style="font-size:.82rem;color:#78350f;line-height:2;font-weight:600">
         <li>Hyperfocus on wrong task</li>
         <li>Cannot redirect easily</li>
@@ -4299,9 +4299,9 @@ function getSlides14to27() { return `
   </div>
   <div style="padding:0 2rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
     <div class="card p-5" style="border-top:4px solid #f59e0b">
-      <h3 style="font-weight:900;font-size:.95rem;color:#92400e;text-transform:uppercase;margin-bottom:.875rem">⚡ Manic Episode</h3>
+      <h3 style="font-weight:900;font-size:.95rem;color:#fbbf24;text-transform:uppercase;margin-bottom:.875rem">⚡ Manic Episode</h3>
       <div style="margin-bottom:.875rem"><p style="font-size:.75rem;font-weight:800;color:#94a3b8;text-transform:uppercase;margin-bottom:.4rem">Signs</p><ul style="font-size:.82rem;color:#78350f;line-height:1.8;font-weight:600"><li>· Rapid/pressured speech, cannot interrupt</li><li>· Decreased need for sleep (not tired)</li><li>· Grandiosity ("I am the only one who can fix this")</li><li>· Impulsive, risky behavior</li><li>· Irritability if challenged</li></ul></div>
-      <div style="background:#fffbeb;padding:.875rem;border-radius:.875rem"><p style="font-size:.75rem;font-weight:800;color:#92400e;margin-bottom:.4rem">YOUR APPROACH:</p><p style="font-size:.8rem;color:#78350f;line-height:1.5">Match their energy initially then gradually slow. Brief, simple directives. Don't argue with grandiose ideas. Redirect: "That sounds exciting — let's find a quiet space to talk about it."</p></div>
+      <div style="background:#fffbeb;padding:.875rem;border-radius:.875rem"><p style="font-size:.75rem;font-weight:800;color:#fbbf24;margin-bottom:.4rem">YOUR APPROACH:</p><p style="font-size:.8rem;color:#78350f;line-height:1.5">Match their energy initially then gradually slow. Brief, simple directives. Don't argue with grandiose ideas. Redirect: "That sounds exciting — let's find a quiet space to talk about it."</p></div>
     </div>
     <div class="card p-5" style="border-top:4px solid #6366f1">
       <h3 style="font-weight:900;font-size:.95rem;color:#3730a3;text-transform:uppercase;margin-bottom:.875rem">💔 Depressive Episode</h3>
@@ -4477,15 +4477,15 @@ function getSlides14to27() { return `
     <div class="card p-6">
       <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">📋 C-SSRS Key Questions</h3>
       <div style="display:flex;flex-direction:column;gap:.875rem">
-        <div style="background:#fef2f2;padding:.875rem;border-radius:.875rem;border-left:4px solid #ef4444">
+        <div style="background:rgba(254,226,226,.15);padding:.875rem;border-radius:.875rem;border-left:4px solid #ef4444">
           <p style="font-size:.72rem;font-weight:900;color:#dc2626;text-transform:uppercase;margin-bottom:.35rem">Ideation</p>
           <p style="font-size:.82rem;color:#7f1d1d;font-style:italic;font-weight:600">"Are you having any thoughts of killing yourself or wishing you were dead?"</p>
         </div>
-        <div style="background:#fef2f2;padding:.875rem;border-radius:.875rem;border-left:4px solid #f97316">
+        <div style="background:rgba(254,226,226,.15);padding:.875rem;border-radius:.875rem;border-left:4px solid #f97316">
           <p style="font-size:.72rem;font-weight:900;color:#c2410c;text-transform:uppercase;margin-bottom:.35rem">Plan</p>
           <p style="font-size:.82rem;color:#9a3412;font-style:italic;font-weight:600">"Have you thought about how you would do it?"</p>
         </div>
-        <div style="background:#fef2f2;padding:.875rem;border-radius:.875rem;border-left:4px solid #dc2626">
+        <div style="background:rgba(254,226,226,.15);padding:.875rem;border-radius:.875rem;border-left:4px solid #dc2626">
           <p style="font-size:.72rem;font-weight:900;color:#991b1b;text-transform:uppercase;margin-bottom:.35rem">Means / Intent / Timeline</p>
           <p style="font-size:.82rem;color:#7f1d1d;font-style:italic;font-weight:600">"Do you have access to [method]? Do you intend to act on this? Is there a time you're thinking about?"</p>
         </div>
@@ -4495,8 +4495,8 @@ function getSlides14to27() { return `
       <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">🚦 Risk Level Response</h3>
       <div style="display:flex;flex-direction:column;gap:.75rem">
         <div style="background:#f0fdf4;padding:.875rem;border-radius:.875rem;border-left:4px solid #22c55e"><p style="font-size:.72rem;font-weight:900;color:#166534;text-transform:uppercase;margin-bottom:.25rem">Low — Passive ideation only</p><p style="font-size:.8rem;color:#15803d">Document, inform nurse/MD, increase check-ins, safety planning discussion</p></div>
-        <div style="background:#fffbeb;padding:.875rem;border-radius:.875rem;border-left:4px solid #f59e0b"><p style="font-size:.72rem;font-weight:900;color:#92400e;text-transform:uppercase;margin-bottom:.25rem">Moderate — Plan but no means/intent</p><p style="font-size:.8rem;color:#78350f">Immediate psychiatric evaluation, environment safety check, 1:1 monitoring</p></div>
-        <div style="background:#fef2f2;padding:.875rem;border-radius:.875rem;border-left:4px solid #ef4444"><p style="font-size:.72rem;font-weight:900;color:#991b1b;text-transform:uppercase;margin-bottom:.25rem">High — Plan + Means + Intent</p><p style="font-size:.8rem;color:#7f1d1d"><strong>CODE. Stay with patient. Do not leave alone. Call charge RN immediately.</strong> Remove any accessible means from environment.</p></div>
+        <div style="background:#fffbeb;padding:.875rem;border-radius:.875rem;border-left:4px solid #f59e0b"><p style="font-size:.72rem;font-weight:900;color:#fbbf24;text-transform:uppercase;margin-bottom:.25rem">Moderate — Plan but no means/intent</p><p style="font-size:.8rem;color:#78350f">Immediate psychiatric evaluation, environment safety check, 1:1 monitoring</p></div>
+        <div style="background:rgba(254,226,226,.15);padding:.875rem;border-radius:.875rem;border-left:4px solid #ef4444"><p style="font-size:.72rem;font-weight:900;color:#991b1b;text-transform:uppercase;margin-bottom:.25rem">High — Plan + Means + Intent</p><p style="font-size:.8rem;color:#7f1d1d"><strong>CODE. Stay with patient. Do not leave alone. Call charge RN immediately.</strong> Remove any accessible means from environment.</p></div>
       </div>
     </div>
     <div class="card p-4 amber-box" style="grid-column:1/-1">
@@ -4505,14 +4505,14 @@ function getSlides14to27() { return `
   </div>
   <div style="padding:0 2rem 2rem;margin-top:1.5rem">
     <div style="background:#fefce8;border:1px solid #fbbf24;border-radius:1rem;padding:1.4rem">
-      <div style="font-weight:800;color:#92400e;font-size:.95rem;margin-bottom:.85rem">Columbia Suicide Severity Rating Scale (C-SSRS) — Required Assessment Framework</div>
+      <div style="font-weight:800;color:#fbbf24;font-size:.95rem;margin-bottom:.85rem">Columbia Suicide Severity Rating Scale (C-SSRS) — Required Assessment Framework</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.85rem">
         <div style="background:white;border-left:4px solid #dc2626;border-radius:0 .5rem .5rem 0;padding:.75rem">
           <div style="font-weight:700;color:#dc2626;font-size:.82rem;margin-bottom:.3rem">HIGH RISK — Escalate Immediately</div>
           <div style="font-size:.8rem;color:#374151;line-height:1.6">• Active ideation with plan and intent<br>• Recent preparatory behavior (giving away items, writing notes)<br>• Prior attempts + current ideation<br>• Command hallucinations for self-harm</div>
         </div>
         <div style="background:white;border-left:4px solid #f59e0b;border-radius:0 .5rem .5rem 0;padding:.75rem">
-          <div style="font-weight:700;color:#92400e;font-size:.82rem;margin-bottom:.3rem">MODERATE RISK — Immediate Clinical Eval</div>
+          <div style="font-weight:700;color:#fbbf24;font-size:.82rem;margin-bottom:.3rem">MODERATE RISK — Immediate Clinical Eval</div>
           <div style="font-size:.8rem;color:#374151;line-height:1.6">• Passive ideation (“I wish I were dead”)<br>• Active ideation without plan<br>• Hopelessness + social isolation<br>• Recent significant loss or trauma</div>
         </div>
       </div>
@@ -4556,7 +4556,7 @@ function getSlides14to27() { return `
     </div>
     <div class="card p-5 amber-box">
       <div style="font-size:2rem;margin-bottom:.75rem">🧠</div>
-      <h3 style="font-weight:900;font-size:1.05rem;color:#92400e;text-transform:uppercase;margin-bottom:.75rem">Implicit Bias</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#fbbf24;text-transform:uppercase;margin-bottom:.75rem">Implicit Bias</h3>
       <ul style="font-size:.82rem;color:#78350f;line-height:1.8;font-weight:600">
         <li>· Check your assumptions before entering a room</li>
         <li>· Black patients are statistically undertreated for pain</li>
@@ -4602,7 +4602,7 @@ function getSlides14to27() { return `
     <div class="card p-6">
       <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">📊 Objective vs. Subjective</h3>
       <div style="display:flex;flex-direction:column;gap:.875rem">
-        <div><p style="font-size:.75rem;font-weight:900;color:#dc2626;text-transform:uppercase;margin-bottom:.4rem"><span style="color:#ef4444;margin-right:.3rem">&#10007;</span> Subjective (AVOID)</p><div style="background:#fef2f2;padding:.75rem;border-radius:.75rem;font-size:.82rem;color:#7f1d1d;font-style:italic;font-weight:600">"Patient was aggressive and uncooperative, seemed manic, appeared dangerous"</div></div>
+        <div><p style="font-size:.75rem;font-weight:900;color:#dc2626;text-transform:uppercase;margin-bottom:.4rem"><span style="color:#ef4444;margin-right:.3rem">&#10007;</span> Subjective (AVOID)</p><div style="background:rgba(254,226,226,.15);padding:.75rem;border-radius:.75rem;font-size:.82rem;color:#7f1d1d;font-style:italic;font-weight:600">"Patient was aggressive and uncooperative, seemed manic, appeared dangerous"</div></div>
         <div><p style="font-size:.75rem;font-weight:900;color:#16a34a;text-transform:uppercase;margin-bottom:.4rem"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> Objective (USE)</p><div style="background:#f0fdf4;padding:.75rem;border-radius:.75rem;font-size:.82rem;color:#166534;font-style:italic;font-weight:600">"At 14:32, patient raised voice and struck wall three times with open palm. Stated 'I'm going to hurt someone' twice. Staff member Jones initiated verbal de-escalation. Patient sat down at 14:38."</div></div>
       </div>
     </div>
@@ -4694,7 +4694,7 @@ function getSlides14to27() { return `
         <p id="score-xp" style="color:#93c5fd;font-weight:800;font-size:.9rem">+250 XP earned</p>
       </div>
       <div style="background:#fffbeb;border-radius:1rem;padding:1rem;border-left:4px solid #f59e0b">
-        <p style="font-size:.75rem;font-weight:900;color:#92400e;text-transform:uppercase;margin-bottom:.4rem">⭐ XP Scoring</p>
+        <p style="font-size:.75rem;font-weight:900;color:#fbbf24;text-transform:uppercase;margin-bottom:.4rem">⭐ XP Scoring</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;font-size:.8rem;color:#78350f;font-weight:700">
           <span>A (Excellent): +250 XP</span><span>B (Good): +175 XP</span>
           <span>C (Fair): +100 XP</span><span>D (Needs work): +50 XP</span>
@@ -4707,7 +4707,7 @@ function getSlides14to27() { return `
 <!-- SLIDE 23 — ROLEPLAY SCRIPT BUILDER -->
 <div class="slide" style="background:#f8fafc;padding-bottom:5rem">
   <div style="padding:2.5rem 2rem 1rem">
-    <span class="badge" style="background:#dcfce7;color:#166534;margin-bottom:1rem">Module 7 — Team Training Tools</span>
+    <span class="badge" style="background:rgba(220,252,231,.15);color:#166534;margin-bottom:1rem">Module 7 — Team Training Tools</span>
     <h2 style="font-size:2rem;font-weight:900;color:#0f172a;font-family:Montserrat,sans-serif">📝 Role-Play Script Builder</h2>
     <p style="color:#64748b;font-weight:600;margin-top:.4rem;font-size:.9rem">Build realistic training scripts for team huddles, onboarding, and clinical supervision sessions.</p>
   </div>
@@ -4738,7 +4738,7 @@ function getSlides14to27() { return `
         </select>
       </div>
       <button onclick="buildScript()" class="btn btn-success">📝 Build Script</button>
-      <button onclick="printScript()" class="btn" style="background:#f1f5f9;color:#475569">🖨️ Print Script</button>
+      <button onclick="printScript()" class="btn" style="background:#f1f5f9;color:#64748b">🖨️ Print Script</button>
     </div>
     <div id="slide-script-output" style="background:#0f172a;border-radius:1.5rem;padding:1.5rem;font-family:'Courier New',monospace;font-size:.82rem;line-height:1.8;color:#4ade80;min-height:400px;white-space:pre-wrap;overflow-y:auto">
 <span style="color:#64748b;font-style:normal">// Select options and click Build Script to generate a training scenario...</span>
@@ -4764,7 +4764,7 @@ function getSlides14to27() { return `
       <div style="font-size:2.5rem;margin-bottom:.75rem">🧠</div>
       <h3 style="font-weight:900;font-size:.95rem;color:#1e3a8a;margin-bottom:.5rem">Diagnosis Quick Guide</h3>
       <p style="font-size:.78rem;color:#64748b;margin-bottom:1rem">Key triggers + approaches for all 6 diagnoses</p>
-      <span class="badge" style="background:#dcfce7;color:#166534">⬇️ Download PDF</span>
+      <span class="badge" style="background:rgba(220,252,231,.15);color:#166534">⬇️ Download PDF</span>
     </div>
     <div class="card p-5" style="cursor:pointer;transition:all .2s;text-align:center" onclick="downloadCard('grounding')" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
       <div style="font-size:2.5rem;margin-bottom:.75rem">🌱</div>
@@ -4796,7 +4796,7 @@ function getSlides14to27() { return `
 <!-- SLIDE 25 — RESOURCES & RECOMMENDED READING -->
 <div class="slide" style="background:#f8fafc;padding-bottom:5rem">
   <div style="padding:2.5rem 2rem 1rem">
-    <span class="badge" style="background:#fef3c7;color:#92400e;margin-bottom:1rem">Module 8 — Continued Learning</span>
+    <span class="badge" style="background:#fef3c7;color:#fbbf24;margin-bottom:1rem">Module 8 — Continued Learning</span>
     <h2 style="font-size:2rem;font-weight:900;color:#0f172a;font-family:Montserrat,sans-serif">📖 Resources & Recommended Reading</h2>
     <p style="color:#64748b;font-weight:600;margin-top:.4rem;font-size:.9rem">Deepen your expertise. These are the definitive resources in psychiatric crisis care.</p>
   </div>
@@ -4813,10 +4813,10 @@ function getSlides14to27() { return `
     <div class="card p-6">
       <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">Online Resources</h3>
       <div style="display:flex;flex-direction:column;gap:.75rem">
-        <div style="background:#eff6ff;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#1e40af">SAMHSA TIP 59 — Trauma-Informed Care</p><p style="font-size:.75rem;color:#3b82f6">samhsa.gov — Free, comprehensive clinical guide</p></div>
+        <div style="background:rgba(219,234,254,.12);padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#1e40af">SAMHSA TIP 59 — Trauma-Informed Care</p><p style="font-size:.75rem;color:#3b82f6">samhsa.gov — Free, comprehensive clinical guide</p></div>
         <div style="background:#f0fdf4;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#166534">CPI (Crisis Prevention Institute)</p><p style="font-size:.75rem;color:#22c55e">crisisprevention.com — Training & certification</p></div>
         <div style="background:#faf5ff;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#5b21b6">NAMI — National Alliance on Mental Illness</p><p style="font-size:.75rem;color:#7c3aed">nami.org — Family education & peer support</p></div>
-        <div style="background:#fff7ed;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#9a3412">988 Suicide & Crisis Lifeline</p><p style="font-size:.75rem;color:#f97316">Call or text 988 — Clinical guidance available</p></div>
+        <div style="background:rgba(255,237,213,.12);padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#9a3412">988 Suicide & Crisis Lifeline</p><p style="font-size:.75rem;color:#f97316">Call or text 988 — Clinical guidance available</p></div>
         <div style="background:#f0f9ff;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#075985">Zero Suicide Institute</p><p style="font-size:.75rem;color:#0284c7">zerosuicide.com — Staff training certification</p></div>
       </div>
     </div>
@@ -5069,9 +5069,9 @@ function getSlides14to27() { return `
     <div class="card p-6">
       <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">Why Patients Refuse</h3>
       <div style="display:flex;flex-direction:column;gap:.75rem">
-        <div style="background:#fef2f2;padding:.875rem;border-radius:.875rem;border-left:4px solid #ef4444"><p style="font-size:.8rem;font-weight:800;color:#dc2626;margin-bottom:.3rem">Side Effects</p><p style="font-size:.78rem;color:#7f1d1d">"It makes me feel like a zombie" / Sedation, weight gain, sexual dysfunction — these are real and valid.</p></div>
-        <div style="background:#fffbeb;padding:.875rem;border-radius:.875rem;border-left:4px solid #f59e0b"><p style="font-size:.8rem;font-weight:800;color:#92400e;margin-bottom:.3rem">Loss of Control</p><p style="font-size:.78rem;color:#78350f">Trauma survivors especially resist anything that alters their mind-state. Medication = feeling helpless.</p></div>
-        <div style="background:#eff6ff;padding:.875rem;border-radius:.875rem;border-left:4px solid #3b82f6"><p style="font-size:.8rem;font-weight:800;color:#1d4ed8;margin-bottom:.3rem">Lack of Trust</p><p style="font-size:.78rem;color:#1e3a8a">No therapeutic alliance = no medication compliance. The relationship IS the treatment.</p></div>
+        <div style="background:rgba(254,226,226,.15);padding:.875rem;border-radius:.875rem;border-left:4px solid #ef4444"><p style="font-size:.8rem;font-weight:800;color:#dc2626;margin-bottom:.3rem">Side Effects</p><p style="font-size:.78rem;color:#7f1d1d">"It makes me feel like a zombie" / Sedation, weight gain, sexual dysfunction — these are real and valid.</p></div>
+        <div style="background:#fffbeb;padding:.875rem;border-radius:.875rem;border-left:4px solid #f59e0b"><p style="font-size:.8rem;font-weight:800;color:#fbbf24;margin-bottom:.3rem">Loss of Control</p><p style="font-size:.78rem;color:#78350f">Trauma survivors especially resist anything that alters their mind-state. Medication = feeling helpless.</p></div>
+        <div style="background:rgba(219,234,254,.12);padding:.875rem;border-radius:.875rem;border-left:4px solid #3b82f6"><p style="font-size:.8rem;font-weight:800;color:#1d4ed8;margin-bottom:.3rem">Lack of Trust</p><p style="font-size:.78rem;color:#1e3a8a">No therapeutic alliance = no medication compliance. The relationship IS the treatment.</p></div>
         <div style="background:#f0fdf4;padding:.875rem;border-radius:.875rem;border-left:4px solid #22c55e"><p style="font-size:.8rem;font-weight:800;color:#166534;margin-bottom:.3rem">Denial of Illness</p><p style="font-size:.78rem;color:#14532d">"I don't need it" — common in mania/psychosis where insight is impaired neurologically, not willfully.</p></div>
       </div>
     </div>
@@ -5107,7 +5107,7 @@ function getSlides14to27() { return `
       </ul>
     </div>
     <div class="card p-5 amber-box">
-      <h3 style="font-weight:900;font-size:1.05rem;color:#92400e;text-transform:uppercase;margin-bottom:.875rem">Legal Framework</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#fbbf24;text-transform:uppercase;margin-bottom:.875rem">Legal Framework</h3>
       <p style="font-size:.82rem;color:#78350f;line-height:1.75;font-weight:600">Competent adults have the <strong>legal right to refuse medication</strong> under informed consent law. Exceptions: court-ordered medication, acute danger to self/others (emergency involuntary), or determined incompetent by court. Always consult charge nurse/prescriber. Never administer against will outside legal protocols.</p>
     </div>
   </div>
@@ -5148,10 +5148,10 @@ function getSlides14to27() { return `
     </div>
     <div class="card p-5">
       <h3 style="font-weight:900;font-size:1.05rem;color:#0f172a;text-transform:uppercase;margin-bottom:.875rem">Safer Alternatives</h3>
-      <p style="font-size:.78rem;color:#475569;font-weight:600;margin-bottom:.75rem">Offer same neurological function without harm:</p>
+      <p style="font-size:.78rem;color:#64748b;font-weight:600;margin-bottom:.75rem">Offer same neurological function without harm:</p>
       <div style="display:flex;flex-direction:column;gap:.6rem">
-        <div style="background:#fef2f2;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#7f1d1d;font-weight:700"><span style="color:#60a5fa;margin-right:.3rem">&#9673;</span> <strong>Cold:</strong> Ice cubes on skin, cold shower, face in cold water</div>
-        <div style="background:#fff7ed;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#9a3412;font-weight:700"><strong>Mark:</strong> Draw red lines on skin with marker</div>
+        <div style="background:rgba(254,226,226,.15);padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#7f1d1d;font-weight:700"><span style="color:#60a5fa;margin-right:.3rem">&#9673;</span> <strong>Cold:</strong> Ice cubes on skin, cold shower, face in cold water</div>
+        <div style="background:rgba(255,237,213,.12);padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#9a3412;font-weight:700"><strong>Mark:</strong> Draw red lines on skin with marker</div>
         <div style="background:#f0fdf4;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#166534;font-weight:700"><span style="color:#a78bfa;margin-right:.3rem">&#9673;</span> <strong>Pressure:</strong> Snap rubber band, grip ice</div>
         <div style="background:#eef2ff;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#3730a3;font-weight:700"><strong>Intense Exercise:</strong> Run in place, push-ups</div>
         <div style="background:#faf5ff;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#5b21b6;font-weight:700"><strong>Expression:</strong> Rip paper, draw, scream into pillow</div>
@@ -5234,7 +5234,7 @@ function getSlides14to27() { return `
       </div>
       <p style="color:#cbd5e1;font-weight:700;font-size:1.05rem;margin:0">Pass to unlock the certificate slide.</p>
     </div>
-    <p style="color:#475569;font-size:.75rem;line-height:1.8">© 2026 NyxCodex® · <a href="https://nyxcollectivellc.com" target="_blank" rel="noopener" style="color:#475569">Nyx Collective LLC</a> — All Rights Reserved — Clinical Training Platform</p>
+    <p style="color:#64748b;font-size:.75rem;line-height:1.8">© 2026 NyxCodex® · <a href="https://nyxcollectivellc.com" target="_blank" rel="noopener" style="color:#64748b">Nyx Collective LLC</a> — All Rights Reserved — Clinical Training Platform</p>
   </div>
 </div>
 
@@ -5311,7 +5311,7 @@ function applyTenantContent() {
   if(el('hub-heading'))    el('hub-heading').textContent    = `Welcome back to ${T.brandName}`;
   if(el('slide1-badge'))   el('slide1-badge').textContent   = `${T.brandName} \u00b7 Est. ${T.copyrightYear} \u00b7 ${T.copyrightHolder}`;
   if(el('slide1-subtitle'))el('slide1-subtitle').textContent= `Mastery Lab \u2014 ${T.brandName}`;
-  if(el('slide1-footer'))  el('slide1-footer').innerHTML    = `\u00A9 ${T.copyrightYear} ${T.brandName} \u00b7 <a href="https://nyxcollectivellc.com" target="_blank" rel="noopener" style="color:#475569">${T.copyrightHolder}</a> \u2014 All Rights Reserved \u2014 Clinical Training Platform`;
+  if(el('slide1-footer'))  el('slide1-footer').innerHTML    = `\u00A9 ${T.copyrightYear} ${T.brandName} \u00b7 <a href="https://nyxcollectivellc.com" target="_blank" rel="noopener" style="color:#64748b">${T.copyrightHolder}</a> \u2014 All Rights Reserved \u2014 Clinical Training Platform`;
   if(el('hub-org-pill'))   el('hub-org-pill').textContent   = T.orgName;
   if(el('admin-role-badge')) el('admin-role-badge').textContent = `${T.orgName} \u2014 Training Management`;
   if(el('lab-patient-name')) el('lab-patient-name').innerHTML = `${T.patientName} <span style="font-size:.75rem;font-weight:600;color:#94a3b8">\u2014 ${T.patientDx}</span>`;
@@ -6810,7 +6810,7 @@ async function sendChatMessage() {
     const typing = document.createElement('div');
     typing.id = 'vance-typing';
     typing.style.cssText = 'margin-bottom:.65rem';
-    typing.innerHTML = '<div style="font-size:.78rem;color:#1d4ed8;font-weight:900;margin-bottom:.2rem">Prof. Vance</div><div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:.75rem;padding:.65rem .8rem;font-size:1.1rem;color:#475569;letter-spacing:.15em">&#8226;&#8226;&#8226;</div>';
+    typing.innerHTML = '<div style="font-size:.78rem;color:#1d4ed8;font-weight:900;margin-bottom:.2rem">Prof. Vance</div><div style="background:rgba(219,234,254,.12);border:1px solid #bfdbfe;border-radius:.75rem;padding:.65rem .8rem;font-size:1.1rem;color:#64748b;letter-spacing:.15em">&#8226;&#8226;&#8226;</div>';
     box.appendChild(typing);
     box.scrollTop = box.scrollHeight;
   }
@@ -7681,7 +7681,7 @@ function _renderUsersGrid(users) {
     <div style="display:flex;gap:.75rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap">
       <input id="user-search-box" type="text" placeholder="🔍 Search name, email or department—"
         oninput="filterAdminUsers(this.value)"
-        style="flex:1;min-width:200px;padding:.55rem .9rem;border:1px solid #e2e8f0;border-radius:.65rem;font-size:.85rem;font-weight:600;color:#0f172a;outline:none">
+        style="flex:1;min-width:200px;padding:.55rem .9rem;border:1px solid #e2e8f0;border-radius:.65rem;font-size:.85rem;font-weight:600;color:#f1f5f9;outline:none">
       <button onclick="openBulkDueDateModal()" style="background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;padding:.5rem 1rem;border-radius:.65rem;font-size:.8rem;font-weight:800;cursor:pointer;white-space:nowrap">Bulk Deadline</button>
       <button onclick="printLoginCards()" style="background:linear-gradient(135deg,#0f766e,#0891b2);color:white;border:none;padding:.5rem 1rem;border-radius:.65rem;font-size:.8rem;font-weight:800;cursor:pointer;white-space:nowrap">🪪 Print Cards</button>
       <span id="user-count-badge" style="font-size:.8rem;color:#94a3b8;font-weight:700">${entries.length} user${entries.length!==1?'s':''}</span>
@@ -7705,12 +7705,12 @@ function _renderUsersGrid(users) {
           dueBadge = `<span style="background:${dueBg};color:${dueClr};padding:.2rem .6rem;border-radius:999px;font-size:.72rem;font-weight:800">${dueLabel}</span>`;
         }
         return `<div data-uid="${uid}" data-search="${searchKey}"
-          style="background:#f8fafc;border-radius:1rem;padding:.875rem 1rem;display:flex;align-items:center;justify-content:space-between;border:1px solid #e2e8f0;margin-bottom:.65rem;gap:1rem;flex-wrap:wrap">
+          style="background:rgba(255,255,255,.04);border-radius:1rem;padding:.875rem 1rem;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,255,255,.1);margin-bottom:.65rem;gap:1rem;flex-wrap:wrap;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,.07)'" onmouseout="this.style.background='rgba(255,255,255,.04)'">
           <div style="display:flex;align-items:center;gap:.875rem;flex:1;min-width:0">
-            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;font-weight:900;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">${initials}</div>
+            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#1a0f00;font-weight:900;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:-.02em">${initials}</div>
             <div style="min-width:0">
-              <p style="font-weight:800;font-size:.875rem;color:#0f172a;margin:0">${name}</p>
-              <p style="font-size:.72rem;color:#64748b;margin:.1rem 0 0">${u.email||''}${u.department?' — '+u.department:''}</p>
+              <p style="font-weight:800;font-size:.875rem;color:#f1f5f9;margin:0">${name}</p>
+              <p style="font-size:.72rem;color:#94a3b8;margin:.1rem 0 0">${u.email||''}${u.department?' — '+u.department:''}</p>
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
@@ -7719,11 +7719,11 @@ function _renderUsersGrid(users) {
             ${dueBadge}
             <span style="font-size:.72rem;color:#94a3b8;font-weight:600">Last: ${lastSeen}</span>
             ${u.supervisorApproval
-              ? `<span style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;border-radius:999px;padding:.2rem .55rem;font-size:.72rem;font-weight:800;display:inline-flex;align-items:center;gap:.35rem" title="Approved by ${(u.supervisorApproval.approverName||'').replace(/"/g,'&quot;')} on ${u.supervisorApproval.approvedAt ? new Date(u.supervisorApproval.approvedAt).toLocaleDateString() : ''}">✓ Approved <button onclick="revokeTraineeApproval('${uid}','${name.replace(/'/g,"\\'")}' )" style="background:none;border:none;color:#15803d;cursor:pointer;font-size:.7rem;padding:0;line-height:1;font-weight:900" title="Revoke">✕</button></span>`
-              : `<button onclick="approveTrainee('${uid}','${name.replace(/'/g,"\\'")}' )" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;border-radius:.5rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;cursor:pointer">✓ Approve</button>`
+              ? `<span style="background:#f0fdf4;color:#4ade80;border:1px solid #bbf7d0;border-radius:999px;padding:.2rem .55rem;font-size:.72rem;font-weight:800;display:inline-flex;align-items:center;gap:.35rem" title="Approved by ${(u.supervisorApproval.approverName||'').replace(/"/g,'&quot;')} on ${u.supervisorApproval.approvedAt ? new Date(u.supervisorApproval.approvedAt).toLocaleDateString() : ''}">✓ Approved <button onclick="revokeTraineeApproval('${uid}','${name.replace(/'/g,"\\'")}' )" style="background:none;border:none;color:#4ade80;cursor:pointer;font-size:.7rem;padding:0;line-height:1;font-weight:900" title="Revoke">✕</button></span>`
+              : `<button onclick="approveTrainee('${uid}','${name.replace(/'/g,"\\'")}' )" style="background:#f0fdf4;color:#4ade80;border:1px solid #bbf7d0;border-radius:.5rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;cursor:pointer">✓ Approve</button>`
             }
             <button onclick="openSetDueDateModal('${uid}','${name.replace(/'/g,"\\'")}',${u.dueDate||'null'})" style="background:rgba(201,168,76,.08);color:#C9A84C;border:1px solid rgba(201,168,76,.3);border-radius:.5rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;cursor:pointer">Deadline</button>
-            <button onclick="confirmDeleteUser('${uid}','${name.replace(/'/g,"\\'")}' )" style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca;border-radius:.5rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;cursor:pointer">Remove</button>
+            <button onclick="confirmDeleteUser('${uid}','${name.replace(/'/g,"\\'")}' )" style="background:rgba(254,226,226,.15);color:#dc2626;border:1px solid #fecaca;border-radius:.5rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;cursor:pointer">Remove</button>
           </div>
         </div>`;
       }).join('')}
@@ -7849,7 +7849,7 @@ async function loadAnalytics() {
     const complPct = total ? Math.round((compl/total)*100) : 0;
     el.innerHTML = `
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;margin-bottom:1.5rem">
-        <div style="background:#eff6ff;padding:1.25rem;border-radius:1rem;text-align:center">
+        <div style="background:rgba(219,234,254,.12);padding:1.25rem;border-radius:1rem;text-align:center">
           <div style="font-size:2rem;font-weight:900;color:#1d4ed8">${total}</div>
           <p style="font-size:.72rem;color:#3b82f6;font-weight:800;text-transform:uppercase;margin-top:.25rem">Total Users</p>
         </div>
@@ -7857,11 +7857,11 @@ async function loadAnalytics() {
           <div style="font-size:2rem;font-weight:900;color:#15803d">${compl}</div>
           <p style="font-size:.72rem;color:#16a34a;font-weight:800;text-transform:uppercase;margin-top:.25rem">Completed</p>
         </div>
-        <div style="background:#fef9c3;padding:1.25rem;border-radius:1rem;text-align:center">
+        <div style="background:rgba(254,249,195,.12);padding:1.25rem;border-radius:1rem;text-align:center">
           <div style="font-size:2rem;font-weight:900;color:#92400e">${inProgress}</div>
           <p style="font-size:.72rem;color:#d97706;font-weight:800;text-transform:uppercase;margin-top:.25rem">In Progress</p>
         </div>
-        <div style="background:#fef2f2;padding:1.25rem;border-radius:1rem;text-align:center">
+        <div style="background:rgba(254,226,226,.15);padding:1.25rem;border-radius:1rem;text-align:center">
           <div style="font-size:2rem;font-weight:900;color:#dc2626">${notStarted}</div>
           <p style="font-size:.72rem;color:#ef4444;font-weight:800;text-transform:uppercase;margin-top:.25rem">Not Started</p>
         </div>
@@ -7877,19 +7877,19 @@ async function loadAnalytics() {
         </div>
       </div>
       <div style="background:#f8fafc;border-radius:1rem;padding:1.25rem;border:1px solid #e2e8f0;margin-bottom:1.25rem">
-        <p style="font-size:.8rem;font-weight:900;color:#0f172a;margin-bottom:.875rem;text-transform:uppercase">Overall Completion Rate</p>
+        <p style="font-size:.8rem;font-weight:900;color:#f1f5f9;margin-bottom:.875rem;text-transform:uppercase">Overall Completion Rate</p>
         <div style="background:#e2e8f0;border-radius:999px;height:14px;overflow:hidden">
           <div style="background:linear-gradient(90deg,#B8892A,#C9A84C);height:14px;border-radius:999px;width:${complPct}%;transition:width .6s ease"></div>
         </div>
         <p style="font-size:.75rem;color:#64748b;margin-top:.5rem;font-weight:700">${complPct}% of ${total} users completed all ${totalSl} slides</p>
       </div>
       ${stalled > 0
-        ? `<div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:1rem;padding:1.25rem">
+        ? `<div style="background:rgba(255,237,213,.12);border:1px solid #fed7aa;border-radius:1rem;padding:1.25rem">
             <p style="font-weight:900;font-size:.85rem;color:#c2410c;margin-bottom:.4rem">Needs Attention — ${stalled} staff member${stalled!==1?'s':''} stalled 7+ days</p>
             <p style="font-size:.8rem;color:#9a3412;margin:0">These users started training but haven't logged in for over a week. Visit the Users tab to identify them (highlighted in red "Last Login").</p>
           </div>`
         : `<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:1rem;padding:1.25rem">
-            <p style="font-weight:900;font-size:.85rem;color:#15803d;margin:0">? No stalled users — all active staff are progressing on schedule.</p>
+            <p style="font-weight:900;font-size:.85rem;color:#4ade80;margin:0">? No stalled users — all active staff are progressing on schedule.</p>
           </div>`
       }`;
   } catch(e){
@@ -7924,15 +7924,15 @@ async function loadReports() {
     let deptRows = Object.entries(depts).sort((a,b)=>b[1].total-a[1].total).map(([name,d])=>{
       const pct = Math.round((d.completed/d.total)*100);
       return `<tr style="border-bottom:1px solid #f1f5f9">
-        <td style="padding:.75rem 1rem;font-weight:700;color:#0f172a">${name}</td>
-        <td style="padding:.75rem 1rem;text-align:center;color:#475569">${d.total}</td>
-        <td style="padding:.75rem 1rem;text-align:center;color:#15803d;font-weight:800">${d.completed}</td>
+        <td style="padding:.75rem 1rem;font-weight:700;color:#f1f5f9">${name}</td>
+        <td style="padding:.75rem 1rem;text-align:center;color:#64748b">${d.total}</td>
+        <td style="padding:.75rem 1rem;text-align:center;color:#4ade80;font-weight:800">${d.completed}</td>
         <td style="padding:.75rem 1rem;text-align:center">
           <div style="display:flex;align-items:center;gap:.5rem">
             <div style="flex:1;background:#e2e8f0;border-radius:999px;height:8px">
               <div style="background:${pct>=80?'#16a34a':pct>=50?'#2563eb':'#dc2626'};width:${pct}%;height:8px;border-radius:999px"></div>
             </div>
-            <span style="font-size:.75rem;font-weight:800;color:#475569;min-width:2.5rem">${pct}%</span>
+            <span style="font-size:.75rem;font-weight:800;color:#64748b;min-width:2.5rem">${pct}%</span>
           </div>
         </td>
         <td style="padding:.75rem 1rem;text-align:center;color:#C9A84C;font-weight:700">${Math.round(d.totalXP/d.total).toLocaleString()}</td>
@@ -7951,13 +7951,13 @@ async function loadReports() {
       const loginStr = daysAgo === 0 ? 'Today' : daysAgo === 1 ? 'Yesterday' : daysAgo != null ? `${daysAgo}d ago` : '—';
       const loginColor = daysAgo != null && daysAgo > 7 && !done ? '#dc2626' : '#475569';
       return `<tr style="border-bottom:1px solid #f1f5f9">
-        <td style="padding:.6rem 1rem;font-weight:700;color:#0f172a">${name}</td>
+        <td style="padding:.6rem 1rem;font-weight:700;color:#f1f5f9">${name}</td>
         <td style="padding:.6rem 1rem;color:#64748b;font-size:.8rem">${u.department||'—'}</td>
         <td style="padding:.6rem 1rem;color:#64748b;font-size:.8rem">${u.jobTitle||'—'}</td>
         <td style="padding:.6rem 1rem;text-align:center"><span style="background:${done?'#dcfce7':'#fef9c3'};color:${done?'#15803d':'#92400e'};padding:.2rem .65rem;border-radius:999px;font-size:.72rem;font-weight:800">${done?'? Complete':'? Slide '+(u.currentSlide||0)+'/'+totalSl}</span></td>
         <td style="padding:.6rem 1rem;text-align:center;font-weight:700;color:#C9A84C">${(u.xp||0).toLocaleString()}</td>
         <td style="padding:.6rem 1rem;text-align:center;font-weight:700;color:${u.finalQuizScore>=14?'#15803d':u.finalQuizScore>0?'#92400e':'#94a3b8'}">${quizScore}</td>
-        <td style="padding:.6rem 1rem;text-align:center;color:#475569;font-size:.8rem">${completedDate}</td>
+        <td style="padding:.6rem 1rem;text-align:center;color:#64748b;font-size:.8rem">${completedDate}</td>
         <td style="padding:.6rem 1rem;text-align:center;font-size:.8rem;font-weight:700">${u.dueDate&&!done?`<span style="color:${Math.ceil((u.dueDate-Date.now())/864e5)<0?'#dc2626':Math.ceil((u.dueDate-Date.now())/864e5)<=3?'#d97706':'#2563eb'};">${Math.ceil((u.dueDate-Date.now())/864e5)<0?'⚠️ Overdue':'📅 '+new Date(u.dueDate).toLocaleDateString()}</span>`:done?'—':'Not set'}</td>
         <td style="padding:.6rem 1rem;text-align:center;color:${loginColor};font-size:.8rem;font-weight:${daysAgo>7&&!done?'800':'400'}">${loginStr}</td>
         <td style="padding:.6rem 1rem;text-align:center"><button onclick="openUserManageModal('${u.uid}')" style="background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe;border-radius:.5rem;padding:.3rem .75rem;font-size:.75rem;font-weight:800;cursor:pointer;white-space:nowrap">✏️ Manage</button></td>
@@ -7970,33 +7970,33 @@ async function loadReports() {
         <button onclick="exportCSV()" class="btn btn-primary" style="font-size:.8rem;padding:.5rem 1.25rem">📊 Export CSV</button>
         <button onclick="generateCompliancePDF()" class="btn" style="background:linear-gradient(135deg,#0369a1,#0891b2);color:white;border:none;font-size:.8rem;padding:.5rem 1.25rem">📋 Compliance PDF</button>
       </div>
-      <h3 style="font-weight:900;font-size:.85rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem">Completion by Department</h3>
+      <h3 style="font-weight:900;font-size:.85rem;color:#f1f5f9;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem">Completion by Department</h3>
       <div style="overflow-x:auto;border:1px solid #e2e8f0;border-radius:1rem;margin-bottom:2rem">
         <table style="width:100%;border-collapse:collapse;font-size:.85rem">
           <thead><tr style="background:#f8fafc;">
-            <th style="padding:.75rem 1rem;text-align:left;font-weight:900;color:#0f172a">Department</th>
-            <th style="padding:.75rem 1rem;text-align:center;font-weight:900;color:#0f172a">Users</th>
-            <th style="padding:.75rem 1rem;text-align:center;font-weight:900;color:#0f172a">Completed</th>
-            <th style="padding:.75rem 1rem;text-align:left;font-weight:900;color:#0f172a">Rate</th>
-            <th style="padding:.75rem 1rem;text-align:center;font-weight:900;color:#0f172a">Avg XP</th>
+            <th style="padding:.75rem 1rem;text-align:left;font-weight:900;color:#f1f5f9">Department</th>
+            <th style="padding:.75rem 1rem;text-align:center;font-weight:900;color:#f1f5f9">Users</th>
+            <th style="padding:.75rem 1rem;text-align:center;font-weight:900;color:#f1f5f9">Completed</th>
+            <th style="padding:.75rem 1rem;text-align:left;font-weight:900;color:#f1f5f9">Rate</th>
+            <th style="padding:.75rem 1rem;text-align:center;font-weight:900;color:#f1f5f9">Avg XP</th>
           </tr></thead>
           <tbody>${deptRows}</tbody>
         </table>
       </div>
-      <h3 style="font-weight:900;font-size:.85rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem">All Users</h3>
+      <h3 style="font-weight:900;font-size:.85rem;color:#f1f5f9;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem">All Users</h3>
       <div style="overflow-x:auto;border:1px solid #e2e8f0;border-radius:1rem">
         <table style="width:100%;border-collapse:collapse;font-size:.83rem">
           <thead><tr style="background:#f8fafc;">
-            <th style="padding:.6rem 1rem;text-align:left;font-weight:900;color:#0f172a">Name</th>
-            <th style="padding:.6rem 1rem;text-align:left;font-weight:900;color:#0f172a">Dept</th>
-            <th style="padding:.6rem 1rem;text-align:left;font-weight:900;color:#0f172a">Title</th>
-            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#0f172a">Status</th>
-            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#0f172a">XP</th>
-            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#0f172a">Quiz</th>
-            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#0f172a">Completed</th>
-            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#0f172a">Due Date</th>
-            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#0f172a">Last Login</th>
-            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#0f172a">Actions</th>
+            <th style="padding:.6rem 1rem;text-align:left;font-weight:900;color:#f1f5f9">Name</th>
+            <th style="padding:.6rem 1rem;text-align:left;font-weight:900;color:#f1f5f9">Dept</th>
+            <th style="padding:.6rem 1rem;text-align:left;font-weight:900;color:#f1f5f9">Title</th>
+            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#f1f5f9">Status</th>
+            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#f1f5f9">XP</th>
+            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#f1f5f9">Quiz</th>
+            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#f1f5f9">Completed</th>
+            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#f1f5f9">Due Date</th>
+            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#f1f5f9">Last Login</th>
+            <th style="padding:.6rem 1rem;text-align:center;font-weight:900;color:#f1f5f9">Actions</th>
           </tr></thead>
           <tbody>${userRows}</tbody>
         </table>
@@ -8071,8 +8071,8 @@ async function generateCompliancePDF() {
         ? new Date(new Date(u.completedAt).setMonth(new Date(u.completedAt).getMonth() + (T.certRenewalMonths||12))).toLocaleDateString()
         : '—';
       return `<tr><td style="padding:.4rem .6rem;border-bottom:1px solid #f1f5f9">${u.lastName||''}${u.firstName ? ', '+u.firstName : ''}</td>`+
-        `<td style="padding:.4rem .6rem;border-bottom:1px solid #f1f5f9;font-size:.75rem;color:#475569">${u.department||'—'}</td>`+
-        `<td style="padding:.4rem .6rem;border-bottom:1px solid #f1f5f9;font-size:.75rem;color:#475569">${u.jobTitle||'—'}</td>`+
+        `<td style="padding:.4rem .6rem;border-bottom:1px solid #f1f5f9;font-size:.75rem;color:#64748b">${u.department||'—'}</td>`+
+        `<td style="padding:.4rem .6rem;border-bottom:1px solid #f1f5f9;font-size:.75rem;color:#64748b">${u.jobTitle||'—'}</td>`+
         `<td style="padding:.4rem .6rem;border-bottom:1px solid #f1f5f9;font-size:.75rem;font-weight:700;color:${statusColor}">${statusLabel}</td>`+
         `<td style="padding:.4rem .6rem;border-bottom:1px solid #f1f5f9;text-align:center">${u.finalQuizScore != null ? u.finalQuizScore+'/15' : '—'}</td>`+
         `<td style="padding:.4rem .6rem;border-bottom:1px solid #f1f5f9;text-align:center;font-size:.75rem">${certDate}</td>`+
@@ -8080,9 +8080,9 @@ async function generateCompliancePDF() {
     }).join('');
   const reportDate = new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'});
   const html = `<!DOCTYPE html><html><head><meta charset='utf-8'>
-  <style>body{font-family:'Helvetica Neue',Arial,sans-serif;color:#0f172a;margin:0;padding:0}
+  <style>body{font-family:'Helvetica Neue',Arial,sans-serif;color:#f1f5f9;margin:0;padding:0}
     .page{max-width:900px;margin:0 auto;padding:2.5rem 2rem}
-    h1{margin:0;font-size:1.45rem;font-weight:900;color:#1e293b}
+    h1{margin:0;font-size:1.45rem;font-weight:900;color:#f1f5f9}
     table{width:100%;border-collapse:collapse;font-size:.8rem}
     th{background:#0f172a;color:white;padding:.55rem .75rem;text-align:left;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
     .stat-box{text-align:center;padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem}
@@ -8094,11 +8094,11 @@ async function generateCompliancePDF() {
   <div class='accent'></div>
   <div style='padding:1.5rem 0 1rem;border-bottom:2px solid #e2e8f0;margin-bottom:1.5rem'>
     <h1>${T.orgName || T.brandName || 'Organization'}</h1>
-    <p style='margin:.25rem 0 0;color:#475569;font-size:.85rem'>${T.orgAddress || ''}</p>
+    <p style='margin:.25rem 0 0;color:#64748b;font-size:.85rem'>${T.orgAddress || ''}</p>
     <div style='display:flex;gap:.5rem;margin-top:.75rem;flex-wrap:wrap'>
       <div style='background:#dbeafe;color:#1e40af;padding:.2rem .75rem;border-radius:9999px;font-size:.72rem;font-weight:800;white-space:nowrap'>Annual Competency Report</div>
       <div style='background:#ede9fe;color:#5b21b6;padding:.2rem .75rem;border-radius:9999px;font-size:.72rem;font-weight:800;white-space:nowrap'>${T.certType || 'De-escalation Training'}</div>
-      <div style='background:#dcfce7;color:#15803d;padding:.2rem .75rem;border-radius:9999px;font-size:.72rem;font-weight:800;white-space:nowrap'>Generated: ${reportDate}</div>
+      <div style='background:rgba(220,252,231,.15);color:#4ade80;padding:.2rem .75rem;border-radius:9999px;font-size:.72rem;font-weight:800;white-space:nowrap'>Generated: ${reportDate}</div>
     </div>
   </div>
   <div style='display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-bottom:2rem'>
@@ -8181,7 +8181,7 @@ function openSetDueDateModal(uid, name, currentDue) {
       <input id="due-date-input" type="date" value="${existing}"
         style="width:100%;padding:.65rem .875rem;border:1.5px solid #e2e8f0;border-radius:.65rem;font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:1.25rem;outline:none">
       <div style="display:flex;gap:.75rem;justify-content:flex-end">
-        ${existing ? `<button onclick="clearDueDate('${uid}')" style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca;padding:.55rem 1rem;border-radius:.65rem;font-weight:800;font-size:.85rem;cursor:pointer;margin-right:auto">Remove Deadline</button>` : ''}
+        ${existing ? `<button onclick="clearDueDate('${uid}')" style="background:rgba(254,226,226,.15);color:#dc2626;border:1px solid #fecaca;padding:.55rem 1rem;border-radius:.65rem;font-weight:800;font-size:.85rem;cursor:pointer;margin-right:auto">Remove Deadline</button>` : ''}
         <button onclick="document.getElementById('due-date-modal')?.remove()" style="background:#f1f5f9;color:#64748b;border:none;padding:.6rem 1.25rem;border-radius:.65rem;font-weight:700;font-size:.875rem;cursor:pointer">Cancel</button>
         <button onclick="saveDueDate('${uid}')" style="background:linear-gradient(135deg,#B8892A,#C9A84C);color:white;border:none;padding:.6rem 1.5rem;border-radius:.65rem;font-weight:900;font-size:.875rem;cursor:pointer">Save</button>
       </div>
@@ -8329,7 +8329,7 @@ async function loadCompletion() {
               ${score!==null?`<div style="font-size:.75rem;font-weight:800;color:${score>=14?'#15803d':'#92400e'}">Quiz: ${score}/15</div>`:''}
               <div style="font-size:.72rem;color:#64748b">${completedStr}</div>
              </div>
-             <span style="background:#dcfce7;color:#15803d;padding:.25rem .65rem;border-radius:999px;font-size:.72rem;font-weight:800;flex-shrink:0"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> Done</span>`
+             <span style="background:rgba(220,252,231,.15);color:#4ade80;padding:.25rem .65rem;border-radius:999px;font-size:.72rem;font-weight:800;flex-shrink:0"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> Done</span>`
           : `<div style="width:90px;flex-shrink:0">
                <div style="background:#e2e8f0;border-radius:999px;height:6px;margin-bottom:.2rem">
                  <div style="background:linear-gradient(90deg,#B8892A,#C9A84C);width:${pct}%;height:6px;border-radius:999px"></div>
@@ -8382,7 +8382,7 @@ async function loadCompletion() {
           </div>
         </div>
         <div style="border:1px solid #e2e8f0;border-radius:1rem;overflow:hidden">
-          <div style="background:#fef9c3;padding:.875rem 1rem;border-bottom:1px solid #e2e8f0">
+          <div style="background:rgba(254,249,195,.12);padding:.875rem 1rem;border-bottom:1px solid #e2e8f0">
             <span style="font-weight:900;font-size:.85rem;color:#92400e">? In Progress / Not Started — ${pending.length}</span>
           </div>
           <div style="max-height:440px;overflow-y:auto">
@@ -8451,7 +8451,7 @@ async function loadSettings() {
     const adminRows = adminUIDs.map(uid=>{
       const role = allAdmins[uid]?.role;
       const u = allUsers[uid]||{};
-      if(uid===window._currentUser?.uid) return `<tr style="border-bottom:1px solid #f1f5f9;background:#eff6ff">
+      if(uid===window._currentUser?.uid) return `<tr style="border-bottom:1px solid #f1f5f9;background:rgba(219,234,254,.12)">
         <td style="padding:.75rem 1rem;font-weight:800;color:#1d4ed8">${u.firstName||''} ${u.lastName||''} <span style="font-size:.72rem">(You)</span></td>
         <td style="padding:.75rem 1rem"><span style="background:#dbeafe;color:#1d4ed8;padding:.2rem .75rem;border-radius:999px;font-size:.75rem;font-weight:800">${role}</span></td>
         <td style="padding:.75rem 1rem;color:#94a3b8;font-size:.8rem">Cannot modify own account</td>
@@ -8460,7 +8460,7 @@ async function loadSettings() {
         <td style="padding:.75rem 1rem;font-weight:700;color:#0f172a">${u.firstName||''} ${u.lastName||''}</td>
         <td style="padding:.75rem 1rem"><span style="background:${role==='owner'?'#fef3c7':'#f0fdf4'};color:${role==='owner'?'#92400e':'#15803d'};padding:.2rem .75rem;border-radius:999px;font-size:.75rem;font-weight:800">${role==='owner'?'👑':'👤'} ${role}</span></td>
         <td style="padding:.75rem 1rem">
-          <button onclick="revokeAdmin('${uid}','${u.firstName||''} ${u.lastName||''}')" style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca;border-radius:.5rem;padding:.3rem .875rem;font-size:.78rem;font-weight:800;cursor:pointer">Revoke</button>
+          <button onclick="revokeAdmin('${uid}','${u.firstName||''} ${u.lastName||''}')" style="background:rgba(254,226,226,.15);color:#dc2626;border:1px solid #fecaca;border-radius:.5rem;padding:.3rem .875rem;font-size:.78rem;font-weight:800;cursor:pointer">Revoke</button>
         </td>
       </tr>`;
     }).join('');
@@ -8472,7 +8472,7 @@ async function loadSettings() {
         <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
           <input id="setting-year" type="number" value="${currentYear}" min="2020" max="2099" class="input-field" style="max-width:9rem;font-weight:800;font-size:1.1rem;text-align:center">
           <button onclick="saveTrainingYear()" class="btn btn-primary" style="font-size:.82rem;padding:.55rem 1.25rem">Save Year</button>
-          <button onclick="rolloverExpiredCerts()" class="btn" style="background:#fef9c3;color:#854d0e;border:1px solid #fde047;font-size:.82rem;padding:.55rem 1.25rem;font-weight:800">⟳ Auto-Rollover Certs</button>
+          <button onclick="rolloverExpiredCerts()" class="btn" style="background:rgba(254,249,195,.12);color:#854d0e;border:1px solid #fde047;font-size:.82rem;padding:.55rem 1.25rem;font-weight:800">⟳ Auto-Rollover Certs</button>
         </div>
         <p style="font-size:.75rem;color:#64748b;margin-top:.75rem">Changing the year marks all users' current training as outdated at year-end rollover. Auto-Rollover resets completion for users whose cert has lapsed.</p>
       </div>
@@ -8492,11 +8492,11 @@ async function loadSettings() {
         <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:1rem">Grant Access Roles</h3>
         <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem">
           <select id="grant-admin-uid" class="input-field" style="flex:1;min-width:200px;font-size:.85rem">${userOptions}</select>
-          <button onclick="grantAdminRole('admin')" class="btn" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;font-size:.82rem;padding:.55rem 1.25rem;font-weight:800">Grant Admin</button>
-          <button onclick="grantAdminRole('owner')" class="btn" style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;font-size:.82rem;padding:.55rem 1.25rem;font-weight:800">Grant Owner</button>
+          <button onclick="grantAdminRole('admin')" class="btn" style="background:#f0fdf4;color:#4ade80;border:1px solid #bbf7d0;font-size:.82rem;padding:.55rem 1.25rem;font-weight:800">Grant Admin</button>
+          <button onclick="grantAdminRole('owner')" class="btn" style="background:#fef3c7;color:#fbbf24;border:1px solid #fcd34d;font-size:.82rem;padding:.55rem 1.25rem;font-weight:800">Grant Owner</button>
         </div>
         <div style="border-top:1px solid #e2e8f0;padding-top:1rem;margin-top:.5rem">
-          <p style="font-size:.78rem;font-weight:800;color:#475569;margin-bottom:.6rem">🏥 Grant Department Manager</p>
+          <p style="font-size:.78rem;font-weight:800;color:#64748b;margin-bottom:.6rem">🏥 Grant Department Manager</p>
           <div style="display:flex;gap:.75rem;flex-wrap:wrap">
             <select id="grant-manager-uid" class="input-field" style="flex:1;min-width:200px;font-size:.85rem">${userOptions}</select>
             <select id="grant-manager-dept" class="input-field" style="min-width:160px;font-size:.85rem">
@@ -8526,7 +8526,7 @@ async function loadSettings() {
           : `<button onclick="generateTotpSecret()" class="btn btn-primary" style="font-size:.82rem;padding:.55rem 1.2rem">Generate TOTP Secret</button>
         <div id="totp-setup-wrap" style="display:none;margin-top:1rem">
           <div id="totp-setup-url" style="font-family:monospace;font-size:.72rem;word-break:break-all;background:#f1f5f9;padding:.65rem;border-radius:.5rem;margin-bottom:.75rem;color:#0f172a"></div>
-          <p style="font-size:.78rem;color:#475569;font-weight:700;margin:0 0 .5rem">Enter the 6-digit code from your app to verify and enable:</p>
+          <p style="font-size:.78rem;color:#64748b;font-weight:700;margin:0 0 .5rem">Enter the 6-digit code from your app to verify and enable:</p>
           <div style="display:flex;gap:.65rem;flex-wrap:wrap;align-items:center">
             <input id="totp-verify-code" class="input-field" maxlength="6" placeholder="123456" style="max-width:130px;font-size:1.1rem;font-weight:900;text-align:center;letter-spacing:.15em">
             <button onclick="verifyAndEnableTotp()" class="btn btn-success" style="font-size:.82rem;padding:.55rem 1.2rem">Enable 2FA</button>
@@ -8540,23 +8540,23 @@ async function loadSettings() {
         <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:1rem">Lab Credits & Tiers</h3>
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;align-items:end">
           <div>
-            <label style="font-size:.8rem;font-weight:800;color:#475569">Base credits per scenario</label>
+            <label style="font-size:.8rem;font-weight:800;color:#64748b">Base credits per scenario</label>
             <input id="setting-lab-base" type="number" class="input-field" value="${labSettings.labBaseLC}" min="0" style="font-weight:800;text-align:center">
           </div>
           <div>
-            <label style="font-size:.8rem;font-weight:800;color:#475569">Weekly bonus (top 5)</label>
+            <label style="font-size:.8rem;font-weight:800;color:#64748b">Weekly bonus (top 5)</label>
             <input id="setting-weekly-bonus" type="number" class="input-field" value="${labSettings.weeklyBonusLC}" min="0" style="font-weight:800;text-align:center">
           </div>
         </div>
         <div style="margin-top:1rem">
-          <label style="font-size:.8rem;font-weight:800;color:#475569">Redemption tiers (comma-separated)</label>
+          <label style="font-size:.8rem;font-weight:800;color:#64748b">Redemption tiers (comma-separated)</label>
           <input id="setting-tiers" class="input-field" value="${(labSettings.redemptionTiers||[]).join(', ')}" style="font-weight:800">
         </div>
         <div style="margin-top:1rem;display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem">
-          <div style="font-size:.78rem;font-weight:800;color:#15803d;background:#ecfdf3;border:1px solid #bbf7d0;border-radius:.75rem;padding:.5rem">A Bonus: <input id="setting-bonus-a" type="number" value="${(labSettings.labScoreBonus||{}).A||50}" style="width:80px;text-align:center;font-weight:800"></div>
+          <div style="font-size:.78rem;font-weight:800;color:#4ade80;background:#ecfdf3;border:1px solid #bbf7d0;border-radius:.75rem;padding:.5rem">A Bonus: <input id="setting-bonus-a" type="number" value="${(labSettings.labScoreBonus||{}).A||50}" style="width:80px;text-align:center;font-weight:800"></div>
           <div style="font-size:.78rem;font-weight:800;color:#C9A84C;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);border-radius:.75rem;padding:.5rem">B Bonus: <input id="setting-bonus-b" type="number" value="${(labSettings.labScoreBonus||{}).B||30}" style="width:80px;text-align:center;font-weight:800"></div>
-          <div style="font-size:.78rem;font-weight:800;color:#f59e0b;background:#fff7ed;border:1px solid #fed7aa;border-radius:.75rem;padding:.5rem">C Bonus: <input id="setting-bonus-c" type="number" value="${(labSettings.labScoreBonus||{}).C||15}" style="width:80px;text-align:center;font-weight:800"></div>
-          <div style="font-size:.78rem;font-weight:800;color:#dc2626;background:#fef2f2;border:1px solid #fecaca;border-radius:.75rem;padding:.5rem">D Bonus: <input id="setting-bonus-d" type="number" value="${(labSettings.labScoreBonus||{}).D||5}" style="width:80px;text-align:center;font-weight:800"></div>
+          <div style="font-size:.78rem;font-weight:800;color:#f59e0b;background:rgba(255,237,213,.12);border:1px solid #fed7aa;border-radius:.75rem;padding:.5rem">C Bonus: <input id="setting-bonus-c" type="number" value="${(labSettings.labScoreBonus||{}).C||15}" style="width:80px;text-align:center;font-weight:800"></div>
+          <div style="font-size:.78rem;font-weight:800;color:#dc2626;background:rgba(254,226,226,.15);border:1px solid #fecaca;border-radius:.75rem;padding:.5rem">D Bonus: <input id="setting-bonus-d" type="number" value="${(labSettings.labScoreBonus||{}).D||5}" style="width:80px;text-align:center;font-weight:800"></div>
         </div>
         <button onclick="saveLabSettings()" class="btn btn-primary" style="margin-top:1rem;font-size:.82rem;padding:.55rem 1.2rem;font-weight:800">Save Lab Settings</button>
       </div>
@@ -8579,7 +8579,7 @@ async function loadSettings() {
             <input id="setting-webhook-secret" class="input-field" type="password" style="font-size:.82rem" placeholder="Signing secret (optional — HMAC-SHA256 sent as X-DSH-Signature header)" value="${settings?.webhookSecret||''}">
           </div>
           <div style="margin-bottom:.75rem">
-            <div style="font-size:.72rem;font-weight:800;color:#475569;margin-bottom:.4rem">Fire on events:</div>
+            <div style="font-size:.72rem;font-weight:800;color:#64748b;margin-bottom:.4rem">Fire on events:</div>
             <div style="display:flex;flex-wrap:wrap;gap:.5rem">
               ${['training_completed','cert_downloaded','cert_email','lab_completed','user_created'].map(ev=>{
                 const on = (settings?.webhookEvents||['training_completed','cert_downloaded','lab_completed']).includes(ev);
@@ -8590,7 +8590,7 @@ async function loadSettings() {
           </div>
           <div style="display:flex;gap:.6rem;flex-wrap:wrap">
             <button onclick="saveIntegrationSettings()" class="btn btn-primary" style="font-size:.78rem;padding:.45rem 1rem">Save Webhook</button>
-            <button onclick="testWebhook()" style="border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;border-radius:.65rem;padding:.45rem 1rem;font-size:.78rem;font-weight:800;cursor:pointer">Send Test Ping</button>
+            <button onclick="testWebhook()" style="border:1px solid #bfdbfe;background:rgba(219,234,254,.12);color:#1d4ed8;border-radius:.65rem;padding:.45rem 1rem;font-size:.78rem;font-weight:800;cursor:pointer">Send Test Ping</button>
           </div>
         </div>
 
@@ -8605,7 +8605,7 @@ async function loadSettings() {
           </div>
           <div style="display:flex;gap:.6rem;flex-wrap:wrap">
             <button onclick="saveIntegrationSettings()" class="btn btn-primary" style="font-size:.78rem;padding:.45rem 1rem">Save xAPI</button>
-            <button onclick="testXAPI()" style="border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;border-radius:.65rem;padding:.45rem 1rem;font-size:.78rem;font-weight:800;cursor:pointer">Send Test Statement</button>
+            <button onclick="testXAPI()" style="border:1px solid #bfdbfe;background:rgba(219,234,254,.12);color:#1d4ed8;border-radius:.65rem;padding:.45rem 1rem;font-size:.78rem;font-weight:800;cursor:pointer">Send Test Statement</button>
           </div>
         </div>
 
@@ -8617,7 +8617,7 @@ async function loadSettings() {
           <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
             <div style="font-size:.78rem;font-weight:800;color:#0f172a">API Key: </div>
             <code style="background:#f1f5f9;border:1px solid #e2e8f0;border-radius:.45rem;padding:.25rem .65rem;font-size:.75rem;color:#0f172a;font-weight:700;letter-spacing:.05em">${settings?.apiKey || '— not generated —'}</code>
-            <button onclick="generateApiKey()" style="border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;border-radius:.65rem;padding:.4rem .9rem;font-size:.75rem;font-weight:800;cursor:pointer">Regenerate</button>
+            <button onclick="generateApiKey()" style="border:1px solid #bfdbfe;background:rgba(219,234,254,.12);color:#1d4ed8;border-radius:.65rem;padding:.4rem .9rem;font-size:.75rem;font-weight:800;cursor:pointer">Regenerate</button>
           </div>
           <p style="font-size:.72rem;color:#94a3b8;margin:.65rem 0 0">One-time Vercel setup required: add <code style="background:#f1f5f9;padding:.1rem .3rem;border-radius:.25rem">FIREBASE_DB_SECRET</code> and <code style="background:#f1f5f9;padding:.1rem .3rem;border-radius:.25rem">FIREBASE_DB_URL</code> as environment variables in your Vercel project settings.</p>
         </div>
@@ -8627,7 +8627,7 @@ async function loadSettings() {
           <h4 style="font-weight:900;font-size:.82rem;color:#0f172a;margin:0 0 .35rem">CSV Roster Import <span style="font-weight:600;font-size:.72rem;color:#64748b">— bulk-provision accounts from an ADP/Paycom employee export</span></h4>
           <p style="font-size:.75rem;color:#64748b;margin:0 0 .65rem">Required columns: <strong>firstName, lastName, email</strong>. Optional: <em>department, employeeId, dueDate (YYYY-MM-DD)</em>. Accounts will be staged for self-activation via the sign-up flow.</p>
           <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
-            <label style="display:inline-flex;align-items:center;gap:.5rem;background:#eff6ff;border:1px solid #bfdbfe;border-radius:.65rem;padding:.5rem 1rem;font-size:.8rem;font-weight:800;color:#1d4ed8;cursor:pointer">Choose CSV <input type="file" id="roster-csv-input" accept=".csv,.txt" style="display:none" onchange="importRosterCSV(this)"></label>
+            <label style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(219,234,254,.12);border:1px solid #bfdbfe;border-radius:.65rem;padding:.5rem 1rem;font-size:.8rem;font-weight:800;color:#1d4ed8;cursor:pointer">Choose CSV <input type="file" id="roster-csv-input" accept=".csv,.txt" style="display:none" onchange="importRosterCSV(this)"></label>
             <span style="font-size:.75rem;color:#94a3b8" id="roster-file-name">No file selected</span>
           </div>
           <div id="roster-import-log" style="margin-top:.65rem"></div>
@@ -8640,13 +8640,13 @@ async function loadSettings() {
         <p style="font-size:.78rem;color:#64748b;margin:0 0 1.1rem">Automatically send training deadline reminders to employees via Zapier, Make.com, or any webhook. Reads the webhook URL from your org settings.</p>
         <div style="display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:end;margin-bottom:.75rem">
           <div>
-            <label style="font-size:.72rem;font-weight:800;color:#475569;display:block;margin-bottom:.3rem">Days-before-due to trigger reminder</label>
+            <label style="font-size:.72rem;font-weight:800;color:#64748b;display:block;margin-bottom:.3rem">Days-before-due to trigger reminder</label>
             <input id="reminder-days-input" type="number" min="1" max="60" value="${settings?.reminderDays||3}" class="input-field" style="max-width:120px;font-weight:700">
           </div>
           <button onclick="sendDueDateReminders()" class="btn btn-primary" style="font-size:.82rem;padding:.6rem 1.25rem;font-weight:800;white-space:nowrap">🚀 Send Nudge Reminders Now</button>
         </div>
         <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:.75rem;padding:.65rem .9rem">
-          <p style="font-size:.75rem;color:#92400e;margin:0;font-weight:700">⚡ Webhook URL is configured in the Org Setup Wizard below. Each eligible user's data is POSTed with <code>event: 'training_reminder'</code>.</p>
+          <p style="font-size:.75rem;color:#fbbf24;margin:0;font-weight:700">⚡ Webhook URL is configured in the Org Setup Wizard below. Each eligible user's data is POSTed with <code>event: 'training_reminder'</code>.</p>
         </div>
         <div id="reminder-result" style="margin-top:.65rem"></div>
       </div>
@@ -8656,7 +8656,7 @@ async function loadSettings() {
         <h3 style="font-weight:900;font-size:.875rem;color:#0f172a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.25rem">🔔 Push Notification Config (Vercel)</h3>
         <p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">Generate a VAPID key pair once and save the public key here. Add VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY, and VAPID_SUBJECT as Vercel environment variables to enable <code>/api/push.js</code>.</p>
         <div style="display:grid;gap:.6rem">
-          <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.3rem">VAPID Public Key</label><input id="setting-vapid-pub" class="input-field" style="font-size:.78rem;font-family:monospace" placeholder="BG5Hdlkjd..." value="${settings?.vapidPublicKey||''}"></div>
+          <div><label style="font-size:.7rem;font-weight:800;color:#64748b;display:block;margin-bottom:.3rem">VAPID Public Key</label><input id="setting-vapid-pub" class="input-field" style="font-size:.78rem;font-family:monospace" placeholder="BG5Hdlkjd..." value="${settings?.vapidPublicKey||''}"></div>
           <button onclick="saveVapidKey()" class="btn btn-primary" style="font-size:.8rem;padding:.55rem 1.1rem;align-self:start;font-weight:800">Save VAPID Key</button>
         </div>
       </div>
@@ -8686,7 +8686,7 @@ async function loadSettings() {
       <div style="background:#fff5f5;border:1px solid #fecaca;border-radius:1.25rem;padding:1.5rem">
         <h3 style="font-weight:900;font-size:.875rem;color:#dc2626;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem">Danger Zone</h3>
         <p style="font-size:.8rem;color:#ef4444;margin-bottom:1rem">These actions are irreversible. Proceed with caution.</p>
-        <button onclick="confirmResetTraining()" style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca;border-radius:.75rem;padding:.55rem 1.25rem;font-size:.82rem;font-weight:800;cursor:pointer">Reset All Training Progress for New Year</button>
+        <button onclick="confirmResetTraining()" style="background:rgba(254,226,226,.15);color:#dc2626;border:1px solid #fecaca;border-radius:.75rem;padding:.55rem 1.25rem;font-size:.82rem;font-weight:800;cursor:pointer">Reset All Training Progress for New Year</button>
       </div>`;
   } catch(e) {
     el.innerHTML=`<p style="color:#ef4444;font-size:.875rem">Error: ${e.message}</p>`;
@@ -8953,7 +8953,7 @@ async function importRosterCSV(input) {
   log.innerHTML = `
     <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem;padding:.85rem;margin-top:.5rem">
       <div style="font-size:.8rem;font-weight:900;color:#0f172a;margin-bottom:.4rem">Import complete: <span style="color:#16a34a">${created} staged</span> — <span style="color:#f59e0b">${skipped} skipped</span>${errors?` — <span style="color:#dc2626">${errors} errors</span>`:''}</div>
-      <div style="font-size:.75rem;color:#475569;margin-bottom:.5rem">Staged users will see their pre-filled profile when they sign up with the matching email.</div>
+      <div style="font-size:.75rem;color:#64748b;margin-bottom:.5rem">Staged users will see their pre-filled profile when they sign up with the matching email.</div>
       <div style="max-height:160px;overflow-y:auto;font-size:.72rem;line-height:1.7;font-family:monospace">${results.join('<br>')}</div>
     </div>`;
   input.value = '';
@@ -8978,9 +8978,9 @@ async function loadAudit() {
     window._auditRows = rows;
     const COLOR = {
       login:           'background:#dbeafe;color:#1d4ed8',
-      logout:          'background:#f1f5f9;color:#475569',
-      cert_downloaded: 'background:#fef9c3;color:#92400e',
-      lab_completed:   'background:#dcfce7;color:#166534',
+      logout:          'background:#f1f5f9;color:#64748b',
+      cert_downloaded: 'background:rgba(254,249,195,.12);color:#92400e',
+      lab_completed:   'background:rgba(220,252,231,.15);color:#166534',
       drill_completed: 'background:#fef3c7;color:#92400e',
       admin_access:    'background:#f3e8ff;color:#6b21a8',
     };
@@ -8992,10 +8992,10 @@ async function loadAudit() {
     const tbl = `<div style="overflow-x:auto">
       <table style="width:100%;border-collapse:collapse;font-size:.77rem">
         <thead><tr style="background:#f8fafc;border-bottom:2px solid #e2e8f0">
-          <th style="text-align:left;padding:.55rem .75rem;font-weight:800;color:#475569">Time</th>
-          <th style="text-align:left;padding:.55rem .75rem;font-weight:800;color:#475569">User</th>
-          <th style="text-align:left;padding:.55rem .75rem;font-weight:800;color:#475569">Action</th>
-          <th style="text-align:left;padding:.55rem .75rem;font-weight:800;color:#475569">Details</th>
+          <th style="text-align:left;padding:.55rem .75rem;font-weight:800;color:#64748b">Time</th>
+          <th style="text-align:left;padding:.55rem .75rem;font-weight:800;color:#64748b">User</th>
+          <th style="text-align:left;padding:.55rem .75rem;font-weight:800;color:#64748b">Action</th>
+          <th style="text-align:left;padding:.55rem .75rem;font-weight:800;color:#64748b">Details</th>
         </tr></thead>
         <tbody>${rows.map(r=>{
           const dt = new Date(r.ts).toLocaleString();
@@ -9007,7 +9007,7 @@ async function loadAudit() {
             <td style="padding:.5rem .75rem;color:#64748b;white-space:nowrap">${dt}</td>
             <td style="padding:.5rem .75rem"><div style="font-weight:700;color:#0f172a">${r.displayName||''}</div><div style="color:#64748b">${r.email||''}</div></td>
             <td style="padding:.5rem .75rem"><span style="${badge};padding:.2rem .55rem;border-radius:.4rem;font-weight:800;font-size:.72rem">${r.action}</span></td>
-            <td style="padding:.5rem .75rem;color:#475569">${det}</td>
+            <td style="padding:.5rem .75rem;color:#64748b">${det}</td>
           </tr>`;
         }).join('')}</tbody>
       </table></div>`;
@@ -9937,7 +9937,7 @@ async function submitScenario() {
       ${aiResult.strengths ? `<div style="margin-bottom:.75rem"><span style="font-weight:700;color:#059669">Clinical Strengths</span><br>${aiResult.strengths.replace(/\n/g,'<br>').replace(/^[-•]\s*/gm,'&nbsp;&nbsp;&#8226;&nbsp;')}</div>` : ''}
       ${aiResult.gaps ? `<div style="margin-bottom:.75rem"><span style="font-weight:700;color:#dc2626">Areas for Development</span><br>${aiResult.gaps.replace(/\n/g,'<br>').replace(/^[-•]\s*/gm,'&nbsp;&nbsp;&#8226;&nbsp;')}</div>` : ''}
       ${aiResult.pearl ? `<div style="margin-bottom:.75rem;background:#f0f9ff;border-left:3px solid #0284c7;padding:.6rem .85rem;border-radius:0 .5rem .5rem 0"><span style="font-weight:700;color:#0284c7">Clinical Pearl</span><br>${aiResult.pearl}</div>` : ''}
-      ${aiResult.overall ? `<div style="font-style:italic;color:#475569;margin-top:.5rem">${aiResult.overall}</div>` : ''}
+      ${aiResult.overall ? `<div style="font-style:italic;color:#64748b;margin-top:.5rem">${aiResult.overall}</div>` : ''}
     </div>`;
   } else {
     // Fallback: enhanced keyword scoring
@@ -10114,7 +10114,7 @@ function downloadCertificate() {
         ${jobInfo ? `<div style="font-family:Arial,sans-serif;font-size:.78rem;color:#64748b;margin-top:.3rem;font-weight:600">${jobInfo}</div>` : ''}
         <div style="font-family:Arial,sans-serif;font-size:.8rem;color:#64748b;margin:.75rem 0 .25rem;font-weight:600">has successfully completed all competency requirements for</div>
         <div style="font-size:1.28rem;font-weight:700;color:#1e3a8a;font-family:Georgia,serif;margin-bottom:.2rem">${brandName}</div>
-        <div style="font-family:Arial,sans-serif;font-size:.78rem;color:#475569;max-width:480px;margin:0 auto">${tagline}</div>
+        <div style="font-family:Arial,sans-serif;font-size:.78rem;color:#64748b;max-width:480px;margin:0 auto">${tagline}</div>
       </div>
       <div style="background:#f8fafc;border-radius:.85rem;padding:1.15rem 1.5rem;margin-bottom:1.5rem;border:1px solid #e2e8f0">
         <div style="font-family:Arial,sans-serif;font-size:.62rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.18em;margin-bottom:.75rem;text-align:center">Competency Domains Verified</div>
@@ -11054,7 +11054,7 @@ async function subscribeToPush() {
     try {
       const res = await fetch('/api/push', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ action:'broadcast', message: msg, adminUid: window._currentUser?.uid }) });
       const data = await res.json();
-      if(resultEl) resultEl.innerHTML = `<p style="font-size:.8rem;color:#15803d;font-weight:700">✅ Sent to ${data.sent||0} subscribers.</p>`;
+      if(resultEl) resultEl.innerHTML = `<p style="font-size:.8rem;color:#4ade80;font-weight:700">✅ Sent to ${data.sent||0} subscribers.</p>`;
     } catch(e) {
       if(resultEl) resultEl.innerHTML = `<p style="font-size:.8rem;color:#dc2626;font-weight:700">Error: ${e.message}</p>`;
     }
@@ -11123,7 +11123,7 @@ async function loadScenarioBuilder() {
           <div style="flex:1">
             <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.2rem">
               <span style="font-weight:900;font-size:.88rem;color:#0f172a">${s.title || 'Untitled'}</span>
-              ${isDraft ? '<span style="background:#fef3c7;color:#92400e;padding:.1rem .5rem;border-radius:999px;font-size:.65rem;font-weight:900">DRAFT</span>' : '<span style="background:#dcfce7;color:#15803d;padding:.1rem .5rem;border-radius:999px;font-size:.65rem;font-weight:900">• LIVE</span>'}
+              ${isDraft ? '<span style="background:#fef3c7;color:#fbbf24;padding:.1rem .5rem;border-radius:999px;font-size:.65rem;font-weight:900">DRAFT</span>' : '<span style="background:rgba(220,252,231,.15);color:#4ade80;padding:.1rem .5rem;border-radius:999px;font-size:.65rem;font-weight:900">• LIVE</span>'}
             </div>
             <div style="font-size:.76rem;color:#64748b;line-height:1.5;margin-bottom:.4rem">${(s.description || '').slice(0, 200)}</div>
             ${s.role ? `<span style="background:#dbeafe;color:#1d4ed8;padding:.15rem .55rem;border-radius:999px;font-size:.66rem;font-weight:800;margin-right:.35rem">👤 ${s.role}</span>` : ''}
@@ -11155,10 +11155,10 @@ async function loadScenarioBuilder() {
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.25rem;margin-top:.5rem">
           <h4 style="font-weight:900;font-size:.8rem;color:#0f172a;text-transform:uppercase;letter-spacing:.06em;margin:0 0 .875rem">✏️ Create New Scenario</h4>
           <div style="display:flex;flex-direction:column;gap:.6rem">
-            <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem">Title</label><input id="sc-title" class="input-field" placeholder="e.g. High-acuity patient refusing medications" style="font-weight:700"></div>
-            <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem">Patient / Situation Description <span style="font-weight:400;color:#94a3b8">(used as AI context)</span></label><textarea id="sc-description" class="input-field" rows="3" placeholder="Describe the patient's escalating behaviors, history, environment, and staff context…" style="font-weight:600;resize:vertical"></textarea></div>
+            <div><label style="font-size:.7rem;font-weight:800;color:#64748b;display:block;margin-bottom:.25rem">Title</label><input id="sc-title" class="input-field" placeholder="e.g. High-acuity patient refusing medications" style="font-weight:700"></div>
+            <div><label style="font-size:.7rem;font-weight:800;color:#64748b;display:block;margin-bottom:.25rem">Patient / Situation Description <span style="font-weight:400;color:#94a3b8">(used as AI context)</span></label><textarea id="sc-description" class="input-field" rows="3" placeholder="Describe the patient's escalating behaviors, history, environment, and staff context…" style="font-weight:600;resize:vertical"></textarea></div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem">
-              <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem">Role Track</label>
+              <div><label style="font-size:.7rem;font-weight:800;color:#64748b;display:block;margin-bottom:.25rem">Role Track</label>
                 <select id="sc-role" class="input-field" style="font-weight:700">
                   <option value="">All staff</option>
                   <option value="rn">RN / Clinical Nurse</option>
@@ -11166,15 +11166,15 @@ async function loadScenarioBuilder() {
                   <option value="charge">Charge Nurse</option>
                   <option value="security">Security</option>
                 </select></div>
-              <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem">Difficulty</label>
+              <div><label style="font-size:.7rem;font-weight:800;color:#64748b;display:block;margin-bottom:.25rem">Difficulty</label>
                 <select id="sc-difficulty" class="input-field" style="font-weight:700">
                   <option value="foundational">🟢 Foundational</option>
                   <option value="advanced">🟡 Advanced</option>
                   <option value="crisis">🔴 Crisis-Level</option>
                 </select></div>
-              <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem">Tags (comma-separated)</label><input id="sc-tags" class="input-field" placeholder="aggression, meds, elopement" style="font-weight:600"></div>
+              <div><label style="font-size:.7rem;font-weight:800;color:#64748b;display:block;margin-bottom:.25rem">Tags (comma-separated)</label><input id="sc-tags" class="input-field" placeholder="aggression, meds, elopement" style="font-weight:600"></div>
             </div>
-            <div><label style="font-size:.7rem;font-weight:800;color:#475569;display:block;margin-bottom:.25rem">Opening Patient Message <span style="font-weight:400;color:#94a3b8">(optional &mdash; AI generates if blank)</span></label><input id="sc-opener" class="input-field" placeholder="You're not touching me. I'm leaving." style="font-weight:600"></div>
+            <div><label style="font-size:.7rem;font-weight:800;color:#64748b;display:block;margin-bottom:.25rem">Opening Patient Message <span style="font-weight:400;color:#94a3b8">(optional &mdash; AI generates if blank)</span></label><input id="sc-opener" class="input-field" placeholder="You're not touching me. I'm leaving." style="font-weight:600"></div>
             <button onclick="saveCustomScenario()" class="btn btn-primary" id="sc-save-btn" style="font-size:.85rem;padding:.75rem;font-weight:800">💾 Save Scenario</button>
           </div>
         </div>
@@ -11268,7 +11268,7 @@ function shareLeaderboard() {
 .header{background:linear-gradient(135deg,#1e3a8a,#4c1d95);padding:2rem;color:white;text-align:center}
 .header h1{font-size:1.5rem;font-weight:900;margin-bottom:.25rem}
 .header p{font-size:.85rem;opacity:.75}table{width:100%;border-collapse:collapse;font-size:.9rem}
-thead tr{background:#f1f5f9}th{padding:.875rem 1rem;text-align:left;font-weight:900;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:#475569}
+thead tr{background:#f1f5f9}th{padding:.875rem 1rem;text-align:left;font-weight:900;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:#64748b}
 .footer{text-align:center;padding:1.25rem;font-size:.72rem;color:#94a3b8;border-top:1px solid #f1f5f9}
 @media(max-width:600px){th,td{padding:.55rem .5rem;font-size:.78rem}}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -11346,11 +11346,11 @@ function previewScenario(id) {
     <div style="background:white;border-radius:1.25rem;padding:2rem;max-width:540px;width:100%;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem">
         <h2 style="font-weight:900;font-size:1.15rem;color:#0f172a;line-height:1.3">${(s.title||'Untitled').replace(/</g,'&lt;')}</h2>
-        <button onclick="this.closest('[style*=fixed]').remove()" style="background:#f1f5f9;border:none;border-radius:.5rem;padding:.35rem .65rem;font-size:.85rem;cursor:pointer;font-weight:800;color:#475569">✕ Close</button>
+        <button onclick="this.closest('[style*=fixed]').remove()" style="background:#f1f5f9;border:none;border-radius:.5rem;padding:.35rem .65rem;font-size:.85rem;cursor:pointer;font-weight:800;color:#64748b">✕ Close</button>
       </div>
       ${s.role ? `<span style="background:#dbeafe;color:#1d4ed8;padding:.2rem .6rem;border-radius:999px;font-size:.72rem;font-weight:800;display:inline-block;margin-bottom:.75rem">👤 ${s.role}</span>` : ''}
-      <p style="color:#475569;font-size:.875rem;line-height:1.7;margin-bottom:1rem">${(s.description||'No description.').replace(/</g,'&lt;')}</p>
-      ${s.objective ? `<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:.75rem;padding:.75rem 1rem;margin-bottom:1rem"><p style="font-size:.8rem;font-weight:800;color:#15803d;margin-bottom:.25rem">🎯 Objective</p><p style="font-size:.82rem;color:#166534">${s.objective.replace(/</g,'&lt;')}</p></div>` : ''}
+      <p style="color:#64748b;font-size:.875rem;line-height:1.7;margin-bottom:1rem">${(s.description||'No description.').replace(/</g,'&lt;')}</p>
+      ${s.objective ? `<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:.75rem;padding:.75rem 1rem;margin-bottom:1rem"><p style="font-size:.8rem;font-weight:800;color:#4ade80;margin-bottom:.25rem">🎯 Objective</p><p style="font-size:.82rem;color:#166534">${s.objective.replace(/</g,'&lt;')}</p></div>` : ''}
       ${s.tags ? `<div style="margin-top:.75rem">${s.tags.split(',').map(t=>`<span style="background:#ede9fe;color:#5b21b6;padding:.2rem .55rem;border-radius:999px;font-size:.7rem;font-weight:800;margin-right:.3rem;display:inline-block">${t.trim()}</span>`).join('')}</div>` : ''}
       <p style="font-size:.72rem;color:#94a3b8;margin-top:1rem">Status: ${s.active===false?'⏸ Draft':'▶ Published'} &nbsp;|&nbsp; ID: ${id}</p>
     </div>`;
