@@ -759,6 +759,261 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
 @keyframes pulse-glow{0%,100%{box-shadow:0 0 0 0 rgba(59,130,246,.4)}50%{box-shadow:0 0 0 16px rgba(59,130,246,0)}}
+
+
+/* ════ SLIDE VISUAL ENRICHMENT ════ */
+/* Module badge enhancement */
+.slide .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .38rem .85rem;
+  border-radius: 20px;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+/* Slide header decorative line accent */
+.slide > div > h1:first-of-type,
+.slide > div > h2:first-of-type {
+  position: relative;
+  padding-bottom: .7rem;
+}
+.slide > div > h1:first-of-type::after,
+.slide > div > h2:first-of-type::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 52px; height: 3px;
+  background: linear-gradient(90deg, #C9A84C, transparent);
+  border-radius: 2px;
+}
+/* Highlight callout boxes */
+.amber-box, [class*="amber-box"] {
+  border-left: 4px solid #f59e0b !important;
+  background: linear-gradient(135deg, rgba(245,158,11,.08), rgba(251,191,36,.04)) !important;
+  border-radius: .75rem;
+}
+.green-box, [class*="green-box"],
+div[style*="background:#dcfce7"], div[style*="background:#d1fae5"] {
+  border-left: 4px solid #22c55e !important;
+}
+.red-box, [class*="red-box"],
+div[style*="background:#fee2e2"], div[style*="background:#fef2f2"] {
+  border-left: 4px solid #ef4444 !important;
+}
+/* Scenario choice buttons - more polished */
+.scenario-choice-btn {
+  border-radius: .85rem !important;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease !important;
+}
+.scenario-choice-btn:hover {
+  transform: translateY(-2px) scale(1.01) !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.15) !important;
+}
+/* Quiz option buttons */
+.quiz-option {
+  border-radius: .85rem !important;
+  transition: transform .15s ease, border-color .2s ease !important;
+}
+.quiz-option:hover { transform: translateY(-1px) !important; }
+/* Stat counter cells */
+.stat-cell {
+  text-align: center;
+  padding: 1.2rem 1rem;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 1rem;
+}
+.stat-cell .stat-num {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #C9A84C;
+  font-family: "Playfair Display", serif;
+  line-height: 1;
+}
+.stat-cell .stat-label {
+  font-size: .67rem;
+  color: #8A8070;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: .3rem;
+}
+/* Card grid decorative icons */
+.icon-circle {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+/* Quote block style */
+blockquote, .quote-block {
+  border-left: 3px solid #C9A84C;
+  padding: .8rem 1.2rem;
+  margin: 1rem 0;
+  background: rgba(201,168,76,.05);
+  border-radius: 0 .5rem .5rem 0;
+  font-style: italic;
+  color: inherit;
+}
+/* Tooltip-style clinical pearl */
+.clinical-pearl {
+  background: linear-gradient(135deg, rgba(201,168,76,.12), rgba(184,137,42,.06));
+  border: 1px solid rgba(201,168,76,.3);
+  border-radius: .85rem;
+  padding: 1rem 1.2rem;
+}
+/* Dark mode readable cards */
+body.theme-dark .card,
+body.theme-dark .slide-card,
+[data-theme="dark"] .card,
+[data-theme="dark"] .slide-card {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border-color: rgba(255,255,255,.1) !important;
+  color: #e2e8f0 !important;
+}
+[data-theme="dark"] p, [data-theme="dark"] li,
+[data-theme="dark"] span:not(.badge):not([style*="color"]) {
+  color: #cbd5e1;
+}
+[data-theme="dark"] h1, [data-theme="dark"] h2,
+[data-theme="dark"] h3, [data-theme="dark"] h4 {
+  color: #f1f5f9 !important;
+}
+/* Light mode dark text enforcement */
+body:not(.theme-dark) .slide p,
+body:not(.theme-dark) .slide li { color: #1e293b !important; }
+body:not(.theme-dark) .slide h1,
+body:not(.theme-dark) .slide h2,
+body:not(.theme-dark) .slide h3 { color: #0f172a !important; }
+
+/* Display Settings panel */
+.sb-hidden{display:none!important}
+#nav-display-settings{animation:sb-reveal .18s ease}
+@keyframes sb-reveal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+/* High contrast mode */
+body.high-contrast .slide-card,.high-contrast .card{background:#000!important;border:2px solid #fff!important}
+body.high-contrast .slide p,.high-contrast .slide li,.high-contrast .slide span{color:#fff!important}
+body.high-contrast .slide h1,.high-contrast .slide h2,.high-contrast .slide h3{color:#ffd700!important}
+
+/* ════ CONTRAST + ACCESSIBILITY IMPROVEMENTS ════ */
+/* Ensure minimum readable text contrast everywhere */
+.slide p, .slide li, .slide td, .slide dd {
+  color: var(--slide-body-color, #1e293b);
+  line-height: 1.7;
+}
+body.theme-dark .slide p,
+body.theme-dark .slide li,
+body.theme-dark .slide td { color: var(--slide-body-color, #e2e8f0) !important; }
+body.theme-dark .slide { background: #0f172a !important; }
+/* Force readable text on amber/gold backgrounds */
+.badge, [style*="background:#f59e0b"], [style*="background:#C9A84C"],
+[style*="background:#d97706"], [style*="background:linear-gradient(135deg,#B88"],
+[style*="background:linear-gradient(130deg,#C9A"] { color: #1a0f00 !important; }
+/* Cards always have good contrast */
+.card, .slide-card, .info-card { border: 1px solid rgba(0,0,0,.08) !important; }
+body.theme-dark .card,
+body.theme-dark .slide-card,
+body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
+
+/* ════ ENTRANCE ANIMATIONS ════ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInScale {
+  from { opacity: 0; transform: scale(.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,.35); }
+  50%       { box-shadow: 0 0 0 10px rgba(201,168,76,0); }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+/* Apply entrance animations to slide content */
+.slide.active > div > *,
+.slide.active > section > * {
+  animation: fadeInUp .45s ease both;
+}
+.slide.active h1, .slide.active h2 {
+  animation: fadeInUp .35s ease both;
+}
+/* Stagger children of card grids */
+.slide.active .card:nth-child(1) { animation-delay: .05s; }
+.slide.active .card:nth-child(2) { animation-delay: .12s; }
+.slide.active .card:nth-child(3) { animation-delay: .19s; }
+.slide.active .card:nth-child(4) { animation-delay: .26s; }
+.slide.active .card:nth-child(5) { animation-delay: .33s; }
+.slide.active .card:nth-child(6) { animation-delay: .40s; }
+/* Gold pulse on primary CTAs */
+.btn-primary, .auth-btn-primary, #start-btn {
+  animation: goldPulse 2.5s ease-in-out infinite;
+}
+/* Shimmer hover on gold gradient buttons */
+.btn-primary:hover, .auth-btn-primary:hover {
+  background-size: 200% auto;
+  background-image: linear-gradient(90deg, #B8892A 0%, #ffd79a 30%, #C9A84C 55%, #ffd79a 70%, #B8892A 100%);
+  animation: shimmer .8s linear infinite;
+}
+/* Float animation on avatar/Vance figure */
+#vance-avatar, .vance-container { animation: floatY 4s ease-in-out infinite; }
+/* Subtle hover lift on cards */
+.card:hover, .slide-card:hover, .hub-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+/* Progress bar animated fill */
+#nav-progress-fill { transition: width .6s cubic-bezier(.4,0,.2,1) !important; }
+/* Slide transition effect */
+.slide { transition: opacity .3s ease, transform .3s ease !important; }
+.slide:not(.active) { opacity: 0; pointer-events: none; }
+.slide.active { opacity: 1; }
+/* Subtle gradient glow behind active slide */
+.slide.active::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #C9A84C 30%, #ffd79a 50%, #C9A84C 70%, transparent);
+  animation: shimmer 2.5s linear infinite;
+  background-size: 200% auto;
+  z-index: 100;
+  pointer-events: none;
+}
+/* Sidebar link hover animation */
+.sb-nav-btn::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: #C9A84C;
+  border-radius: 0 2px 2px 0;
+  transform: scaleY(0);
+  transition: transform .18s ease;
+}
+.sb-nav-btn { position: relative; overflow: hidden; }
+.sb-nav-btn:hover::after { transform: scaleY(1); }
+/* Vance speaking indicator pulse */
+@keyframes speakPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: .6; transform: scale(1.12); }
+}
+#vance-speaking-dot { animation: speakPulse 1.2s ease-in-out infinite; }
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes talking{0%,100%{transform:scaleY(1)}50%{transform:scaleY(0.3)}}
 @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(18px,-22px) scale(1.04)}66%{transform:translate(-12px,14px) scale(.97)}}
@@ -2211,6 +2466,14 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <div class="logo-inline auth-mobile-logo"></div>
     </div>
 
+    <!-- Back to landing page -->
+    <div style="width:100%;margin-bottom:.85rem;margin-top:-.2rem">
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:.4rem;color:rgba(201,168,76,.7);font-size:.72rem;font-weight:700;text-decoration:none;font-family:'Inter',sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:color .2s" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(201,168,76,.7)'">
+        <svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Homepage
+      </a>
+    </div>
+
     <!-- Tab switcher -->
     <div class="auth-tab-wrap">
       <div id="auth-panel-title">Welcome back to NyxCodex</div>
@@ -2533,7 +2796,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('users',this)">👥 Users</button>
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('analytics',this)">📊 Analytics</button>
       <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('reports',this)">📋 Reports</button>
-      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('completion',this)">? Completion</button>
+      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('completion',this)"><span style="margin-right:.3rem">&#9632;</span> Completion</button>
       <button id="settings-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('settings',this)">⚙️ Settings</button>
       <button id="audit-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('audit',this)">📜 Audit Log</button>
       <button id="scenarios-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('scenarios',this)">📚 Scenarios</button>
@@ -2766,7 +3029,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
           <div style="display:flex;flex-direction:column;gap:.5rem">
             <label style="font-size:.75rem;font-weight:800;color:#475569;text-transform:uppercase;letter-spacing:.06em">📝 What happened?</label>
             <textarea id="debrief-input" class="input-field" placeholder="Describe the incident, what you tried, and how it went. Be specific..." style="height:280px;resize:vertical"></textarea>
-            <button id="debrief-btn" class="btn btn-primary" onclick="runDebrief()" style="width:100%">Get Clinical Feedback ?</button>
+            <button id="debrief-btn" class="btn btn-primary" onclick="runDebrief()" style="width:100%">Get Clinical Feedback &#9654;</button>
           </div>
           <div style="display:flex;flex-direction:column;gap:.5rem">
             <label style="font-size:.75rem;font-weight:800;color:#475569;text-transform:uppercase;letter-spacing:.06em">🧠 Clinical Mentor Analysis</label>
@@ -2781,7 +3044,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <p style="margin:0 0 1rem;color:#64748b;font-size:.88rem;font-weight:700">Generate a realistic roleplay script for a team huddle or training drill from any scenario topic.</p>
         <div style="display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap">
           <input id="script-topic" class="input-field" placeholder="e.g. Medication refusal, PTSD flashback, manic episode..." style="flex:1;min-width:220px">
-          <button id="script-btn" class="btn btn-primary" onclick="buildLabScriptAI()">Build Script ?</button>
+          <button id="script-btn" class="btn btn-primary" onclick="buildLabScriptAI()">Build Script &#9654;</button>
         </div>
         <div id="script-output" style="background:#0f172a;border:1px solid rgba(255,255,255,.1);border-radius:.875rem;padding:1.25rem;color:#4ade80;font-family:monospace;font-size:.85rem;line-height:1.7;min-height:300px;overflow-y:auto;white-space:pre-wrap"><span style="opacity:.5">Roleplay script appears here...</span></div>
       </div><!-- end tab script -->
@@ -2795,7 +3058,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
           </div>
           <div style="display:flex;align-items:center;gap:.75rem">
             <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:.75rem;padding:.35rem .75rem;font-size:.82rem;font-weight:800;color:#15803d">Score: <span id="microexp-score">0</span>/<span id="microexp-total">0</span></div>
-            <button onclick="startMicroExpDrill()" style="border:none;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;padding:.55rem 1.1rem;border-radius:.85rem;font-weight:900;font-size:.85rem;cursor:pointer">? Start Drill</button>
+            <button onclick="startMicroExpDrill()" style="border:none;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;padding:.55rem 1.1rem;border-radius:.85rem;font-weight:900;font-size:.85rem;cursor:pointer"><span style="margin-right:.4rem">&#9654;</span> Start Drill</button>
           </div>
         </div>
         <div style="background:#1e293b;border-radius:1rem;overflow:hidden;margin-bottom:.85rem">
@@ -2817,7 +3080,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
               <span id="microexp-result-badge" style="display:none;padding:.35rem .9rem;border-radius:1rem;font-weight:900;font-size:.88rem"></span>
             </div>
             <div style="text-align:center;margin-top:.75rem">
-              <button id="microexp-next-btn" onclick="nextMicroExpRound()" style="display:none;border:none;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;font-weight:900;padding:.65rem 1.8rem;border-radius:.875rem;font-size:.92rem;cursor:pointer;letter-spacing:.01em">Next Round ?</button>
+              <button id="microexp-next-btn" onclick="nextMicroExpRound()" style="display:none;border:none;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;font-weight:900;padding:.65rem 1.8rem;border-radius:.875rem;font-size:.92rem;cursor:pointer;letter-spacing:.01em">Next Round &#9654;</button>
             </div>
           </div>
         </div>
@@ -2882,7 +3145,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
                   <h3 id="drill-card-title" style="font-size:1.15rem;font-weight:900;color:white;margin:0 0 .65rem;font-family:Montserrat,sans-serif">Skill Card</h3>
                   <p id="drill-card-front" style="color:#bfdbfe;font-weight:700;font-size:1.05rem;line-height:1.65;margin:0">Loading…</p>
                 </div>
-                <div style="text-align:right;font-size:.7rem;font-weight:800;color:rgba(255,255,255,.35);margin-top:1rem;letter-spacing:.05em">TAP TO FLIP ?</div>
+                <div style="text-align:right;font-size:.7rem;font-weight:800;color:rgba(255,255,255,.35);margin-top:1rem;letter-spacing:.05em">TAP TO FLIP &#8635;</div>
               </div>
               <!-- Back face -->
               <div style="backface-visibility:hidden;-webkit-backface-visibility:hidden;position:absolute;inset:0;background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:1.25rem;padding:1.5rem;transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:space-between">
@@ -3236,11 +3499,33 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     </button>
     </div>
     <div class="sb-divider" id="nav-divider"></div>
-    <div id="nav-controls-group" class="sb-nav-controls">
-      <button id="nav-prev-btn" onclick="prevSlide()" title="Previous slide" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:white;width:32px;height:32px;border-radius:.5rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.18)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">&#8249;</button>
-      <button id="nav-home-btn" onclick="showHomeGateway()" title="Home Hub" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#64748b;width:32px;height:32px;border-radius:.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .15s" onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748b'"><svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></button>
-      <button id="nav-next-btn" onclick="nextSlide()" title="Next slide" style="background:linear-gradient(135deg,#B8892A,#C9A8ed8);color:white;width:32px;height:32px;border-radius:.5rem;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(37,99,235,.5);transition:filter .15s" onmouseover="this.style.filter='brightness(1.15)'" onmouseout="this.style.filter=''">&#8250;</button>
-      <button id="nav-more-btn" onclick="toggleMobileNavSheet()" title="More actions" aria-expanded="false" style="display:none;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:white;width:32px;height:32px;border-radius:.5rem;font-size:1rem;cursor:pointer;align-items:center;justify-content:center">&#8943;</button>
+    <div id="nav-display-panel" style="flex-shrink:0">
+      <button class="sb-nav-btn" onclick="document.getElementById('nav-display-settings').classList.toggle('sb-hidden')" title="Display Settings" style="color:#C9A84C;" onmouseover="this.style.background='rgba(184,137,42,.1)'" onmouseout="this.style.background='transparent'">
+        <svg class="sb-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <span class="sb-label">Display Settings</span>
+      </button>
+      <div id="nav-display-settings" class="sb-hidden" style="padding:.6rem .9rem .8rem;display:flex;flex-direction:column;gap:.65rem;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06)">
+        <!-- Font size -->
+        <div>
+          <div style="font-size:.6rem;font-weight:700;color:#8A8070;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;font-family:'Inter',sans-serif">Text Size</div>
+          <div style="display:flex;gap:.3rem">
+            <button onclick="adjustFontSize(-1)" title="Decrease font size" style="flex:1;padding:.35rem .25rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:.4rem;color:#b0a880;font-size:.75rem;cursor:pointer;font-family:'Inter',sans-serif;font-weight:700" onmouseover="this.style.background='rgba(255,255,255,.15)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">A&#8722;</button>
+            <button onclick="resetFontSize()" title="Reset font size" style="flex:1;padding:.35rem .25rem;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);border-radius:.4rem;color:#C9A84C;font-size:.78rem;cursor:pointer;font-family:'Inter',sans-serif;font-weight:700" onmouseover="this.style.background='rgba(201,168,76,.2)'" onmouseout="this.style.background='rgba(201,168,76,.1)'">A</button>
+            <button onclick="adjustFontSize(1)" title="Increase font size" style="flex:1;padding:.35rem .25rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:.4rem;color:#b0a880;font-size:.82rem;cursor:pointer;font-family:'Inter',sans-serif;font-weight:700" onmouseover="this.style.background='rgba(255,255,255,.15)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">A&#43;</button>
+          </div>
+        </div>
+        <!-- High contrast toggle -->
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:.68rem;color:#8A8070;font-family:'Inter',sans-serif;font-weight:600">High Contrast</span>
+          <button id="contrast-toggle-btn" onclick="toggleHighContrast()" style="width:36px;height:20px;border-radius:10px;border:none;cursor:pointer;position:relative;background:rgba(255,255,255,.12);transition:background .2s" title="Toggle high contrast mode">
+            <span id="contrast-knob" style="position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#8A8070;transition:transform .2s,background .2s"></span>
+          </button>
+        </div>
+        <!-- Fullscreen -->
+        <button onclick="toggleFullscreen()" style="width:100%;padding:.4rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.4rem;color:#8A8070;font-size:.68rem;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:all .15s" onmouseover="this.style.color='white';this.style.background='rgba(255,255,255,.1)'" onmouseout="this.style.color='#8A8070';this.style.background='rgba(255,255,255,.05)'">
+          &#9974; Fullscreen
+        </button>
+      </div>
     </div>
     <div class="sb-divider"></div>
     <button id="nav-account-btn" class="sb-nav-btn" onclick="openAccountModal()" title="My Account" style="color:white;" onmouseover="this.style.background='rgba(255,255,255,.08)'" onmouseout="this.style.background='transparent'">
@@ -3286,7 +3571,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 <div id="shortcuts-overlay" onclick="closeShortcuts()" style="display:none;position:fixed;inset:0;z-index:5000;background:rgba(0,0,20,.72);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:1.5rem">
   <div onclick="event.stopPropagation()" style="background:#0f172a;border:1px solid rgba(255,255,255,.12);border-radius:1.5rem;padding:2rem;max-width:420px;width:100%;box-shadow:0 24px 80px rgba(0,0,0,.6);color:#f1f5f9">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.4rem">
-      <h3 style="font-size:1rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#f8fafc">? Keyboard Shortcuts</h3>
+      <h3 style="font-size:1rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#f8fafc"><span style="margin-right:.3rem">&#9000;</span> Keyboard Shortcuts</h3>
       <button onclick="closeShortcuts()" style="background:rgba(255,255,255,.08);border:none;color:#94a3b8;border-radius:.5rem;width:28px;height:28px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center">&times;</button>
     </div>
     <div style="display:grid;gap:.6rem;font-size:.83rem">
@@ -3428,7 +3713,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
   </div>
   <div style="padding:0 2rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
     <div class="card red-box p-6">
-      <h3 style="font-size:1.1rem;font-weight:900;color:#dc2626;margin-bottom:1rem;text-transform:uppercase">? Threatening Posture</h3>
+      <h3 style="font-size:1.1rem;font-weight:900;color:#dc2626;margin-bottom:1rem;text-transform:uppercase"><span style="color:#ef4444;margin-right:.4rem">&#9651;</span> Threatening Posture</h3>
       <ul style="space-y:8px;font-size:1.05rem;color:#7f1d1d;font-weight:600;line-height:2">
         <li>Direct chest-to-chest confrontation</li>
         <li>Arms crossed, hands on hips</li>
@@ -3440,7 +3725,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       </ul>
     </div>
     <div class="card green-box p-6">
-      <h3 style="font-size:1.1rem;font-weight:900;color:#15803d;margin-bottom:1rem;text-transform:uppercase">? De-escalating Posture</h3>
+      <h3 style="font-size:1.1rem;font-weight:900;color:#15803d;margin-bottom:1rem;text-transform:uppercase"><span style="color:#22c55e;margin-right:.4rem">&#10003;</span> De-escalating Posture</h3>
       <ul style="font-size:1.05rem;color:#14532d;font-weight:600;line-height:2">
         <li>45° angle — never square-on</li>
         <li>Open palms visible at sides</li>
@@ -3478,7 +3763,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     </div>
     <div class="card p-5" style="border-top:5px solid #22c55e;text-align:center;outline:3px solid #22c55e;outline-offset:2px">
       <div style="font-size:1.75rem;font-weight:900;color:#16a34a">4–10 ft</div>
-      <div style="font-size:.75rem;font-weight:900;color:#14532d;text-transform:uppercase;margin:.5rem 0">? Social Zone</div>
+      <div style="font-size:.75rem;font-weight:900;color:#14532d;text-transform:uppercase;margin:.5rem 0"><span style="color:#60a5fa;margin-right:.4rem">&#9711;</span> Social Zone</div>
       <p style="font-size:.78rem;color:#166534;line-height:1.6"><strong>IDEAL for de-escalation.</strong> Professional, safe, non-threatening. Start here always.</p>
     </div>
     <div class="card p-5" style="border-top:5px solid #94a3b8;text-align:center">
@@ -3488,7 +3773,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     </div>
   </div>
   <div style="padding:0 2rem" class="card amber-box p-5">
-    <strong style="color:#92400e">? Clinical Tip:</strong> <span style="font-size:.875rem;color:#78350f">Always position yourself at a 45° angle so the patient has a clear exit path. Trapped people escalate. A patient who feels they can leave — often won't.</span>
+    <strong style="color:#92400e"><span style="color:#f59e0b;margin-right:.3rem">&#9670;</span> Clinical Tip:</strong> <span style="font-size:.875rem;color:#78350f">Always position yourself at a 45° angle so the patient has a clear exit path. Trapped people escalate. A patient who feels they can leave — often won't.</span>
   </div>
 </div>
 
@@ -3501,7 +3786,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
   </div>
   <div style="padding:0 2rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
     <div class="card green-box p-6">
-      <h3 style="font-weight:900;color:#15803d;margin-bottom:1rem;text-transform:uppercase;font-size:.95rem">? Calming Vocal Qualities</h3>
+      <h3 style="font-weight:900;color:#15803d;margin-bottom:1rem;text-transform:uppercase;font-size:.95rem"><span style="color:#6ee7b7;margin-right:.3rem">&#9835;</span> Calming Vocal Qualities</h3>
       <div style="display:flex;flex-direction:column;gap:.75rem">
         <div style="display:flex;align-items:center;gap:.75rem"><div style="width:40px;height:40px;background:#dcfce7;border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0">🎵</div><div><p style="font-weight:800;font-size:.85rem;color:#166534">Low Pitch</p><p style="font-size:.75rem;color:#15803d">Lower frequencies signal calm and safety to the limbic system</p></div></div>
         <div style="display:flex;align-items:center;gap:.75rem"><div style="width:40px;height:40px;background:#dcfce7;border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0">🐢</div><div><p style="font-weight:800;font-size:.85rem;color:#166534">Slower Pacing</p><p style="font-size:.75rem;color:#15803d">Rushed speech signals anxiety; slow = safe</p></div></div>
@@ -3510,7 +3795,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       </div>
     </div>
     <div class="card red-box p-6">
-      <h3 style="font-weight:900;color:#dc2626;margin-bottom:1rem;text-transform:uppercase;font-size:.95rem">? Escalating Vocal Patterns</h3>
+      <h3 style="font-weight:900;color:#dc2626;margin-bottom:1rem;text-transform:uppercase;font-size:.95rem"><span style="color:#fca5a5;margin-right:.3rem">&#9834;</span> Escalating Vocal Patterns</h3>
       <div style="display:flex;flex-direction:column;gap:.75rem">
         <div style="display:flex;align-items:center;gap:.75rem"><div style="width:40px;height:40px;background:#fee2e2;border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0">📣</div><div><p style="font-weight:800;font-size:.85rem;color:#991b1b">High Pitch / Loud</p><p style="font-size:.75rem;color:#b91c1c">Triggers alarm — sounds like threat or panic</p></div></div>
         <div style="display:flex;align-items:center;gap:.75rem"><div style="width:40px;height:40px;background:#fee2e2;border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0">🗣️</div><div><p style="font-weight:800;font-size:.85rem;color:#991b1b">Rapid Speech</p><p style="font-size:.75rem;color:#b91c1c">Feels urgent/anxious; escalates their nervous system</p></div></div>
@@ -3583,9 +3868,9 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <h3 style="font-weight:900;font-size:1.05rem;color:#0f172a;margin-bottom:.75rem;text-transform:uppercase">Open Questions</h3>
       <p style="font-size:.8rem;color:#475569;line-height:1.6">Questions that can't be answered with yes/no open dialogue.</p>
       <div style="background:#eff6ff;padding:.75rem;border-radius:.75rem;margin-top:.75rem">
-        <p style="font-size:.75rem;color:#1d4ed8">? "What would help you feel safer right now?"</p>
-        <p style="font-size:.75rem;color:#1d4ed8;margin-top:.4rem">? "Help me understand what happened."</p>
-        <p style="font-size:.75rem;color:#dc2626;margin-top:.4rem">? "Did you take your meds?"</p>
+        <p style="font-size:.75rem;color:#1d4ed8"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> <em>"What would help you feel safer right now?"</em></p>
+        <p style="font-size:.75rem;color:#1d4ed8;margin-top:.4rem"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> <em>"Help me understand what happened."</em></p>
+        <p style="font-size:.75rem;color:#dc2626;margin-top:.4rem"><span style="color:#ef4444;margin-right:.3rem">&#10007;</span> <em>"Did you take your meds?"</em></p>
       </div>
     </div>
     <div class="card p-5" style="border-top:4px solid #8b5cf6">
@@ -3623,7 +3908,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     </div>
     <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:1.25rem;padding:1.5rem;text-align:center;cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
       <div style="font-size:3rem;font-weight:900;color:white;line-height:1">4</div>
-      <div style="font-size:.8rem;font-weight:900;color:#93c5fd;text-transform:uppercase;letter-spacing:.1em;margin:.5rem 0">? TOUCH</div>
+      <div style="font-size:.8rem;font-weight:900;color:#93c5fd;text-transform:uppercase;letter-spacing:.1em;margin:.5rem 0"><span style="color:#a78bfa;margin-right:.3rem">&#8226;</span> TOUCH</div>
       <p style="font-size:.75rem;color:#bfdbfe;line-height:1.5">Feel 4 different textures around you</p>
     </div>
     <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:1.25rem;padding:1.5rem;text-align:center;cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
@@ -3785,7 +4070,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       </ul>
     </div>
     <div class="card p-5 green-box">
-      <h3 style="font-weight:900;font-size:1.05rem;color:#16a34a;text-transform:uppercase;margin-bottom:.875rem">? What Works</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#16a34a;text-transform:uppercase;margin-bottom:.875rem"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> What Works</h3>
       <ul style="font-size:.82rem;color:#14532d;line-height:2;font-weight:600">
         <li>Literal, concrete language</li>
         <li>Reduce sensory input first</li>
@@ -3814,7 +4099,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 <div class="slide" style="background:white;padding-bottom:5rem">
   <div style="padding:2.5rem 2rem 1rem">
     <span class="badge" style="background:#fef3c7;color:#92400e;margin-bottom:1rem">Module 4 — Diagnosis-Specific Care</span>
-    <h2 style="font-size:2rem;font-weight:900;color:#0f172a;font-family:Montserrat,sans-serif">? ADHD</h2>
+    <h2 style="font-size:2rem;font-weight:900;color:#0f172a;font-family:Montserrat,sans-serif"><span style="color:#93c5fd;margin-right:.3rem">&#9670;</span> ADHD</h2>
     <p style="color:#64748b;font-weight:600;margin-top:.4rem;font-size:.9rem">Executive dysfunction is neurological, not laziness. The brain genuinely cannot regulate attention and impulse without support.</p>
   </div>
   <div style="padding:0 2rem 2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem">
@@ -3832,7 +4117,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       </ul>
     </div>
     <div class="card p-5 green-box">
-      <h3 style="font-weight:900;font-size:1.05rem;color:#166534;text-transform:uppercase;margin-bottom:.875rem">? What Works</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#166534;text-transform:uppercase;margin-bottom:.875rem"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> What Works</h3>
       <ul style="font-size:.82rem;color:#14532d;line-height:2;font-weight:600">
         <li>Offer movement: "Want to walk?"</li>
         <li>ONE instruction at a time</li>
@@ -3878,7 +4163,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       </ul>
     </div>
     <div class="card p-5 green-box">
-      <h3 style="font-weight:900;font-size:1.05rem;color:#166534;text-transform:uppercase;margin-bottom:.875rem">? What Works</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#166534;text-transform:uppercase;margin-bottom:.875rem"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> What Works</h3>
       <ul style="font-size:.82rem;color:#14532d;line-height:2;font-weight:600">
         <li>Stay calm — your calm is contagious</li>
         <li>Don't argue with delusion content</li>
@@ -3898,7 +4183,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       </div>
     </div>
     <div class="card p-5 amber-box" style="grid-column:1/-1">
-      <strong style="color:#92400e">? Critical Principle:</strong> <span style="font-size:.875rem;color:#78350f">Never physically startle a patient in active psychosis — announce EVERYTHING: "I'm going to sit down now." "I'm going to hand you this cup." Unexpected movements from staff can be interpreted as threats within the delusional framework and will escalate immediately.</span>
+      <strong style="color:#92400e"><span style="color:#C9A84C;margin-right:.3rem">&#9670;</span> Critical Principle:</strong> <span style="font-size:.875rem;color:#78350f">Never physically startle a patient in active psychosis — announce EVERYTHING: "I'm going to sit down now." "I'm going to hand you this cup." Unexpected movements from staff can be interpreted as threats within the delusional framework and will escalate immediately.</span>
     </div>
   </div>
 </div>
@@ -3937,7 +4222,7 @@ function getSlides14to27() { return `
       <div style="background:#eef2ff;padding:.875rem;border-radius:.875rem"><p style="font-size:.75rem;font-weight:800;color:#3730a3;margin-bottom:.4rem">YOUR APPROACH:</p><p style="font-size:.8rem;color:#4338ca;line-height:1.5">Slow, warm, low-key presence. Don't try to "cheer them up." Sit with them quietly. Ask directly about suicidal thoughts — asking does NOT increase risk. "Are you having any thoughts of hurting yourself?"</p></div>
     </div>
     <div class="card p-4 amber-box" style="grid-column:1/-1">
-      <strong style="color:#92400e">? Mixed States:</strong> <span style="font-size:.875rem;color:#78350f">The most dangerous phase — simultaneous depressive hopelessness AND manic energy/impulsivity. Highest suicide risk occurs here. Involve clinical team immediately and complete a suicide risk assessment.</span>
+      <strong style="color:#92400e"><span style="color:#c4b5fd;margin-right:.3rem">&#9670;</span> Mixed States:</strong> <span style="font-size:.875rem;color:#78350f">The most dangerous phase — simultaneous depressive hopelessness AND manic energy/impulsivity. Highest suicide risk occurs here. Involve clinical team immediately and complete a suicide risk assessment.</span>
     </div>
   </div>
 </div>
@@ -3963,7 +4248,7 @@ function getSlides14to27() { return `
       </ul>
     </div>
     <div class="card p-5 green-box">
-      <h3 style="font-weight:900;font-size:1.05rem;color:#166534;text-transform:uppercase;margin-bottom:.875rem">? Trauma-Informed Response</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#166534;text-transform:uppercase;margin-bottom:.875rem"><span style="color:#6ee7b7;margin-right:.3rem">&#9670;</span> Trauma-Informed Response</h3>
       <ul style="font-size:.82rem;color:#14532d;line-height:2;font-weight:600">
         <li>Always explain before you touch</li>
         <li>Offer choice and control ALWAYS</li>
@@ -4012,7 +4297,7 @@ function getSlides14to27() { return `
       </ul>
     </div>
     <div class="card p-5 green-box">
-      <h3 style="font-weight:900;font-size:.95rem;color:#166534;text-transform:uppercase;margin-bottom:.875rem">? DBT-Informed Approach</h3>
+      <h3 style="font-weight:900;font-size:.95rem;color:#166534;text-transform:uppercase;margin-bottom:.875rem"><span style="color:#a78bfa;margin-right:.3rem">&#9670;</span> DBT-Informed Approach</h3>
       <ul style="font-size:.82rem;color:#14532d;line-height:2;font-weight:600">
         <li>Validate the emotion, not the behavior</li>
         <li>Maintain consistent, reliable presence</li>
@@ -4024,7 +4309,7 @@ function getSlides14to27() { return `
       </ul>
     </div>
     <div class="card p-5 red-box">
-      <h3 style="font-weight:900;font-size:1.05rem;color:#dc2626;text-transform:uppercase;margin-bottom:.875rem">? Common Staff Mistakes</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#dc2626;text-transform:uppercase;margin-bottom:.875rem"><span style="color:#ef4444;margin-right:.3rem">&#10007;</span> Common Staff Mistakes</h3>
       <ul style="font-size:.82rem;color:#7f1d1d;line-height:2;font-weight:600">
         <li>Labeling behavior as "attention-seeking"</li>
         <li>Getting "hooked" into debates</li>
@@ -4215,7 +4500,7 @@ function getSlides14to27() { return `
   </div>
   <div style="padding:0 2rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
     <div class="card p-6">
-      <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">? What to Document in a Crisis</h3>
+      <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem"><span style="color:#C9A84C;margin-right:.3rem">&#9670;</span> What to Document in a Crisis</h3>
       <ul style="font-size:.85rem;color:#374151;line-height:2.2;font-weight:600">
         <li>Exact time the behavior began</li>
         <li>Specific observable behaviors (not interpretations)</li>
@@ -4230,8 +4515,8 @@ function getSlides14to27() { return `
     <div class="card p-6">
       <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">📊 Objective vs. Subjective</h3>
       <div style="display:flex;flex-direction:column;gap:.875rem">
-        <div><p style="font-size:.75rem;font-weight:900;color:#dc2626;text-transform:uppercase;margin-bottom:.4rem">? Subjective (AVOID)</p><div style="background:#fef2f2;padding:.75rem;border-radius:.75rem;font-size:.82rem;color:#7f1d1d;font-style:italic;font-weight:600">"Patient was aggressive and uncooperative, seemed manic, appeared dangerous"</div></div>
-        <div><p style="font-size:.75rem;font-weight:900;color:#16a34a;text-transform:uppercase;margin-bottom:.4rem">? Objective (USE)</p><div style="background:#f0fdf4;padding:.75rem;border-radius:.75rem;font-size:.82rem;color:#166534;font-style:italic;font-weight:600">"At 14:32, patient raised voice and struck wall three times with open palm. Stated 'I'm going to hurt someone' twice. Staff member Jones initiated verbal de-escalation. Patient sat down at 14:38."</div></div>
+        <div><p style="font-size:.75rem;font-weight:900;color:#dc2626;text-transform:uppercase;margin-bottom:.4rem"><span style="color:#ef4444;margin-right:.3rem">&#10007;</span> Subjective (AVOID)</p><div style="background:#fef2f2;padding:.75rem;border-radius:.75rem;font-size:.82rem;color:#7f1d1d;font-style:italic;font-weight:600">"Patient was aggressive and uncooperative, seemed manic, appeared dangerous"</div></div>
+        <div><p style="font-size:.75rem;font-weight:900;color:#16a34a;text-transform:uppercase;margin-bottom:.4rem"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> Objective (USE)</p><div style="background:#f0fdf4;padding:.75rem;border-radius:.75rem;font-size:.82rem;color:#166534;font-style:italic;font-weight:600">"At 14:32, patient raised voice and struck wall three times with open palm. Stated 'I'm going to hurt someone' twice. Staff member Jones initiated verbal de-escalation. Patient sat down at 14:38."</div></div>
       </div>
     </div>
     <div class="card p-4 amber-box" style="grid-column:1/-1">
@@ -4260,7 +4545,7 @@ function getSlides14to27() { return `
       </ul>
     </div>
     <div class="card p-5 green-box">
-      <h3 style="font-weight:900;font-size:1.05rem;color:#166534;text-transform:uppercase;margin-bottom:.875rem">? Safe Approach</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#166534;text-transform:uppercase;margin-bottom:.875rem"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> Safe Approach</h3>
       <ul style="font-size:.82rem;color:#14532d;line-height:2;font-weight:600">
         <li>Non-judgmental stance always</li>
         <li>Safety first — medical emergency possible</li>
@@ -4297,7 +4582,7 @@ function getSlides14to27() { return `
         <label style="font-size:.75rem;font-weight:900;color:#64748b;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.5rem">Select Diagnosis</label>
         <select id="scenario-dx" style="width:100%;padding:.75rem 1rem;background:#f8fafc;border:2px solid #e2e8f0;border-radius:.875rem;font-family:inherit;font-weight:700;font-size:1.05rem;outline:none">
           <option value="autism">🧩 Autism Spectrum Disorder</option>
-          <option value="adhd">? ADHD</option>
+          <option value="adhd"><span style="color:#93c5fd;margin-right:.3rem">&#9670;</span> ADHD</option>
           <option value="schizophrenia">🧠 Schizophrenia</option>
           <option value="bipolar">⚡ Bipolar Disorder</option>
           <option value="ptsd">💔 PTSD</option>
@@ -4308,7 +4593,7 @@ function getSlides14to27() { return `
       <div id="scenario-box" style="background:#f8fafc;border:2px solid #e2e8f0;border-radius:1rem;padding:1.25rem;min-height:140px;font-size:.875rem;color:#374151;line-height:1.7;font-style:italic;font-weight:500">Click Generate to receive a crisis scenario...</div>
       <textarea id="scenario-response" style="width:100%;padding:.875rem;background:#f8fafc;border:2px solid #e2e8f0;border-radius:.875rem;font-family:inherit;font-size:.85rem;font-weight:600;resize:none;outline:none;height:100px" placeholder="Describe your de-escalation approach..."></textarea>
       <div style="display:flex;gap:.75rem">
-        <button onclick="generateScenario()" class="btn btn-amber" style="flex:1">? Generate Scenario</button>
+        <button onclick="generateScenario()" class="btn btn-amber" style="flex:1"><span style="margin-right:.3rem">&#9674;</span> Generate Scenario</button>
         <button onclick="submitScenario()" class="btn btn-primary" style="flex:1" id="submit-btn" disabled>Submit Response —</button>
       </div>
     </div>
@@ -4704,7 +4989,7 @@ function getSlides14to27() { return `
       </div>
     </div>
     <div class="card p-6">
-      <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">? The Collaborative Approach</h3>
+      <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem"><span style="color:#C9A84C;margin-right:.3rem">&#9670;</span> The Collaborative Approach</h3>
       <div style="display:flex;flex-direction:column;gap:.75rem">
         <div style="background:#f8fafc;padding:1rem;border-radius:.875rem;border:1px solid #e2e8f0">
           <p style="font-size:.75rem;font-weight:900;color:#6d28d9;text-transform:uppercase;margin-bottom:.4rem">Step 1 — Validate Without Reinforcing Refusal</p>
@@ -4725,7 +5010,7 @@ function getSlides14to27() { return `
       </div>
     </div>
     <div class="card p-5 red-box">
-      <h3 style="font-weight:900;font-size:1.05rem;color:#dc2626;text-transform:uppercase;margin-bottom:.875rem">? What NOT to Do</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#dc2626;text-transform:uppercase;margin-bottom:.875rem"><span style="color:#ef4444;margin-right:.3rem">&#10007;</span> What NOT to Do</h3>
       <ul style="font-size:.82rem;color:#7f1d1d;line-height:2;font-weight:600">
         <li>"You HAVE to take this" — coercion escalates and damages trust</li>
         <li>Threatening consequences during the conversation</li>
@@ -4762,7 +5047,7 @@ function getSlides14to27() { return `
       <div style="background:white;padding:.75rem;border-radius:.75rem;margin-top:.75rem"><p style="font-size:.75rem;color:#1d4ed8;font-weight:700">Key: NSSI is distinct from suicide. Most people who self-harm are not trying to die — they are trying to survive.</p></div>
     </div>
     <div class="card p-5 green-box">
-      <h3 style="font-weight:900;font-size:1.05rem;color:#166534;text-transform:uppercase;margin-bottom:.875rem">? Safe Responding</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#166534;text-transform:uppercase;margin-bottom:.875rem"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> Safe Responding</h3>
       <ul style="font-size:.82rem;color:#14532d;line-height:2;font-weight:600">
         <li>Stay calm — visible distress escalates</li>
         <li>Provide first aid calmly, without drama</li>
@@ -4778,9 +5063,9 @@ function getSlides14to27() { return `
       <h3 style="font-weight:900;font-size:1.05rem;color:#0f172a;text-transform:uppercase;margin-bottom:.875rem">Safer Alternatives</h3>
       <p style="font-size:.78rem;color:#475569;font-weight:600;margin-bottom:.75rem">Offer same neurological function without harm:</p>
       <div style="display:flex;flex-direction:column;gap:.6rem">
-        <div style="background:#fef2f2;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#7f1d1d;font-weight:700">? <strong>Cold:</strong> Ice cubes on skin, cold shower, face in cold water</div>
+        <div style="background:#fef2f2;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#7f1d1d;font-weight:700"><span style="color:#60a5fa;margin-right:.3rem">&#9673;</span> <strong>Cold:</strong> Ice cubes on skin, cold shower, face in cold water</div>
         <div style="background:#fff7ed;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#9a3412;font-weight:700"><strong>Mark:</strong> Draw red lines on skin with marker</div>
-        <div style="background:#f0fdf4;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#166534;font-weight:700">? <strong>Pressure:</strong> Snap rubber band, grip ice</div>
+        <div style="background:#f0fdf4;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#166534;font-weight:700"><span style="color:#a78bfa;margin-right:.3rem">&#9673;</span> <strong>Pressure:</strong> Snap rubber band, grip ice</div>
         <div style="background:#eef2ff;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#3730a3;font-weight:700"><strong>Intense Exercise:</strong> Run in place, push-ups</div>
         <div style="background:#faf5ff;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#5b21b6;font-weight:700"><strong>Expression:</strong> Rip paper, draw, scream into pillow</div>
       </div>
@@ -4819,7 +5104,7 @@ function getSlides14to27() { return `
       </ul>
     </div>
     <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:1.25rem;padding:1.5rem">
-      <h3 style="font-weight:900;color:white;font-size:.95rem;text-transform:uppercase;margin-bottom:1rem">? The Prevention Hierarchy</h3>
+      <h3 style="font-weight:900;color:white;font-size:.95rem;text-transform:uppercase;margin-bottom:1rem"><span style="color:#C9A84C;margin-right:.3rem">&#9670;</span> The Prevention Hierarchy</h3>
       <div style="display:flex;flex-direction:column;gap:.75rem">
         <div style="background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:.875rem;padding:.875rem"><p style="font-size:.75rem;font-weight:900;color:#86efac;text-transform:uppercase;margin-bottom:.3rem">1. Environment First</p><p style="font-size:.78rem;color:#bbf7d0">Reduce triggers: noise, crowding, poor lighting, lack of choice, staff behavior</p></div>
         <div style="background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);border-radius:.875rem;padding:.875rem"><p style="font-size:.75rem;font-weight:900;color:#93c5fd;text-transform:uppercase;margin-bottom:.3rem">2. Relationship &amp; De-escalation</p><p style="font-size:.78rem;color:#bfdbfe">The skills you've learned here: validation, choice, grounding, trauma-informed presence</p></div>
@@ -6148,8 +6433,8 @@ function pickBranch(choice) {
     videoBox.style.padding = '.9rem';
     videoBox.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;min-height:120px;text-align:center">
       <img src="success.png" alt="De-escalation success" style="width:100%;border-radius:.75rem;opacity:.92;margin-bottom:.25rem">
-      <div style="color:#bbf7d0;font-weight:800;font-size:.8rem;text-transform:uppercase;letter-spacing:.07em">? Good example — de-escalation</div>
-      <a href="https://abc7chicago.com/post/franklin-park-police-cook-county-sheriffs-office-bodycam-video/11778196/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.45rem;background:#0ea5e9;color:white;font-weight:900;font-size:1.05rem;padding:.55rem 1.3rem;border-radius:.6rem;text-decoration:none">? Watch Video</a>
+      <div style="color:#bbf7d0;font-weight:800;font-size:.8rem;text-transform:uppercase;letter-spacing:.07em"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> Good example — de-escalation</div>
+      <a href="https://abc7chicago.com/post/franklin-park-police-cook-county-sheriffs-office-bodycam-video/11778196/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.45rem;background:#0ea5e9;color:white;font-weight:900;font-size:1.05rem;padding:.55rem 1.3rem;border-radius:.6rem;text-decoration:none"><span style="margin-right:.4rem">&#9654;</span> Watch Video</a>
       <div style="color:#94a3b8;font-size:.75rem">Opens in new tab</div>
     </div>`;
   } else if(choice === 'command') {
@@ -7960,7 +8245,7 @@ async async function loadCompletion() {
               ${score!==null?`<div style="font-size:.75rem;font-weight:800;color:${score>=14?'#15803d':'#92400e'}">Quiz: ${score}/15</div>`:''}
               <div style="font-size:.72rem;color:#64748b">${completedStr}</div>
              </div>
-             <span style="background:#dcfce7;color:#15803d;padding:.25rem .65rem;border-radius:999px;font-size:.72rem;font-weight:800;flex-shrink:0">? Done</span>`
+             <span style="background:#dcfce7;color:#15803d;padding:.25rem .65rem;border-radius:999px;font-size:.72rem;font-weight:800;flex-shrink:0"><span style="color:#22c55e;margin-right:.3rem">&#10003;</span> Done</span>`
           : `<div style="width:90px;flex-shrink:0">
                <div style="background:#e2e8f0;border-radius:999px;height:6px;margin-bottom:.2rem">
                  <div style="background:linear-gradient(90deg,#B8892A,#C9A84C);width:${pct}%;height:6px;border-radius:999px"></div>
@@ -8596,7 +8881,7 @@ async function loadAudit() {
   if(!el) return;
   el.innerHTML = `<div class="flex items-center justify-between mb-4">
     <h3 style="font-size:1.1rem;font-weight:900;color:#0f172a">Audit Log</h3>
-    <button onclick="exportAuditCSV()" style="background:#0f172a;color:#fff;font-size:.75rem;font-weight:700;padding:.45rem .9rem;border-radius:.5rem;border:none;cursor:pointer">? Export CSV</button>
+    <button onclick="exportAuditCSV()" style="background:#0f172a;color:#fff;font-size:.75rem;font-weight:700;padding:.45rem .9rem;border-radius:.5rem;border:none;cursor:pointer"><span style="margin-right:.3rem">&#8595;</span> Export CSV</button>
   </div>
   <div id="audit-table-wrap"><div style="color:#64748b;font-size:.85rem;padding:2rem;text-align:center">Loading audit events…</div></div>`;
   try {
@@ -9080,7 +9365,7 @@ async function buildLabScriptAI() {
   } catch(e) {
     if(output) output.textContent = '⚠️ Script generation unavailable — check your internet connection and try again.';
   } finally {
-    if(btn) { btn.disabled=false; btn.textContent='Build Script ?'; }
+    if(btn) { btn.disabled=false; btn.textContent='Build Script &#9654;'; }
   }
 }
 
@@ -9966,7 +10251,47 @@ function updateFinalStats() {
 }
 
 // --- Sign Out ---------------------------------------------
-async function doSignOut() {
+async 
+// ── Display Settings ──────────────────────────────────────────────
+function adjustFontSize(delta) {
+  const slides = document.querySelectorAll('.slide');
+  slides.forEach(s => {
+    const current = parseFloat(getComputedStyle(s).fontSize) || 16;
+    s.style.fontSize = Math.max(12, Math.min(22, current + delta)) + 'px';
+  });
+  const stored = parseFloat(localStorage.getItem('dsh_fontSize') || '16');
+  localStorage.setItem('dsh_fontSize', Math.max(12, Math.min(22, stored + delta)));
+}
+function resetFontSize() {
+  document.querySelectorAll('.slide').forEach(s => s.style.fontSize = '');
+  localStorage.removeItem('dsh_fontSize');
+}
+function toggleHighContrast() {
+  document.body.classList.toggle('high-contrast');
+  const on = document.body.classList.contains('high-contrast');
+  const btn = document.getElementById('contrast-toggle-btn');
+  const knob = document.getElementById('contrast-knob');
+  if (btn) btn.style.background = on ? '#C9A84C' : 'rgba(255,255,255,.12)';
+  if (knob) { knob.style.transform = on ? 'translateX(16px)' : ''; knob.style.background = on ? '#fff' : '#8A8070'; }
+  localStorage.setItem('dsh_highContrast', on ? '1' : '');
+}
+function toggleFullscreen() {
+  if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); }
+  else if (document.exitFullscreen) { document.exitFullscreen(); }
+}
+(function restoreDisplayPrefs() {
+  const fs = parseFloat(localStorage.getItem('dsh_fontSize'));
+  if (fs && fs !== 16) {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.slide').forEach(s => s.style.fontSize = fs + 'px');
+    });
+  }
+  if (localStorage.getItem('dsh_highContrast') === '1') {
+    document.addEventListener('DOMContentLoaded', toggleHighContrast);
+  }
+})();
+
+function doSignOut() {
   if(breathInterval) clearInterval(breathInterval);
   if(window.speechSynthesis) window.speechSynthesis.cancel();
   window._scorm?.finish(); // report SCORM session end before sign-out
@@ -10088,7 +10413,7 @@ async function answerMicroExp(chosen) {
   // Don't auto-advance — show a button so the user moves on when ready
   var nextBtn = document.getElementById('microexp-next-btn');
   if(nextBtn) {
-    nextBtn.textContent = _meIndex < MICROEXP_ROUNDS.length ? 'Next Round ?' : 'See Results ?';
+    nextBtn.textContent = _meIndex < MICROEXP_ROUNDS.length ? 'Next Round &#9654;' : 'See Results ?';
     nextBtn.style.display = 'inline-block';
   }
 }
