@@ -5740,11 +5740,13 @@ function initApp() {
   } else if(seenBefore && hasProgress) {
     // Returning user mid-training: show hub so they can choose to resume or explore
     showSlide(currentSlide);
+    cancelVance(); // cancel any slide tip scheduled by showSlide — hub welcome message takes over
     showHomeGateway();
   } else {
     // Returning user but no measurable progress: show the hub gateway
     if(window._userData) window._userData.hasOnboarded = true;
     showSlide(currentSlide);
+    cancelVance(); // cancel any slide tip scheduled by showSlide — hub welcome message takes over
     showHomeGateway();
   }
 
