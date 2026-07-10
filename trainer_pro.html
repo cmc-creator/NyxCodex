@@ -101,8 +101,13 @@ async function checkSubscriptionThenLoad(user) {
       if (snap.exists()) {
         const sub = snap.val();
         const now = Math.floor(Date.now() / 1000);
-        subActive = (sub.status === 'active') &&
+        subActive = (sub.status === 'active' || sub.status === 'trialing') &&
                     (!sub.currentPeriodEnd || sub.currentPeriodEnd > now);
+        // Show trial banner if on free trial
+        if (sub.status === 'trialing' && sub.currentPeriodEnd) {
+          const daysLeft = Math.ceil((sub.currentPeriodEnd - now) / 86400);
+          window._trialDaysLeft = daysLeft;
+        }
         window._orgSubscription = sub;
       }
     } catch(e) {

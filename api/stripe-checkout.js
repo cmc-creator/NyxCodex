@@ -73,6 +73,7 @@ export default async function handler(req, res) {
       },
       body: new URLSearchParams({
         'mode': 'subscription',
+        'subscription_data[trial_period_days]': '14',
         'customer_email': adminEmail,
         'line_items[0][price]': priceId,
         'line_items[0][quantity]': '1',
@@ -102,3 +103,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Internal error' });
   }
 }
+

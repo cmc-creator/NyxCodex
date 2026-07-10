@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Free Trial — NyxCodex™</title>
+<link rel="icon" type="image/png" href="nyxcodex-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#080806;color:#f5f0e8;font-family:'Inter',sans-serif}
+  body{display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:2rem 1rem}
+  .topbar{width:100%;max-width:1100px;display:flex;align-items:center;justify-content:space-between;margin-bottom:3rem}
+  .topbar img{height:48px}
+  .topbar a{color:#C9A84C;text-decoration:none;font-size:.875rem;letter-spacing:.05em}
+  .hero{text-align:center;max-width:620px;margin-bottom:3.5rem}
+  .hero-eyebrow{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#C9A84C;margin-bottom:1rem}
+  .hero h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,3rem);font-weight:600;line-height:1.2;color:#f5f0e8;margin-bottom:1rem}
+  .hero h1 em{font-style:italic;color:#C9A84C}
+  .hero p{font-size:1rem;color:#9a8f7a;line-height:1.7}
+  .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;width:100%;max-width:900px;margin-bottom:3.5rem}
+  .plan{border:1px solid rgba(201,168,76,.2);background:rgba(255,255,255,.03);padding:2rem 1.5rem;cursor:pointer;transition:border-color .2s,background .2s;position:relative}
+  .plan:hover,.plan.selected{border-color:#C9A84C;background:rgba(201,168,76,.06)}
+  .plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#C9A84C;color:#080806;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .75rem}
+  .plan-name{font-family:"Playfair Display",serif;font-style:italic;font-size:1.1rem;color:#C9A84C;margin-bottom:.5rem}
+  .plan-price{font-family:"Playfair Display",serif;font-size:2.4rem;color:#f5f0e8;margin-bottom:.25rem}
+  .plan-price span{font-size:.85rem;color:#9a8f7a;font-family:"Inter",sans-serif}
+  .plan-seats{font-size:.8rem;color:#9a8f7a;margin-bottom:1.2rem}
+  .plan-features{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+  .plan-features li{font-size:.83rem;color:#c8bfa8;padding-left:1.2rem;position:relative}
+  .plan-features li::before{content:"✦";position:absolute;left:0;color:#C9A84C;font-size:.6rem;top:.15em}
+  .plan-radio{position:absolute;top:1.2rem;right:1.2rem;width:18px;height:18px;border-radius:50%;border:2px solid rgba(201,168,76,.4);display:flex;align-items:center;justify-content:center}
+  .plan.selected .plan-radio{border-color:#C9A84C;background:#C9A84C}
+  .plan.selected .plan-radio::after{content:"";width:7px;height:7px;border-radius:50%;background:#080806}
+  .signup-form{width:100%;max-width:520px;border:1px solid rgba(201,168,76,.25);background:rgba(11,10,8,.92);padding:2.5rem 2rem}
+  .form-title{font-family:"Playfair Display",serif;font-size:1.4rem;color:#f5f0e8;margin-bottom:1.75rem;text-align:center}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.1rem}
+  label{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:#9a8f7a}
+  input,select{background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.2);color:#f5f0e8;font-family:"Inter",sans-serif;font-size:.9rem;padding:.65rem .85rem;outline:none;transition:border-color .15s;width:100%}
+  input:focus,select:focus{border-color:#C9A84C}
+  input::placeholder{color:#5a5040}
+  select option{background:#151210;color:#f5f0e8}
+  .trial-badge{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);padding:.9rem 1.25rem;margin-bottom:1.5rem;text-align:center}
+  .trial-badge strong{color:#C9A84C;font-size:.95rem}
+  .trial-badge p{font-size:.78rem;color:#9a8f7a;margin-top:.25rem}
+  .error-msg{color:#f87171;font-size:.8rem;margin-bottom:1rem;display:none}
+  .btn-submit{width:100%;background:linear-gradient(135deg,#C9A84C,#a8852c);color:#080806;font-family:"Inter",sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:none;padding:1rem;cursor:pointer;transition:opacity .2s;margin-top:.5rem}
+  .btn-submit:disabled{opacity:.5;cursor:not-allowed}
+  .btn-submit:not(:disabled):hover{opacity:.88}
+  .form-note{font-size:.72rem;color:#5a5040;text-align:center;margin-top:1rem;line-height:1.5}
+  .trust{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;margin-top:3rem;margin-bottom:2rem}
+  .trust-item{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:#9a8f7a}
+  .trust-item span{color:#C9A84C;font-size:1rem}
+  #success-overlay{display:none;position:fixed;inset:0;background:#080806;z-index:100;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:2rem}
+  #success-overlay.show{display:flex}
+  .success-title{font-family:"Playfair Display",serif;font-size:2rem;color:#f5f0e8;margin-bottom:.75rem}
+  .success-sub{color:#9a8f7a;font-size:.95rem;line-height:1.7;max-width:480px}
+  @media(max-width:600px){.form-row{grid-template-columns:1fr}.topbar{flex-direction:column;gap:1rem;text-align:center}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html"><img src="nyxcodex-logo.png" alt="NyxCodex"></a>
+  <a href="index.html">← Back to home</a>
+</div>
+<div class="hero">
+  <div class="hero-eyebrow">Start today — no credit card risk</div>
+  <h1>14 Days Free.<br><em>Then continue from $199/mo.</em></h1>
+  <p>Professional de-escalation training for your entire team. AI-powered scenarios, certification tracking, and a full admin dashboard — ready in minutes.</p>
+</div>
+<div class="plans" id="plan-grid">
+  <div class="plan" data-plan="small" onclick="selectPlan('small')">
+    <div class="plan-radio"></div>
+    <div class="plan-name">Foundations</div>
+    <div class="plan-price">$199<span>/mo</span></div>
+    <div class="plan-seats">Up to 25 staff members</div>
+    <ul class="plan-features">
+      <li>All 31 training modules</li><li>AI scenario lab</li><li>Completion certificates</li><li>Admin dashboard</li>
+    </ul>
+  </div>
+  <div class="plan featured selected" data-plan="medium" onclick="selectPlan('medium')">
+    <div class="plan-badge">Most Popular</div>
+    <div class="plan-radio"></div>
+    <div class="plan-name">Professional</div>
+    <div class="plan-price">$499<span>/mo</span></div>
+    <div class="plan-seats">Up to 100 staff members</div>
+    <ul class="plan-features">
+      <li>Everything in Foundations</li><li>Department analytics</li><li>Bulk user import (CSV)</li><li>Priority support</li>
+    </ul>
+  </div>
+  <div class="plan" data-plan="enterprise" onclick="selectPlan('enterprise')">
+    <div class="plan-radio"></div>
+    <div class="plan-name">Enterprise</div>
+    <div class="plan-price">$999<span>/mo</span></div>
+    <div class="plan-seats">Unlimited staff · custom branding</div>
+    <ul class="plan-features">
+      <li>Everything in Professional</li><li>White-label / custom domain</li><li>SCORM LMS export</li><li>Dedicated onboarding call</li>
+    </ul>
+  </div>
+</div>
+<form class="signup-form" id="signup-form" onsubmit="handleSignup(event)">
+  <div class="form-title">Create Your Organization Account</div>
+  <div class="trial-badge">
+    <strong>✦ 14-Day Free Trial Included</strong>
+    <p>Full access for your team — no charge until day 15. Cancel anytime.</p>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" placeholder="Jane" required>
+    </div>
+    <div class="form-group">
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" placeholder="Smith" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="org-name">Organization Name</label>
+    <input type="text" id="org-name" placeholder="Riverside Behavioral Health" required>
+  </div>
+  <div class="form-group">
+    <label for="admin-email">Work Email (you will use this to log in)</label>
+    <input type="email" id="admin-email" placeholder="jane.smith@yourorg.com" required>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="org-size">Organization Size</label>
+      <select id="org-size" required>
+        <option value="" disabled selected>Select...</option>
+        <option value="1-10">1-10 staff</option>
+        <option value="11-25">11-25 staff</option>
+        <option value="26-50">26-50 staff</option>
+        <option value="51-100">51-100 staff</option>
+        <option value="101-250">101-250 staff</option>
+        <option value="250+">250+ staff</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sector">Sector</label>
+      <select id="sector">
+        <option value="psychiatric">Psychiatric / Behavioral Health</option>
+        <option value="hospital">Hospital / Medical Center</option>
+        <option value="residential">Residential Treatment</option>
+        <option value="community">Community Mental Health</option>
+        <option value="corrections">Corrections / Justice</option>
+        <option value="education">Education / School District</option>
+        <option value="other">Other Healthcare</option>
+      </select>
+    </div>
+  </div>
+  <div id="form-error" class="error-msg"></div>
+  <button type="submit" class="btn-submit" id="submit-btn">Start Free Trial - No Credit Card Required</button>
+  <p class="form-note">By continuing you agree to our Terms of Service and Privacy Policy. Your card will not be charged until your 14-day trial ends.</p>
+</form>
+<div class="trust">
+  <div class="trust-item"><span>🔒</span> SSL encrypted, HIPAA-aware design</div>
+  <div class="trust-item"><span>✦</span> Cancel anytime, no contracts</div>
+  <div class="trust-item"><span>⚡</span> Team access in under 5 minutes</div>
+  <div class="trust-item"><span>🎓</span> CEU-ready completion certificates</div>
+</div>
+<div id="success-overlay">
+  <div class="success-title">Welcome to NyxCodex</div>
+  <p class="success-sub">Your organization has been activated. Check your email for your login link and first-time setup instructions. Your 14-day free trial begins today.</p>
+  <a href="index.html" style="margin-top:2rem;color:#C9A84C;text-decoration:none;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase">Go to Training Platform</a>
+</div>
+<script>
+  var selectedPlan = 'medium';
+  function selectPlan(plan) {
+    selectedPlan = plan;
+    document.querySelectorAll('.plan').forEach(function(el) {
+      el.classList.toggle('selected', el.dataset.plan === plan);
+    });
+  }
+  if (new URLSearchParams(location.search).get('checkout') === 'success') {
+    document.getElementById('success-overlay').style.display = 'flex';
+  }
+  async function handleSignup(e) {
+    e.preventDefault();
+    var btn = document.getElementById('submit-btn');
+    var err = document.getElementById('form-error');
+    err.style.display = 'none';
+    var fname = document.getElementById('fname').value.trim();
+    var lname = document.getElementById('lname').value.trim();
+    var orgName = document.getElementById('org-name').value.trim();
+    var email = document.getElementById('admin-email').value.trim();
+    var orgSize = document.getElementById('org-size').value;
+    if (!fname || !lname || !orgName || !email || !orgSize) {
+      err.textContent = 'Please fill in all required fields.';
+      err.style.display = 'block';
+      return;
+    }
+    var orgId = orgName.toLowerCase().replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-').slice(0,40);
+    btn.disabled = true;
+    btn.textContent = 'Preparing your account...';
+    try {
+      var apiBase = window.location.hostname === 'localhost' ? 'http://localhost:3000' : '';
+      var res = await fetch(apiBase + '/api/stripe-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orgId: orgId, orgName: orgName, adminEmail: email, planId: selectedPlan })
+      });
+      if (!res.ok) {
+        var data = await res.json().catch(function() { return {}; });
+        throw new Error(data.error || ('Server error ' + res.status));
+      }
+      var json = await res.json();
+      if (!json.sessionUrl) throw new Error('No checkout URL returned.');
+      window.location.href = json.sessionUrl;
+    } catch(ex) {
+      err.textContent = ex.message || 'Something went wrong. Please try again.';
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Start Free Trial - No Credit Card Required';
+    }
+  }
+</script>
+</body>
+</html>
