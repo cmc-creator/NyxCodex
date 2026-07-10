@@ -36,7 +36,7 @@
       --bg:#080806;--surface:#0d0c0a;
       --gold:#C9A84C;--gold-light:#E8D49A;--gold-pale:#F5EDCD;
       --gold-dim:rgba(201,168,76,.10);--gold-border:rgba(201,168,76,.22);--gold-strong:rgba(201,168,76,.50);
-      --ink:#F0EAD8;--ink-muted:#ddd1bc;--ink-faint:#b9ae9c;--border:rgba(250,246,236,.14);
+      --ink:#F0EAD8;--ink-muted:#e7ddcc;--ink-faint:#d3c7b3;--border:rgba(250,246,236,.14);
     }
     *,*::before,*::after{box-sizing:border-box}
     html,body{margin:0;padding:0;min-height:100%;background:var(--bg);color:var(--ink)}
@@ -399,8 +399,8 @@
   --gold-border:rgba(213,177,92,.28);
   --gold-strong:rgba(242,223,175,.6);
   --ink:#faf6ec;
-  --ink-muted:#ddd1bc;
-  --ink-faint:#b9ae9c;
+  --ink-muted:#e7ddcc;
+  --ink-faint:#d3c7b3;
   --border:rgba(250,246,236,.14);
 }
 .header-name,.hero h1,.sec-title,.pricing-heading,.demo-cta-title{color:var(--ink)!important}
@@ -412,6 +412,13 @@
 .footer-copy a:hover{color:var(--gold-light)!important;text-decoration-color:var(--gold-light)}
 .hero,.site-header,footer{text-shadow:0 1px 1px rgba(0,0,0,.35)}
 
+/* ── Additional readability hardening ───────────────────────────── */
+.cred-sub{color:#e7ddcc!important}
+.cred-est,.footer-copy{color:#d3c7b3!important}
+.pricing-subhead,.pricing-period,.pricing-seats,.proof-stat small,.demo-cta-sub,
+.footer-links,.footer-links a,.checkout-modal-close,#checkout-form label{color:#d9ccb7!important}
+.proof-card footer span,.pricing-note{color:#c7baa4!important}
+.footer-sep{color:#a69579!important}
 </style>
 </head>
 <body>
