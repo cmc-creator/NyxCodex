@@ -6173,9 +6173,11 @@ async function showHomeGateway() {
   
   // First-time users get the tutorial automatically
 
-  if(window._userData && !window._userData.hasOnboarded) {
+  // Only run tutorial for users who have never onboarded AND have no progress
+  const _hasProgress = (window._userData?.currentSlide || 0) > 0;
+  if(window._userData && !window._userData.hasOnboarded && !_hasProgress) {
     openTutorial();
-    return;
+    // Don't return — still show hub and Vance below
   }
   const hub = document.getElementById('home-gateway');
   if(hub) animatePanelIn(hub, 'flex');
@@ -7832,7 +7834,39 @@ async function printLoginCards() {
     </div>
     <script>window.onload=()=>window.print();<\/script>
   
-  </body></html>`);
+  
+<script>
+/* VANCE GUARANTEE: MutationObserver fires whenever #home-gateway becomes visible */
+(function() {
+  function _ensureVanceOnHub() {
+    const hub  = document.getElementById('home-gateway');
+    const cont = document.getElementById('avatar-container');
+    if(!hub || !cont) return;
+    // Watch hub for style changes
+    const obs = new MutationObserver(function() {
+      if(hub.style.display === 'flex' && cont.style.display !== 'flex') {
+        cont.style.display = 'flex';
+        if(typeof showAvatarAndSpeak === 'function' && typeof currentFirstName === 'function') {
+          const fn  = currentFirstName();
+          const ud  = window._userData || {};
+          const ret = !!(ud.currentSlide > 0 || ud.completedTraining || ud.hasOnboarded);
+          const msg = ret
+            ? 'Welcome back, ' + fn + '! Pick where you want to go today — I\'ll be right here with you.'
+            : 'Welcome, ' + fn + '! I\'m Professor Vance. When you\'re ready, choose a path and we\'ll get started.';
+          showAvatarAndSpeak('_direct_', fn, msg);
+        }
+      }
+    });
+    obs.observe(hub, { attributes: true, attributeFilter: ['style', 'class'] });
+  }
+  if(document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', _ensureVanceOnHub);
+  } else {
+    _ensureVanceOnHub();
+  }
+})();
+</script>
+</body></html>`);
   win.document.close();
 }
 
