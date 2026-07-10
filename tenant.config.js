@@ -14,7 +14,17 @@ window.TENANT = {
 
   // ── Identity ──────────────────────────────────────────────────────────────
   // orgId MUST be lowercase, URL-safe, no spaces (used as Firebase path prefix)
-  orgId:         'destiny-springs',
+  // orgId is auto-detected from subdomain (e.g. riverside.nyxcodex.com → 'riverside')
+  // Falls back to 'destiny-springs' on the main GitHub Pages domain.
+  orgId:         (function(){
+    const h = window.location.hostname; // e.g. 'riverside.nyxcodex.com' or 'cmc-creator.github.io'
+    // Recognized owner/preview hostnames that should stay on the default tenant
+    const defaults = ['cmc-creator.github.io', 'localhost', '127.0.0.1', 'nyxcodex.com', 'www.nyxcodex.com'];
+    if(defaults.includes(h)) return 'destiny-springs';
+    // Custom domains: first label before the first dot is the orgId
+    const sub = h.split('.')[0];
+    return (sub && sub.length > 1) ? sub : 'destiny-springs';
+  }()),
   orgName:       'NyxCodex\u2122',
   orgWebsite:    'https://nyxcodex.com/',
   orgAddress:    '',

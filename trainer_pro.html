@@ -740,7 +740,7 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 
 /* Tutorial overlay */
 #tutorial-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(5,10,24,.95);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:1rem}
-.tutorial-card{width:100%;max-width:520px;background:white;border-radius:1.4rem;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.6);position:relative}
+.tutorial-card{width:100%;max-width:560px;background:white;border-radius:1.4rem;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.6);position:relative}
 .tutorial-skip{position:absolute;top:.8rem;right:.8rem;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);padding:.3rem .7rem;border-radius:.6rem;color:rgba(255,255,255,.85);font-weight:800;font-size:.78rem;cursor:pointer;z-index:2}
 .tutorial-header{background:linear-gradient(135deg,#0f1f5c,#1d4ed8,#6d28d9);padding:1.5rem 1.5rem .9rem;display:flex;align-items:center;gap:1rem}
 #tut-portrait{width:76px;height:76px;border-radius:50%;object-fit:cover;object-position:top center;border:3px solid rgba(255,255,255,.55);flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,.35)}
@@ -752,7 +752,7 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 .tutorial-dot{width:9px;height:9px;border-radius:50%;background:#cbd5e1;transition:background .3s}
 #tut-dot-0{background:#C9A84C}
 .tutorial-body{padding:1.2rem 1.5rem 0}
-#tut-icon{font-size:2rem;margin-bottom:.4rem}
+#tut-icon{font-size:1.6rem;margin-bottom:.4rem;font-weight:900;color:#C9A84C;font-family:serif}
 #tut-body{color:#374151;font-weight:600;font-size:.96rem;line-height:1.72;margin:0 0 .9rem}
 .tutorial-tip{background:rgba(201,168,76,.08);border-left:4px solid #C9A84C;border-radius:0 .6rem .6rem 0;padding:.7rem 1rem;margin-bottom:1.1rem}
 .tutorial-tip-head{font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#1d4ed8;margin-bottom:.25rem}
@@ -2847,6 +2847,9 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <div id="tut-dot-1" class="tutorial-dot"></div>
       <div id="tut-dot-2" class="tutorial-dot"></div>
       <div id="tut-dot-3" class="tutorial-dot"></div>
+      <div id="tut-dot-4" class="tutorial-dot"></div>
+      <div id="tut-dot-5" class="tutorial-dot"></div>
+      <div id="tut-dot-6" class="tutorial-dot"></div>
     </div>
     <!-- Body -->
     <div class="tutorial-body">
@@ -6137,12 +6140,12 @@ function initApp() {
   sessionMode       = window._userData?.sessionMode || 'training';
   currentSlide      = Math.max(0, Number(window._userData?.currentSlide || 0));
   // ALL users always land on the Hub after login
-  if(window._userData) window._userData.hasOnboarded = true;
   showSlide(currentSlide);
   cancelVance();
   showHomeGateway();
 
-  window._saveUserData({ sessionMode, currentSlide, hasOnboarded:true }).catch(()=>{});
+  // Note: hasOnboarded is saved by closeTutorial() for new users, or here for returning users
+  if(window._userData?.hasOnboarded) window._saveUserData({ sessionMode, currentSlide }).catch(()=>{});
   updateNavUI();
   updateFinalStats();
   initPaxDrag();
@@ -7548,33 +7551,53 @@ async function speakWithVance(text) {
 // --- Tutorial --------------------------------------------
 const TUTORIAL_STEPS = [
   {
-    icon: '🎓',
-    title: 'Welcome to the Lab',
-    subtitle: 'De-escalation Training Simulation',
-    body: `I'm Professor Vance, your Clinical Mentor. Today we're working with ${window.TENANT?.patientName||'Marcus'} — a patient who's been waiting a long time for his evaluation and the tension is rising. Before we step into the unit, let's cover your three core tools.`,
-    tip: `Welcome to the Lab. Your goal isn't to control ${window.TENANT?.patientName||'Marcus'} — it's to help him regain control of himself. Accuracy matters more than speed, but in a real crisis you'll need both. Ready when you are.`
+    icon: '✦',
+    title: 'Welcome to NyxCodex™',
+    subtitle: 'Your clinical training platform',
+    body: `I'm Professor Vance, your Clinical Mentor. This platform is your complete de-escalation training environment. In the next few minutes I'll walk you through exactly how everything works — so you're fully prepared before we begin.`,
+    tip: `Take your time with this tour. Every section of NyxCodex is designed to build real clinical skill — not just check a compliance box. I'll be here coaching you every step of the way.`
   },
   {
-    icon: '🔍',
-    title: 'Step 1 — Environmental Hazard Scan',
-    subtitle: `Secure the room before you engage ${window.TENANT?.patientName||'Marcus'}`,
-    body: `Before approaching ${window.TENANT?.patientName||'Marcus'}, tap every object in the room that could be used as a weapon or projectile — water pitchers, loose cords, heavy books. Always secure the environment first; then engage the patient.`,
-
-    tip: "A safe room makes for a safe conversation. Don't let a heavy book or a loose cord turn a talk into a crisis."
+    icon: '▶',
+    title: 'The Training Hub',
+    subtitle: 'Your home base — always starts here',
+    body: `Every time you log in, you land on the Hub. From here you can Start Training (31 clinical modules), enter the Practice Lab, or track your progress. Your XP, level, and earned certificates are always visible here.`,
+    tip: `The Hub is your command center. Your progress is automatically saved — so you can pick up exactly where you left off, any time, on any device.`
   },
   {
-    icon: '👁️',
-    title: 'Step 2 — Micro-Expression Training',
-    subtitle: "Read what Marcus won't say out loud",
-    body: "You'll have 2 seconds to identify Marcus's hidden emotion: Anger, Fear, Sadness, or Neutral. His face gives away what his words won't. Build this skill until it's automatic — it could be the first warning you get.",
-    tip: "The eyes tell the truth before the voice does. Flared nostrils and narrowed eyes mean it's time to back up and give Marcus more space."
+    icon: '📋',
+    title: 'The Training Modules',
+    subtitle: '31 evidence-based clinical slides',
+    body: `The training covers de-escalation techniques, trauma-informed care, diagnosis-specific approaches, CPI fundamentals, and safety protocols. Navigate with the arrow buttons or the progress bar at the bottom. Each module builds on the last.`,
+    tip: `Don't rush through the slides. Each one contains techniques your team will use in real situations. Read the cards, study the examples — your quiz score at the end depends on it.`
+  },
+  {
+    icon: '🔬',
+    title: 'The Practice Lab',
+    subtitle: 'Where skills become automatic',
+    body: `The Lab has four drills: Hazard Identification (spot environmental risks before approaching a patient), Micro-Expression Reading (recognize hidden emotion from a face), a Live AI Scenario (practice verbal de-escalation in real-time), and a Do vs. Don't challenge. Each drill earns Lab Credits.`,
+    tip: `Micro-expression recognition is one of the most underrated clinical skills. A split-second read of a patient's face can be the first warning sign you get. Practice it until it's instinct.`
   },
   {
     icon: '💬',
-    title: 'Step 3 — Live Interaction',
-    subtitle: 'Practice verbal de-escalation with Marcus',
-    body: "When Marcus speaks, type your response in the chat. I'll analyze your words and coach you in real-time. There's no pre-set script — this is live practice. Every response you type earns XP based on your clinical judgment.",
-    tip: "Think before you type. Avoid 'Why' questions — they sound like accusations. Instead, validate what Marcus is feeling."
+    title: 'Live AI Scenario',
+    subtitle: 'Practice without consequences',
+    body: `In the AI scenario, you'll interact with a simulated patient in a realistic crisis. Type your responses naturally — the AI analyzes your language for validation, pacing, tone, and clinical appropriateness. You receive real-time feedback and XP for every response.`,
+    tip: `Avoid 'Why' questions — they sound like accusations. Start with validation: 'It sounds like this has been really difficult.' Then follow the patient's lead. There is no single right answer.`
+  },
+  {
+    icon: '🏆',
+    title: 'XP, Levels & Certification',
+    subtitle: 'Your progress is always tracked',
+    body: `Every activity earns XP — training slides, lab drills, scenario responses, and quiz answers. XP builds your Level. Complete all 31 modules and pass the final quiz to earn your official NyxCodex™ Completion Certificate, downloadable as a PDF.`,
+    tip: `Your certificate includes the date, contact hours, competency domains, and your name. It's designed to meet internal compliance requirements and can be submitted directly to your training department.`
+  },
+  {
+    icon: '✅',
+    title: "You're Ready to Begin",
+    subtitle: 'Click below to start your first session',
+    body: `That's everything you need to know. Start with the Training Modules to build your foundation, then head to the Lab when you're ready to practice. I'll be with you the entire time — coaching, prompting, and keeping you on track.`,
+    tip: `Remember: the goal of de-escalation is never control. It's connection. When a patient feels heard, the crisis begins to defuse. That's what we're building together. Let's begin.`
   }
 ];
 let tutCurrentStep = 0;
