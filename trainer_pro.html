@@ -6120,40 +6120,11 @@ function initApp() {
   finalQuizPassed   = !!window._userData?.finalQuizPassed;
   sessionMode       = window._userData?.sessionMode || 'training';
   currentSlide      = Math.max(0, Number(window._userData?.currentSlide || 0));
-  const completed   = !!window._userData?.completedTraining || !!window._userData?.finalQuizPassed;
-  const hasProgress = currentSlide > 0;
-  const seenBefore  = !!window._userData?.hasOnboarded;
-  const isNewUser   = !completed && !hasProgress && !seenBefore;
-
-  if(isNewUser) {
-    // Brand-new account: show the hub with a welcome greeting, ready to start
-    sessionMode = 'training';
-    currentSlide = 0;
-    if(window._userData) window._userData.hasOnboarded = true;
-    showSlide(0);
-    showHomeGateway();
-  } else if(completed) {
-    // Finished training: go straight to the certificate slide with a welcome-back message
-    showSlide(totalSlides - 1);
-    hideHomeGateway();
-    // Brief toast so they know they're not starting over
-    setTimeout(() => {
-      const fname = currentFirstName();
-      scheduleVance(() => showAvatarAndSpeak('_direct_', fname,
-        `Welcome back, ${fname}! Your certificate is right here. Feel free to explore or jump into the Lab.`), 500);
-    }, 400);
-  } else if(seenBefore && hasProgress) {
-    // Returning user mid-training: show hub so they can choose to resume or explore
-    showSlide(currentSlide);
-    cancelVance(); // cancel any slide tip scheduled by showSlide — hub welcome message takes over
-    showHomeGateway();
-  } else {
-    // Returning user but no measurable progress: show the hub gateway
-    if(window._userData) window._userData.hasOnboarded = true;
-    showSlide(currentSlide);
-    cancelVance(); // cancel any slide tip scheduled by showSlide — hub welcome message takes over
-    showHomeGateway();
-  }
+  // ALL users always land on the Hub after login
+  if(window._userData) window._userData.hasOnboarded = true;
+  showSlide(currentSlide);
+  cancelVance();
+  showHomeGateway();
 
   window._saveUserData({ sessionMode, currentSlide, hasOnboarded:true }).catch(()=>{});
   updateNavUI();
