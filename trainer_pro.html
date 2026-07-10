@@ -7834,39 +7834,7 @@ async function printLoginCards() {
     </div>
     <script>window.onload=()=>window.print();<\/script>
   
-  
-<script>
-/* VANCE GUARANTEE: MutationObserver fires whenever #home-gateway becomes visible */
-(function() {
-  function _ensureVanceOnHub() {
-    const hub  = document.getElementById('home-gateway');
-    const cont = document.getElementById('avatar-container');
-    if(!hub || !cont) return;
-    // Watch hub for style changes
-    const obs = new MutationObserver(function() {
-      if(hub.style.display === 'flex' && cont.style.display !== 'flex') {
-        cont.style.display = 'flex';
-        if(typeof showAvatarAndSpeak === 'function' && typeof currentFirstName === 'function') {
-          const fn  = currentFirstName();
-          const ud  = window._userData || {};
-          const ret = !!(ud.currentSlide > 0 || ud.completedTraining || ud.hasOnboarded);
-          const msg = ret
-            ? 'Welcome back, ' + fn + '! Pick where you want to go today — I\'ll be right here with you.'
-            : 'Welcome, ' + fn + '! I\'m Professor Vance. When you\'re ready, choose a path and we\'ll get started.';
-          showAvatarAndSpeak('_direct_', fn, msg);
-        }
-      }
-    });
-    obs.observe(hub, { attributes: true, attributeFilter: ['style', 'class'] });
-  }
-  if(document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', _ensureVanceOnHub);
-  } else {
-    _ensureVanceOnHub();
-  }
-})();
-</script>
-</body></html>`);
+  </body></html>`);
   win.document.close();
 }
 
@@ -11486,6 +11454,36 @@ function _updateThemeUI(theme) {
 // ---------------------------------------------------------------------------
 </script>
 
+<script>
+/* Guarantee Prof Vance shows whenever #home-gateway becomes display:flex */
+(function() {
+  function _ensureVanceOnHub() {
+    var hub  = document.getElementById('home-gateway');
+    var cont = document.getElementById('avatar-container');
+    if (!hub || !cont) return;
+    var obs = new MutationObserver(function() {
+      if (hub.style.display === 'flex' && cont.style.display !== 'flex') {
+        cont.style.display = 'flex';
+        if (typeof showAvatarAndSpeak === 'function' && typeof currentFirstName === 'function') {
+          var fn  = currentFirstName();
+          var ud  = window._userData || {};
+          var ret = !!(ud.currentSlide > 0 || ud.completedTraining || ud.hasOnboarded);
+          var msg = ret
+            ? ('Welcome back, ' + fn + '! Pick where you want to go today.')
+            : ('Welcome, ' + fn + '! I am Professor Vance. Choose a path and we will get started.');
+          showAvatarAndSpeak('_direct_', fn, msg);
+        }
+      }
+    });
+    obs.observe(hub, { attributes: true, attributeFilter: ['style', 'class'] });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', _ensureVanceOnHub);
+  } else {
+    _ensureVanceOnHub();
+  }
+})();
+</script>
 <script>
 function toggleSidebar(){
   document.body.classList.toggle('sb-collapsed');
