@@ -5978,7 +5978,7 @@ async function doForgotPassword() {
   }
 }
 
-async function doSignIn() {
+async async function doSignIn() {
   const email = document.getElementById('li-email').value.trim();
   const pass  = document.getElementById('li-pass').value;
   const err   = document.getElementById('auth-error');
@@ -8072,7 +8072,7 @@ async function verifyTotpAdmin(secret) {
   document.getElementById('totp-modal')?.remove();
   openAdminDashboard();
 }
-function closePinModal() { document.getElementById('admin-pin-modal').style.display='none'; }
+async function closePinModal() { document.getElementById('admin-pin-modal').style.display='none'; }
 async function openBillingPortal() {
   const sub = window._orgSubscription;
   if (!sub || !sub.stripeCustomerId) {
@@ -10440,7 +10440,7 @@ Required action: Complete a full review of Module 1 (Body Language), Module 2 (V
 Seek peer consultation or supervisory review before applying crisis intervention independently. These skills are trainable with practice.`
 };
 
-function generateScenario() {
+async function generateScenario() {
   const dx = document.getElementById('scenario-dx').value;
   const pool= scenarios[dx]||scenarios.general||[];
   const scen= pool[Math.floor(Math.random()*pool.length)] || 'No scenario available for this category yet.';
