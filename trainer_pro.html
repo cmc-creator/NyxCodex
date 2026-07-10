@@ -884,12 +884,15 @@ body.theme-dark .slide-card,
 [data-theme="dark"] h3, [data-theme="dark"] h4 {
   color: #f1f5f9 !important;
 }
-/* Light mode dark text enforcement */
-body:not(.theme-dark) .slide p,
-body:not(.theme-dark) .slide li { color: #1e293b !important; }
-body:not(.theme-dark) .slide h1,
-body:not(.theme-dark) .slide h2,
-body:not(.theme-dark) .slide h3 { color: #0f172a !important; }
+/* Light mode dark text enforcement — only targets LIGHT-background cards, not dark slides */
+body:not(.theme-dark) .slide .card p,
+body:not(.theme-dark) .slide .card li,
+body:not(.theme-dark) .slide div[style*="background:#fff"] p,
+body:not(.theme-dark) .slide div[style*="background:white"] p,
+body:not(.theme-dark) .slide div[style*="background:#f8fafc"] p,
+body:not(.theme-dark) .slide div[style*="background:#f1f5f9"] p { color: #1e293b !important; }
+body:not(.theme-dark) .slide .card h2,
+body:not(.theme-dark) .slide .card h3 { color: #0f172a !important; }
 
 /* Display Settings panel */
 .sb-hidden{display:none!important}
@@ -3768,18 +3771,18 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     <div style="margin-bottom:1.2rem;max-width:420px;width:80vw;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))">
       <div class="logo-inline" style="max-height:220px;max-width:520px;width:100%;margin:0 auto"></div>
     </div>
-    <div id="slide1-badge" class="badge" style="background:rgba(37,99,235,.2);color:#93c5fd;border:1px solid rgba(37,99,235,.3);margin-bottom:2rem;font-size:.7rem">
+    <div id="slide1-badge" class="badge" style="background:rgba(255,255,255,.08);color:#e0eeff;border:1px solid rgba(147,197,253,.4);margin-bottom:2rem;font-size:.7rem;letter-spacing:.06em">
       NyxCodex® · Est. 2026 · Nyx Collective LLC
     </div>
     <h1 style="font-size:clamp(2.5rem,8vw,5.5rem);color:white;line-height:.95;margin-bottom:1.5rem;font-family:Montserrat,sans-serif;font-weight:900">
       NyxCodex®<br><span style="background:linear-gradient(90deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent">De-escalation</span>
     </h1>
-    <p id="slide1-subtitle" style="color:#94a3b8;font-size:1rem;margin-bottom:.25rem;font-weight:600">Mastery Lab — NyxCodex™</p>
-    <p id="slide1-footer" style="color:#64748b;font-size:.8rem;margin-bottom:3rem">© 2026 NyxCodex® · <a href="https://nyxcollectivellc.com" target="_blank" rel="noopener" style="color:#64748b">Nyx Collective LLC</a> — All Rights Reserved — Clinical Training Platform</p>
+    <p id="slide1-subtitle" style="color:#cbd5e1;font-size:1rem;margin-bottom:.25rem;font-weight:600;letter-spacing:.04em">Mastery Lab — NyxCodex™</p>
+    <p id="slide1-footer" style="color:#94a3b8;font-size:.8rem;margin-bottom:3rem">© 2026 NyxCodex® · <a href="https://nyxcollectivellc.com" target="_blank" rel="noopener" style="color:#64748b">Nyx Collective LLC</a> — All Rights Reserved — Clinical Training Platform</p>
     <div id="welcome-card" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:1.5rem;padding:2rem;max-width:520px;width:100%;margin-bottom:2.5rem;backdrop-filter:blur(12px)">
-      <p id="welcome-greeting" style="color:#e2e8f0;font-size:.85rem;margin-bottom:.5rem">Welcome,</p>
+      <p id="welcome-greeting" style="color:#e2e8f0 !important;font-size:.95rem;margin-bottom:.5rem;font-weight:500">Welcome,</p>
       <p id="welcome-name" style="color:#ffd79a;font-size:1.75rem;font-weight:900;font-family:Montserrat,sans-serif;margin-bottom:1rem">&nbsp;</p>
-      <p style="color:#cbd5e1;font-size:1.05rem;line-height:1.7">You're about to complete <strong style="color:white">evidence-based training modules</strong> covering de-escalation, crisis intervention, psychiatric diagnosis recognition, and real-time scenario practice. Let's build your clinical confidence.</p>
+      <p style="color:#e2e8f0;font-size:1.05rem;line-height:1.7">You're about to complete <strong style="color:white">evidence-based training modules</strong> covering de-escalation, crisis intervention, psychiatric diagnosis recognition, and real-time scenario practice. Let's build your clinical confidence.</p>
     </div>
     <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
       <div style="display:flex;align-items:center;gap:.5rem;color:white;font-size:.8rem;font-weight:700"><span style="width:10px;height:10px;background:#ef4444;border-radius:50%;display:inline-block"></span>Safety First</div>
@@ -5398,7 +5401,7 @@ const LOGO_SVG = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 110' 
     </linearGradient>
   </defs>
   <text x='8' y='80' fill='url(#nx-grad)' font-family='Montserrat,Georgia,sans-serif' font-size='76' font-weight='900' letter-spacing='-2'>NyxCodex</text>
-  <text x='10' y='104' fill='#64748b' font-family='Helvetica Neue,Arial,sans-serif' font-size='16' font-weight='700' letter-spacing='5'>CLINICAL TRAINING PLATFORM</text>
+  <text x='10' y='104' fill='#94a3b8' font-family='Helvetica Neue,Arial,sans-serif' font-size='16' font-weight='700' letter-spacing='5'>CLINICAL TRAINING PLATFORM</text>
 </svg>`;
 function renderInlineLogos() {
   const t = window.TENANT;
