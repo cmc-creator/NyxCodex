@@ -5896,7 +5896,13 @@ async function doSignIn() {
     await window._signIn(email,pass);
     // onAuthStateChanged takes over from here
   } catch(e) {
-    const msg = e.message.replace('Firebase: ','').replace(/\(.*?\)/g,'').trim() || 'Sign in failed. Check your email and password.';
+    const code = e.code || '';
+    let msg = e.message ? e.message.replace('Firebase: ','').trim() : '';
+    if (!msg) msg = 'Sign in failed. Check your email and password.';
+    if (code === 'auth/unauthorized-domain') msg = 'Sign-in is blocked: this domain is not authorized in Firebase. Please add cmc-creator.github.io to Firebase → Auth → Authorized Domains.';
+    else if (code === 'auth/too-many-requests') msg = 'Too many failed attempts. Please wait a few minutes and try again.';
+    else if (code === 'auth/user-not-found' || code === 'auth/wrong-password' || code === 'auth/invalid-credential') msg = 'Invalid email or password.';
+    else if (code) msg = msg + ' (' + code + ')';
     if(err){err.textContent=msg;err.style.display='block';}
     if(btn){ btn.disabled=false; btn.textContent='Sign In'; btn.style.opacity='1'; }
   }
@@ -12236,16 +12242,16 @@ function toggleSidebar(){
 
 // Micro-aggression quiz statements
 window._microStatements = [
-  {t:'"You seem really high-functioning for someone with schizophrenia."',m:true,f:'Implies low functioning is the default — separates this person from others based on diagnosis.'},
-  {t:'"I can see this has been really hard for you. Let's find a quieter space."',m:false,f:'Validates feelings and offers a de-escalating action. This is appropriate clinical communication.'},
-  {t:'"You're bipolar — of course you're upset about everything."',m:true,f:'Attributes normal emotion to a diagnosis. Dismissive and reduces the person to their label.'},
-  {t:'"I'm going to stay right here with you. Take your time."',m:false,f:'Calm presence with no pressure — signals safety and patience. Ideal de-escalation posture.'},
-  {t:'"Where are you really from — originally?"',m:true,f:'Implies the person does not belong. Often racially coded and alienating.'},
-  {t:'"What would help you feel safer right now?"',m:false,f:'Patient-centered, collaborative, and empowering. Excellent crisis response language.'},
-  {t:'"We see this a lot with your diagnosis. It's just the illness talking."',m:true,f:'Dismisses individual experience and dehumanizes. Never appropriate in clinical communication.'},
-  {t:'"You're not sleeping. Would you like some company for a few minutes?"',m:false,f:'Compassionate, non-intrusive offer of connection. Grounding and clinically sound.'},
-  {t:'"You're the most aggressive patient we've had all week."',m:true,f:'Comparative labeling that inflames rather than de-escalates. Unprofessional.'},
-  {t:'"I notice your hands are shaking. Would some water help?"',m:false,f:'Observant, practical, and shows care without judgment. Builds therapeutic alliance.'},
+  {t:`"You seem really high-functioning for someone with schizophrenia."`,m:true,f:`Implies low functioning is the default — separates this person from others based on diagnosis.`},
+  {t:`"I can see this has been really hard for you. Let's find a quieter space."`,m:false,f:`Validates feelings and offers a de-escalating action. This is appropriate clinical communication.`},
+  {t:`"You're bipolar — of course you're upset about everything."`,m:true,f:`Attributes normal emotion to a diagnosis. Dismissive and reduces the person to their label.`},
+  {t:`"I'm going to stay right here with you. Take your time."`,m:false,f:`Calm presence with no pressure — signals safety and patience. Ideal de-escalation posture.`},
+  {t:`"Where are you really from — originally?"`,m:true,f:`Implies the person does not belong. Often racially coded and alienating.`},
+  {t:`"What would help you feel safer right now?"`,m:false,f:`Patient-centered, collaborative, and empowering. Excellent crisis response language.`},
+  {t:`"We see this a lot with your diagnosis. It's just the illness talking."`,m:true,f:`Dismisses individual experience and dehumanizes. Never appropriate in clinical communication.`},
+  {t:`"You're not sleeping. Would you like some company for a few minutes?"`,m:false,f:`Compassionate, non-intrusive offer of connection. Grounding and clinically sound.`},
+  {t:`"You're the most aggressive patient we've had all week."`,m:true,f:`Comparative labeling that inflames rather than de-escalates. Unprofessional.`},
+  {t:`"I notice your hands are shaking. Would some water help?"`,m:false,f:`Observant, practical, and shows care without judgment. Builds therapeutic alliance.`},
 ];
 window._microQ = 0;
 window._microCorrect = 0;
@@ -12253,11 +12259,11 @@ window._microActive = false;
 
 // Verbal brancher scenarios
 const _branchScenarios = [
-  {n:'Marcus, 34 — PTSD',s:'Pacing the hallway, refusing to return to his room. Triggered by a sudden alarm. Hands shaking, sweating, eyes wide. He hasn't spoken yet.'},
-  {n:'Diana, 28 — Borderline PD',s:'Just learned visitation was denied. Escalating in the common area, voice rising. States: "You people always do this. You'll regret this."'},
-  {n:'Robert, 52 — Schizophrenia',s:'Refuses morning medications. Says the pills are "poison sent through the system." Calm but firm, stepping back each time you approach.'},
-  {n:'Aaliyah, 19 — Bipolar Manic',s:'Woke other patients at 3am. Now at the nurses' station talking rapidly, angry that staff "won't let me call my lawyer right now."'},
-  {n:'James, 41 — Substance Use',s:'Demanding discharge. States he is "fine" and "doesn't belong here." Agitation increases with each refusal. Starts moving toward the exit.'},
+  {n:`Marcus, 34 — PTSD`,s:`Pacing the hallway, refusing to return to his room. Triggered by a sudden alarm. Hands shaking, sweating, eyes wide. He hasn't spoken yet.`},
+  {n:`Diana, 28 — Borderline PD`,s:`Just learned visitation was denied. Escalating in the common area, voice rising. States: "You people always do this. You'll regret this."`},
+  {n:`Robert, 52 — Schizophrenia`,s:`Refuses morning medications. Says the pills are "poison sent through the system." Calm but firm, stepping back each time you approach.`},
+  {n:`Aaliyah, 19 — Bipolar Manic`,s:`Woke other patients at 3am. Now at the nurses' station talking rapidly, angry that staff "won't let me call my lawyer right now."`},
+  {n:`James, 41 — Substance Use`,s:`Demanding discharge. States he is "fine" and "doesn't belong here." Agitation increases with each refusal. Starts moving toward the exit.`},
 ];
 let _branchIdx = Math.floor(Math.random()*_branchScenarios.length);
 function loadBranchScenario() {
