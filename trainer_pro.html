@@ -488,8 +488,9 @@ window._emitXAPI = async function(verb, resultData) {
 <style>
 *{box-sizing:border-box}
 html,body{height:100%}
-body{font-family:Inter,sans-serif;background:#0f172a;overflow:hidden;margin:0}
+body{font-family:Inter,sans-serif;background:#0f172a;overflow:hidden;margin:0;font-size:var(--base-font-size,16px)}
 :root{
+  --base-font-size:16px;
   --ui-bg:#080806;
   --ui-ink:#F0EAD8;
   --ui-muted:#B0A890;
@@ -1188,6 +1189,8 @@ body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
 .purple-box{background:linear-gradient(135deg,#faf5ff,#ede9fe);border-left:5px solid #8b5cf6}
 .slide-header{padding:.5rem 1rem .25rem;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .copyright{font-size:.6rem;color:rgba(255,255,255,.3);letter-spacing:.05em}
+.avatar-opt { background:rgba(255,255,255,.06); border:2px solid transparent; border-radius:.5rem; font-size:1.6rem; padding:.4rem; cursor:pointer; transition:all .15s; }
+.avatar-opt:hover { border-color:#C9A84C; background:rgba(201,168,76,.1); }
 /* Avatar mouth animation */
 #avatar-mouth{animation:none}
 #avatar-mouth.talking{animation:talking .15s ease infinite}
@@ -2790,111 +2793,28 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 <div id="admin-modal" class="modal-overlay admin">
   <div class="modal-card admin">
     <div class="modal-card-header admin">
-      <div><h2 class="modal-header-title">NyxCodex® Command Center</h2><p id="admin-role-badge" class="modal-header-sub">NyxCodex™ — Training Management</p></div>
-      <button onclick="openBillingPortal()" title="Manage Subscription" style="background:transparent;border:1px solid rgba(201,168,76,.4);color:#C9A84C;font-family:Inter,sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .9rem;border-radius:1px;cursor:pointer;margin-right:.6rem;">Manage Billing</button><button onclick="closeAdmin()" class="modal-close-btn admin">✕</button>
+      <div>
+        <h2 class="modal-header-title">NyxCodex® Command Center</h2>
+        <p id="admin-role-badge" class="modal-header-sub">NyxCodex™ — Training Management</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;justify-content:flex-end">
+        <button onclick="openBillingPortal()" title="Manage Subscription" style="background:transparent;border:1px solid rgba(201,168,76,.4);color:#C9A84C;font-family:Inter,sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .9rem;border-radius:1px;cursor:pointer">Manage Billing</button>
+        <button onclick="closeAdmin()" class="modal-close-btn admin">✕</button>
+      </div>
     </div>
     <div class="admin-tab-bar">
-      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-blue-600 text-blue-600 whitespace-nowrap" onclick="adminTab('leaderboard',this)">Leaderboard</button>
-      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('users',this)">👥 Users</button>
-      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('analytics',this)">📊 Analytics</button>
-      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('reports',this)">📋 Reports</button>
-      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('completion',this)"><span style="margin-right:.3rem">&#9632;</span> Completion</button>
-      <button id="settings-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('settings'); checkAdminSettingsStatus(,this)">⚙️ Settings</button>
-      <button id="audit-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('audit',this)">📜 Audit Log</button>
-      <button id="scenarios-tab-btn" class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" onclick="adminTab('scenarios',this)">📚 Scenarios</button>
+      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-blue-600 text-blue-600 whitespace-nowrap" data-admin-tab="users" onclick="adminTab('users',this)">👥 Users</button>
+      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" data-admin-tab="org-settings" onclick="adminTab('org-settings',this)">🏥 Org Settings</button>
+      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" data-admin-tab="analytics" onclick="adminTab('analytics',this)">📊 Analytics</button>
+      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" data-admin-tab="invites" onclick="adminTab('invites',this)">✉️ Invites</button>
+      <button class="admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap" data-admin-tab="certificates" onclick="adminTab('certificates',this)">🎓 Certificates</button>
     </div>
     <div class="admin-tab-content-wrap">
-      <div id="at-leaderboard"></div>
       <div id="at-users" class="admin-tab-panel"></div>
-      <div id="at-analytics" class="admin-tab-panel"></div>
-      <div id="at-reports" class="admin-tab-panel"></div>
-      <div id="at-completion" class="admin-tab-panel"></div>
-      <div id="at-settings" class="admin-tab-panel">
-  <div style="padding:1.5rem;max-width:900px">
-
-    <!-- Stripe Setup Status -->
-    <div style="margin-bottom:2rem">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#C9A84C;margin-bottom:.75rem">Payment & Billing</div>
-      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:.85rem;padding:1.25rem 1.5rem">
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
-          <div>
-            <div style="font-weight:700;color:#f1f5f9;margin-bottom:.25rem">Stripe Integration</div>
-            <div id="stripe-status-msg" style="font-size:.82rem;color:#94a3b8">Checking configuration...</div>
-          </div>
-          <span id="stripe-status-badge" style="display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .85rem;border-radius:20px;font-size:.7rem;font-weight:700;background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.25)">&#9670; Checking</span>
-        </div>
-        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.07)">
-          <div style="font-size:.75rem;font-weight:700;color:#94a3b8;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.08em">Required Vercel Environment Variables</div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.5rem;font-family:monospace;font-size:.72rem">
-            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">STRIPE_SECRET_KEY</div>
-            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">STRIPE_WEBHOOK_SECRET</div>
-            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">STRIPE_PRICE_SMALL</div>
-            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">STRIPE_PRICE_MEDIUM</div>
-            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">STRIPE_PRICE_ENTERPRISE</div>
-            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">FIREBASE_SERVICE_ACCOUNT</div>
-            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">FIREBASE_DATABASE_URL</div>
-            <div style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:.4rem;padding:.5rem .75rem;color:#93c5fd">BASE_URL</div>
-          </div>
-          <div style="margin-top:.75rem;font-size:.73rem;color:#64748b">Full setup guide: <a href="STRIPE_SETUP.md" target="_blank" style="color:#C9A84C">STRIPE_SETUP.md</a> &nbsp;|&nbsp; Configure at: <a href="https://vercel.com/dashboard" target="_blank" style="color:#C9A84C">vercel.com/dashboard</a></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CSV Bulk Import -->
-    <div style="margin-bottom:2rem">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#C9A84C;margin-bottom:.75rem">Bulk Staff Import</div>
-      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:.85rem;padding:1.25rem 1.5rem">
-        <div style="font-size:.84rem;color:#94a3b8;margin-bottom:1rem">Upload a CSV file to invite multiple staff members at once. Required columns: <code style="background:rgba(255,255,255,.07);padding:.1rem .4rem;border-radius:.3rem;font-size:.8rem">name, email</code> — Optional: <code style="background:rgba(255,255,255,.07);padding:.1rem .4rem;border-radius:.3rem;font-size:.8rem">department, role</code></div>
-
-        <!-- File drop zone -->
-        <div id="csv-dropzone" onclick="document.getElementById('csv-file-input').click()" style="border:2px dashed rgba(201,168,76,.3);border-radius:.75rem;padding:2rem;text-align:center;cursor:pointer;transition:all .2s;background:rgba(201,168,76,.03)" onmouseover="this.style.background='rgba(201,168,76,.07)';this.style.borderColor='rgba(201,168,76,.6)'" onmouseout="this.style.background='rgba(201,168,76,.03)';this.style.borderColor='rgba(201,168,76,.3)'" ondragover="event.preventDefault();this.style.background='rgba(201,168,76,.1)'" ondragleave="this.style.background='rgba(201,168,76,.03)'" ondrop="handleCsvDrop(event)">
-          <svg style="width:32px;height:32px;stroke:rgba(201,168,76,.6);fill:none;stroke-width:1.5;margin:0 auto .75rem;display:block" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <div style="font-weight:700;color:#C9A84C;font-size:.88rem">Drop CSV file here or click to browse</div>
-          <div style="font-size:.72rem;color:#64748b;margin-top:.35rem">Accepts .csv files up to 500 rows</div>
-        </div>
-        <input type="file" id="csv-file-input" accept=".csv" style="display:none" onchange="handleCsvFile(this.files[0])">
-
-        <!-- Preview table -->
-        <div id="csv-preview" style="display:none;margin-top:1.25rem">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
-            <div style="font-weight:700;color:#f1f5f9;font-size:.85rem">Import Preview</div>
-            <div id="csv-count-badge" style="font-size:.7rem;font-weight:700;padding:.25rem .65rem;border-radius:20px;background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.25)"></div>
-          </div>
-          <div style="overflow-x:auto;border-radius:.5rem;border:1px solid rgba(255,255,255,.07)">
-            <table style="width:100%;border-collapse:collapse;font-size:.78rem" id="csv-preview-table">
-              <thead><tr style="background:rgba(255,255,255,.05)"><th style="padding:.5rem .75rem;text-align:left;color:#94a3b8;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Name</th><th style="padding:.5rem .75rem;text-align:left;color:#94a3b8;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Email</th><th style="padding:.5rem .75rem;text-align:left;color:#94a3b8;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Department</th><th style="padding:.5rem .75rem;text-align:left;color:#94a3b8;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em">Status</th></tr></thead>
-              <tbody id="csv-preview-body" style="color:#cbd5e1"></tbody>
-            </table>
-          </div>
-          <div id="csv-error-box" style="display:none;margin-top:.75rem;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:.5rem;padding:.75rem 1rem;font-size:.78rem;color:#fca5a5"></div>
-          <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap">
-            <button id="csv-import-btn" onclick="executeCsvImport()" style="padding:.72rem 1.5rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#1a0f00;border:none;border-radius:.6rem;font-weight:800;font-size:.8rem;cursor:pointer;letter-spacing:.06em;text-transform:uppercase">Import Staff</button>
-            <button onclick="clearCsvImport()" style="padding:.72rem 1.25rem;background:rgba(255,255,255,.07);color:#94a3b8;border:1px solid rgba(255,255,255,.12);border-radius:.6rem;font-weight:700;font-size:.8rem;cursor:pointer">Clear</button>
-          </div>
-        </div>
-        <div style="margin-top:.75rem;font-size:.7rem;color:#64748b">Download template: <a href="#" onclick="downloadCsvTemplate();return false" style="color:#C9A84C">staff_import_template.csv</a></div>
-      </div>
-    </div>
-
-    <!-- AI / Gemini Key -->
-    <div>
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#C9A84C;margin-bottom:.75rem">AI Scenario Grading</div>
-      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:.85rem;padding:1.25rem 1.5rem">
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:.85rem">
-          <div>
-            <div style="font-weight:700;color:#f1f5f9;margin-bottom:.25rem">Gemini AI Grading</div>
-            <div id="gemini-status-label" style="font-size:.82rem;color:#94a3b8">Configure in tenant.config.js</div>
-          </div>
-          <span id="gemini-status-badge" style="display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .85rem;border-radius:20px;font-size:.7rem;font-weight:700;background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.25)">&#9670; Not Configured</span>
-        </div>
-        <div style="font-size:.78rem;color:#64748b">Get a free API key at <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:#C9A84C">aistudio.google.com</a>, then add <code style="background:rgba(255,255,255,.07);padding:.1rem .4rem;border-radius:.3rem">window.GEMINI_KEY = "YOUR_KEY"</code> in <code style="background:rgba(255,255,255,.07);padding:.1rem .4rem;border-radius:.3rem">tenant.config.js</code>.</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-      <div id="at-audit" class="admin-tab-panel"></div>
-      <div id="at-scenarios" class="admin-tab-panel"></div>
+      <div id="at-org-settings" class="admin-tab-panel" style="display:none"></div>
+      <div id="at-analytics" class="admin-tab-panel" style="display:none"></div>
+      <div id="at-invites" class="admin-tab-panel" style="display:none"></div>
+      <div id="at-certificates" class="admin-tab-panel" style="display:none"></div>
     </div>
   </div>
 </div>
@@ -3334,7 +3254,10 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
   <div class="modal-card">
     <div class="modal-card-header">
       <div style="display:flex;align-items:center;gap:.875rem">
-        <div id="acct-avatar-circle" style="width:52px;height:52px;background:linear-gradient(135deg,#B8892A,#C9A84C);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:1.1rem"></div>
+        <div style="position:relative;width:52px;height:52px;flex-shrink:0">
+          <div id="acct-avatar-circle" style="width:52px;height:52px;background:linear-gradient(135deg,#B8892A,#C9A84C);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:1.1rem;overflow:hidden"></div>
+          <button onclick="openAvatarPicker()" style="position:absolute;bottom:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:#C9A84C;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.65rem" title="Change avatar">✏</button>
+        </div>
         <div>
           <h2 style="font-size:1.1rem;font-weight:900;color:#0f172a;font-family:Montserrat,sans-serif" id="acct-header-name">My Account</h2>
           <p style="font-size:.7rem;color:#94a3b8;font-weight:600" id="acct-header-sub"></p>
@@ -3348,35 +3271,35 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <div class="acct-view-grid">
         <div class="acct-card-field">
           <p style="font-size:.65rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem">First Name</p>
-          <p style="font-size:.95rem;font-weight:700;color:#0f172a" id="acct-fname">—</p>
+          <p style="font-size:.95rem;font-weight:700;color:inherit" id="acct-fname">—</p>
         </div>
         <div class="acct-card-field">
           <p style="font-size:.65rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem">Last Name</p>
-          <p style="font-size:.95rem;font-weight:700;color:#0f172a" id="acct-lname">—</p>
+          <p style="font-size:.95rem;font-weight:700;color:inherit" id="acct-lname">—</p>
         </div>
         <div class="acct-card-field">
           <p style="font-size:.65rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem">Work Email</p>
-          <p style="font-size:.85rem;font-weight:700;color:#0f172a;word-break:break-all" id="acct-email">—</p>
+          <p style="font-size:.85rem;font-weight:700;color:inherit;word-break:break-all" id="acct-email">—</p>
         </div>
         <div class="acct-card-field">
           <p style="font-size:.65rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem">Mobile Phone</p>
-          <p style="font-size:.95rem;font-weight:700;color:#0f172a" id="acct-phone">—</p>
+          <p style="font-size:.95rem;font-weight:700;color:inherit" id="acct-phone">—</p>
         </div>
         <div class="acct-card-field">
           <p style="font-size:.65rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem">Job Title</p>
-          <p style="font-size:.95rem;font-weight:700;color:#0f172a" id="acct-title">—</p>
+          <p style="font-size:.95rem;font-weight:700;color:inherit" id="acct-title">—</p>
         </div>
         <div class="acct-card-field">
           <p style="font-size:.65rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem">Department</p>
-          <p style="font-size:.95rem;font-weight:700;color:#0f172a" id="acct-dept">—</p>
+          <p style="font-size:.95rem;font-weight:700;color:inherit" id="acct-dept">—</p>
         </div>
         <div class="acct-card-field">
           <p style="font-size:.65rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem">Employee ID</p>
-          <p style="font-size:.95rem;font-weight:700;color:#0f172a" id="acct-empid">—</p>
+          <p style="font-size:.95rem;font-weight:700;color:inherit" id="acct-empid">—</p>
         </div>
         <div class="acct-card-field">
           <p style="font-size:.65rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem">Training Year</p>
-          <p style="font-size:.95rem;font-weight:700;color:#0f172a" id="acct-year">—</p>
+          <p style="font-size:.95rem;font-weight:700;color:inherit" id="acct-year">—</p>
         </div>
       </div>
       <!-- Training Stats -->
@@ -3439,6 +3362,30 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <button class="btn" style="font-size:.78rem;padding:.35rem .85rem;background:#f1f5f9;color:#64748b" onclick="cancelAccountHistory()">← Back</button>
       </div>
       <div id="acct-history-list" style="display:flex;flex-direction:column;gap:.5rem;max-height:55vh;overflow-y:auto"></div>
+    </div>
+  </div>
+</div>
+
+<div id="avatar-picker-modal" style="display:none;position:fixed;inset:0;z-index:1100;background:rgba(0,0,0,.7);align-items:center;justify-content:center">
+  <div style="background:#0f172a;border:1px solid rgba(201,168,76,.3);border-radius:1rem;padding:1.5rem;max-width:420px;width:92vw">
+    <h3 style="color:#C9A84C;margin:0 0 1rem;font-size:1rem;font-weight:800">Choose Your Avatar</h3>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:1rem">
+      <button onclick="selectAvatar('👩‍⚕️')" class="avatar-opt">👩‍⚕️</button>
+      <button onclick="selectAvatar('👨‍⚕️')" class="avatar-opt">👨‍⚕️</button>
+      <button onclick="selectAvatar('🧑‍⚕️')" class="avatar-opt">🧑‍⚕️</button>
+      <button onclick="selectAvatar('👩‍💼')" class="avatar-opt">👩‍💼</button>
+      <button onclick="selectAvatar('👨‍💼')" class="avatar-opt">👨‍💼</button>
+      <button onclick="selectAvatar('🧑‍🎓')" class="avatar-opt">🧑‍🎓</button>
+      <button onclick="selectAvatar('👩‍🏫')" class="avatar-opt">👩‍🏫</button>
+      <button onclick="selectAvatar('👨‍🏫')" class="avatar-opt">👨‍🏫</button>
+      <button onclick="selectAvatar('🧑‍💻')" class="avatar-opt">🧑‍💻</button>
+      <button onclick="selectAvatar('🌟')" class="avatar-opt">🌟</button>
+    </div>
+    <p style="color:#94a3b8;font-size:.75rem;margin-bottom:.8rem;text-align:center">— or upload a photo —</p>
+    <input type="file" id="avatar-upload-input" accept="image/*" style="display:none" onchange="handleAvatarUpload(event)">
+    <button onclick="document.getElementById('avatar-upload-input').click()" style="width:100%;padding:.6rem;border-radius:.5rem;border:1px dashed rgba(201,168,76,.4);background:transparent;color:#C9A84C;cursor:pointer;font-size:.85rem;margin-bottom:1rem">Upload Photo</button>
+    <div style="display:flex;gap:.5rem">
+      <button onclick="closeAvatarPicker()" style="flex:1;padding:.6rem;border-radius:.5rem;border:1px solid rgba(255,255,255,.15);background:transparent;color:#94a3b8;cursor:pointer">Cancel</button>
     </div>
   </div>
 </div>
@@ -3595,9 +3542,10 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <div>
           <div style="font-size:.6rem;font-weight:700;color:#8A8070;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;font-family:Inter,sans-serif">Text Size</div>
           <div style="display:flex;gap:.3rem">
-            <button onclick="adjustFontSize(-1)" title="Decrease font size" style="flex:1;padding:.35rem .25rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:.4rem;color:#b0a880;font-size:.75rem;cursor:pointer;font-family:Inter,sans-serif;font-weight:700" onmouseover="this.style.background='rgba(255,255,255,.15)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">A&#8722;</button>
-            <button onclick="resetFontSize()" title="Reset font size" style="flex:1;padding:.35rem .25rem;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);border-radius:.4rem;color:#C9A84C;font-size:.78rem;cursor:pointer;font-family:Inter,sans-serif;font-weight:700" onmouseover="this.style.background='rgba(201,168,76,.2)'" onmouseout="this.style.background='rgba(201,168,76,.1)'">A</button>
-            <button onclick="adjustFontSize(1)" title="Increase font size" style="flex:1;padding:.35rem .25rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:.4rem;color:#b0a880;font-size:.82rem;cursor:pointer;font-family:Inter,sans-serif;font-weight:700" onmouseover="this.style.background='rgba(255,255,255,.15)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">A&#43;</button>
+            <button class="sb-nav-btn" data-font-size="small" onclick="setFontSize('small')" title="Small text" style="font-size:.7rem;padding:.3rem .5rem;flex:1;opacity:.45">A</button>
+            <button class="sb-nav-btn" data-font-size="normal" onclick="setFontSize('normal')" title="Normal text" style="font-size:.85rem;padding:.3rem .5rem;flex:1">A</button>
+            <button class="sb-nav-btn" data-font-size="large" onclick="setFontSize('large')" title="Large text" style="font-size:1rem;padding:.3rem .5rem;flex:1;opacity:.45">A</button>
+            <button class="sb-nav-btn" data-font-size="xlarge" onclick="setFontSize('xlarge')" title="Extra large text" style="font-size:1.15rem;padding:.3rem .5rem;flex:1;opacity:.45">A</button>
           </div>
         </div>
         <!-- High contrast toggle -->
@@ -3932,6 +3880,26 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <li>· "Tell me more..." invites without pressure</li>
       </ul>
     </div>
+    <div style="grid-column:1/-1">
+      <div style="font-size:.78rem;font-weight:900;color:#475569;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem">Micro Framework Before You Speak</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0">
+        <div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:.75rem;padding:1rem;text-align:center">
+          <div style="font-size:2rem;margin-bottom:.5rem">🛑</div>
+          <div style="font-weight:800;color:#ef4444;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em">STOP</div>
+          <div style="font-size:.78rem;color:#94a3b8;margin-top:.35rem">Pause. Breathe. Don't react.</div>
+        </div>
+        <div style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);border-radius:.75rem;padding:1rem;text-align:center">
+          <div style="font-size:2rem;margin-bottom:.5rem">💭</div>
+          <div style="font-weight:800;color:#fbbf24;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em">THINK</div>
+          <div style="font-size:.78rem;color:#94a3b8;margin-top:.35rem">What does this person need?</div>
+        </div>
+        <div style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:.75rem;padding:1rem;text-align:center">
+          <div style="font-size:2rem;margin-bottom:.5rem">✅</div>
+          <div style="font-weight:800;color:#22c55e;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em">ACT</div>
+          <div style="font-size:.78rem;color:#94a3b8;margin-top:.35rem">Respond with calm, clarity, and care.</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -4104,6 +4072,18 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     <span class="badge" style="background:rgba(239,68,68,.2);color:#fca5a5;border:1px solid rgba(239,68,68,.3);margin-bottom:1rem">Module 3 — Crisis Stages</span>
     <h2 style="font-size:2rem;font-weight:900;color:white;font-family:Montserrat,sans-serif">Crisis Escalation Stages</h2>
     <p style="color:#94a3b8;font-weight:600;margin-top:.4rem;font-size:.9rem">Behavior signals tell you exactly where someone is. Match your intervention to their stage.</p>
+  </div>
+  <div style="padding:0 2rem 1rem">
+    <div style="margin:1.2rem 0;background:rgba(255,255,255,.04);border-radius:.75rem;padding:1rem">
+      <div style="font-size:.72rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem">Escalation Scale</div>
+      <div style="display:flex;flex-direction:column;gap:.35rem">
+        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:12px;height:12px;border-radius:50%;background:#22c55e;flex-shrink:0"></div><div style="font-size:.8rem"><span style="font-weight:700;color:#4ade80">Level 1 — Calm:</span> <span style="color:#94a3b8">Cooperative, engaged, no distress signals</span></div></div>
+        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:12px;height:12px;border-radius:50%;background:#a3e635;flex-shrink:0"></div><div style="font-size:.8rem"><span style="font-weight:700;color:#a3e635">Level 2 — Watchful:</span> <span style="color:#94a3b8">Mild agitation, pacing, short responses</span></div></div>
+        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:12px;height:12px;border-radius:50%;background:#facc15;flex-shrink:0"></div><div style="font-size:.8rem"><span style="font-weight:700;color:#facc15">Level 3 — Tense:</span> <span style="color:#94a3b8">Raised voice, demands, visible frustration</span></div></div>
+        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:12px;height:12px;border-radius:50%;background:#fb923c;flex-shrink:0"></div><div style="font-size:.8rem"><span style="font-weight:700;color:#fb923c">Level 4 — Escalating:</span> <span style="color:#94a3b8">Shouting, threatening language, advancing</span></div></div>
+        <div style="display:flex;align-items:center;gap:.75rem"><div style="width:12px;height:12px;border-radius:50%;background:#ef4444;flex-shrink:0"></div><div style="font-size:.8rem"><span style="font-weight:700;color:#ef4444">Level 5 — Crisis:</span> <span style="color:#94a3b8">Physical aggression or imminent harm risk</span></div></div>
+      </div>
+    </div>
   </div>
   <div style="padding:0 2rem 2rem;display:flex;flex-direction:column;gap:.875rem">
     <div style="display:grid;grid-template-columns:80px 1fr 1fr;gap:1rem;align-items:center;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);border-radius:1.25rem;padding:1.25rem">
@@ -4441,6 +4421,26 @@ function getSlides14to27() { return `
       <div style="font-size:2rem;margin-bottom:.75rem">🛡️</div>
       <h3 style="font-weight:900;color:#fde68a;margin-bottom:.75rem;font-size:1rem;text-transform:uppercase">Resist Re-traumatization</h3>
       <p style="font-size:.85rem;color:#fbbf24;line-height:1.7">Actively prevent practices that replicate trauma dynamics: <strong style="color:white">forced restraint, isolation, removal of control, power-over dynamics, public shaming</strong>. Every avoidable restraint is a failure.</p>
+    </div>
+  </div>
+  <div style="padding:0 2rem 1rem">
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin:1.2rem 0">
+      <div style="background:rgba(139,92,246,.1);border-left:3px solid #8b5cf6;padding:.75rem 1rem;border-radius:0 .5rem .5rem 0">
+        <div style="font-weight:800;color:#a78bfa;font-size:.82rem">Safety</div>
+        <div style="font-size:.75rem;color:#94a3b8;margin-top:.2rem">Physical and emotional safety for all</div>
+      </div>
+      <div style="background:rgba(59,130,246,.1);border-left:3px solid #3b82f6;padding:.75rem 1rem;border-radius:0 .5rem .5rem 0">
+        <div style="font-weight:800;color:#60a5fa;font-size:.82rem">Trustworthiness</div>
+        <div style="font-size:.75rem;color:#94a3b8;margin-top:.2rem">Transparency and consistent boundaries</div>
+      </div>
+      <div style="background:rgba(34,197,94,.1);border-left:3px solid #22c55e;padding:.75rem 1rem;border-radius:0 .5rem .5rem 0">
+        <div style="font-weight:800;color:#4ade80;font-size:.82rem">Choice & Empowerment</div>
+        <div style="font-size:.75rem;color:#94a3b8;margin-top:.2rem">Patient agency and voice in care decisions</div>
+      </div>
+      <div style="background:rgba(201,168,76,.1);border-left:3px solid #C9A84C;padding:.75rem 1rem;border-radius:0 .5rem .5rem 0">
+        <div style="font-weight:800;color:#C9A84C;font-size:.82rem">Collaboration</div>
+        <div style="font-size:.75rem;color:#94a3b8;margin-top:.2rem">Staff and patient as partners</div>
+      </div>
     </div>
   </div>
   <div style="padding:0 2rem">
@@ -5985,11 +5985,12 @@ function updateNavUI() {
   const navXP    = document.getElementById('nav-xp');
   const navLC    = document.getElementById('nav-lc');
   if(navName)  navName.textContent  = firstName || 'Account';
-  if(navInit)  navInit.textContent  = initials;
   if(navLevel) navLevel.textContent = level;
   if(navXP)    navXP.textContent    = `${xp.toLocaleString()} XP`;
   if(navLC)    navLC.textContent    = `${labCredits.toLocaleString()} LC`;
+  _refreshAvatarDisplay();
 }
+
 
 function currentFirstName() {
   const ud = window._userData || {};
@@ -7259,7 +7260,6 @@ function openAccountModal() {
   const fname = ud.firstName || (ud.name||'').split(' ')[0] || '';
   const lname = ud.lastName  || (ud.name||'').split(' ').slice(1).join(' ') || '';
   const initials = ((fname[0]||'')+(lname[0]||'')).toUpperCase() || (user?.email||'?')[0].toUpperCase();
-  document.getElementById('acct-avatar-circle').textContent = initials;
   document.getElementById('acct-header-name').textContent = fname + (lname ? ' ' + lname : '');
   const tier = getTier(labCredits, labSettings.redemptionTiers||[]);
   document.getElementById('acct-header-sub').textContent = (ud.jobTitle||'') + (ud.department ? ' — ' + ud.department : '');
@@ -7283,8 +7283,59 @@ function openAccountModal() {
   document.getElementById('acct-pw').style.display   = 'none';
   const acctHist = document.getElementById('acct-history');
   if(acctHist) acctHist.style.display = 'none';
+  _refreshAvatarDisplay();
   document.getElementById('account-modal').style.display = 'flex';
 }
+function openAvatarPicker() {
+  document.getElementById('avatar-picker-modal').style.display = 'flex';
+}
+function closeAvatarPicker() {
+  document.getElementById('avatar-picker-modal').style.display = 'none';
+}
+async function selectAvatar(emoji) {
+  if(!window._userData) return;
+  window._userData.avatarEmoji = emoji;
+  window._userData.avatarPhoto = null;
+  await window._saveUserData({ avatarEmoji: emoji, avatarPhoto: null });
+  _refreshAvatarDisplay();
+  closeAvatarPicker();
+}
+async function handleAvatarUpload(evt) {
+  const file = evt.target.files[0];
+  if(!file) return;
+  if(file.size > 500000) { alert('Please choose an image under 500KB.'); return; }
+  const reader = new FileReader();
+  reader.onload = async function(e) {
+    const dataUrl = e.target.result;
+    window._userData.avatarPhoto = dataUrl;
+    window._userData.avatarEmoji = null;
+    await window._saveUserData({ avatarPhoto: dataUrl, avatarEmoji: null });
+    _refreshAvatarDisplay();
+    closeAvatarPicker();
+    evt.target.value = '';
+  };
+  reader.readAsDataURL(file);
+}
+function _refreshAvatarDisplay() {
+  const ud = window._userData || {};
+  const circle = document.getElementById('acct-avatar-circle');
+  const navCircle = document.getElementById('nav-avatar-initials');
+  const fname = ud.firstName || '';
+  const lname = ud.lastName || '';
+  const initials = ((fname[0]||'')+(lname[0]||'')).toUpperCase() || '?';
+  if(ud.avatarPhoto) {
+    const imgStyle = 'width:100%;height:100%;object-fit:cover;border-radius:50%';
+    if(circle) circle.innerHTML = `<img src="${ud.avatarPhoto}" style="${imgStyle}">`;
+    if(navCircle) navCircle.innerHTML = `<img src="${ud.avatarPhoto}" style="${imgStyle}">`;
+  } else if(ud.avatarEmoji) {
+    if(circle) circle.textContent = ud.avatarEmoji;
+    if(navCircle) navCircle.textContent = ud.avatarEmoji;
+  } else {
+    if(circle) circle.textContent = initials;
+    if(navCircle) navCircle.textContent = initials;
+  }
+}
+
 function closeAccountModal() { document.getElementById('account-modal').style.display='none'; }
 function openAccountEdit() {
   const ud = window._userData || {};
@@ -7320,6 +7371,7 @@ async function saveAccountEdit() {
   const updates = { firstName:fname, lastName:lname, name:displayName, phone, jobTitle:title, department:dept, employeeId:empid };
   try {
     await window._saveUserData(updates);
+    Object.assign(window._userData ||= {}, updates);
     await window._updateProfile(window._currentUser, { displayName });
     // Refresh nav
     updateNavUI();
@@ -10380,19 +10432,297 @@ function updateFinalStats() {
 
 // --- Sign Out ---------------------------------------------
 async 
-// ── Display Settings ──────────────────────────────────────────────
-function adjustFontSize(delta) {
-  const slides = document.querySelectorAll('.slide');
-  slides.forEach(s => {
-    const current = parseFloat(getComputedStyle(s).fontSize) || 16;
-    s.style.fontSize = Math.max(12, Math.min(22, current + delta)) + 'px';
+
+// --- Admin Portal Refresh --------------------------------------
+let _adminPortalCache = null;
+
+function _adminTabButtonClass(active) {
+  return active
+    ? 'admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-blue-600 text-blue-600 whitespace-nowrap'
+    : 'admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap';
+}
+
+async function _fetchAdminPortalData(force = false) {
+  if (_adminPortalCache && !force) return _adminPortalCache;
+  const orgId = window.TENANT?.orgId || 'destiny-springs';
+  const mkRef = path => window._ref(window._db, `orgs/${orgId}/${path}`);
+  const [userSnap, adminSnap, settingsSnap, inviteSnap] = await Promise.all([
+    window._get(mkRef('users')),
+    window._get(mkRef('admins')),
+    window._get(mkRef('settings')),
+    window._get(mkRef('invites'))
+  ]);
+  _adminPortalCache = {
+    orgId,
+    users: userSnap.exists() ? userSnap.val() : {},
+    admins: adminSnap.exists() ? adminSnap.val() : {},
+    settings: settingsSnap.exists() ? settingsSnap.val() : {},
+    invites: inviteSnap.exists() ? inviteSnap.val() : {}
+  };
+  return _adminPortalCache;
+}
+
+function _adminRoleForUser(uid, admins) {
+  return admins?.[uid]?.role || 'user';
+}
+
+function _adminProgressPercent(user) {
+  const totalSlides = Math.max((window.TENANT?.moduleCount || 31) - 1, 1);
+  return Math.min(100, Math.round(((user?.currentSlide || 0) / totalSlides) * 100));
+}
+
+function _adminDisplayName(uid, user) {
+  return [user?.firstName, user?.lastName].filter(Boolean).join(' ') || user?.name || user?.email || uid;
+}
+
+function _adminEscape(value) {
+  return String(value ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+async function openAdminDashboard() {
+  const badge = document.getElementById('admin-role-badge');
+  const roleLabels = { owner: '🔑 Owner', admin: '🛡️ Admin', manager: '🏥 Dept Manager' };
+  const roleLabel = roleLabels[currentAdminRole] || currentAdminRole || 'Admin';
+  if (badge) badge.textContent = `${window.TENANT?.orgName || window.TENANT?.name || 'NyxCodex™'} — Signed in as ${roleLabel}`;
+  document.getElementById('admin-modal').style.display = 'flex';
+  const defaultBtn = document.querySelector('.admin-tab-btn[data-admin-tab="users"]');
+  await adminTab('users', defaultBtn);
+}
+
+async function adminTab(name, el) {
+  document.querySelectorAll('.admin-tab-btn[data-admin-tab]').forEach(btn => {
+    btn.className = _adminTabButtonClass(btn === el);
   });
-  const stored = parseFloat(localStorage.getItem('dsh_fontSize') || '16');
-  localStorage.setItem('dsh_fontSize', Math.max(12, Math.min(22, stored + delta)));
+  if (el) el.className = _adminTabButtonClass(true);
+  ['users','org-settings','analytics','invites','certificates'].forEach(tab => {
+    const panel = document.getElementById('at-' + tab);
+    if (panel) panel.style.display = tab === name ? 'block' : 'none';
+  });
+  if (name === 'users') await loadUsers();
+  if (name === 'org-settings') await loadAdminOrgSettings();
+  if (name === 'analytics') await loadAnalytics();
+  if (name === 'invites') await loadAdminInvites();
+  if (name === 'certificates') await loadAdminCertificates();
+}
+
+async function loadUsers() {
+  const el = document.getElementById('at-users');
+  if (!el) return;
+  el.innerHTML = '<div style="padding:1.25rem;color:#94a3b8;font-weight:700">Loading users…</div>';
+  try {
+    const data = await _fetchAdminPortalData(true);
+    const canManageRoles = currentAdminRole === 'owner' || currentAdminRole === 'admin';
+    const rows = Object.entries(data.users).map(([uid, user]) => ({ uid, user, role: _adminRoleForUser(uid, data.admins), progress: _adminProgressPercent(user), name: _adminDisplayName(uid, user) }))
+      .sort((a, b) => b.progress - a.progress || (b.user?.xp || 0) - (a.user?.xp || 0));
+    el.innerHTML = `
+      <div style="padding:1.25rem;display:flex;flex-direction:column;gap:1rem">
+        <div style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center">
+          <div>
+            <div style="font-size:1.05rem;font-weight:900;color:#0f172a">User Directory</div>
+            <div style="font-size:.82rem;color:#64748b;font-weight:600">Live staff records loaded from Firebase users/.</div>
+          </div>
+          <button onclick="loadUsers()" style="padding:.6rem 1rem;border-radius:.7rem;border:1px solid rgba(59,130,246,.25);background:rgba(59,130,246,.08);color:#1d4ed8;font-weight:800;cursor:pointer">↻ Refresh</button>
+        </div>
+        <div style="overflow-x:auto;border:1px solid #e2e8f0;border-radius:1rem;background:white">
+          <table style="width:100%;border-collapse:collapse;min-width:960px">
+            <thead>
+              <tr style="background:#f8fafc">
+                <th style="padding:.8rem;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#64748b">Name</th>
+                <th style="padding:.8rem;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#64748b">Email</th>
+                <th style="padding:.8rem;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#64748b">Role</th>
+                <th style="padding:.8rem;text-align:center;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#64748b">XP</th>
+                <th style="padding:.8rem;text-align:center;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#64748b">Progress</th>
+                <th style="padding:.8rem;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#64748b">Last Login</th>
+                <th style="padding:.8rem;text-align:right;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#64748b">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.length ? rows.map(({ uid, user, role, progress, name }) => {
+                const lastLogin = user?.lastLogin ? new Date(user.lastLogin).toLocaleString() : 'Never';
+                const deleteDisabled = role === 'owner' || uid === window._currentUser?.uid;
+                const roleControl = canManageRoles && role !== 'owner'
+                  ? `<select onchange="adminSetUserRole('${uid}', this.value)" style="padding:.45rem .6rem;border-radius:.55rem;border:1px solid #d1d5db;font-weight:700;color:#0f172a;background:white"><option value="user" ${role === 'user' ? 'selected' : ''}>User</option><option value="admin" ${role === 'admin' ? 'selected' : ''}>Admin</option></select>`
+                  : `<span style="display:inline-flex;padding:.35rem .6rem;border-radius:999px;background:${role === 'owner' ? '#ede9fe' : role === 'admin' ? '#dbeafe' : '#f1f5f9'};color:${role === 'owner' ? '#6d28d9' : role === 'admin' ? '#1d4ed8' : '#475569'};font-size:.72rem;font-weight:800;text-transform:capitalize">${role}</span>`;
+                return `<tr style="border-top:1px solid #e2e8f0"><td style="padding:.85rem;color:#0f172a;font-weight:800">${_adminEscape(name)}<div style="font-size:.72rem;color:#64748b;font-weight:600">${_adminEscape(user?.department || 'Unassigned')}</div></td><td style="padding:.85rem;color:#334155;font-size:.82rem">${_adminEscape(user?.email || '—')}</td><td style="padding:.85rem">${roleControl}</td><td style="padding:.85rem;text-align:center;color:#C9A84C;font-weight:900">${(user?.xp || 0).toLocaleString()}</td><td style="padding:.85rem;text-align:center"><div style="display:inline-flex;align-items:center;gap:.55rem;min-width:118px;justify-content:center"><div style="width:78px;height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden"><div style="width:${progress}%;height:100%;background:linear-gradient(90deg,#B8892A,#C9A84C)"></div></div><span style="font-size:.72rem;font-weight:800;color:#475569">${progress}%</span></div></td><td style="padding:.85rem;color:#475569;font-size:.78rem">${_adminEscape(lastLogin)}</td><td style="padding:.85rem;text-align:right"><div style="display:inline-flex;gap:.45rem;flex-wrap:wrap;justify-content:flex-end"><button onclick="openUserManageModal('${uid}')" style="padding:.45rem .75rem;border-radius:.55rem;border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;font-weight:800;cursor:pointer">View</button><button onclick="openUserManageModal('${uid}')" style="padding:.45rem .75rem;border-radius:.55rem;border:1px solid #fde68a;background:#fffbeb;color:#a16207;font-weight:800;cursor:pointer">Edit</button><button onclick="confirmDeleteUser('${uid}', ${JSON.stringify(name)})" ${deleteDisabled ? 'disabled' : ''} style="padding:.45rem .75rem;border-radius:.55rem;border:1px solid ${deleteDisabled ? '#e5e7eb' : '#fecaca'};background:${deleteDisabled ? '#f8fafc' : '#fff1f2'};color:${deleteDisabled ? '#94a3b8' : '#dc2626'};font-weight:800;cursor:${deleteDisabled ? 'not-allowed' : 'pointer'}">Delete</button></div></td></tr>`;
+              }).join('') : '<tr><td colspan="7" style="padding:1rem;color:#64748b;font-weight:700">No users found.</td></tr>'}
+            </tbody>
+          </table>
+        </div>
+      </div>`;
+  } catch (e) {
+    el.innerHTML = `<div style="padding:1.25rem;color:#dc2626;font-weight:800">Unable to load users: ${_adminEscape(e.message)}</div>`;
+  }
+}
+
+async function adminSetUserRole(uid, role) {
+  try {
+    if (uid === window._currentUser?.uid && role === 'user') {
+      alert('You cannot remove your own admin access from here.');
+      await loadUsers();
+      return;
+    }
+    if (role === 'admin') await window._setAdminRole(uid, 'admin');
+    else await window._setAdminRole(uid, null);
+    await window._writeAudit('admin_role_changed', { targetUid: uid, role });
+    _adminPortalCache = null;
+    await loadUsers();
+  } catch (e) {
+    alert('Unable to update role: ' + e.message);
+  }
+}
+
+async function loadAdminOrgSettings() {
+  const el = document.getElementById('at-org-settings');
+  if (!el) return;
+  const data = await _fetchAdminPortalData();
+  const settings = data.settings || {};
+  el.innerHTML = `
+    <div style="padding:1.25rem;display:grid;gap:1rem">
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;display:grid;gap:1rem">
+        <div><div style="font-size:1.05rem;font-weight:900;color:#0f172a">Organization Settings</div><div style="font-size:.82rem;color:#64748b;font-weight:600">Control access, branding, challenge targets, and certificate renewal cadence.</div></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem">
+          <label style="display:flex;flex-direction:column;gap:.35rem;font-size:.78rem;font-weight:800;color:#475569">Allowed Email Domain<input id="admin-setting-domain" class="input-field" value="${_adminEscape(settings.allowedDomain || '')}" placeholder="example.org"></label>
+          <label style="display:flex;flex-direction:column;gap:.35rem;font-size:.78rem;font-weight:800;color:#475569">Brand Name<input id="admin-setting-brand" class="input-field" value="${_adminEscape(settings.brandName || window.TENANT?.shortName || '')}" placeholder="Destiny Springs"></label>
+          <label style="display:flex;flex-direction:column;gap:.35rem;font-size:.78rem;font-weight:800;color:#475569">Monthly Challenge Target<input id="admin-setting-challenge" class="input-field" type="number" min="1" value="${_adminEscape(settings.monthlyChallenge?.target || 10)}"></label>
+          <label style="display:flex;flex-direction:column;gap:.35rem;font-size:.78rem;font-weight:800;color:#475569">Certificate Renewal (months)<input id="admin-setting-renewal" class="input-field" type="number" min="1" value="${_adminEscape(settings.certRenewalMonths || window.TENANT?.certRenewalMonths || 12)}"></label>
+        </div>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;align-items:center"><button onclick="saveAdminOrgSettings()" style="padding:.7rem 1.2rem;border:none;border-radius:.7rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#1a0f00;font-weight:900;cursor:pointer">Save Settings</button><button onclick="loadAdminOrgSettings()" style="padding:.7rem 1rem;border:1px solid #cbd5e1;border-radius:.7rem;background:white;color:#475569;font-weight:800;cursor:pointer">Reset</button><span id="admin-org-settings-msg" style="font-size:.8rem;color:#64748b;font-weight:700"></span></div>
+      </div>
+    </div>`;
+}
+
+async function saveAdminOrgSettings() {
+  const msg = document.getElementById('admin-org-settings-msg');
+  if (msg) msg.textContent = 'Saving…';
+  try {
+    const payload = {
+      allowedDomain: document.getElementById('admin-setting-domain').value.trim(),
+      brandName: document.getElementById('admin-setting-brand').value.trim(),
+      certRenewalMonths: Math.max(1, parseInt(document.getElementById('admin-setting-renewal').value || '12', 10)),
+      monthlyChallenge: {
+        ...(window._settingsCache?.monthlyChallenge || {}),
+        label: window._settingsCache?.monthlyChallenge?.label || 'Monthly Challenge',
+        target: Math.max(1, parseInt(document.getElementById('admin-setting-challenge').value || '10', 10))
+      }
+    };
+    await window._saveSettings(payload);
+    window._settingsCache = Object.assign(window._settingsCache || {}, payload);
+    _adminPortalCache = null;
+    if (msg) msg.textContent = 'Saved.';
+  } catch (e) {
+    if (msg) msg.textContent = 'Error: ' + e.message;
+  }
+}
+
+async function loadAnalytics() {
+  const el = document.getElementById('at-analytics');
+  if (!el) return;
+  const data = await _fetchAdminPortalData(true);
+  const users = Object.entries(data.users).map(([uid, user]) => ({ uid, ...user }));
+  const totalUsers = users.length;
+  const avgProgress = totalUsers ? Math.round(users.reduce((sum, user) => sum + _adminProgressPercent(user), 0) / totalUsers) : 0;
+  const scenariosCompleted = users.reduce((sum, user) => sum + (user.scenariosDone || 0), 0);
+  const topPerformers = users.sort((a, b) => (b.xp || 0) - (a.xp || 0)).slice(0, 5);
+  el.innerHTML = `
+    <div style="padding:1.25rem;display:grid;gap:1rem">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem">
+        <div style="background:white;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem"><div style="font-size:.75rem;color:#64748b;font-weight:800;text-transform:uppercase">Total Users</div><div style="font-size:1.8rem;font-weight:900;color:#0f172a;margin-top:.3rem">${totalUsers}</div></div>
+        <div style="background:white;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem"><div style="font-size:.75rem;color:#64748b;font-weight:800;text-transform:uppercase">Avg Progress</div><div style="font-size:1.8rem;font-weight:900;color:#1d4ed8;margin-top:.3rem">${avgProgress}%</div></div>
+        <div style="background:white;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem"><div style="font-size:.75rem;color:#64748b;font-weight:800;text-transform:uppercase">Scenarios Completed</div><div style="font-size:1.8rem;font-weight:900;color:#C9A84C;margin-top:.3rem">${scenariosCompleted}</div></div>
+      </div>
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem"><div style="font-size:1rem;font-weight:900;color:#0f172a;margin-bottom:.85rem">Top Performers</div><div style="display:grid;gap:.7rem">${topPerformers.length ? topPerformers.map((user, idx) => `<div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 1rem;border-radius:.85rem;background:${idx === 0 ? '#fffbeb' : '#f8fafc'};border:1px solid ${idx === 0 ? '#fde68a' : '#e2e8f0'}"><div><div style="font-weight:800;color:#0f172a">${_adminEscape(_adminDisplayName(user.uid, user))}</div><div style="font-size:.75rem;color:#64748b">${_adminEscape(user.department || 'Unassigned')}</div></div><div style="text-align:right"><div style="font-weight:900;color:#C9A84C">${(user.xp || 0).toLocaleString()} XP</div><div style="font-size:.75rem;color:#475569">${_adminProgressPercent(user)}% progress</div></div></div>`).join('') : '<div style="color:#64748b;font-weight:700">No analytics yet.</div>'}</div></div>
+    </div>`;
+}
+
+async function loadAdminInvites() {
+  const el = document.getElementById('at-invites');
+  if (!el) return;
+  const data = await _fetchAdminPortalData(true);
+  const inviteRows = Object.entries(data.invites || {}).sort((a, b) => (b[1]?.invitedAt || 0) - (a[1]?.invitedAt || 0));
+  el.innerHTML = `
+    <div style="padding:1.25rem;display:grid;gap:1rem">
+      <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:1rem;align-items:start">
+        <div style="background:white;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem"><div style="font-size:1rem;font-weight:900;color:#0f172a;margin-bottom:.35rem">Bulk Invites</div><div style="font-size:.8rem;color:#64748b;font-weight:600;margin-bottom:1rem">Upload a CSV to stage staff invites directly into Firebase.</div><div id="csv-dropzone" onclick="document.getElementById('csv-file-input').click()" style="border:2px dashed rgba(201,168,76,.3);border-radius:.75rem;padding:2rem;text-align:center;cursor:pointer;transition:all .2s;background:rgba(201,168,76,.03)" onmouseover="this.style.background='rgba(201,168,76,.07)';this.style.borderColor='rgba(201,168,76,.6)'" onmouseout="this.style.background='rgba(201,168,76,.03)';this.style.borderColor='rgba(201,168,76,.3)'" ondragover="event.preventDefault();this.style.background='rgba(201,168,76,.1)'" ondragleave="this.style.background='rgba(201,168,76,.03)'" ondrop="handleCsvDrop(event)"><div style="font-weight:800;color:#C9A84C;font-size:.9rem">Drop CSV here or click to browse</div><div style="font-size:.75rem;color:#64748b;margin-top:.35rem">Columns: name, email, department, employeeId, dueDate</div></div><input type="file" id="csv-file-input" accept=".csv" style="display:none" onchange="handleCsvFile(this.files[0])"><div id="csv-preview" style="display:none;margin-top:1rem"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem"><div style="font-weight:800;color:#0f172a;font-size:.88rem">Import Preview</div><div id="csv-count-badge" style="font-size:.72rem;font-weight:800;padding:.25rem .65rem;border-radius:999px;background:#ecfdf5;color:#15803d"></div></div><div style="overflow-x:auto;border:1px solid #e2e8f0;border-radius:.75rem"><table style="width:100%;border-collapse:collapse;font-size:.78rem" id="csv-preview-table"><thead><tr style="background:#f8fafc"><th style="padding:.55rem .75rem;text-align:left">Name</th><th style="padding:.55rem .75rem;text-align:left">Email</th><th style="padding:.55rem .75rem;text-align:left">Department</th><th style="padding:.55rem .75rem;text-align:left">Status</th></tr></thead><tbody id="csv-preview-body"></tbody></table></div><div id="csv-error-box" style="display:none;margin-top:.75rem;background:#fff1f2;border:1px solid #fecaca;border-radius:.5rem;padding:.75rem 1rem;font-size:.78rem;color:#b91c1c"></div><div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap"><button id="csv-import-btn" onclick="executeCsvImport()" style="padding:.72rem 1.5rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#1a0f00;border:none;border-radius:.6rem;font-weight:800;font-size:.8rem;cursor:pointer">Import Staff</button><button onclick="clearCsvImport()" style="padding:.72rem 1.25rem;background:#f8fafc;color:#475569;border:1px solid #cbd5e1;border-radius:.6rem;font-weight:700;font-size:.8rem;cursor:pointer">Clear</button></div></div></div>
+        <div style="background:white;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;display:grid;gap:.8rem"><div style="font-size:1rem;font-weight:900;color:#0f172a">Manual Invite</div><input id="manual-invite-name" class="input-field" placeholder="Full name"><input id="manual-invite-email" class="input-field" type="email" placeholder="Email address"><div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem"><input id="manual-invite-dept" class="input-field" placeholder="Department"><input id="manual-invite-empid" class="input-field" placeholder="Employee ID"></div><button onclick="submitManualInvite()" style="padding:.72rem 1.25rem;background:linear-gradient(135deg,#1d4ed8,#2563eb);color:white;border:none;border-radius:.7rem;font-weight:800;cursor:pointer">Save Invite</button><div id="manual-invite-msg" style="font-size:.8rem;color:#64748b;font-weight:700"></div></div>
+      </div>
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem"><div style="display:flex;justify-content:space-between;gap:1rem;align-items:center;margin-bottom:.85rem;flex-wrap:wrap"><div><div style="font-size:1rem;font-weight:900;color:#0f172a">Pending / Saved Invites</div><div style="font-size:.8rem;color:#64748b;font-weight:600">${inviteRows.length} invite record${inviteRows.length !== 1 ? 's' : ''} currently staged.</div></div><button onclick="loadAdminInvites()" style="padding:.55rem .9rem;border-radius:.6rem;border:1px solid #cbd5e1;background:white;color:#475569;font-weight:800;cursor:pointer">Refresh</button></div><div style="overflow-x:auto;border:1px solid #e2e8f0;border-radius:.75rem"><table style="width:100%;border-collapse:collapse;min-width:720px"><thead><tr style="background:#f8fafc"><th style="padding:.7rem;text-align:left;font-size:.72rem;color:#64748b;text-transform:uppercase">Email</th><th style="padding:.7rem;text-align:left;font-size:.72rem;color:#64748b;text-transform:uppercase">Name</th><th style="padding:.7rem;text-align:left;font-size:.72rem;color:#64748b;text-transform:uppercase">Department</th><th style="padding:.7rem;text-align:left;font-size:.72rem;color:#64748b;text-transform:uppercase">Status</th><th style="padding:.7rem;text-align:right;font-size:.72rem;color:#64748b;text-transform:uppercase">Actions</th></tr></thead><tbody>${inviteRows.length ? inviteRows.map(([key, invite]) => `<tr style="border-top:1px solid #e2e8f0"><td style="padding:.75rem">${_adminEscape(invite.email || key)}</td><td style="padding:.75rem">${_adminEscape(invite.name || '—')}</td><td style="padding:.75rem">${_adminEscape(invite.department || '—')}</td><td style="padding:.75rem"><span style="padding:.25rem .6rem;border-radius:999px;background:${invite.status === 'pending' ? '#eff6ff' : '#ecfdf5'};color:${invite.status === 'pending' ? '#1d4ed8' : '#15803d'};font-size:.72rem;font-weight:800">${_adminEscape(invite.status || 'pending')}</span></td><td style="padding:.75rem;text-align:right"><button onclick="adminDeleteInvite('${key}')" style="padding:.45rem .75rem;border-radius:.55rem;border:1px solid #fecaca;background:#fff1f2;color:#dc2626;font-weight:800;cursor:pointer">Delete</button></td></tr>`).join('') : '<tr><td colspan="5" style="padding:1rem;color:#64748b;font-weight:700">No invites staged.</td></tr>'}</tbody></table></div></div>
+    </div>`;
+}
+
+async function submitManualInvite() {
+  const msg = document.getElementById('manual-invite-msg');
+  const name = document.getElementById('manual-invite-name').value.trim();
+  const email = document.getElementById('manual-invite-email').value.trim().toLowerCase();
+  const department = document.getElementById('manual-invite-dept').value.trim();
+  const employeeId = document.getElementById('manual-invite-empid').value.trim();
+  if (!name || !email) {
+    if (msg) msg.textContent = 'Name and email are required.';
+    return;
+  }
+  try {
+    const orgId = window.TENANT?.orgId || 'destiny-springs';
+    const key = 'invited_' + email.replace(/[.#$[\]]/g, '_');
+    const payload = { name, email, department, employeeId, invitedAt: Date.now(), status: 'pending', role: 'staff' };
+    await window._set(window._ref(window._db, `orgs/${orgId}/invites/${key}`), payload);
+    if (msg) msg.textContent = 'Invite saved.';
+    ['manual-invite-name','manual-invite-email','manual-invite-dept','manual-invite-empid'].forEach(id => document.getElementById(id).value = '');
+    _adminPortalCache = null;
+    await loadAdminInvites();
+  } catch (e) {
+    if (msg) msg.textContent = 'Error: ' + e.message;
+  }
+}
+
+async function adminDeleteInvite(inviteKey) {
+  if (!confirm('Delete this staged invite?')) return;
+  try {
+    const orgId = window.TENANT?.orgId || 'destiny-springs';
+    await window._remove(window._ref(window._db, `orgs/${orgId}/invites/${inviteKey}`));
+    _adminPortalCache = null;
+    await loadAdminInvites();
+  } catch (e) {
+    alert('Unable to delete invite: ' + e.message);
+  }
+}
+
+async function loadAdminCertificates() {
+  const el = document.getElementById('at-certificates');
+  if (!el) return;
+  const data = await _fetchAdminPortalData(true);
+  const renewalMonths = parseInt(data.settings?.certRenewalMonths || window.TENANT?.certRenewalMonths || 12, 10);
+  const certUsers = Object.entries(data.users).map(([uid, user]) => ({ uid, user })).filter(({ user }) => !!(user.completedTraining || user.finalQuizPassed || _adminProgressPercent(user) >= 100)).map(({ uid, user }) => {
+    const issuedAt = user.completedAt || user.lastLogin || Date.now();
+    const renewal = new Date(issuedAt);
+    renewal.setMonth(renewal.getMonth() + renewalMonths);
+    return { uid, user, issuedAt, renewalAt: renewal.getTime() };
+  }).sort((a, b) => a.renewalAt - b.renewalAt);
+  el.innerHTML = `
+    <div style="padding:1.25rem;display:grid;gap:1rem">
+      <div style="display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap"><div><div style="font-size:1.05rem;font-weight:900;color:#0f172a">Certificate Tracking</div><div style="font-size:.82rem;color:#64748b;font-weight:600">Renewal cadence is currently set to ${renewalMonths} month${renewalMonths === 1 ? '' : 's'}.</div></div><button onclick="rolloverExpiredCerts()" style="padding:.65rem 1rem;border:none;border-radius:.7rem;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#1a0f00;font-weight:900;cursor:pointer">Roll Over Expired Certs</button></div>
+      <div style="overflow-x:auto;border:1px solid #e2e8f0;border-radius:1rem;background:white"><table style="width:100%;border-collapse:collapse;min-width:760px"><thead><tr style="background:#f8fafc"><th style="padding:.8rem;text-align:left;font-size:.72rem;color:#64748b;text-transform:uppercase">User</th><th style="padding:.8rem;text-align:left;font-size:.72rem;color:#64748b;text-transform:uppercase">Email</th><th style="padding:.8rem;text-align:center;font-size:.72rem;color:#64748b;text-transform:uppercase">Issued</th><th style="padding:.8rem;text-align:center;font-size:.72rem;color:#64748b;text-transform:uppercase">Renewal Date</th><th style="padding:.8rem;text-align:center;font-size:.72rem;color:#64748b;text-transform:uppercase">Status</th></tr></thead><tbody>${certUsers.length ? certUsers.map(({ uid, user, issuedAt, renewalAt }) => { const expired = renewalAt < Date.now(); return `<tr style="border-top:1px solid #e2e8f0"><td style="padding:.8rem;font-weight:800;color:#0f172a">${_adminEscape(_adminDisplayName(uid, user))}</td><td style="padding:.8rem;color:#334155">${_adminEscape(user.email || '—')}</td><td style="padding:.8rem;text-align:center">${new Date(issuedAt).toLocaleDateString()}</td><td style="padding:.8rem;text-align:center">${new Date(renewalAt).toLocaleDateString()}</td><td style="padding:.8rem;text-align:center"><span style="padding:.3rem .65rem;border-radius:999px;background:${expired ? '#fff1f2' : '#ecfdf5'};color:${expired ? '#dc2626' : '#15803d'};font-size:.72rem;font-weight:800">${expired ? 'Renewal Due' : 'Current'}</span></td></tr>`; }).join('') : '<tr><td colspan="5" style="padding:1rem;color:#64748b;font-weight:700">No certificate completions recorded yet.</td></tr>'}</tbody></table></div>
+    </div>`;
+}
+
+// ── Display Settings ──────────────────────────────────────────────
+function setFontSize(size) {
+  const map = { small: '14px', normal: '16px', large: '18px', xlarge: '20px' };
+  const resolved = map[size] || '16px';
+  document.documentElement.style.setProperty('--base-font-size', resolved);
+  document.body.style.fontSize = resolved;
+  try { localStorage.setItem('nyxFontSize', size); } catch(e) {}
+  document.querySelectorAll('[data-font-size]').forEach(btn => {
+    btn.style.opacity = btn.dataset.fontSize === size ? '1' : '0.45';
+    btn.style.borderColor = btn.dataset.fontSize === size ? '#C9A84C' : 'rgba(255,255,255,0.15)';
+  });
+}
+function adjustFontSize(delta) {
+  const sizes = ['small', 'normal', 'large', 'xlarge'];
+  const current = localStorage.getItem('nyxFontSize') || 'normal';
+  const nextIdx = Math.max(0, Math.min(sizes.length - 1, sizes.indexOf(current) + delta));
+  setFontSize(sizes[nextIdx]);
 }
 function resetFontSize() {
-  document.querySelectorAll('.slide').forEach(s => s.style.fontSize = '');
-  localStorage.removeItem('dsh_fontSize');
+  setFontSize('normal');
 }
 function toggleHighContrast() {
   document.body.classList.toggle('high-contrast');
@@ -10408,14 +10738,20 @@ function toggleFullscreen() {
   else if (document.exitFullscreen) { document.exitFullscreen(); }
 }
 (function restoreDisplayPrefs() {
-  const fs = parseFloat(localStorage.getItem('dsh_fontSize'));
-  if (fs && fs !== 16) {
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.slide').forEach(s => s.style.fontSize = fs + 'px');
-    });
+  const legacySize = parseFloat(localStorage.getItem('dsh_fontSize') || '16');
+  if (!localStorage.getItem('nyxFontSize') && legacySize) {
+    const migrated = legacySize <= 14 ? 'small' : legacySize >= 20 ? 'xlarge' : legacySize >= 18 ? 'large' : 'normal';
+    try { localStorage.setItem('nyxFontSize', migrated); } catch(e) {}
   }
+  const applySavedFont = () => {
+    const savedSize = localStorage.getItem('nyxFontSize');
+    if (savedSize) setFontSize(savedSize);
+    else setFontSize('normal');
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applySavedFont, { once:true });
+  else applySavedFont();
   if (localStorage.getItem('dsh_highContrast') === '1') {
-    document.addEventListener('DOMContentLoaded', toggleHighContrast);
+    document.addEventListener('DOMContentLoaded', toggleHighContrast, { once:true });
   }
 })();
 
@@ -11386,6 +11722,8 @@ function applyTheme() {
   const theme = localStorage.getItem('nyxTheme') || 'dark';
   document.documentElement.setAttribute('data-theme', theme);
   _updateThemeUI(theme);
+  const savedSize = localStorage.getItem('nyxFontSize');
+  if(savedSize) setFontSize(savedSize);
 }
 
 function _updateThemeUI(theme) {
