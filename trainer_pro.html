@@ -2603,7 +2603,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         </div>
         <div class="auth-quote">
           <span class="auth-quote-copy">“This feels less like annual compliance and more like a rehearsal room for real clinical pressure.”</span>
-          <span class="auth-quote-meta">Built for psychiatric hospitals, inpatient teams, and de-escalation readiness programs</span>
+          <span class="auth-quote-meta">Built for inpatient psychiatric units, crisis facilities, and de-escalation readiness programs</span>
         </div>
       </div>
 
@@ -2680,9 +2680,9 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <button type="button" class="btn w-full auth-btn-guest" onclick="doAnonSignIn()">
           Continue as Guest
         </button>
-        <button type="button" class="btn w-full" onclick="launchHospitalDemo()" style="padding:.82rem;font-size:.8rem;border-radius:14px;background:linear-gradient(135deg,rgba(56,189,248,.1),rgba(99,102,241,.1));color:#93c5fd;font-weight:800;border:1px dashed rgba(99,102,241,.4);gap:.6rem;margin-top:.35rem;font-family:Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;display:flex;align-items:center;justify-content:center;width:100%">
+        <button type="button" class="btn w-full" onclick="launchClinicalDemo()" style="padding:.82rem;font-size:.8rem;border-radius:14px;background:linear-gradient(135deg,rgba(56,189,248,.1),rgba(99,102,241,.1));color:#93c5fd;font-weight:800;border:1px dashed rgba(99,102,241,.4);gap:.6rem;margin-top:.35rem;font-family:Inter,sans-serif;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;display:flex;align-items:center;justify-content:center;width:100%">
           <svg style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-          &nbsp;View Hospital Demo
+          &nbsp;View Clinical Demo
         </button>
       </div>
       <p class="auth-note auth-note-top">
@@ -11068,11 +11068,11 @@ function toggleFullscreen() {
 
 
 // ── Hospital Demo Mode ─────────────────────────────────────────────────────
-function launchHospitalDemo() {
+function launchClinicalDemo() {
   window.DEMO_MODE = true;
   window._userData = {
     uid: 'demo-user-001', name: 'Demo Staff', email: 'demo@nyxcodex.com',
-    role: 'admin', orgId: 'demo-hospital', plan: 'professional',
+    role: 'admin', orgId: 'demo-facility', plan: 'professional',
     currentSlide: 0, xp: 450, level: 3, lc: 12,
     finalQuizScore: 13, quizPassed: true, completedAt: Date.now() - 86400000,
     scenariosCompleted: { ptsd: 3, bpd: 2, schizophrenia: 1 },
@@ -11100,8 +11100,21 @@ function launchHospitalDemo() {
   banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(90deg,rgba(56,189,248,.15),rgba(99,102,241,.15));border-bottom:1px solid rgba(99,102,241,.3);padding:.5rem 1rem;text-align:center;font-size:.73rem;font-weight:700;color:#93c5fd;font-family:Inter,sans-serif;letter-spacing:.06em;display:flex;align-items:center;justify-content:center;gap:.75rem';
   banner.innerHTML = '<span>&#9632; DEMO MODE &mdash; View only. <a href="index.html#pricing" style="color:#C9A84C;text-decoration:underline">Purchase a license</a> to activate for your organization.</span><button onclick="this.parentElement.style.display=\'none\'" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:1rem;padding:0 .25rem">&times;</button>';
   document.body.prepend(banner);
-  showSlide(0);
-  showToast('Hospital Demo Mode Active — explore the full platform', 'info');
+  window.TENANT = window.TENANT || {
+    orgId:'demo-facility', orgName:'Demo Clinical Facility', brandName:'NyxCodex™',
+    tagline:'31-Module Inpatient Psychiatric Crisis Intervention Training',
+    certContactHours:4.0, certType:'Internal Competency Verification',
+    plan:'professional'
+  };
+  window._saveUserData = window._saveUserData || (() => Promise.resolve());
+  window._writeAudit   = window._writeAudit   || (() => Promise.resolve());
+  window._fireWebhook  = window._fireWebhook  || (() => Promise.resolve());
+  window._scorm        = window._scorm        || { complete: ()=>{} };
+  window._emitXAPI     = window._emitXAPI     || (() => Promise.resolve());
+  window._checkAchievements = window._checkAchievements || (() => Promise.resolve());
+  // Drive slide show
+  try { showSlide(0); } catch(e){}
+  showToast('Demo Mode Active — explore the full platform!', 'info');
 }
 
 // Pre-populate demo admin dashboard data
@@ -11225,7 +11238,7 @@ function clearCsvImport() {
 }
 
 function downloadCsvTemplate() {
-  const csv = 'name,email,department,role\nJohn Smith,jsmith@hospital.org,Adult Psych,staff\nJane Doe,jdoe@hospital.org,Crisis Unit,staff\n';
+  const csv = 'name,email,department,role\nJohn Smith,jsmith@clinicalfacility.org,Adult Psych,staff\nJane Doe,jdoe@clinicalfacility.org,Crisis Unit,staff\n';
   const blob = new Blob([csv], {type:'text/csv'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = 'staff_import_template.csv';
@@ -11267,7 +11280,7 @@ function renderDemoCompletion() {
   const inProg = staff.filter(u => (u.currentSlide||0) > 0 && (u.currentSlide||0) < total-1);
   const notStarted = staff.filter(u => !u.currentSlide || u.currentSlide === 0);
   el.innerHTML = '<div style="padding:1.5rem;max-width:900px">'
-    + '<div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:.6rem;padding:.6rem 1rem;margin-bottom:1.25rem;font-size:.75rem;font-weight:700;color:#C9A84C;display:flex;align-items:center;gap:.5rem"><span>&#9670;</span> Demo Mode — Sample Hospital Data (15 staff)</div>'
+    + '<div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:.6rem;padding:.6rem 1rem;margin-bottom:1.25rem;font-size:.75rem;font-weight:700;color:#C9A84C;display:flex;align-items:center;gap:.5rem"><span>&#9670;</span> Demo Mode — Sample Clinical Facility Data (15 staff)</div>'
     + '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem">'
     + '<div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:.75rem;padding:1rem;text-align:center"><div style="font-size:1.75rem;font-weight:900;color:#4ade80">' + done.length + '</div><div style="font-size:.72rem;color:#94a3b8;margin-top:.25rem;text-transform:uppercase;letter-spacing:.08em">Completed</div></div>'
     + '<div style="background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:.75rem;padding:1rem;text-align:center"><div style="font-size:1.75rem;font-weight:900;color:#fbbf24">' + inProg.length + '</div><div style="font-size:.72rem;color:#94a3b8;margin-top:.25rem;text-transform:uppercase;letter-spacing:.08em">In Progress</div></div>'
