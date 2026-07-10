@@ -64,7 +64,7 @@ const isReloadNav = (() => {
 })();
 let firstAuthEvent = true;
 window._clearFirstAuth = () => { firstAuthEvent = false; };
-window._reauthAndChangePassword = async function(currentPass, newPass) {        
+window._reauthAndChangePassword = async function(currentPass, newPass) {
   const user = auth.currentUser;
   const cred = EmailAuthProvider.credential(user.email, currentPass);
   await reauthenticateWithCredential(user, cred);
@@ -1035,70 +1035,70 @@ body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
   #auth-hero-img{display:none!important}
   .auth-proof-band{grid-template-columns:1fr 1fr!important;max-width:100%!important;width:100%!important}
   .auth-quote{display:none!important}
-  
+
   /* Hide decorative orbs on mobile to improve performance */
   #auth-screen>div:first-child>div:nth-child(2),
   #auth-screen>div:first-child>div:nth-child(3),
   #auth-screen>div:first-child>div:nth-child(4){display:none!important}
-  
+
   /* Slides: prevent horizontal overflow */
   .slide{width:100%!important;padding:1rem 1rem 4rem!important}
-  
+
   /* Reduce font sizes for mobile */
   body{font-size:14px}
   h1{font-size:1.5rem!important}
   h2{font-size:1.25rem!important}
   h3{font-size:1.1rem!important}
-  
+
   /* Buttons and controls */
   .btn{padding:.65rem 1.25rem;font-size:.8rem}
   .btn-primary,.btn-success,.btn-danger,.btn-purple,.btn-amber,.btn-info{padding:.75rem 1.25rem}
-  
+
   /* Input fields */
   .input-field{padding:.75rem .875rem;font-size:.85rem}
-  
+
   /* Navigation buttons positioning */
   .slide-header{padding:.5rem .75rem;font-size:.85rem}
-  
+
   /* Stats bar - stack on mobile */
   #auth-screen div[style*="display:flex;gap:2rem"]{gap:1rem!important}
-  
+
   /* Footer on auth screen */
   #auth-screen div[style*="border-top:1px solid"]{flex-direction:column;text-align:center;gap:.5rem!important}
-  
+
   /* Certificate and print preview */
   #certificate-preview{padding:1rem!important;font-size:.85rem!important}
-  
+
   /* Admin modal - full screen on mobile */
   #admin-modal>div{max-width:100%;width:100%;margin:0;border-radius:0;max-height:100vh}
-  
+
   /* Grid layouts - stack on mobile */
   .grid-cols-2{grid-template-columns:1fr!important}
   [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
   .grid-two-even,.grid-two-equal,.grid-two-varied,.modal-form-grid.two-col{grid-template-columns:1fr!important}
   .grid-three-col,.modal-form-grid.four-col{grid-template-columns:repeat(2,1fr)!important}
   .grid-form-row{display:flex;flex-direction:column!important;gap:.5rem}
-  
+
   /* Diagnosis pills - wrap properly */
   .diagnosis-pill{font-size:.7rem;padding:.4rem 1rem}
-  
+
   /* XP bar and level display */
   .xp-bar{height:6px}
-  
+
   /* Trainer chat bubble - adjust position */
   #trainer-bubble{bottom:4rem;right:1rem;left:1rem;max-width:none!important}
-  
+
   /* Score badge */
   .score-badge{font-size:1.8rem;padding:.75rem;min-width:60px}
-  
+
   /* Mobile bottom nav redesign: 4 primary actions + overflow sheet */
   #main-nav-main-row{padding:.45rem .5rem!important;gap:.35rem!important}
   #nav-stats-group,#nav-feature-group,#nav-divider,#nav-account-btn,#nav-signout-btn{display:none!important}
   #nav-controls-group{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:.35rem!important;width:100%}
   #nav-controls-group button{min-height:44px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;font-size:1rem!important}
   #nav-more-btn{display:flex!important}
-  
-  
+
+
   /* Prof. Vance portrait glow while speaking */
   @keyframes vance-pulse {
     0%,100% { box-shadow: 0 0 0 3px rgba(37,99,235,.7), 0 0 16px 4px rgba(37,99,235,.15); }
@@ -1121,19 +1121,19 @@ body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
     white-space:nowrap;
     border:0;
   }
-  
+
   /* Avatar container - repositioned on mobile via JS */
-  
+
   /* Welcome card on first slide */
   #welcome-card{padding:1.5rem!important;max-width:100%!important}
-  
+
   /* Slide content padding */
   .slide>div[style*="padding:2.5rem"]{padding:1.5rem 1rem!important}
   .slide>div[style*="padding:3rem"]{padding:1.75rem 1rem!important}
-  
+
   /* Card max widths */
   .card[style*="max-w"]{max-width:100%!important;margin:0 auto}
-  
+
   /* Modal cards on mobile - full width */
   #admin-modal .card,#account-modal .card,#admin-pin-modal .card{border-radius:1rem!important}
   /* Auth logo — shrink on mobile */
@@ -1141,7 +1141,7 @@ body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
   #chat-panel textarea{font-size:16px!important}
   #chat-panel>div:last-child>div{flex-direction:column!important;align-items:stretch!important}
   #chat-send-btn{width:100%}
-  
+
   /* Hide auth hero image on mobile */
   #auth-hero-img{display:none!important}
   .hub-grid{grid-template-columns:1fr!important;gap:1rem!important}
@@ -1156,17 +1156,17 @@ body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
   /* Auth screen - adjust proportions */
   #auth-screen>div:first-child{padding:2rem 2.25rem!important}
   #auth-screen>div:last-child{width:420px!important;padding:2rem 2.25rem!important}
-  
+
   /* Slides */
   .slide{padding:1.5rem 1.5rem 4rem!important}
-  
+
   /* Reduce spacing slightly */
   body{font-size:15px}
   .btn{padding:.7rem 1.35rem}
-  
+
   /* Grid layouts - 2 columns on tablet */
   .grid-cols-2{grid-template-columns:repeat(2,1fr)!important}
-  
+
   /* Admin modal */
   #admin-modal>div{max-width:90%;margin:1rem}
   .hub-grid{grid-template-columns:1fr!important;gap:1.25rem!important}
@@ -2314,6 +2314,93 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 /* Vance portrait — gold ring + “has commentary” pulse */
 #vance-portrait.has-commentary{box-shadow:0 0 0 3px #C9A84C,0 4px 14px rgba(201,168,76,.5)!important;animation:vancePulse 2s ease-in-out infinite}
 @keyframes vancePulse{0%,100%{box-shadow:0 0 0 3px #C9A84C,0 4px 18px rgba(201,168,76,.5)!important}50%{box-shadow:0 0 0 5px #C9A84C,0 4px 22px rgba(201,168,76,.7)!important}}
+
+/* ── Accessibility contrast fixes ─────────────────────────────── */
+#hub-heading{color:#f8fbff!important;text-shadow:0 2px 10px rgba(2,6,23,.28)}
+.hub-greeting-prefix{color:#e2e8f0!important}
+.hub-greeting-name{color:#ffd79a!important}
+.hub-greeting-wave{color:#e2e8f0!important}
+.hub-lead,#hub-progress-sub,.hub-progress-label,.hub-pill-row,#hub-challenge-days,#hub-challenge-sub,.hub-subtitle{color:#cbd5e1!important}
+.hub-pill{color:#e2e8f0!important;border-color:rgba(255,255,255,.14)!important}
+#hub-assigned-label{color:#fff4cf!important}
+#hub-assigned-due{color:#fde68a!important}
+#welcome-greeting{color:#e2e8f0!important}
+#welcome-name{color:#ffd79a!important}
+#avatar-speech{color:#eef4ff!important}
+#avatar-speech #avatar-speech-text{color:inherit!important}
+#avatar-speech [style*="color:#94a3b8"]{color:#cbd5e1!important}
+#avatar-speech [style*="color:#C9A84C"]{color:#ffd79a!important}
+
+.slide[style*="background:#f8fafc"] [style*="color:#94a3b8"],
+.slide[style*="background:#f8fafc"] [style*="color:#64748b"],
+.slide[style*="background:white"] [style*="color:#94a3b8"],
+.slide[style*="background:white"] [style*="color:#64748b"],
+.slide[style*="background:#fff"] [style*="color:#94a3b8"],
+.slide[style*="background:#fff"] [style*="color:#64748b"],
+.slide[style*="background:#fff5f5"] [style*="color:#94a3b8"],
+.slide[style*="background:#fff5f5"] [style*="color:#64748b"]{color:#475569!important}
+
+.slide[style*="background:#f8fafc"] [style*="color:#C9A84C"],
+.slide[style*="background:#f8fafc"] [style*="color:#B8892A"],
+.slide[style*="background:#f8fafc"] [style*="color:#fbbf24"],
+.slide[style*="background:#f8fafc"] [style*="color:#f59e0b"],
+.slide[style*="background:white"] [style*="color:#C9A84C"],
+.slide[style*="background:white"] [style*="color:#B8892A"],
+.slide[style*="background:white"] [style*="color:#fbbf24"],
+.slide[style*="background:white"] [style*="color:#f59e0b"],
+.slide[style*="background:#fff"] [style*="color:#C9A84C"],
+.slide[style*="background:#fff"] [style*="color:#B8892A"],
+.slide[style*="background:#fff"] [style*="color:#fbbf24"],
+.slide[style*="background:#fff"] [style*="color:#f59e0b"],
+.slide[style*="background:#fff5f5"] [style*="color:#C9A84C"],
+.slide[style*="background:#fff5f5"] [style*="color:#B8892A"],
+.slide[style*="background:#fff5f5"] [style*="color:#fbbf24"],
+.slide[style*="background:#fff5f5"] [style*="color:#f59e0b"]{color:#8a5a00!important}
+
+.slide[style*="background:#f8fafc"] .card p,
+.slide[style*="background:#f8fafc"] .card li,
+.slide[style*="background:white"] .card p,
+.slide[style*="background:white"] .card li,
+.slide[style*="background:#fff"] .card p,
+.slide[style*="background:#fff"] .card li,
+.slide[style*="background:#fff5f5"] .card p,
+.slide[style*="background:#fff5f5"] .card li{color:#334155}
+
+[data-theme="light"] .slide-title,
+[data-theme="light"] .slide h2,
+[data-theme="light"] .slide h3,
+[data-theme="light"] #hub-heading{color:#1a1825!important}
+[data-theme="light"] .slide p,
+[data-theme="light"] .slide li,
+[data-theme="light"] .slide-body,
+[data-theme="light"] .hub-lead,
+[data-theme="light"] .hub-pill,
+[data-theme="light"] .hub-progress-label,
+[data-theme="light"] #hub-progress-sub,
+[data-theme="light"] #welcome-greeting{color:#2d2b3d!important}
+[data-theme="light"] .slide-subtitle{color:#4a4766!important}
+[data-theme="light"] #hub-challenge-days,
+[data-theme="light"] #hub-challenge-sub,
+[data-theme="light"] .hub-pill-row{color:#4a4766!important}
+[data-theme="light"] #hub-user-name,
+[data-theme="light"] #welcome-name,
+[data-theme="light"] .hub-greeting-name{color:#92640a!important}
+[data-theme="light"] .slide[style*="background:#f8fafc"] [style*="color:#C9A84C"],
+[data-theme="light"] .slide[style*="background:#f8fafc"] [style*="color:#B8892A"],
+[data-theme="light"] .slide[style*="background:#f8fafc"] [style*="color:#fbbf24"],
+[data-theme="light"] .slide[style*="background:white"] [style*="color:#C9A84C"],
+[data-theme="light"] .slide[style*="background:white"] [style*="color:#B8892A"],
+[data-theme="light"] .slide[style*="background:white"] [style*="color:#fbbf24"],
+[data-theme="light"] .slide[style*="background:#fff"] [style*="color:#C9A84C"],
+[data-theme="light"] .slide[style*="background:#fff"] [style*="color:#B8892A"],
+[data-theme="light"] .slide[style*="background:#fff"] [style*="color:#fbbf24"]{color:#8a5a00!important}
+[data-theme="light"] .slide[style*="background:#f8fafc"] [style*="color:#94a3b8"],
+[data-theme="light"] .slide[style*="background:#f8fafc"] [style*="color:#64748b"],
+[data-theme="light"] .slide[style*="background:white"] [style*="color:#94a3b8"],
+[data-theme="light"] .slide[style*="background:white"] [style*="color:#64748b"],
+[data-theme="light"] .slide[style*="background:#fff"] [style*="color:#94a3b8"],
+[data-theme="light"] .slide[style*="background:#fff"] [style*="color:#64748b"]{color:#4a4766!important}
+
 </style>
 </head>
 <body>
@@ -3690,8 +3777,8 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     <p id="slide1-subtitle" style="color:#94a3b8;font-size:1rem;margin-bottom:.25rem;font-weight:600">Mastery Lab — NyxCodex™</p>
     <p id="slide1-footer" style="color:#64748b;font-size:.8rem;margin-bottom:3rem">© 2026 NyxCodex® · <a href="https://nyxcollectivellc.com" target="_blank" rel="noopener" style="color:#64748b">Nyx Collective LLC</a> — All Rights Reserved — Clinical Training Platform</p>
     <div id="welcome-card" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:1.5rem;padding:2rem;max-width:520px;width:100%;margin-bottom:2.5rem;backdrop-filter:blur(12px)">
-      <p id="welcome-greeting" style="color:#94a3b8;font-size:.85rem;margin-bottom:.5rem">Welcome,</p>
-      <p id="welcome-name" style="color:white;font-size:1.75rem;font-weight:900;font-family:Montserrat,sans-serif;margin-bottom:1rem">&nbsp;</p>
+      <p id="welcome-greeting" style="color:#e2e8f0;font-size:.85rem;margin-bottom:.5rem">Welcome,</p>
+      <p id="welcome-name" style="color:#ffd79a;font-size:1.75rem;font-weight:900;font-family:Montserrat,sans-serif;margin-bottom:1rem">&nbsp;</p>
       <p style="color:#cbd5e1;font-size:1.05rem;line-height:1.7">You're about to complete <strong style="color:white">evidence-based training modules</strong> covering de-escalation, crisis intervention, psychiatric diagnosis recognition, and real-time scenario practice. Let's build your clinical confidence.</p>
     </div>
     <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
@@ -3886,26 +3973,26 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <div style="margin-bottom:1rem"><p style="font-size:.8rem;font-weight:800;color:#374151;margin-bottom:.5rem">WHY IT WORKS:</p><p style="font-size:.8rem;color:#6b7280;line-height:1.6">Validation signals to the amygdala that the threat is acknowledged — not dismissed. This begins the neurological shift from fight-or-flight back to reasoning mode.</p></div>
       <p style="font-size:.8rem;font-weight:800;color:#374151;margin-bottom:.5rem">EXAMPLE PHRASES:</p>
       <ul style="font-size:.8rem;color:#4b5563;line-height:2">
-        <li>· "Your frustration makes total sense."</li>
-        <li>· "Anyone in your situation would feel this way."</li>
-        <li>· "I hear you — that sounds really hard."</li>
-        <li>· "You don't have to explain why you feel this way."</li>
+        <li>"Your frustration makes total sense."</li>
+        <li>"Anyone in your situation would feel this way."</li>
+        <li>"I hear you — that sounds really hard."</li>
+        <li>"You don't have to explain why you feel this way."</li>
       </ul>
     </div>
     <div class="card p-6">
       <div style="font-size:2rem;margin-bottom:.75rem">❤️</div>
       <h3 style="font-size:1.1rem;font-weight:900;color:#0f172a;margin-bottom:.75rem">Empathy (vs. Sympathy)</h3>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem">
-        <div style="background:rgba(254,226,226,.15);padding:.75rem;border-radius:.75rem"><p style="font-size:.7rem;font-weight:900;color:#dc2626;text-transform:uppercase;margin-bottom:.4rem">Sympathy ?</p><p style="font-size:.75rem;color:#7f1d1d">"At least you have family who loves you..."<br><em>(minimizes)</em></p></div>
-        <div style="background:#f0fdf4;padding:.75rem;border-radius:.75rem"><p style="font-size:.7rem;font-weight:900;color:#16a34a;text-transform:uppercase;margin-bottom:.4rem">Empathy ?</p><p style="font-size:.75rem;color:#166534">"It sounds like you're carrying a lot right now. I'm here."<br><em>(connects)</em></p></div>
+        <div style="background:#1e1a2e;padding:.75rem;border-radius:.75rem;border:1px solid rgba(252,165,165,.24)"><p style="font-size:.7rem;font-weight:900;color:#f8fafc;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem">SYMPATHY</p><p style="font-size:.78rem;color:#fca5a5;line-height:1.6">"At least you have family who loves you..."<br><em style="color:#fecaca">(minimizes)</em></p></div>
+        <div style="background:#0d2818;padding:.75rem;border-radius:.75rem;border:1px solid rgba(134,239,172,.24)"><p style="font-size:.7rem;font-weight:900;color:#f8fafc;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem">EMPATHY</p><p style="font-size:.78rem;color:#86efac;line-height:1.6">"It sounds like you're carrying a lot right now. I'm here."<br><em style="color:#dcfce7">(connects)</em></p></div>
       </div>
       <p style="font-size:.8rem;font-weight:800;color:#374151;margin-bottom:.5rem">HOW TO SHOW IT:</p>
       <ul style="font-size:.8rem;color:#4b5563;line-height:2">
-        <li>· Soft, warm eye contact (not staring)</li>
-        <li>· Slow nodding (shows active listening)</li>
-        <li>· Use their name: <em>"David, I hear you."</em></li>
-        <li>· Comfortable silence — don't rush to fill it</li>
-        <li>· "Tell me more..." invites without pressure</li>
+        <li>Soft, warm eye contact (not staring)</li>
+        <li>Slow nodding (shows active listening)</li>
+        <li>Use their name: <em>"David, I hear you."</em></li>
+        <li>Comfortable silence — don't rush to fill it</li>
+        <li>"Tell me more..." invites without pressure</li>
       </ul>
     </div>
     <div style="grid-column:1/-1">
@@ -4328,12 +4415,12 @@ function getSlides14to27() { return `
   <div style="padding:0 2rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
     <div class="card p-5" style="border-top:4px solid #f59e0b">
       <h3 style="font-weight:900;font-size:.95rem;color:#fbbf24;text-transform:uppercase;margin-bottom:.875rem">⚡ Manic Episode</h3>
-      <div style="margin-bottom:.875rem"><p style="font-size:.75rem;font-weight:800;color:#94a3b8;text-transform:uppercase;margin-bottom:.4rem">Signs</p><ul style="font-size:.82rem;color:#78350f;line-height:1.8;font-weight:600"><li>· Rapid/pressured speech, cannot interrupt</li><li>· Decreased need for sleep (not tired)</li><li>· Grandiosity ("I am the only one who can fix this")</li><li>· Impulsive, risky behavior</li><li>· Irritability if challenged</li></ul></div>
+      <div style="margin-bottom:.875rem"><p style="font-size:.75rem;font-weight:800;color:#94a3b8;text-transform:uppercase;margin-bottom:.4rem">Signs</p><ul style="font-size:.82rem;color:#78350f;line-height:1.8;font-weight:600"><li>Rapid/pressured speech, cannot interrupt</li><li>Decreased need for sleep (not tired)</li><li>Grandiosity ("I am the only one who can fix this")</li><li>Impulsive, risky behavior</li><li>Irritability if challenged</li></ul></div>
       <div style="background:#fffbeb;padding:.875rem;border-radius:.875rem"><p style="font-size:.75rem;font-weight:800;color:#fbbf24;margin-bottom:.4rem">YOUR APPROACH:</p><p style="font-size:.8rem;color:#78350f;line-height:1.5">Match their energy initially then gradually slow. Brief, simple directives. Don't argue with grandiose ideas. Redirect: "That sounds exciting — let's find a quiet space to talk about it."</p></div>
     </div>
     <div class="card p-5" style="border-top:4px solid #6366f1">
       <h3 style="font-weight:900;font-size:.95rem;color:#3730a3;text-transform:uppercase;margin-bottom:.875rem">💔 Depressive Episode</h3>
-      <div style="margin-bottom:.875rem"><p style="font-size:.75rem;font-weight:800;color:#94a3b8;text-transform:uppercase;margin-bottom:.4rem">Signs</p><ul style="font-size:.82rem;color:#3730a3;line-height:1.8;font-weight:600"><li>· Withdrawal, flat affect, hopelessness</li><li>· Very slow speech and movement</li><li>· Possible suicidal ideation</li><li>· Excessive sleep or insomnia</li><li>· Self-neglect (not eating, hygiene)</li></ul></div>
+      <div style="margin-bottom:.875rem"><p style="font-size:.75rem;font-weight:800;color:#94a3b8;text-transform:uppercase;margin-bottom:.4rem">Signs</p><ul style="font-size:.82rem;color:#3730a3;line-height:1.8;font-weight:600"><li>Withdrawal, flat affect, hopelessness</li><li>Very slow speech and movement</li><li>Possible suicidal ideation</li><li>Excessive sleep or insomnia</li><li>Self-neglect (not eating, hygiene)</li></ul></div>
       <div style="background:#eef2ff;padding:.875rem;border-radius:.875rem"><p style="font-size:.75rem;font-weight:800;color:#3730a3;margin-bottom:.4rem">YOUR APPROACH:</p><p style="font-size:.8rem;color:#4338ca;line-height:1.5">Slow, warm, low-key presence. Don't try to "cheer them up." Sit with them quietly. Ask directly about suicidal thoughts — asking does NOT increase risk. "Are you having any thoughts of hurting yourself?"</p></div>
     </div>
     <div class="card p-4 amber-box" style="grid-column:1/-1">
@@ -4557,11 +4644,11 @@ function getSlides14to27() { return `
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.85rem">
         <div style="background:white;border-left:4px solid #dc2626;border-radius:0 .5rem .5rem 0;padding:.75rem">
           <div style="font-weight:700;color:#dc2626;font-size:.82rem;margin-bottom:.3rem">HIGH RISK — Escalate Immediately</div>
-          <div style="font-size:.8rem;color:#374151;line-height:1.6">• Active ideation with plan and intent<br>• Recent preparatory behavior (giving away items, writing notes)<br>• Prior attempts + current ideation<br>• Command hallucinations for self-harm</div>
+          <div style="font-size:.8rem;color:#374151;line-height:1.6">Active ideation with plan and intent<br>Recent preparatory behavior (giving away items, writing notes)<br>Prior attempts + current ideation<br>Command hallucinations for self-harm</div>
         </div>
         <div style="background:white;border-left:4px solid #f59e0b;border-radius:0 .5rem .5rem 0;padding:.75rem">
           <div style="font-weight:700;color:#fbbf24;font-size:.82rem;margin-bottom:.3rem">MODERATE RISK — Immediate Clinical Eval</div>
-          <div style="font-size:.8rem;color:#374151;line-height:1.6">• Passive ideation (“I wish I were dead”)<br>• Active ideation without plan<br>• Hopelessness + social isolation<br>• Recent significant loss or trauma</div>
+          <div style="font-size:.8rem;color:#374151;line-height:1.6">Passive ideation (“I wish I were dead”)<br>Active ideation without plan<br>Hopelessness + social isolation<br>Recent significant loss or trauma</div>
         </div>
       </div>
       <div style="font-size:.82rem;color:#374151;line-height:1.7;background:white;border-radius:.5rem;padding:.75rem">
@@ -4584,33 +4671,33 @@ function getSlides14to27() { return `
       <div style="font-size:2rem;margin-bottom:.75rem">🗣️</div>
       <h3 style="font-weight:900;font-size:1.05rem;color:#1d4ed8;text-transform:uppercase;margin-bottom:.75rem">Language Access</h3>
       <ul style="font-size:.82rem;color:#1e3a8a;line-height:1.8;font-weight:600">
-        <li>· Always use certified interpreter (not family)</li>
-        <li>· Speak to patient, not interpreter</li>
-        <li>· Back-translate critical information</li>
-        <li>· Written materials in patient's language</li>
-        <li>· "Do you prefer I speak through an interpreter?"</li>
+        <li>Always use certified interpreter (not family)</li>
+        <li>Speak to patient, not interpreter</li>
+        <li>Back-translate critical information</li>
+        <li>Written materials in patient's language</li>
+        <li>"Do you prefer I speak through an interpreter?"</li>
       </ul>
     </div>
     <div class="card p-5 green-box">
       <div style="font-size:2rem;margin-bottom:.75rem">🎭</div>
       <h3 style="font-weight:900;font-size:1.05rem;color:#166534;text-transform:uppercase;margin-bottom:.75rem">Cultural Expressions</h3>
       <ul style="font-size:.82rem;color:#14532d;line-height:1.8;font-weight:600">
-        <li>· Eye contact norms vary by culture</li>
-        <li>· Physical touch has different meaning</li>
-        <li>· Some cultures somatize (physical symptoms for emotional distress)</li>
-        <li>· Mental illness stigma is higher in some communities</li>
-        <li>· Spiritual/religious frameworks must be respected</li>
+        <li>Eye contact norms vary by culture</li>
+        <li>Physical touch has different meaning</li>
+        <li>Some cultures somatize (physical symptoms for emotional distress)</li>
+        <li>Mental illness stigma is higher in some communities</li>
+        <li>Spiritual/religious frameworks must be respected</li>
       </ul>
     </div>
     <div class="card p-5 amber-box">
       <div style="font-size:2rem;margin-bottom:.75rem">🧠</div>
       <h3 style="font-weight:900;font-size:1.05rem;color:#fbbf24;text-transform:uppercase;margin-bottom:.75rem">Implicit Bias</h3>
       <ul style="font-size:.82rem;color:#78350f;line-height:1.8;font-weight:600">
-        <li>· Check your assumptions before entering a room</li>
-        <li>· Black patients are statistically undertreated for pain</li>
-        <li>· Immigrant patients fear disclosure</li>
-        <li>· LGBTQ+ patients have higher trauma rates</li>
-        <li>· Ask: "What do you call what's happening to you?"</li>
+        <li>Check your assumptions before entering a room</li>
+        <li>Black patients are statistically undertreated for pain</li>
+        <li>Immigrant patients fear disclosure</li>
+        <li>LGBTQ+ patients have higher trauma rates</li>
+        <li>Ask: "What do you call what's happening to you?"</li>
       </ul>
     </div>
     <div class="card p-5 purple-box" style="grid-column:1/-1">
@@ -4883,35 +4970,35 @@ function getSlides14to27() { return `
       <div style="font-size:2rem;margin-bottom:.75rem">😓</div>
       <h3 style="font-weight:900;color:#c4b5fd;font-size:.95rem;margin-bottom:.75rem;text-transform:uppercase">Signs of Compassion Fatigue</h3>
       <ul style="font-size:.82rem;color:#a78bfa;line-height:2;font-weight:600">
-        <li>· Dreading going to work</li>
-        <li>· Emotional numbness toward patients</li>
-        <li>· Intrusive thoughts / nightmares</li>
-        <li>· Cynicism: "They did it to themselves"</li>
-        <li>· Physical exhaustion despite rest</li>
-        <li>· Increased errors or distractibility</li>
+        <li>Dreading going to work</li>
+        <li>Emotional numbness toward patients</li>
+        <li>Intrusive thoughts / nightmares</li>
+        <li>Cynicism: "They did it to themselves"</li>
+        <li>Physical exhaustion despite rest</li>
+        <li>Increased errors or distractibility</li>
       </ul>
     </div>
     <div style="background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);border-radius:1.25rem;padding:1.5rem">
       <div style="font-size:2rem;margin-bottom:.75rem">🌱</div>
       <h3 style="font-weight:900;color:#6ee7b7;font-size:.95rem;margin-bottom:.75rem;text-transform:uppercase">Recovery Strategies</h3>
       <ul style="font-size:.82rem;color:#34d399;line-height:2;font-weight:600">
-        <li>· Debrief after difficult incidents</li>
-        <li>· Physical movement before/after shifts</li>
-        <li>· Name your emotions — don't suppress</li>
-        <li>· Peer support check-ins</li>
-        <li>· EAP / counseling — use it freely</li>
-        <li>· Boundary clarity: work ends at logout</li>
+        <li>Debrief after difficult incidents</li>
+        <li>Physical movement before/after shifts</li>
+        <li>Name your emotions — don't suppress</li>
+        <li>Peer support check-ins</li>
+        <li>EAP / counseling — use it freely</li>
+        <li>Boundary clarity: work ends at logout</li>
       </ul>
     </div>
     <div style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);border-radius:1.25rem;padding:1.5rem">
       <div style="font-size:2rem;margin-bottom:.75rem">⚠️</div>
       <h3 style="font-weight:900;color:#fde68a;font-size:.95rem;margin-bottom:.75rem;text-transform:uppercase">When to Escalate</h3>
       <ul style="font-size:.82rem;color:#fbbf24;line-height:2;font-weight:600">
-        <li>· Unable to separate work from personal</li>
-        <li>· Suicidal thoughts of your own</li>
-        <li>· Substance use to cope</li>
-        <li>· Extended absence from activities you loved</li>
-        <li>· Feeling hopeless about your own future</li>
+        <li>Unable to separate work from personal</li>
+        <li>Suicidal thoughts of your own</li>
+        <li>Substance use to cope</li>
+        <li>Extended absence from activities you loved</li>
+        <li>Feeling hopeless about your own future</li>
         <li>Talk to supervisor or HR today</li>
       </ul>
     </div>
@@ -5403,7 +5490,7 @@ OVERALL: [1-2 sentence clinical supervision summary]
 
 Grading criteria:
 - A (Outstanding): Full trauma-informed approach, de-escalation techniques, patient autonomy, safety assessment throughout
-- B (Proficient): Solid de-escalation with 1-2 missed opportunities  
+- B (Proficient): Solid de-escalation with 1-2 missed opportunities
 - C (Developing): Basic attempt but missing key clinical principles
 - D (Needs Review): Response could escalate situation or misses fundamental safety
 
@@ -6175,7 +6262,7 @@ async function showHomeGateway() {
       wrap.style.display = 'block';
     } catch(_) { wrap.style.display='none'; }
   }
-  
+
   // --- Manager-Assigned Scenario Banner -----------------------
   function refreshAssignedScenarioBanner() {
     const wrap = document.getElementById('hub-assigned-wrap');
@@ -6194,7 +6281,7 @@ async function showHomeGateway() {
     }
     wrap.style.display = 'block';
   }
-  
+
   // --- Onboarding Checklist Widget ----------------------------
   function refreshHubChecklist() {
     const wrap = document.getElementById('hub-checklist-wrap');
@@ -6219,7 +6306,7 @@ async function showHomeGateway() {
         ${checks.map(c=>`<div style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:700;color:${c.done?'#94a3b8':'#e2e8f0'};text-decoration:${c.done?'line-through':'none'}"><span style="font-size:.9rem">${c.done?'✅':'⬜'}</span>${c.label}</div>`).join('')}
       </div>`;
   }
-  
+
   // First-time users get the tutorial automatically
 
   // Only run tutorial for users who have never onboarded AND have no progress
@@ -6260,7 +6347,26 @@ async function showHomeGateway() {
   if(window._vanceAudio) { window._vanceAudio.pause(); window._vanceAudio.currentTime = 0; }
   // Update hub heading with user's first name
   const hubHeading = document.getElementById('hub-heading');
-  if(hubHeading) hubHeading.textContent = isReturning ? `Welcome back, ${fname}! \uD83D\uDC4B` : `Welcome to ${window.TENANT?.brandName || 'the platform'}, ${fname}!`;
+  if(hubHeading) {
+    hubHeading.textContent = '';
+    const prefix = document.createElement('span');
+    prefix.className = 'hub-greeting-prefix';
+    const nameEl = document.createElement('span');
+    nameEl.className = 'hub-greeting-name';
+    const wave = document.createElement('span');
+    wave.className = 'hub-greeting-wave';
+    if(isReturning) {
+      prefix.textContent = 'Welcome back, ';
+      nameEl.textContent = fname;
+      wave.textContent = '! 👋';
+      hubHeading.append(prefix, nameEl, wave);
+    } else {
+      prefix.textContent = `Welcome to ${window.TENANT?.brandName || 'the platform'}, `;
+      nameEl.textContent = fname;
+      wave.textContent = '!';
+      hubHeading.append(prefix, nameEl, wave);
+    }
+  }
   // Use a dedicated hub timer (not the cancellable scheduleVance) so slide navigation
   // timers can't accidentally swallow the welcome message before it fires
   // Show Vance immediately — no timer needed (hub is already flex at this point)
@@ -7670,7 +7776,7 @@ function adminTab(name, el) {
     t.className='admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-400 whitespace-nowrap';
   });
   if(el){ el.className='admin-tab-btn py-3 px-4 text-xs font-black uppercase tracking-widest border-b-2 border-blue-600 text-blue-600 whitespace-nowrap'; }
-  
+
   // Preserve role-based visibility for owner-only tabs when switching
   const isOwner = currentAdminRole === 'owner';
   const ownerBtns = ['audit-tab-btn', 'settings-tab-btn', 'scenarios-tab-btn'];
@@ -7678,7 +7784,7 @@ function adminTab(name, el) {
     const btn = document.getElementById(btnId);
     if(btn) btn.style.display = isOwner ? '' : 'none';
   });
-  
+
   ['leaderboard','users','analytics','reports','completion','settings','audit','scenarios'].forEach(t=>{
     const d=document.getElementById('at-'+t);
     if(d) d.style.display=(t===name)?'block':'none';
@@ -7933,7 +8039,7 @@ async function printLoginCards() {
         </div>`).join('')}
     </div>
     <script>window.onload=()=>window.print();<\/script>
-  
+
   </body></html>`);
   win.document.close();
 }
@@ -10480,7 +10586,7 @@ function updateFinalStats() {
 }
 
 // --- Sign Out ---------------------------------------------
-async 
+async
 
 // --- Admin Portal Refresh --------------------------------------
 let _adminPortalCache = null;
@@ -11522,7 +11628,7 @@ async function loadScenarioBuilder() {
           <div style="flex:1">
             <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.2rem">
               <span style="font-weight:900;font-size:.88rem;color:#0f172a">${s.title || 'Untitled'}</span>
-              ${isDraft ? '<span style="background:#fef3c7;color:#fbbf24;padding:.1rem .5rem;border-radius:999px;font-size:.65rem;font-weight:900">DRAFT</span>' : '<span style="background:rgba(220,252,231,.15);color:#4ade80;padding:.1rem .5rem;border-radius:999px;font-size:.65rem;font-weight:900">• LIVE</span>'}
+              ${isDraft ? '<span style="background:#fef3c7;color:#fbbf24;padding:.1rem .5rem;border-radius:999px;font-size:.65rem;font-weight:900">DRAFT</span>' : '<span style="background:rgba(220,252,231,.15);color:#4ade80;padding:.1rem .5rem;border-radius:999px;font-size:.65rem;font-weight:900">LIVE</span>'}
             </div>
             <div style="font-size:.76rem;color:#64748b;line-height:1.5;margin-bottom:.4rem">${(s.description || '').slice(0, 200)}</div>
             ${s.role ? `<span style="background:#dbeafe;color:#1d4ed8;padding:.15rem .55rem;border-radius:999px;font-size:.66rem;font-weight:800;margin-right:.35rem">👤 ${s.role}</span>` : ''}
