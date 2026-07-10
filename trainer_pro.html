@@ -579,6 +579,8 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 .slide>div{position:relative;z-index:1}
 .slide[style*="background:#f8fafc"],
 .slide[style*="background:white"],
+.slide[style*="background:#fff5f5"],
+.slide[style*="background:#fffbf0"],
 .slide[style*="background:#fff"],
 .slide[style*="background:#fff5f5"]{--slide-overlay:linear-gradient(180deg,rgba(201,168,76,.06),rgba(201,168,76,.05));}
 .slide[style*="background:#0f172a"],
@@ -4972,7 +4974,34 @@ function getSlides14to27() { return `
     <div style="display:flex;flex-direction:column;gap:.875rem">
       <div>
         <label style="font-size:.75rem;font-weight:900;color:#1e293b;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.5rem">Scenario Topic</label>
-        <input id="slide-script-topic" class="input-field" placeholder="e.g., Medication refusal">
+        <select id="slide-script-topic" class="input-field">
+          <option value="med_refusal">Medication Refusal</option>
+          <option value="ama_threat">Threatening to Leave AMA</option>
+          <option value="suicidal_ideation">Suicidal Ideation Disclosure</option>
+          <option value="physical_aggression">Physical Aggression Toward Staff</option>
+          <option value="verbal_abuse">Verbal Abuse and Threats</option>
+          <option value="paranoid_delusions">Paranoid Delusions About Staff</option>
+          <option value="self_harm">Self-Harm Behavior in Unit</option>
+          <option value="psychotic_break">Psychotic Break (Command Hallucinations)</option>
+          <option value="manic_episode">Manic Episode (Pressured Speech)</option>
+          <option value="ptsd_flashback">PTSD Flashback Trigger</option>
+          <option value="elopement">Elopement Attempt</option>
+          <option value="food_refusal">Food and Fluid Refusal</option>
+          <option value="sexual_inappropriate">Sexual Inappropriateness Toward Staff</option>
+          <option value="contraband">Room Search / Contraband Confrontation</option>
+          <option value="peer_conflict">Patient-to-Patient Altercation</option>
+          <option value="family_escalation">Family Member Escalation at Nurses Station</option>
+          <option value="restraint_consent">Restraint / Seclusion Consent Discussion</option>
+          <option value="vitals_refusal">Refusal of Vitals or Medical Procedures</option>
+          <option value="withdrawal">Substance Withdrawal Symptoms</option>
+          <option value="eating_disorder">Eating Disorder Crisis (Refusal After Meal)</option>
+          <option value="boundary_violation">Staff Boundary Violation Scenario</option>
+          <option value="code_white">Code White Team Response Debrief</option>
+          <option value="NSSI_discovery">Discovering NSSI Injuries During Rounds</option>
+          <option value="command_hallucination">Responding to Patient Hearing Voices</option>
+          <option value="disorganized_speech">Communicating with Disorganized/Word-Salad Speech</option>
+          <option value="sensory_overload">Sensory Overload in Autism/Neurodivergent Patient</option>
+        </select>
       </div>
       <div>
         <label style="font-size:.75rem;font-weight:900;color:#1e293b;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.5rem">Diagnosis Context</label>
@@ -4986,14 +5015,7 @@ function getSlides14to27() { return `
           <option value="medication_refusal">Medication Refusal</option>
         </select>
       </div>
-      <div>
-        <label style="font-size:.75rem;font-weight:900;color:#1e293b;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.5rem">Difficulty</label>
-        <select id="script-level" class="input-field">
-          <option value="basic">Basic — New Staff</option>
-          <option value="intermediate">Intermediate</option>
-          <option value="advanced">Advanced — Experienced</option>
-        </select>
-      </div>
+
       <button onclick="buildScript()" class="btn btn-success">📝 Build Script</button>
       <button onclick="printScript()" class="btn" style="background:#1e293b;color:#f8fafc;font-weight:800">🖨️ Print Script</button>
       <button onclick="randomizeScript()" class="btn" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);color:white;font-weight:800">🎲 Randomize Scenario</button>
@@ -5070,10 +5092,13 @@ function getSlides14to27() { return `
         <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#dc2626,#b91c1c);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.6rem;font-weight:900;text-align:center;padding:.2rem">📙</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a"><a href="https://www.amazon.com/dp/1572246901" target="_blank" rel="noopener" style="color:#1d4ed8;text-decoration:underline">Walking on Eggshells</a></p><p style="font-size:.75rem;color:#374151;font-weight:700">Paul Mason — Understanding BPD relationships</p></div></div>
         <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#0369a1,#0284c7);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.55rem;font-weight:900;text-align:center;padding:.2rem;line-height:1.3">Book</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a"><a href="https://www.amazon.com/dp/1250075807" target="_blank" rel="noopener" style="color:#1d4ed8;text-decoration:underline">I Hate You — Don't Leave Me</a></p><p style="font-size:.75rem;color:#374151;font-weight:700">Jerold Kreisman — The definitive BPD clinical reference</p></div></div>
         <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#b45309,#92400e);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.55rem;font-weight:900;text-align:center;padding:.2rem;line-height:1.3">Book</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a"><a href="https://www.amazon.com/dp/0307589463" target="_blank" rel="noopener" style="color:#1d4ed8;text-decoration:underline">Lost Connections</a></p><p style="font-size:.75rem;color:#374151;font-weight:700">Johann Hari — Rethinking the roots of depression &amp; anxiety</p></div></div>
+        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#0f766e,#0d9488);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.55rem;font-weight:900;text-align:center;padding:.2rem;line-height:1.3">Book</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a"><a href="https://www.amazon.com/dp/0990184620" target="_blank" rel="noopener" style="color:#1d4ed8;text-decoration:underline">The Dialectical Behavior Therapy Skills Workbook</a></p><p style="font-size:.75rem;color:#374151;font-weight:700">McKay, Wood, Brantley — Practical DBT for patients &amp; clinicians</p></div></div>
+        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#4338ca,#3730a3);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.55rem;font-weight:900;text-align:center;padding:.2rem;line-height:1.3">Book</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a"><a href="https://www.amazon.com/dp/0805073329" target="_blank" rel="noopener" style="color:#1d4ed8;text-decoration:underline">Feeling Good: The New Mood Therapy</a></p><p style="font-size:.75rem;color:#374151;font-weight:700">David Burns — CBT foundations, widely used in psychiatric settings</p></div></div>
+        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#be185d,#9d174d);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.55rem;font-weight:900;text-align:center;padding:.2rem;line-height:1.3">Book</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a"><a href="https://www.amazon.com/dp/1572247088" target="_blank" rel="noopener" style="color:#1d4ed8;text-decoration:underline">Trauma-Sensitive Mindfulness</a></p><p style="font-size:.75rem;color:#374151;font-weight:700">David Treleaven — Safe mindfulness practices in clinical settings</p></div></div>
       </div>
     </div>
-    <div class="card p-6">
-      <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">Online Resources</h3>
+    <div class="card p-6" style="overflow-y:auto;max-height:600px">
+      <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">Online Resources &amp; Free Trainings</h3>
       <div style="display:flex;flex-direction:column;gap:.75rem">
         <div style="background:#dbeafe;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#1e40af">SAMHSA TIP 59 — Trauma-Informed Care</p><p style="font-size:.75rem;color:#1e40af;font-weight:700">samhsa.gov — Free, comprehensive clinical guide</p></div>
         <div style="background:#f0fdf4;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#166534">CPI (Crisis Prevention Institute)</p><p style="font-size:.75rem;color:#166534;font-weight:700">crisisprevention.com — Training & certification</p></div>
@@ -5085,6 +5110,15 @@ function getSlides14to27() { return `
         <div style="background:#f0f9ff;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#1e40af"><a href="https://www.apna.org" target="_blank" rel="noopener" style="color:#1e40af">APNA — Psychiatric Nurses Association</a></p><p style="font-size:.75rem;color:#1e40af;font-weight:700">apna.org — Free CE, clinical tools, practice resources</p></div>
         <div style="background:#fff7ed;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#92400e"><a href="https://www.jointcommission.org" target="_blank" rel="noopener" style="color:#92400e">The Joint Commission (TJC)</a></p><p style="font-size:.75rem;color:#92400e;font-weight:700">jointcommission.org — Behavioral health standards &amp; accreditation</p></div>
         <div style="background:#f0fdf4;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#14532d"><a href="https://www.crisistextline.org" target="_blank" rel="noopener" style="color:#14532d">Crisis Text Line</a></p><p style="font-size:.75rem;color:#14532d;font-weight:700">crisistextline.org — Text HOME to 741741 — staff &amp; patient resource</p></div>
+        <div style="background:#eff6ff;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#1e40af"><a href="https://www.mentalhealthfirstaid.org" target="_blank" rel="noopener" style="color:#1e40af">Mental Health First Aid</a></p><p style="font-size:.75rem;color:#1e40af;font-weight:700">mentalhealthfirstaid.org — FREE 8-hour certification for any staff level</p></div>
+        <div style="background:#fdf4ff;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#6b21a8"><a href="https://www.dhss.alaska.gov/dbh/Documents/Prevention/programs/spfsig/pdfs/QPRManual.pdf" target="_blank" rel="noopener" style="color:#6b21a8">QPR Suicide Prevention Training</a></p><p style="font-size:.75rem;color:#6b21a8;font-weight:700">Free online certification — Question, Persuade, Refer model</p></div>
+        <div style="background:#fff7ed;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#9a3412"><a href="https://www.traumainformedcare.chcs.org" target="_blank" rel="noopener" style="color:#9a3412">CHCS Trauma-Informed Care</a></p><p style="font-size:.75rem;color:#9a3412;font-weight:700">Free clinical guides, assessments &amp; implementation tools</p></div>
+        <div style="background:#f0f9ff;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#0369a1"><a href="https://www.dbtselfhelp.com" target="_blank" rel="noopener" style="color:#0369a1">DBT Self Help</a></p><p style="font-size:.75rem;color:#0369a1;font-weight:700">dbtselfhelp.com — FREE skills worksheets for staff teaching patients</p></div>
+        <div style="background:#ecfdf5;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#064e3b"><a href="https://www.actmindfully.com.au/free-stuff/" target="_blank" rel="noopener" style="color:#064e3b">ACT Mindfully — Free Resources</a></p><p style="font-size:.75rem;color:#064e3b;font-weight:700">Free ACT worksheets, psychoeducation &amp; clinical metaphors</p></div>
+        <div style="background:#fef3c7;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#92400e"><a href="https://www.hazeldenbettyford.org/articles/free-resources" target="_blank" rel="noopener" style="color:#92400e">Hazelden Betty Ford — Free Clinical Resources</a></p><p style="font-size:.75rem;color:#92400e;font-weight:700">Addiction &amp; dual diagnosis tools, videos &amp; staff guides</p></div>
+        <div style="background:#f8fafc;padding:.875rem;border-radius:.875rem;border:1px solid #e2e8f0"><p style="font-weight:800;font-size:.85rem;color:#1e293b"><a href="https://www.nctsn.org/resources/learning-center" target="_blank" rel="noopener" style="color:#1e293b">National Child Traumatic Stress Network</a></p><p style="font-size:.75rem;color:#475569;font-weight:700">nctsn.org — Trauma-focused CBT guides &amp; free e-learning modules</p></div>
+        <div style="background:#fef2f2;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#991b1b"><a href="https://www.sprc.org/resources-programs" target="_blank" rel="noopener" style="color:#991b1b">SPRC Suicide Prevention Resource Center</a></p><p style="font-size:.75rem;color:#991b1b;font-weight:700">sprc.org — FREE online courses, clinical tools &amp; staff training kits</p></div>
+        <div style="background:#f0fdf4;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#14532d"><a href="https://store.samhsa.gov/product/TIP-42-Substance-Use-Disorder-Treatment-for-People-With-Co-Occurring-Disorders/PEP20-02-01-004" target="_blank" rel="noopener" style="color:#14532d">SAMHSA TIP 42 — Co-Occurring Disorders</a></p><p style="font-size:.75rem;color:#14532d;font-weight:700">Free PDF download — dual diagnosis treatment guide</p></div>
       </div>
     </div>
   </div>
@@ -5101,7 +5135,7 @@ function getSlides14to27() { return `
     <div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.2);border-radius:1.25rem;padding:1.5rem">
       <div style="font-size:1.75rem;margin-bottom:.75rem;color:#c4b5fd;font-weight:900">◆</div>
       <h3 style="font-weight:900;color:#c4b5fd;font-size:.95rem;margin-bottom:.75rem;text-transform:uppercase">Signs of Compassion Fatigue</h3>
-      <ul style="font-size:.82rem;color:#a78bfa;line-height:2;font-weight:600">
+      <ul style="font-size:.82rem;color:#ddd6fe;line-height:2;font-weight:600">
         <li>Dreading going to work</li>
         <li>Emotional numbness toward patients</li>
         <li>Intrusive thoughts / nightmares</li>
@@ -5113,7 +5147,7 @@ function getSlides14to27() { return `
     <div style="background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);border-radius:1.25rem;padding:1.5rem">
       <div style="font-size:1.75rem;margin-bottom:.75rem;color:#6ee7b7;font-weight:900">✶</div>
       <h3 style="font-weight:900;color:#6ee7b7;font-size:.95rem;margin-bottom:.75rem;text-transform:uppercase">Recovery Strategies</h3>
-      <ul style="font-size:.82rem;color:#34d399;line-height:2;font-weight:600">
+      <ul style="font-size:.82rem;color:#a7f3d0;line-height:2;font-weight:600">
         <li>Debrief after difficult incidents</li>
         <li>Physical movement before/after shifts</li>
         <li>Name your emotions — don't suppress</li>
@@ -5125,7 +5159,7 @@ function getSlides14to27() { return `
     <div style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);border-radius:1.25rem;padding:1.5rem">
       <div style="font-size:1.75rem;margin-bottom:.75rem;color:#fde68a;font-weight:900">▲</div>
       <h3 style="font-weight:900;color:#fde68a;font-size:.95rem;margin-bottom:.75rem;text-transform:uppercase">When to Escalate</h3>
-      <ul style="font-size:.82rem;color:#fbbf24;line-height:2;font-weight:600">
+      <ul style="font-size:.82rem;color:#fde68a;line-height:2;font-weight:600">
         <li>Unable to separate work from personal</li>
         <li>Suicidal thoughts of your own</li>
         <li>Substance use to cope</li>
@@ -5152,7 +5186,7 @@ function getSlides14to27() { return `
   <div style="padding:2.5rem 2rem 1rem">
     <span class="badge" style="background:rgba(59,130,246,.16);color:#bfdbfe;border:1px solid rgba(59,130,246,.3);margin-bottom:1rem">Module 9 — Practice & Play</span>
     <h2 style="font-size:2rem;font-weight:900;color:white;font-family:Montserrat,sans-serif">Watch & Try: Do vs Don't</h2>
-    <p style="color:#cbd5e1;font-weight:600;margin-top:.4rem;font-size:.9rem">View example clips, then test yourself by matching the best (and worst) moves.</p>
+    <p style="color:#cbd5e1;font-weight:600;margin-top:.4rem;font-size:.9rem">Watch real clinical examples, then test your decision-making skills in each scenario.</p>
   </div>
   <div style="padding:0 2rem 2rem;display:grid;grid-template-columns:1.25fr 1fr;gap:1.25rem;align-items:start;flex-wrap:wrap">
     <div class="card p-5" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1.25rem">
@@ -5177,7 +5211,7 @@ function getSlides14to27() { return `
       <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-bottom:.8rem">
         <div>
           <p style="margin:0;font-size:.78rem;color:#93c5fd;font-weight:800;letter-spacing:.08em;text-transform:uppercase">Mini-game</p>
-          <h3 style="margin:.15rem 0 0;font-size:1.1rem;font-weight:900;color:white">Match the Do vs Don't</h3>
+          <h3 style="margin:.15rem 0 0;font-size:1.1rem;font-weight:900;color:white">Best Response Challenge</h3>
         </div>
         <button onclick="resetMatchGame()" style="border:none;background:#0ea5e9;color:white;font-weight:900;padding:.55rem .85rem;border-radius:.75rem;cursor:pointer">Reset</button>
       </div>
@@ -5257,7 +5291,17 @@ function getSlides14to27() { return `
         <p style="margin:0 0 .35rem;font-size:.8rem;color:#93c5fd;font-weight:800;letter-spacing:.08em;text-transform:uppercase">Micro-Aggression Quiz</p>
         <h3 style="margin:0 0 .65rem;font-size:1.1rem;font-weight:900;color:white">Identify the Micro-Aggression</h3>
         <div style="background:rgba(15,23,42,.6);border:1px solid rgba(255,255,255,.08);border-radius:1rem;padding:1rem;display:flex;flex-direction:column;gap:.75rem">
-          <p style="font-size:.8rem;color:#94a3b8;font-weight:600;margin:0">Read each clinical statement. Is it a micro-aggression or an appropriate response?</p>
+          <p style="font-size:.8rem;color:#94a3b8;font-weight:600;margin:0">Observe the body language context, then judge the staff statement below.</p>
+          <div id="micro-visual" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:.875rem;padding:.75rem 1rem;display:none;gap:.75rem;align-items:start;flex-direction:column">
+            <div style="display:flex;align-items:center;gap:.75rem">
+              <div id="micro-emoji" style="font-size:2.5rem;flex-shrink:0">👤</div>
+              <div style="flex:1">
+                <p style="font-size:.72rem;font-weight:800;color:#93c5fd;text-transform:uppercase;letter-spacing:.06em;margin:0 0 .2rem">Scene Context</p>
+                <p id="micro-context" style="font-size:.8rem;color:#cbd5e1;font-weight:600;margin:0;line-height:1.5">Loading...</p>
+              </div>
+            </div>
+            <div id="micro-pose" style="font-size:.72rem;color:#64748b;font-style:italic;font-weight:700;padding:.35rem .75rem;background:rgba(255,255,255,.04);border-radius:.5rem;width:100%;box-sizing:border-box"></div>
+          </div>
           <div id="micro-statement" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:.875rem;padding:1rem 1.25rem;font-size:.9rem;color:#e2e8f0;font-weight:700;min-height:72px;display:flex;align-items:center;line-height:1.5">Press Start Quiz to begin.</div>
           <div id="micro-feedback" style="font-size:.8rem;font-weight:700;border-radius:.75rem;min-height:0"></div>
           <div style="display:flex;align-items:center;gap:.6rem">
@@ -5302,13 +5346,12 @@ function getSlides14to27() { return `
             <div style="color:#a7f3d0;font-weight:800;font-size:.9rem">Hazards found: <span id="hazard-found">0</span>/5</div>
             <button class="btn btn-primary" onclick="startHazardScan()">Start scan</button>
           </div>
-          <div id="hazard-wrap" style="position:relative;width:100%;padding-top:75%;border-radius:1rem;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#0b1224">
-            <img src="hazards.png" alt="Patient room environment" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.85)">
-            <button class="hazard-dot" data-hid="hx" style="position:absolute;top:22%;left:38%;width:52px;height:52px;border-radius:50%;border:2px solid #fcd34d;background:rgba(251,191,36,.22);color:#fcd34d;font-weight:900;cursor:pointer;display:none" onclick="tapHazard('hx')">!</button>
-            <button class="hazard-dot" data-hid="hy" style="position:absolute;top:48%;left:62%;width:52px;height:52px;border-radius:50%;border:2px solid #fcd34d;background:rgba(251,191,36,.22);color:#fcd34d;font-weight:900;cursor:pointer;display:none" onclick="tapHazard('hy')">!</button>
-            <button class="hazard-dot" data-hid="hz" style="position:absolute;top:68%;left:24%;width:52px;height:52px;border-radius:50%;border:2px solid #fcd34d;background:rgba(251,191,36,.22);color:#fcd34d;font-weight:900;cursor:pointer;display:none" onclick="tapHazard('hz')">!</button>
-            <button class="hazard-dot" data-hid="ha" style="position:absolute;top:30%;left:78%;width:52px;height:52px;border-radius:50%;border:2px solid #fcd34d;background:rgba(251,191,36,.22);color:#fcd34d;font-weight:900;cursor:pointer;display:none" onclick="tapHazard('ha')">!</button>
-            <button class="hazard-dot" data-hid="hb" style="position:absolute;top:78%;left:55%;width:52px;height:52px;border-radius:50%;border:2px solid #fcd34d;background:rgba(251,191,36,.22);color:#fcd34d;font-weight:900;cursor:pointer;display:none" onclick="tapHazard('hb')">!</button>
+          <div id="hazard-wrap" style="position:relative;width:100%;padding-top:75%;border-radius:1rem;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#0b1224;cursor:crosshair" onclick="handleHazardTap(event)">
+            <img src="hazards.png" alt="Patient room environment" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.85);pointer-events:none">
+            <div id="hazard-markers" style="position:absolute;inset:0;pointer-events:none"></div>
+            <div id="hazard-overlay-msg" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);pointer-events:none">
+              <p style="color:#fde68a;font-weight:900;font-size:1rem;text-align:center;padding:1rem">🔍 Press Start Scan, then tap where you see hazards in the room</p>
+            </div>
           </div>
           <div id="hazard-status" style="color:#cbd5e1;font-weight:700;font-size:.88rem">Press start to reveal hazards.</div>
           <img id="hazard-fail-img" src="failure.png" alt="De-escalation failure" style="width:100%;border-radius:.75rem;display:none;opacity:.92;margin-top:.1rem">
@@ -6962,6 +7005,17 @@ function _loadMicroQ() {
   if(fb) { fb.textContent=''; fb.style.padding='0'; fb.style.background='transparent'; }
   if(status) status.textContent = (window._microQ+1)+' / '+stmts.length;
   if(meter) meter.style.width = (window._microQ/stmts.length*100)+'%';
+  // Show visual body language context
+  const visual = document.getElementById('micro-visual');
+  const emojiEl = document.getElementById('micro-emoji');
+  const ctxEl = document.getElementById('micro-context');
+  const poseEl = document.getElementById('micro-pose');
+  if(visual && q.ctx) {
+    visual.style.display = 'flex';
+    if(emojiEl) emojiEl.textContent = q.img || '👤';
+    if(ctxEl) ctxEl.textContent = q.ctx;
+    if(poseEl) poseEl.textContent = q.pose || '';
+  }
 }
 function answerMicro(isMicroAnswer) {
   if(!window._microActive || window._microQ >= (window._microStatements||[]).length) return;
@@ -6985,20 +7039,27 @@ function answerMicro(isMicroAnswer) {
 function tapIntervene() { answerMicro(true); }
 function stopVitalsDrill() { window._microActive = false; }
 
+// Hazard positions as % of image width/height (left, top)
+const _HAZARDS = [
+  {id:'hx', x:38, y:22, label:'Ligature risk (cord near curtain)'},
+  {id:'hy', x:62, y:48, label:'Sharp object accessible on surface'},
+  {id:'hz', x:24, y:68, label:'Trip hazard (cord on floor)'},
+  {id:'ha', x:78, y:30, label:'Unsecured IV pole / sharps'},
+  {id:'hb', x:55, y:78, label:'Blocked exit / furniture position'},
+];
+let _hazardFoundIds = new Set();
+
 function startHazardScan() {
   endHazardScan('reset');
   hazardTimeLeft = 30;
   hazardsFound = 0;
-  document.querySelectorAll('.hazard-dot').forEach(dot => {
-    dot.style.display = 'block';
-    dot.style.background = 'transparent';
-    dot.style.border = 'none';
-    dot.style.color = 'transparent';
-    dot.style.cursor = 'crosshair';
-    dot.disabled = false;
-  });
+  _hazardFoundIds = new Set();
+  const markers = document.getElementById('hazard-markers');
+  if(markers) markers.innerHTML = '';
+  const overlay = document.getElementById('hazard-overlay-msg');
+  if(overlay) overlay.style.display = 'none';
   const status = document.getElementById('hazard-status');
-  if(status) status.textContent = 'Scan the room and tap hazards.';
+  if(status) status.textContent = 'Tap anywhere you spot a hazard in the room.';
   const hfimgS = document.getElementById('hazard-fail-img');
   const hsimgS = document.getElementById('hazard-success-img');
   if(hfimgS) hfimgS.style.display = 'none';
@@ -7006,60 +7067,91 @@ function startHazardScan() {
   updateHazardUI();
   hazardTimer = setInterval(()=>{
     hazardTimeLeft -= 1;
-    if(hazardTimeLeft <= 0) {
-      endHazardScan('time');
-    } else {
-      updateHazardUI();
-    }
+    if(hazardTimeLeft <= 0) endHazardScan('time');
+    else updateHazardUI();
   }, 1000);
 }
 
-function tapHazard(hid) {
+function handleHazardTap(evt) {
   if(!hazardTimer) {
     const status = document.getElementById('hazard-status');
-    if(status) status.textContent = 'Press Start Scan first, then tap hazards.';
+    if(status) status.textContent = 'Press Start Scan first, then tap where you see hazards.';
     return;
   }
-  const dot = Array.from(document.querySelectorAll('.hazard-dot')).find(d=>d.dataset.hid===hid);
-  if(dot&&!dot.disabled) { dot.style.background='rgba(251,191,36,.35)'; dot.style.border='2px solid #fcd34d'; dot.style.color='#fcd34d'; }
-  if(dot && dot.style.display !== 'none') {
-    dot.style.display = 'none';
-    hazardsFound += 1;
-    updateHazardUI();
-    if(hazardsFound >= 5) endHazardScan('win');
+  const wrap = document.getElementById('hazard-wrap');
+  const rect = wrap.getBoundingClientRect();
+  const wrapH = wrap.offsetHeight || rect.height;
+  // padding-top:75% means actual height = width * 0.75; use offsetHeight for accuracy
+  const clickX = (evt.clientX - rect.left) / rect.width * 100;
+  const clickY = (evt.clientY - rect.top) / wrapH * 100;
+
+  const RADIUS = 11; // % tolerance
+  for(const h of _HAZARDS) {
+    if(_hazardFoundIds.has(h.id)) continue;
+    const dist = Math.sqrt(Math.pow(clickX - h.x, 2) + Math.pow(clickY - h.y, 2));
+    if(dist < RADIUS) {
+      _hazardFoundIds.add(h.id);
+      hazardsFound = _hazardFoundIds.size;
+      // Place green checkmark at hazard position
+      const markers = document.getElementById('hazard-markers');
+      if(markers) {
+        const mk = document.createElement('div');
+        mk.style.cssText = `position:absolute;left:${h.x}%;top:${h.y}%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(34,197,94,.85);border:2px solid #22c55e;color:white;font-size:1.3rem;display:flex;align-items:center;justify-content:center;font-weight:900;pointer-events:none;box-shadow:0 0 12px rgba(34,197,94,.6)`;
+        mk.textContent = '✓';
+        mk.title = h.label;
+        markers.appendChild(mk);
+      }
+      const status = document.getElementById('hazard-status');
+      if(status) status.textContent = `Found: ${h.label}`;
+      updateHazardUI();
+      if(hazardsFound >= 5) { endHazardScan('win'); return; }
+      return;
+    }
+  }
+  // Miss — show brief red X at tap location
+  const markers = document.getElementById('hazard-markers');
+  if(markers) {
+    const miss = document.createElement('div');
+    miss.style.cssText = `position:absolute;left:${clickX}%;top:${clickY}%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;background:rgba(239,68,68,.5);color:#fca5a5;font-size:.9rem;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:opacity .6s`;
+    miss.textContent = '✗';
+    markers.appendChild(miss);
+    setTimeout(()=>{ miss.style.opacity='0'; setTimeout(()=>miss.remove(),600); }, 400);
   }
 }
 
 function endHazardScan(state='reset') {
-  if(hazardTimer) {
-    clearInterval(hazardTimer);
-    hazardTimer = null;
-  }
+  if(hazardTimer) { clearInterval(hazardTimer); hazardTimer = null; }
   const status = document.getElementById('hazard-status');
   const hfimg = document.getElementById('hazard-fail-img');
   const hsimg = document.getElementById('hazard-success-img');
+  const overlay = document.getElementById('hazard-overlay-msg');
   if(state === 'win') {
-    if(status) status.textContent = 'Nice scan — all hazards cleared.';
+    if(status) status.textContent = '✓ All hazards cleared! Great environmental scan.';
     if(hfimg) hfimg.style.display = 'none';
     if(hsimg) hsimg.style.display = 'block';
     drillStats.hazardAttempts += 1;
     drillStats.hazardWins += 1;
     window._saveUserData && window._saveUserData({ drillStats }).catch(()=>{});
-    checkLabComplete();
+    checkLabComplete && checkLabComplete();
   } else if(state === 'time') {
     hazardTimeLeft = 0;
-    if(status) status.textContent = 'Time up — review what you missed and restart.';
+    if(status) status.textContent = `Time up — found ${hazardsFound}/5. Missed: ${_HAZARDS.filter(h=>!_hazardFoundIds.has(h.id)).map(h=>h.label).join(', ')||'none'}.`;
     if(hfimg) hfimg.style.display = 'block';
     if(hsimg) hsimg.style.display = 'none';
     drillStats.hazardAttempts += 1;
     window._saveUserData && window._saveUserData({ drillStats }).catch(()=>{});
-    checkLabComplete();
+    checkLabComplete && checkLabComplete();
   } else {
-    if(status) status.textContent = 'Press start to reveal hazards.';
+    hazardTimeLeft = 30;
+    hazardsFound = 0;
+    _hazardFoundIds = new Set();
+    if(status) status.textContent = 'Press start to scan. Tap where you spot hazards.';
     if(hfimg) hfimg.style.display = 'none';
     if(hsimg) hsimg.style.display = 'none';
+    const markers = document.getElementById('hazard-markers');
+    if(markers) markers.innerHTML = '';
+    if(overlay) overlay.style.display = 'flex';
   }
-  document.querySelectorAll('.hazard-dot').forEach(dot => dot.style.display = 'none');
   updateHazardUI();
 }
 
@@ -10352,9 +10444,11 @@ async function submitScenario() {
 
 // --- Role-Play Script Builder -----------------------------
 function buildScript() {
-  const topic = document.getElementById('slide-script-topic').value.trim() || 'Medication Refusal';
+  const topicEl = document.getElementById('slide-script-topic');
+  const topic = topicEl ? topicEl.options[topicEl.selectedIndex].text : 'Medication Refusal';
   const dx    = document.getElementById('script-dx').value;
-  const level = document.getElementById('script-level').value;
+  const _levels = ['basic','intermediate','advanced'];
+  const level = _levels[Math.floor(Math.random() * _levels.length)];
   const dxMap = {general:'General',autism:'Autism Spectrum Disorder',schizophrenia:'Schizophrenia',bpd:'Borderline Personality Disorder',ptsd:'PTSD',bipolar:'Bipolar Disorder (Manic)',medication_refusal:'Medication Refusal'};
   const dxLabel = dxMap[dx]||dx;
   const script = `
@@ -12063,6 +12157,8 @@ thead tr{background:#f1f5f9}th{padding:.875rem 1rem;text-align:left;font-weight:
    !important beats inline styles per CSS cascade rules. */
 .slide[style*="background:#f8fafc"],
 .slide[style*="background:white"],
+.slide[style*="background:#fff5f5"],
+.slide[style*="background:#fffbf0"],
 .slide[style*="background: white"],
 .slide[style*="background:#ffffff"] {
   background: #0f172a !important;
@@ -12436,16 +12532,18 @@ function toggleSidebar(){
 
 // Micro-aggression quiz statements
 window._microStatements = [
-  {t:`"You seem really high-functioning for someone with schizophrenia."`,m:true,f:`Implies low functioning is the default — separates this person from others based on diagnosis.`},
-  {t:`"I can see this has been really hard for you. Let's find a quieter space."`,m:false,f:`Validates feelings and offers a de-escalating action. This is appropriate clinical communication.`},
-  {t:`"You're bipolar — of course you're upset about everything."`,m:true,f:`Attributes normal emotion to a diagnosis. Dismissive and reduces the person to their label.`},
-  {t:`"I'm going to stay right here with you. Take your time."`,m:false,f:`Calm presence with no pressure — signals safety and patience. Ideal de-escalation posture.`},
-  {t:`"Where are you really from — originally?"`,m:true,f:`Implies the person does not belong. Often racially coded and alienating.`},
-  {t:`"What would help you feel safer right now?"`,m:false,f:`Patient-centered, collaborative, and empowering. Excellent crisis response language.`},
-  {t:`"We see this a lot with your diagnosis. It's just the illness talking."`,m:true,f:`Dismisses individual experience and dehumanizes. Never appropriate in clinical communication.`},
-  {t:`"You're not sleeping. Would you like some company for a few minutes?"`,m:false,f:`Compassionate, non-intrusive offer of connection. Grounding and clinically sound.`},
-  {t:`"You're the most aggressive patient we've had all week."`,m:true,f:`Comparative labeling that inflames rather than de-escalates. Unprofessional.`},
-  {t:`"I notice your hands are shaking. Would some water help?"`,m:false,f:`Observant, practical, and shows care without judgment. Builds therapeutic alliance.`},
+  {t:`"You seem really high-functioning for someone with schizophrenia."`,m:true,f:`Implies low functioning is the default — separates this person from others based on diagnosis.`,ctx:`Staff says this while looking down at clipboard, not making eye contact. Patient's body stiffens.`,img:`😐`,pose:`Staff posture: turned sideways, arms crossed, glancing away`},
+  {t:`"I can see this has been really hard for you. Let's find a quieter space."`,m:false,f:`Validates feelings and offers a de-escalating action. This is appropriate clinical communication.`,ctx:`Staff crouches slightly to be at patient's eye level, open palms visible, gentle eye contact.`,img:`🙏`,pose:`Staff posture: open, leaning in slightly, calm hands at sides`},
+  {t:`"You're bipolar — of course you're upset about everything."`,m:true,f:`Attributes normal emotion to a diagnosis. Dismissive and reduces the person to their label.`,ctx:`Staff rolls eyes slightly, sighs. Patient pacing intensifies. Hands becoming fists.`,img:`😤`,pose:`Staff posture: standing back with hands on hips, dismissive head tilt`},
+  {t:`"I'm going to stay right here with you. Take your time."`,m:false,f:`Calm presence with no pressure — signals safety and patience. Ideal de-escalation posture.`,ctx:`Staff pulls chair to patient's level, sits calmly. Patient's breathing begins to slow.`,img:`🤝`,pose:`Staff posture: seated, relaxed, facing patient directly, no barriers`},
+  {t:`"Where are you really from — originally?"`,m:true,f:`Implies the person does not belong. Often racially coded and alienating.`,ctx:`Patient has just arrived. Staff tilts head and narrows eyes while asking.`,img:`🤨`,pose:`Staff posture: leaning on counter, quizzical expression, arms loosely crossed`},
+  {t:`"What would help you feel safer right now?"`,m:false,f:`Patient-centered, collaborative, and empowering. Excellent crisis response language.`,ctx:`Staff turns body fully toward patient, lowers voice. Patient makes brief eye contact.`,img:`💬`,pose:`Staff posture: open stance, 3-foot distance, eye contact, soft expression`},
+  {t:`"We see this a lot with your diagnosis. It's just the illness talking."`,m:true,f:`Dismisses individual experience and dehumanizes. Never appropriate in clinical communication.`,ctx:`Staff waves hand dismissively, turns to leave. Patient's face shifts from distress to anger.`,img:`🙄`,pose:`Staff posture: walking away, back partially to patient, hand gesturing dismissively`},
+  {t:`"You're not sleeping. Would you like some company for a few minutes?"`,m:false,f:`Compassionate, non-intrusive offer of connection. Grounding and clinically sound.`,ctx:`Staff knocks gently, leans in doorway with soft expression. Patient sitting alone in dark.`,img:`🌙`,pose:`Staff posture: relaxed in doorway, no intrusion, calm face, hands open`},
+  {t:`"You're the most aggressive patient we've had all week."`,m:true,f:`Comparative labeling that inflames rather than de-escalates. Unprofessional.`,ctx:`Said loudly at the nurses station within earshot of other patients. Staff shaking head.`,img:`😠`,pose:`Staff posture: standing tall, arms crossed tight, raised voice, pointing finger`},
+  {t:`"I notice your hands are shaking. Would some water help?"`,m:false,f:`Observant, practical, and shows care without judgment. Builds therapeutic alliance.`,ctx:`Staff moves slowly toward patient, kneels at eye level, speaking softly.`,img:`💧`,pose:`Staff posture: crouched to patient level, extended hand holding cup, soft eye contact`},
+  {t:`"Calm down. You're overreacting."`,m:true,f:`Telling someone to calm down rarely works and often escalates. It invalidates the person's experience.`,ctx:`Staff stands rigid, voice flat. Patient pacing accelerates and volume increases.`,img:`🚫`,pose:`Staff posture: stiff upright stance, arms raised in "stop" gesture, flat affect`},
+  {t:`"I hear that you're really scared. I'm not going anywhere."`,m:false,f:`Reflects emotion and provides safety through presence. Anchors patient in the present moment.`,ctx:`Staff sits nearby without touching, maintains soft eye contact, breathing visibly steady.`,img:`❤️`,pose:`Staff posture: seated close but not crowding, still, calm, empathetic expression`},
 ];
 window._microQ = 0;
 window._microCorrect = 0;
