@@ -545,7 +545,7 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 .btn-info:hover{box-shadow:0 10px 24px rgba(96,165,250,.32)}
 .lab-tab-btn{padding:.65rem 1.1rem;font-size:.85rem;font-weight:800;border:none;cursor:pointer;border-bottom:3px solid transparent;color:#64748b;background:transparent;margin-bottom:-2px;transition:color .2s,border-color .2s}
 .lab-tab-btn.active{color:#C9A84C;border-bottom-color:#C9A84C}
-.input-field{width:100%;padding:.875rem 1rem;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:.82rem;font-family:inherit;font-size:1.05rem;font-weight:600;outline:none;transition:border-color .2s,background .2s;color:#0f172a}
+.input-field{width:100%;padding:.875rem 1rem;background:#f8fafc;border:1.5px solid #94a3b8;border-radius:.82rem;font-family:inherit;font-size:1.05rem;font-weight:600;outline:none;transition:border-color .2s,background .2s;color:#0f172a}
 .input-field:focus{border-color:#60a5fa;background:#fff}
 
 /* Core app chrome in landing style */
@@ -4475,6 +4475,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 //  SLIDES 14-27 injected dynamically to avoid file limits
 // -----------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function() {
+  loadBranchScenario();
   const app = document.getElementById('app');
   app.insertAdjacentHTML('beforeend', getSlides14to27());
   window._slidesReady = true;
@@ -4706,7 +4707,7 @@ function getSlides14to27() { return `
     <div class="card p-6">
       <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">📋 C-SSRS Key Questions</h3>
       <div style="display:flex;flex-direction:column;gap:.875rem">
-        <div style="background:rgba(254,226,226,.15);padding:.875rem;border-radius:.875rem;border-left:4px solid #ef4444">
+        <div style="background:#fee2e2;padding:.875rem;border-radius:.875rem;border-left:4px solid #ef4444">
           <p style="font-size:.72rem;font-weight:900;color:#dc2626;text-transform:uppercase;margin-bottom:.35rem">Ideation</p>
           <p style="font-size:.82rem;color:#7f1d1d;font-style:italic;font-weight:600">"Are you having any thoughts of killing yourself or wishing you were dead?"</p>
         </div>
@@ -4968,11 +4969,11 @@ function getSlides14to27() { return `
   <div style="padding:0 2rem 2rem;display:grid;grid-template-columns:1fr 2fr;gap:1.25rem">
     <div style="display:flex;flex-direction:column;gap:.875rem">
       <div>
-        <label style="font-size:.75rem;font-weight:900;color:#64748b;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.5rem">Scenario Topic</label>
+        <label style="font-size:.75rem;font-weight:900;color:#1e293b;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.5rem">Scenario Topic</label>
         <input id="slide-script-topic" class="input-field" placeholder="e.g., Medication refusal">
       </div>
       <div>
-        <label style="font-size:.75rem;font-weight:900;color:#64748b;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.5rem">Diagnosis Context</label>
+        <label style="font-size:.75rem;font-weight:900;color:#1e293b;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.5rem">Diagnosis Context</label>
         <select id="script-dx" class="input-field">
           <option value="general">General / Any</option>
           <option value="autism">Autism</option>
@@ -4984,7 +4985,7 @@ function getSlides14to27() { return `
         </select>
       </div>
       <div>
-        <label style="font-size:.75rem;font-weight:900;color:#64748b;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.5rem">Difficulty</label>
+        <label style="font-size:.75rem;font-weight:900;color:#1e293b;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.5rem">Difficulty</label>
         <select id="script-level" class="input-field">
           <option value="basic">Basic — New Staff</option>
           <option value="intermediate">Intermediate</option>
@@ -4992,7 +4993,10 @@ function getSlides14to27() { return `
         </select>
       </div>
       <button onclick="buildScript()" class="btn btn-success">📝 Build Script</button>
-      <button onclick="printScript()" class="btn" style="background:#f1f5f9;color:#64748b">🖨️ Print Script</button>
+      <button onclick="printScript()" class="btn" style="background:#1e293b;color:#f8fafc;font-weight:800">🖨️ Print Script</button>
+      <button onclick="randomizeScript()" class="btn" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);color:white;font-weight:800">🎲 Randomize Scenario</button>
+      <button id="mic-btn" onclick="toggleMic()" class="btn" style="background:#0f766e;color:white;font-weight:800" data-active="0">🎤 Record Response</button>
+      <div id="mic-transcript" style="background:#f0fdfa;border:1px solid #99f6e4;border-radius:.75rem;padding:.75rem;font-size:.78rem;color:#134e4a;font-weight:600;min-height:48px;display:none;white-space:pre-wrap"></div>
     </div>
     <div id="slide-script-output" style="background:#0f172a;border-radius:1.5rem;padding:1.5rem;font-family:'Courier New',monospace;font-size:.82rem;line-height:1.8;color:#4ade80;min-height:400px;white-space:pre-wrap;overflow-y:auto">
 <span style="color:#64748b;font-style:normal">// Select options and click Build Script to generate a training scenario...</span>
@@ -5050,7 +5054,7 @@ function getSlides14to27() { return `
 <!-- SLIDE 25 — RESOURCES & RECOMMENDED READING -->
 <div class="slide" style="background:#f8fafc;padding-bottom:5rem">
   <div style="padding:2.5rem 2rem 1rem">
-    <span class="badge" style="background:#fef3c7;color:#fbbf24;margin-bottom:1rem">Module 8 — Continued Learning</span>
+    <span class="badge" style="background:#fef3c7;color:#b45309;margin-bottom:1rem">Module 8 — Continued Learning</span>
     <h2 style="font-size:2rem;font-weight:900;color:#0f172a;font-family:Montserrat,sans-serif">📖 Resources & Recommended Reading</h2>
     <p style="color:#64748b;font-weight:600;margin-top:.4rem;font-size:.9rem">Deepen your expertise. These are the definitive resources in psychiatric crisis care.</p>
   </div>
@@ -5058,20 +5062,27 @@ function getSlides14to27() { return `
     <div class="card p-6">
       <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">Essential Books</h3>
       <div style="display:flex;flex-direction:column;gap:.875rem">
-        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#2563eb,#1d4ed8);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.6rem;font-weight:900;text-align:center;padding:.2rem">📘</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a">The Body Keeps the Score</p><p style="font-size:.75rem;color:#64748b">Bessel van der Kolk — Essential trauma neuroscience</p></div></div>
-        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#059669,#047857);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.6rem;font-weight:900;text-align:center;padding:.2rem">📗</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a">DBT Skills Training Manual</p><p style="font-size:.75rem;color:#64748b">Marsha Linehan — The BPD treatment bible</p></div></div>
-        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#7c3aed,#6d28d9);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.6rem;font-weight:900;text-align:center;padding:.2rem">📕</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a">An Unquiet Mind</p><p style="font-size:.75rem;color:#64748b">Kay Redfield Jamison — Bipolar from the inside</p></div></div>
-        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#dc2626,#b91c1c);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.6rem;font-weight:900;text-align:center;padding:.2rem">📙</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a">Walking on Eggshells</p><p style="font-size:.75rem;color:#64748b">Paul Mason — Understanding BPD relationships</p></div></div>
+        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#2563eb,#1d4ed8);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.6rem;font-weight:900;text-align:center;padding:.2rem">📘</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a"><a href="https://www.amazon.com/dp/0143127748" target="_blank" rel="noopener" style="color:#1d4ed8;text-decoration:underline">The Body Keeps the Score</a></p><p style="font-size:.75rem;color:#374151;font-weight:700">Bessel van der Kolk — Essential trauma neuroscience</p></div></div>
+        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#059669,#047857);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.6rem;font-weight:900;text-align:center;padding:.2rem">📗</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a"><a href="https://www.amazon.com/dp/1462516998" target="_blank" rel="noopener" style="color:#1d4ed8;text-decoration:underline">DBT Skills Training Manual</a></p><p style="font-size:.75rem;color:#374151;font-weight:700">Marsha Linehan — The BPD treatment bible</p></div></div>
+        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#7c3aed,#6d28d9);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.6rem;font-weight:900;text-align:center;padding:.2rem">📕</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a"><a href="https://www.amazon.com/dp/0679763309" target="_blank" rel="noopener" style="color:#1d4ed8;text-decoration:underline">An Unquiet Mind</a></p><p style="font-size:.75rem;color:#374151;font-weight:700">Kay Redfield Jamison — Bipolar from the inside</p></div></div>
+        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#dc2626,#b91c1c);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.6rem;font-weight:900;text-align:center;padding:.2rem">📙</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a"><a href="https://www.amazon.com/dp/1572246901" target="_blank" rel="noopener" style="color:#1d4ed8;text-decoration:underline">Walking on Eggshells</a></p><p style="font-size:.75rem;color:#374151;font-weight:700">Paul Mason — Understanding BPD relationships</p></div></div>
+        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#0369a1,#0284c7);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.55rem;font-weight:900;text-align:center;padding:.2rem;line-height:1.3">Book</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a"><a href="https://www.amazon.com/dp/1250075807" target="_blank" rel="noopener" style="color:#1d4ed8;text-decoration:underline">I Hate You — Don't Leave Me</a></p><p style="font-size:.75rem;color:#374151;font-weight:700">Jerold Kreisman — The definitive BPD clinical reference</p></div></div>
+        <div style="display:flex;gap:.875rem;align-items:start"><div style="width:44px;height:56px;background:linear-gradient(135deg,#b45309,#92400e);border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:white;font-size:.55rem;font-weight:900;text-align:center;padding:.2rem;line-height:1.3">Book</div><div><p style="font-weight:800;font-size:.85rem;color:#0f172a"><a href="https://www.amazon.com/dp/0307589463" target="_blank" rel="noopener" style="color:#1d4ed8;text-decoration:underline">Lost Connections</a></p><p style="font-size:.75rem;color:#374151;font-weight:700">Johann Hari — Rethinking the roots of depression &amp; anxiety</p></div></div>
       </div>
     </div>
     <div class="card p-6">
       <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">Online Resources</h3>
       <div style="display:flex;flex-direction:column;gap:.75rem">
-        <div style="background:rgba(219,234,254,.12);padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#1e40af">SAMHSA TIP 59 — Trauma-Informed Care</p><p style="font-size:.75rem;color:#3b82f6">samhsa.gov — Free, comprehensive clinical guide</p></div>
-        <div style="background:#f0fdf4;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#166534">CPI (Crisis Prevention Institute)</p><p style="font-size:.75rem;color:#22c55e">crisisprevention.com — Training & certification</p></div>
+        <div style="background:#dbeafe;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#1e40af">SAMHSA TIP 59 — Trauma-Informed Care</p><p style="font-size:.75rem;color:#1e40af;font-weight:700">samhsa.gov — Free, comprehensive clinical guide</p></div>
+        <div style="background:#f0fdf4;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#166534">CPI (Crisis Prevention Institute)</p><p style="font-size:.75rem;color:#166534;font-weight:700">crisisprevention.com — Training & certification</p></div>
         <div style="background:#faf5ff;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#5b21b6">NAMI — National Alliance on Mental Illness</p><p style="font-size:.75rem;color:#7c3aed">nami.org — Family education & peer support</p></div>
-        <div style="background:rgba(255,237,213,.12);padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#9a3412">988 Suicide & Crisis Lifeline</p><p style="font-size:.75rem;color:#f97316">Call or text 988 — Clinical guidance available</p></div>
-        <div style="background:#f0f9ff;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#075985">Zero Suicide Institute</p><p style="font-size:.75rem;color:#0284c7">zerosuicide.com — Staff training certification</p></div>
+        <div style="background:#ffedd5;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#9a3412">988 Suicide & Crisis Lifeline</p><p style="font-size:.75rem;color:#9a3412;font-weight:700">Call or text 988 — Clinical guidance available</p></div>
+        <div style="background:#f0f9ff;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#075985"><a href="https://zerosuicide.edc.org" target="_blank" rel="noopener" style="color:#075985">Zero Suicide Institute</a></p><p style="font-size:.75rem;color:#075985;font-weight:700">zerosuicide.edc.org — Free staff training &amp; certification</p></div>
+        <div style="background:#fdf4ff;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#6b21a8"><a href="https://cssrs.columbia.edu" target="_blank" rel="noopener" style="color:#6b21a8">Columbia Protocol (C-SSRS)</a></p><p style="font-size:.75rem;color:#6b21a8;font-weight:700">cssrs.columbia.edu — Free training &amp; printable scales</p></div>
+        <div style="background:#f0fdf4;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#166534"><a href="https://www.sprc.org" target="_blank" rel="noopener" style="color:#166534">Suicide Prevention Resource Center</a></p><p style="font-size:.75rem;color:#166534;font-weight:700">sprc.org — Evidence-based tools &amp; free CEU courses</p></div>
+        <div style="background:#f0f9ff;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#1e40af"><a href="https://www.apna.org" target="_blank" rel="noopener" style="color:#1e40af">APNA — Psychiatric Nurses Association</a></p><p style="font-size:.75rem;color:#1e40af;font-weight:700">apna.org — Free CE, clinical tools, practice resources</p></div>
+        <div style="background:#fff7ed;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#92400e"><a href="https://www.jointcommission.org" target="_blank" rel="noopener" style="color:#92400e">The Joint Commission (TJC)</a></p><p style="font-size:.75rem;color:#92400e;font-weight:700">jointcommission.org — Behavioral health standards &amp; accreditation</p></div>
+        <div style="background:#f0fdf4;padding:.875rem;border-radius:.875rem"><p style="font-weight:800;font-size:.85rem;color:#14532d"><a href="https://www.crisistextline.org" target="_blank" rel="noopener" style="color:#14532d">Crisis Text Line</a></p><p style="font-size:.75rem;color:#14532d;font-weight:700">crisistextline.org — Text HOME to 741741 — staff &amp; patient resource</p></div>
       </div>
     </div>
   </div>
@@ -5086,7 +5097,7 @@ function getSlides14to27() { return `
   </div>
   <div style="padding:0 2rem 2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem">
     <div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.2);border-radius:1.25rem;padding:1.5rem">
-      <div style="font-size:2rem;margin-bottom:.75rem">😓</div>
+      <div style="font-size:1.75rem;margin-bottom:.75rem;color:#c4b5fd;font-weight:900">◆</div>
       <h3 style="font-weight:900;color:#c4b5fd;font-size:.95rem;margin-bottom:.75rem;text-transform:uppercase">Signs of Compassion Fatigue</h3>
       <ul style="font-size:.82rem;color:#a78bfa;line-height:2;font-weight:600">
         <li>Dreading going to work</li>
@@ -5098,7 +5109,7 @@ function getSlides14to27() { return `
       </ul>
     </div>
     <div style="background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);border-radius:1.25rem;padding:1.5rem">
-      <div style="font-size:2rem;margin-bottom:.75rem">🌱</div>
+      <div style="font-size:1.75rem;margin-bottom:.75rem;color:#6ee7b7;font-weight:900">✶</div>
       <h3 style="font-weight:900;color:#6ee7b7;font-size:.95rem;margin-bottom:.75rem;text-transform:uppercase">Recovery Strategies</h3>
       <ul style="font-size:.82rem;color:#34d399;line-height:2;font-weight:600">
         <li>Debrief after difficult incidents</li>
@@ -5110,7 +5121,7 @@ function getSlides14to27() { return `
       </ul>
     </div>
     <div style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);border-radius:1.25rem;padding:1.5rem">
-      <div style="font-size:2rem;margin-bottom:.75rem">⚠️</div>
+      <div style="font-size:1.75rem;margin-bottom:.75rem;color:#fde68a;font-weight:900">▲</div>
       <h3 style="font-weight:900;color:#fde68a;font-size:.95rem;margin-bottom:.75rem;text-transform:uppercase">When to Escalate</h3>
       <ul style="font-size:.82rem;color:#fbbf24;line-height:2;font-weight:600">
         <li>Unable to separate work from personal</li>
@@ -5125,6 +5136,9 @@ function getSlides14to27() { return `
       <div style="font-size:2.5rem;flex-shrink:0">💙</div>
       <div>
         <p style="font-weight:800;color:white;margin-bottom:.5rem">Staff Wellness Resources</p>
+        <div style="text-align:center;margin-bottom:1.25rem">
+          <img src="assets/images/yourwellnessmatters.webp" alt="Your Wellness Matters" loading="lazy" style="max-width:640px;width:calc(100% - 2rem);max-height:280px;object-fit:contain;border-radius:1rem;box-shadow:0 4px 24px rgba(0,0,0,.4);display:block;margin:0 auto">
+        </div>
         <p style="font-size:.875rem;color:#94a3b8;line-height:1.7">Employee Assistance Program (EAP) — Peer Support Team — Clinical Supervisor Debriefs — Anonymous wellness check-ins available anytime. <strong style="color:#c4b5fd">You cannot give what you don't have. Taking care of yourself IS patient care.</strong></p>
       </div>
     </div>
@@ -5238,25 +5252,22 @@ function getSlides14to27() { return `
     <!-- Interactive micro-drills -->
     <div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem">
       <div class="card p-5" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1.2rem">
-        <p style="margin:0 0 .35rem;font-size:.8rem;color:#93c5fd;font-weight:800;letter-spacing:.08em;text-transform:uppercase">Vitals HUD</p>
-        <h3 style="margin:0 0 .65rem;font-size:1.1rem;font-weight:900;color:white">Tap when the micro-aggression appears</h3>
-        <div style="background:rgba(15,23,42,.6);border:1px solid rgba(255,255,255,.08);border-radius:1rem;padding:1rem;display:flex;flex-direction:column;gap:.65rem">
-          <div style="position:relative;padding-top:56%;border-radius:.75rem;overflow:hidden;background:#0b1224;border:1px solid rgba(255,255,255,.12)">
-            <img src="microexpressions.png" alt="Microexpression reference" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.96)">
-            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.0),rgba(0,0,0,.35));"></div>
-            <div id="micro-cue" style="position:absolute;bottom:24%;left:50%;width:44px;height:44px;border-radius:999px;border:2px solid #fcd34d;background:rgba(251,191,36,.2);box-shadow:0 0 0 8px rgba(251,191,36,.08);display:none;transform:translate(-50%,50%);transition:opacity .2s ease;opacity:0;pointer-events:none"></div>
-            <div style="position:absolute;left:1rem;bottom:1rem;color:#e2e8f0;font-weight:800;font-size:.85rem;letter-spacing:.02em">Microexpression drill</div>
-          </div>
+        <p style="margin:0 0 .35rem;font-size:.8rem;color:#93c5fd;font-weight:800;letter-spacing:.08em;text-transform:uppercase">Micro-Aggression Quiz</p>
+        <h3 style="margin:0 0 .65rem;font-size:1.1rem;font-weight:900;color:white">Identify the Micro-Aggression</h3>
+        <div style="background:rgba(15,23,42,.6);border:1px solid rgba(255,255,255,.08);border-radius:1rem;padding:1rem;display:flex;flex-direction:column;gap:.75rem">
+          <p style="font-size:.8rem;color:#94a3b8;font-weight:600;margin:0">Read each clinical statement. Is it a micro-aggression or an appropriate response?</p>
+          <div id="micro-statement" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:.875rem;padding:1rem 1.25rem;font-size:.9rem;color:#e2e8f0;font-weight:700;min-height:72px;display:flex;align-items:center;line-height:1.5">Press Start Quiz to begin.</div>
+          <div id="micro-feedback" style="font-size:.8rem;font-weight:700;border-radius:.75rem;min-height:0"></div>
           <div style="display:flex;align-items:center;gap:.6rem">
-            <div style="flex:1;height:12px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden">
-              <div id="vitals-meter" style="height:12px;width:0%;background:linear-gradient(90deg,#22c55e,#f97316,#ef4444);border-radius:999px;transition:width .12s ease"></div>
+            <div style="flex:1;height:8px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden">
+              <div id="vitals-meter" style="height:8px;width:0%;background:linear-gradient(90deg,#22c55e,#60a5fa);border-radius:999px;transition:width .4s ease"></div>
             </div>
-            <span style="color:#cbd5e1;font-weight:800;font-size:.82rem">Agitation</span>
+            <span id="vitals-status" style="color:#cbd5e1;font-weight:700;font-size:.78rem;flex-shrink:0">0 / 0</span>
           </div>
-          <div id="vitals-status" style="color:#cbd5e1;font-weight:700;font-size:.9rem">Press start, then tap “Intervene— when you see the jaw clench.</div>
           <div style="display:flex;gap:.6rem;flex-wrap:wrap">
-            <button onclick="startVitalsDrill()" class="btn btn-primary" style="flex:1;min-width:160px">Start drill</button>
-            <button onclick="tapIntervene()" class="btn btn-success" style="flex:1;min-width:160px">Intervene now</button>
+            <button onclick="startVitalsDrill()" class="btn btn-primary" style="flex:1;min-width:120px">Start Quiz</button>
+            <button onclick="answerMicro(true)" class="btn" style="flex:1;min-width:120px;background:rgba(239,68,68,.2);color:#fca5a5;border:1px solid rgba(239,68,68,.35);font-weight:800">✗ Micro-Aggression</button>
+            <button onclick="answerMicro(false)" class="btn" style="flex:1;min-width:120px;background:rgba(34,197,94,.2);color:#86efac;border:1px solid rgba(34,197,94,.35);font-weight:800">✓ Appropriate</button>
           </div>
         </div>
       </div>
@@ -5264,6 +5275,7 @@ function getSlides14to27() { return `
       <div class="card p-5" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1.2rem">
         <p style="margin:0 0 .35rem;font-size:.8rem;color:#93c5fd;font-weight:800;letter-spacing:.08em;text-transform:uppercase">Verbal Brancher</p>
         <h3 style="margin:0 0 .65rem;font-size:1.1rem;font-weight:900;color:white">Pick a line and see the reaction</h3>
+        <div id="branch-scenario" style="background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:.9rem;padding:.875rem 1rem;font-size:.82rem;color:#c7d2fe;font-weight:700;line-height:1.6;margin-bottom:.5rem">Loading scenario...</div>
         <div style="display:flex;flex-direction:column;gap:.65rem">
           <button class="btn" style="justify-content:flex-start;gap:.5rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#e2e8f0;font-weight:800" onclick="pickBranch('validate')">"I can see this is a lot. Want a quieter space or some water?"</button>
           <button class="btn" style="justify-content:flex-start;gap:.5rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#e2e8f0;font-weight:800" onclick="pickBranch('command')">"Calm down and sit or I will have to call security."</button>
@@ -5274,6 +5286,7 @@ function getSlides14to27() { return `
           <div id="branch-video" style="background:rgba(0,0,0,.5);border:1px dashed rgba(255,255,255,.15);border-radius:.9rem;padding:.9rem;display:flex;align-items:center;justify-content:center;min-height:140px;position:relative;overflow:hidden">
             <div id="branch-video-label" style="color:#e2e8f0;font-weight:800;font-size:1.05rem;text-align:center;line-height:1.4">Choose a response above to see the outcome video.</div>
           </div>
+          <button class="btn" style="background:rgba(99,102,241,.25);color:#c7d2fe;font-weight:800;border:1px solid rgba(99,102,241,.35)" onclick="nextBranchScenario()">↻ New Scenario</button>
           <button class="btn" style="background:#e2e8f0;color:#0f172a;font-weight:900" onclick="resetBranch()">Reset</button>
         </div>
       </div>
@@ -5324,8 +5337,8 @@ function getSlides14to27() { return `
       <h3 style="font-weight:900;font-size:.95rem;color:#0f172a;text-transform:uppercase;margin-bottom:1rem">Why Patients Refuse</h3>
       <div style="display:flex;flex-direction:column;gap:.75rem">
         <div style="background:rgba(254,226,226,.15);padding:.875rem;border-radius:.875rem;border-left:4px solid #ef4444"><p style="font-size:.8rem;font-weight:800;color:#dc2626;margin-bottom:.3rem">Side Effects</p><p style="font-size:.78rem;color:#7f1d1d">"It makes me feel like a zombie" / Sedation, weight gain, sexual dysfunction — these are real and valid.</p></div>
-        <div style="background:#fffbeb;padding:.875rem;border-radius:.875rem;border-left:4px solid #f59e0b"><p style="font-size:.8rem;font-weight:800;color:#fbbf24;margin-bottom:.3rem">Loss of Control</p><p style="font-size:.78rem;color:#78350f">Trauma survivors especially resist anything that alters their mind-state. Medication = feeling helpless.</p></div>
-        <div style="background:rgba(219,234,254,.12);padding:.875rem;border-radius:.875rem;border-left:4px solid #3b82f6"><p style="font-size:.8rem;font-weight:800;color:#1d4ed8;margin-bottom:.3rem">Lack of Trust</p><p style="font-size:.78rem;color:#1e3a8a">No therapeutic alliance = no medication compliance. The relationship IS the treatment.</p></div>
+        <div style="background:#fffbeb;padding:.875rem;border-radius:.875rem;border-left:4px solid #f59e0b"><p style="font-size:.8rem;font-weight:800;color:#92400e;margin-bottom:.3rem">Loss of Control</p><p style="font-size:.78rem;color:#78350f">Trauma survivors especially resist anything that alters their mind-state. Medication = feeling helpless.</p></div>
+        <div style="background:#dbeafe;padding:.875rem;border-radius:.875rem;border-left:4px solid #3b82f6"><p style="font-size:.8rem;font-weight:800;color:#1d4ed8;margin-bottom:.3rem">Lack of Trust</p><p style="font-size:.78rem;color:#1e3a8a">No therapeutic alliance = no medication compliance. The relationship IS the treatment.</p></div>
         <div style="background:#f0fdf4;padding:.875rem;border-radius:.875rem;border-left:4px solid #22c55e"><p style="font-size:.8rem;font-weight:800;color:#166534;margin-bottom:.3rem">Denial of Illness</p><p style="font-size:.78rem;color:#14532d">"I don't need it" — common in mania/psychosis where insight is impaired neurologically, not willfully.</p></div>
       </div>
     </div>
@@ -5361,9 +5374,13 @@ function getSlides14to27() { return `
       </ul>
     </div>
     <div class="card p-5 amber-box">
-      <h3 style="font-weight:900;font-size:1.05rem;color:#fbbf24;text-transform:uppercase;margin-bottom:.875rem">Legal Framework</h3>
+      <h3 style="font-weight:900;font-size:1.05rem;color:#92400e;text-transform:uppercase;margin-bottom:.875rem">Legal Framework</h3>
       <p style="font-size:.82rem;color:#78350f;line-height:1.75;font-weight:600">Competent adults have the <strong>legal right to refuse medication</strong> under informed consent law. Exceptions: court-ordered medication, acute danger to self/others (emergency involuntary), or determined incompetent by court. Always consult charge nurse/prescriber. Never administer against will outside legal protocols.</p>
     </div>
+  </div>
+  <div style="padding:0 2rem 2rem;text-align:center">
+    <img src="assets/images/medrefusal.png" alt="Medication Refusal" loading="lazy" style="max-width:680px;width:calc(100% - 2rem);max-height:300px;object-fit:contain;border-radius:1rem;box-shadow:0 4px 20px rgba(0,0,0,.12);display:block;margin:0 auto">
+    <p style="margin:.75rem 0 0;font-size:.8rem;color:#475569;font-weight:600">Collaborative Medication Management</p>
   </div>
 </div>
 
@@ -5402,10 +5419,10 @@ function getSlides14to27() { return `
     </div>
     <div class="card p-5">
       <h3 style="font-weight:900;font-size:1.05rem;color:#0f172a;text-transform:uppercase;margin-bottom:.875rem">Safer Alternatives</h3>
-      <p style="font-size:.78rem;color:#64748b;font-weight:600;margin-bottom:.75rem">Offer same neurological function without harm:</p>
+      <p style="font-size:.78rem;color:#374151;font-weight:700;margin-bottom:.75rem">Offer same neurological function without harm:</p>
       <div style="display:flex;flex-direction:column;gap:.6rem">
-        <div style="background:rgba(254,226,226,.15);padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#7f1d1d;font-weight:700"><span style="color:#60a5fa;margin-right:.3rem">&#9673;</span> <strong>Cold:</strong> Ice cubes on skin, cold shower, face in cold water</div>
-        <div style="background:rgba(255,237,213,.12);padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#9a3412;font-weight:700"><strong>Mark:</strong> Draw red lines on skin with marker</div>
+        <div style="background:#fee2e2;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#7f1d1d;font-weight:700"><span style="color:#60a5fa;margin-right:.3rem">&#9673;</span> <strong>Cold:</strong> Ice cubes on skin, cold shower, face in cold water</div>
+        <div style="background:#ffedd5;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#9a3412;font-weight:700"><strong>Mark:</strong> Draw red lines on skin with marker</div>
         <div style="background:#f0fdf4;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#166534;font-weight:700"><span style="color:#a78bfa;margin-right:.3rem">&#9673;</span> <strong>Pressure:</strong> Snap rubber band, grip ice</div>
         <div style="background:#eef2ff;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#3730a3;font-weight:700"><strong>Intense Exercise:</strong> Run in place, push-ups</div>
         <div style="background:#faf5ff;padding:.6rem .875rem;border-radius:.75rem;font-size:.78rem;color:#5b21b6;font-weight:700"><strong>Expression:</strong> Rip paper, draw, scream into pillow</div>
@@ -5422,6 +5439,10 @@ function getSlides14to27() { return `
         <div style="background:white;padding:.5rem .75rem;border-radius:.5rem;color:#dc2626;font-weight:700">"You can't hide things from us" — adversarial</div>
       </div>
     </div>
+  </div>
+  <div style="padding:0 2rem 2rem;text-align:center">
+    <img src="assets/images/nssi.png" alt="NSSI De-escalation" loading="lazy" style="max-width:680px;width:calc(100% - 2rem);max-height:300px;object-fit:contain;border-radius:1rem;box-shadow:0 4px 20px rgba(0,0,0,.12);display:block;margin:0 auto">
+    <p style="margin:.75rem 0 0;font-size:.8rem;color:#475569;font-weight:600">NSSI — Coping Strategy &amp; Alternative Responses</p>
   </div>
 </div>
 
@@ -6860,98 +6881,61 @@ function checkLabComplete() {
 }
 
 function startVitalsDrill() {
-  stopVitalsDrill();
-  vitalsActive = true;
+  window._microQ = 0;
+  window._microCorrect = 0;
+  window._microActive = true;
   const meter = document.getElementById('vitals-meter');
-  const status = document.getElementById('vitals-status');
-   const cue = document.getElementById('micro-cue');
   if(meter) meter.style.width = '0%';
-  const fimgV = document.getElementById('vitals-fail-img');
-  const simgV = document.getElementById('vitals-success-img');
-  if(fimgV) fimgV.style.display = 'none';
-  if(simgV) simgV.style.display = 'none';
-  if(status) {
-    status.textContent = 'Watching micro-signals. Tap when you see the jaw clench.';
-    status.removeAttribute('data-triggered');
-  }
-  if(cue) {
-    cue.style.display = 'none';
-    cue.style.opacity = '0';
-  }
-  const now = Date.now();
-  const delay = 2400 + Math.random()*3200; // randomized trigger window
-  vitalsTargetTs = now + delay;
-  vitalsInterval = setInterval(()=>{
-    if(!vitalsActive) { stopVitalsDrill(); return; }
-    const elapsed = Date.now() - now;
-    const pct = Math.min(100, (elapsed / (delay + 2000)) * 100);
-    if(meter) meter.style.width = `${pct}%`;
-    if(Date.now() >= vitalsTargetTs && status && !status.dataset.triggered) {
-      status.dataset.triggered = '1';
-      status.textContent = 'Jaw clenched — give a calm redirect now.';
-      if(cue) {
-        cue.style.display = 'block';
-        requestAnimationFrame(()=> cue.style.opacity = '1');
-      }
-    }
-    if(elapsed > delay + 2500) {
-      if(status) status.textContent = 'Missed it — agitation rose. Reset and try again.';
-      const mfimg = document.getElementById('vitals-fail-img');
-      if(mfimg) mfimg.style.display = 'block';
-      drillStats.vitalsAttempts += 1;
-      window._saveUserData && window._saveUserData({ drillStats }).catch(()=>{});
-      checkLabComplete();
-      stopVitalsDrill();
-    }
-  }, 120);
+  _loadMicroQ();
 }
-
-function tapIntervene() {
+function _loadMicroQ() {
+  const stmts = window._microStatements;
+  const stmt = document.getElementById('micro-statement');
   const status = document.getElementById('vitals-status');
+  const fb = document.getElementById('micro-feedback');
   const meter = document.getElementById('vitals-meter');
-  const cue = document.getElementById('micro-cue');
-  if(!vitalsActive) {
-    if(status) status.textContent = 'Start the drill first, then watch for the cue.';
+  if(!stmt||!stmts) return;
+  if(window._microQ >= stmts.length) {
+    const pct = Math.round((window._microCorrect/stmts.length)*100);
+    stmt.textContent = 'Quiz complete! Score: '+window._microCorrect+'/'+stmts.length+' ('+pct+'%)';
+    stmt.style.color = pct>=80?'#bbf7d0':'#fde68a';
+    if(status) status.textContent = pct+' / '+stmts.length;
+    if(meter) meter.style.width = pct+'%';
+    if(fb) { fb.textContent=''; fb.style.padding='0'; }
+    window._microActive = false;
+    drillStats.vitalsAttempts = (drillStats.vitalsAttempts||0)+1;
+    drillStats.vitalsPass = (drillStats.vitalsPass||0)+(pct>=70?1:0);
+    checkLabComplete && checkLabComplete();
     return;
   }
-  const now = Date.now();
-  const tapFimg = document.getElementById('vitals-fail-img');
-  const tapSimg = document.getElementById('vitals-success-img');
-  drillStats.vitalsAttempts += 1;
-  if(now >= vitalsTargetTs) {
-    if(status) status.textContent = 'Good catch — agitation contained.';
-    if(meter) meter.style.width = '100%';
-    if(tapFimg) tapFimg.style.display = 'none';
-    if(tapSimg) tapSimg.style.display = 'block';
-    drillStats.vitalsPass += 1;
-  } else {
-    if(status) status.textContent = 'Too early — wait for the jaw set before stepping in.';
-    if(meter) meter.style.width = '45%';
-    if(tapFimg) tapFimg.style.display = 'block';
-    if(tapSimg) tapSimg.style.display = 'none';
-  }
-  window._saveUserData && window._saveUserData({ drillStats }).catch(()=>{});
-  checkLabComplete();
-  if(cue) {
-    cue.style.opacity = '0';
-    setTimeout(()=>{ cue.style.display = 'none'; }, 200);
-  }
-  stopVitalsDrill();
+  const q = stmts[window._microQ];
+  stmt.textContent = q.t;
+  stmt.style.color = '#e2e8f0';
+  if(fb) { fb.textContent=''; fb.style.padding='0'; fb.style.background='transparent'; }
+  if(status) status.textContent = (window._microQ+1)+' / '+stmts.length;
+  if(meter) meter.style.width = (window._microQ/stmts.length*100)+'%';
 }
-
-function stopVitalsDrill() {
-  if(vitalsInterval) {
-    clearInterval(vitalsInterval);
-    vitalsInterval = null;
+function answerMicro(isMicroAnswer) {
+  if(!window._microActive || window._microQ >= (window._microStatements||[]).length) return;
+  const q = window._microStatements[window._microQ];
+  const correct = isMicroAnswer === q.m;
+  if(correct) window._microCorrect++;
+  const fb = document.getElementById('micro-feedback');
+  const stmt = document.getElementById('micro-statement');
+  if(fb) {
+    fb.textContent = (correct?'✓ Correct — ':'✗ Incorrect — ')+q.f;
+    fb.style.background = correct?'rgba(34,197,94,.15)':'rgba(239,68,68,.15)';
+    fb.style.color = correct?'#bbf7d0':'#fecdd3';
+    fb.style.padding = '.75rem';
+    fb.style.borderRadius = '.75rem';
   }
-  vitalsActive = false;
-  vitalsTargetTs = null;
-  const cue = document.getElementById('micro-cue');
-  if(cue) {
-    cue.style.opacity = '0';
-    setTimeout(()=>{ cue.style.display = 'none'; }, 150);
-  }
+  if(stmt) stmt.style.color = correct?'#bbf7d0':'#fecdd3';
+  window._microQ++;
+  drillStats.vitalsAttempts = (drillStats.vitalsAttempts||0)+1;
+  setTimeout(_loadMicroQ, 2000);
 }
+function tapIntervene() { answerMicro(true); }
+function stopVitalsDrill() { window._microActive = false; }
 
 function startHazardScan() {
   endHazardScan('reset');
@@ -6959,6 +6943,10 @@ function startHazardScan() {
   hazardsFound = 0;
   document.querySelectorAll('.hazard-dot').forEach(dot => {
     dot.style.display = 'block';
+    dot.style.background = 'transparent';
+    dot.style.border = 'none';
+    dot.style.color = 'transparent';
+    dot.style.cursor = 'crosshair';
     dot.disabled = false;
   });
   const status = document.getElementById('hazard-status');
@@ -6981,10 +6969,11 @@ function startHazardScan() {
 function tapHazard(hid) {
   if(!hazardTimer) {
     const status = document.getElementById('hazard-status');
-    if(status) status.textContent = 'Press start to reveal hazards first.';
+    if(status) status.textContent = 'Press Start Scan first, then tap hazards.';
     return;
   }
   const dot = Array.from(document.querySelectorAll('.hazard-dot')).find(d=>d.dataset.hid===hid);
+  if(dot&&!dot.disabled) { dot.style.background='rgba(251,191,36,.35)'; dot.style.border='2px solid #fcd34d'; dot.style.color='#fcd34d'; }
   if(dot && dot.style.display !== 'none') {
     dot.style.display = 'none';
     hazardsFound += 1;
@@ -12183,6 +12172,90 @@ function toggleSidebar(){
 (function(){
   try{if(localStorage.getItem('sbCollapsed')==='1')document.body.classList.add('sb-collapsed');}catch(e){}
 })();
+
+// Micro-aggression quiz statements
+window._microStatements = [
+  {t:'"You seem really high-functioning for someone with schizophrenia."',m:true,f:'Implies low functioning is the default — separates this person from others based on diagnosis.'},
+  {t:'"I can see this has been really hard for you. Let's find a quieter space."',m:false,f:'Validates feelings and offers a de-escalating action. This is appropriate clinical communication.'},
+  {t:'"You're bipolar — of course you're upset about everything."',m:true,f:'Attributes normal emotion to a diagnosis. Dismissive and reduces the person to their label.'},
+  {t:'"I'm going to stay right here with you. Take your time."',m:false,f:'Calm presence with no pressure — signals safety and patience. Ideal de-escalation posture.'},
+  {t:'"Where are you really from — originally?"',m:true,f:'Implies the person does not belong. Often racially coded and alienating.'},
+  {t:'"What would help you feel safer right now?"',m:false,f:'Patient-centered, collaborative, and empowering. Excellent crisis response language.'},
+  {t:'"We see this a lot with your diagnosis. It's just the illness talking."',m:true,f:'Dismisses individual experience and dehumanizes. Never appropriate in clinical communication.'},
+  {t:'"You're not sleeping. Would you like some company for a few minutes?"',m:false,f:'Compassionate, non-intrusive offer of connection. Grounding and clinically sound.'},
+  {t:'"You're the most aggressive patient we've had all week."',m:true,f:'Comparative labeling that inflames rather than de-escalates. Unprofessional.'},
+  {t:'"I notice your hands are shaking. Would some water help?"',m:false,f:'Observant, practical, and shows care without judgment. Builds therapeutic alliance.'},
+];
+window._microQ = 0;
+window._microCorrect = 0;
+window._microActive = false;
+
+// Verbal brancher scenarios
+const _branchScenarios = [
+  {n:'Marcus, 34 — PTSD',s:'Pacing the hallway, refusing to return to his room. Triggered by a sudden alarm. Hands shaking, sweating, eyes wide. He hasn't spoken yet.'},
+  {n:'Diana, 28 — Borderline PD',s:'Just learned visitation was denied. Escalating in the common area, voice rising. States: "You people always do this. You'll regret this."'},
+  {n:'Robert, 52 — Schizophrenia',s:'Refuses morning medications. Says the pills are "poison sent through the system." Calm but firm, stepping back each time you approach.'},
+  {n:'Aaliyah, 19 — Bipolar Manic',s:'Woke other patients at 3am. Now at the nurses' station talking rapidly, angry that staff "won't let me call my lawyer right now."'},
+  {n:'James, 41 — Substance Use',s:'Demanding discharge. States he is "fine" and "doesn't belong here." Agitation increases with each refusal. Starts moving toward the exit.'},
+];
+let _branchIdx = Math.floor(Math.random()*_branchScenarios.length);
+function loadBranchScenario() {
+  const box = document.getElementById('branch-scenario');
+  if(!box) return;
+  const s = _branchScenarios[_branchIdx];
+  box.innerHTML = '<strong style="color:#a5b4fc">'+s.n+'</strong><br>'+s.s;
+}
+function nextBranchScenario() {
+  _branchIdx = (_branchIdx+1) % _branchScenarios.length;
+  const reaction = document.getElementById('branch-reaction');
+  const videoBox = document.getElementById('branch-video');
+  if(reaction) { reaction.textContent = "Choose a line to see the patient's response."; reaction.style.color='#cbd5e1'; }
+  if(videoBox) videoBox.innerHTML = '<div id="branch-video-label-js" style="color:#e2e8f0;font-weight:800;font-size:1.05rem;text-align:center;line-height:1.4">Choose a response above to see the outcome video.</div>';
+  loadBranchScenario();
+}
+
+// Role-Play randomize
+function randomizeScript() {
+  const topics = ['Medication refusal','Leaving AMA','Agitation in milieu','Self-harm disclosure','Suicidal ideation','Physical aggression threat','Refusing vitals','Paranoid delusion escalation','Panic attack response','Sexual boundary violation report'];
+  const dxOpts = Array.from(document.getElementById('script-dx').options).map(o=>o.value);
+  const lvls = Array.from(document.getElementById('script-level').options).map(o=>o.value);
+  document.getElementById('slide-script-topic').value = topics[Math.floor(Math.random()*topics.length)];
+  document.getElementById('script-dx').value = dxOpts[Math.floor(Math.random()*dxOpts.length)];
+  document.getElementById('script-level').value = lvls[Math.floor(Math.random()*lvls.length)];
+  buildScript();
+}
+
+// Mic recording for role-play
+function toggleMic() {
+  const btn = document.getElementById('mic-btn');
+  const box = document.getElementById('mic-transcript');
+  if(!btn) return;
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SR) { alert('Speech recognition is not supported in this browser. Try Chrome or Edge.'); return; }
+  if(btn.dataset.active==='1') {
+    if(window._micRec) { window._micRec.stop(); window._micRec=null; }
+    btn.dataset.active='0';
+    btn.textContent='🎤 Record Response';
+    btn.style.background='#0f766e';
+  } else {
+    window._micRec = new SR();
+    window._micRec.continuous=true; window._micRec.interimResults=true; window._micRec.lang='en-US';
+    if(box) { box.style.display='block'; box.textContent='Listening...'; }
+    window._micRec.onresult = function(e) {
+      let t='';
+      for(let i=0;i<e.results.length;i++) t+=e.results[i][0].transcript+'\n';
+      if(box) box.textContent=t;
+    };
+    window._micRec.onend = function() {
+      if(btn) { btn.dataset.active='0'; btn.textContent='🎤 Record Response'; btn.style.background='#0f766e'; }
+    };
+    window._micRec.start();
+    btn.dataset.active='1';
+    btn.textContent='🔴 Recording...';
+    btn.style.background='#dc2626';
+  }
+}
+
 </script>
 
 </body>
