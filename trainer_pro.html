@@ -1192,7 +1192,21 @@ body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
 .purple-box{background:linear-gradient(135deg,#faf5ff,#ede9fe);border-left:5px solid #8b5cf6}
 .slide-header{padding:.5rem 1rem .25rem;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .copyright{font-size:.6rem;color:rgba(255,255,255,.3);letter-spacing:.05em}
-.avatar-opt { background:rgba(255,255,255,.06); border:2px solid transparent; border-radius:.5rem; font-size:1.6rem; padding:.4rem; cursor:pointer; transition:all .15s; }
+.avatar-opt {
+    background: rgba(255,255,255,.06);
+    border: 2px solid rgba(201,168,76,.25);
+    border-radius: .65rem;
+    cursor: pointer;
+    transition: border-color .2s, transform .15s, background .2s;
+    display: flex; align-items: center; justify-content: center;
+    padding: .3rem;
+  }
+  .avatar-opt:hover {
+    border-color: #C9A84C;
+    background: rgba(201,168,76,.12);
+    transform: scale(1.06);
+  }
+  .avatar-opt:active { transform: scale(.96); }
 .avatar-opt:hover { border-color:#C9A84C; background:rgba(201,168,76,.1); }
 /* Avatar mouth animation */
 #avatar-mouth{animation:none}
@@ -3535,16 +3549,36 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
   <div style="background:#0f172a;border:1px solid rgba(201,168,76,.3);border-radius:1rem;padding:1.5rem;max-width:420px;width:92vw">
     <h3 style="color:#C9A84C;margin:0 0 1rem;font-size:1rem;font-weight:800">Choose Your Avatar</h3>
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:1rem">
-      <button onclick="selectAvatar('👩‍⚕️')" class="avatar-opt">👩‍⚕️</button>
-      <button onclick="selectAvatar('👨‍⚕️')" class="avatar-opt">👨‍⚕️</button>
-      <button onclick="selectAvatar('🧑‍⚕️')" class="avatar-opt">🧑‍⚕️</button>
-      <button onclick="selectAvatar('👩‍💼')" class="avatar-opt">👩‍💼</button>
-      <button onclick="selectAvatar('👨‍💼')" class="avatar-opt">👨‍💼</button>
-      <button onclick="selectAvatar('🧑‍🎓')" class="avatar-opt">🧑‍🎓</button>
-      <button onclick="selectAvatar('👩‍🏫')" class="avatar-opt">👩‍🏫</button>
-      <button onclick="selectAvatar('👨‍🏫')" class="avatar-opt">👨‍🏫</button>
-      <button onclick="selectAvatar('🧑‍💻')" class="avatar-opt">🧑‍💻</button>
-      <button onclick="selectAvatar('🌟')" class="avatar-opt">🌟</button>
+      <button onclick="selectAvatarImg('https://api.dicebear.com/9.x/avataaars/svg?seed=Jordan&backgroundColor=b6e3f4&backgroundType=circle&radius=50','Jordan')" class="avatar-opt" title="Clinical Professional" style="padding:.35rem;border-radius:.6rem">
+        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Jordan&backgroundColor=b6e3f4&backgroundType=circle&radius=50" alt="Jordan" style="width:54px;height:54px;display:block;border-radius:50%">
+      </button>
+      <button onclick="selectAvatarImg('https://api.dicebear.com/9.x/avataaars/svg?seed=Morgan&backgroundColor=ffd5dc&backgroundType=circle&radius=50','Morgan')" class="avatar-opt" title="Clinical Professional" style="padding:.35rem;border-radius:.6rem">
+        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Morgan&backgroundColor=ffd5dc&backgroundType=circle&radius=50" alt="Morgan" style="width:54px;height:54px;display:block;border-radius:50%">
+      </button>
+      <button onclick="selectAvatarImg('https://api.dicebear.com/9.x/avataaars/svg?seed=Taylor&backgroundColor=c0aede&backgroundType=circle&radius=50','Taylor')" class="avatar-opt" title="Clinical Professional" style="padding:.35rem;border-radius:.6rem">
+        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Taylor&backgroundColor=c0aede&backgroundType=circle&radius=50" alt="Taylor" style="width:54px;height:54px;display:block;border-radius:50%">
+      </button>
+      <button onclick="selectAvatarImg('https://api.dicebear.com/9.x/avataaars/svg?seed=Alex&backgroundColor=ffdfbf&backgroundType=circle&radius=50','Alex')" class="avatar-opt" title="Clinical Professional" style="padding:.35rem;border-radius:.6rem">
+        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Alex&backgroundColor=ffdfbf&backgroundType=circle&radius=50" alt="Alex" style="width:54px;height:54px;display:block;border-radius:50%">
+      </button>
+      <button onclick="selectAvatarImg('https://api.dicebear.com/9.x/avataaars/svg?seed=Casey&backgroundColor=b6e3f4&backgroundType=circle&radius=50','Casey')" class="avatar-opt" title="Clinical Professional" style="padding:.35rem;border-radius:.6rem">
+        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Casey&backgroundColor=b6e3f4&backgroundType=circle&radius=50" alt="Casey" style="width:54px;height:54px;display:block;border-radius:50%">
+      </button>
+      <button onclick="selectAvatarImg('https://api.dicebear.com/9.x/avataaars/svg?seed=Riley&backgroundColor=ffd5dc&backgroundType=circle&radius=50','Riley')" class="avatar-opt" title="Clinical Professional" style="padding:.35rem;border-radius:.6rem">
+        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Riley&backgroundColor=ffd5dc&backgroundType=circle&radius=50" alt="Riley" style="width:54px;height:54px;display:block;border-radius:50%">
+      </button>
+      <button onclick="selectAvatarImg('https://api.dicebear.com/9.x/avataaars/svg?seed=Drew&backgroundColor=c0aede&backgroundType=circle&radius=50','Drew')" class="avatar-opt" title="Clinical Professional" style="padding:.35rem;border-radius:.6rem">
+        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Drew&backgroundColor=c0aede&backgroundType=circle&radius=50" alt="Drew" style="width:54px;height:54px;display:block;border-radius:50%">
+      </button>
+      <button onclick="selectAvatarImg('https://api.dicebear.com/9.x/avataaars/svg?seed=Quinn&backgroundColor=ffdfbf&backgroundType=circle&radius=50','Quinn')" class="avatar-opt" title="Clinical Professional" style="padding:.35rem;border-radius:.6rem">
+        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Quinn&backgroundColor=ffdfbf&backgroundType=circle&radius=50" alt="Quinn" style="width:54px;height:54px;display:block;border-radius:50%">
+      </button>
+      <button onclick="selectAvatarImg('https://api.dicebear.com/9.x/avataaars/svg?seed=Avery&backgroundColor=b6e3f4&backgroundType=circle&radius=50','Avery')" class="avatar-opt" title="Clinical Professional" style="padding:.35rem;border-radius:.6rem">
+        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Avery&backgroundColor=b6e3f4&backgroundType=circle&radius=50" alt="Avery" style="width:54px;height:54px;display:block;border-radius:50%">
+      </button>
+      <button onclick="selectAvatarImg('https://api.dicebear.com/9.x/avataaars/svg?seed=Blake&backgroundColor=c0aede&backgroundType=circle&radius=50','Blake')" class="avatar-opt" title="Clinical Professional" style="padding:.35rem;border-radius:.6rem">
+        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Blake&backgroundColor=c0aede&backgroundType=circle&radius=50" alt="Blake" style="width:54px;height:54px;display:block;border-radius:50%">
+      </button>
     </div>
     <p style="color:#94a3b8;font-size:.75rem;margin-bottom:.8rem;text-align:center">— or upload a photo —</p>
     <input type="file" id="avatar-upload-input" accept="image/*" style="display:none" onchange="handleAvatarUpload(event)">
@@ -7721,23 +7755,43 @@ async function selectAvatar(emoji) {
   if(!window._userData) return;
   window._userData.avatarEmoji = emoji;
   window._userData.avatarPhoto = null;
-  await window._saveUserData({ avatarEmoji: emoji, avatarPhoto: null });
   _refreshAvatarDisplay();
   closeAvatarPicker();
+  window._saveUserData({ avatarEmoji: emoji, avatarPhoto: null }).catch(()=>{});
+}
+async function selectAvatarImg(url, seed) {
+  if(!window._userData) return;
+  window._userData.avatarPhoto = url;
+  window._userData.avatarEmoji = null;
+  _refreshAvatarDisplay();
+  closeAvatarPicker();
+  await window._saveUserData({ avatarPhoto: url, avatarEmoji: null });
 }
 async function handleAvatarUpload(evt) {
   const file = evt.target.files[0];
   if(!file) return;
-  if(file.size > 500000) { alert('Please choose an image under 500KB.'); return; }
+  if(!file.type.startsWith('image/')) { alert('Please choose an image file.'); return; }
   const reader = new FileReader();
   reader.onload = async function(e) {
-    const dataUrl = e.target.result;
-    window._userData.avatarPhoto = dataUrl;
-    window._userData.avatarEmoji = null;
-    await window._saveUserData({ avatarPhoto: dataUrl, avatarEmoji: null });
-    _refreshAvatarDisplay();
-    closeAvatarPicker();
-    evt.target.value = '';
+    // Auto-compress: draw onto 200x200 canvas, export as JPEG
+    const img = new Image();
+    img.onload = async function() {
+      const canvas = document.createElement('canvas');
+      const MAX = 200;
+      const ratio = Math.min(MAX / img.width, MAX / img.height);
+      canvas.width  = Math.round(img.width  * ratio);
+      canvas.height = Math.round(img.height * ratio);
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+      window._userData.avatarPhoto = dataUrl;
+      window._userData.avatarEmoji = null;
+      _refreshAvatarDisplay();
+      closeAvatarPicker();
+      await window._saveUserData({ avatarPhoto: dataUrl, avatarEmoji: null });
+      evt.target.value = '';
+    };
+    img.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
