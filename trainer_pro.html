@@ -6117,6 +6117,9 @@ async function doAnonSignIn() {
 function initApp() {
   // Slides 14-27 are injected on DOMContentLoaded — if not ready yet, queue and return
   if(!window._slidesReady) { window._initAppQueued = true; return; }
+  // Dismiss loader IMMEDIATELY — must never be stuck waiting for the rest of init
+  const loader = document.getElementById('app-loading');
+  if(loader) loader.style.display = 'none';
   const slides = document.querySelectorAll('.slide');
   totalSlides  = slides.length;
   labCredits   = window._userData?.labCredits || 0;
