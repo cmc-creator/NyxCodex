@@ -6125,11 +6125,12 @@ function initApp() {
   const isNewUser   = !completed && !hasProgress && !seenBefore;
 
   if(isNewUser) {
-    // Brand-new account: skip title card, go straight to first content slide
+    // Brand-new account: show the hub with a welcome greeting, ready to start
     sessionMode = 'training';
-    currentSlide = 1;
-    showSlide(1);
-    hideHomeGateway();
+    currentSlide = 0;
+    if(window._userData) window._userData.hasOnboarded = true;
+    showSlide(0);
+    showHomeGateway();
   } else if(completed) {
     // Finished training: go straight to the certificate slide with a welcome-back message
     showSlide(totalSlides - 1);
@@ -7970,8 +7971,15 @@ async function openAdminPrompt() {
       checking.style.display='none'; denied.style.display='block';
     }
   } catch(e) {
-    msg.textContent = 'Error checking access.';
-    checking.style.display='none'; denied.style.display='block';
+    const errMsg = (e?.message || e?.code || '').toLowerCase();
+    if(errMsg.includes('permission') || errMsg.includes('denied') || errMsg.includes('unauthorized')) {
+      // Firebase rules are blocking the read — almost certainly means no admins set up yet
+      msg.textContent = 'No admin accounts found. Set up owner access below.';
+      checking.style.display='none'; setup.style.display='block';
+    } else {
+      msg.textContent = 'Error checking access.';
+      checking.style.display='none'; denied.style.display='block';
+    }
   }
 }
 
@@ -12436,10 +12444,7 @@ thead tr{background:#f1f5f9}th{padding:.875rem 1rem;text-align:left;font-weight:
 .slide[style*="background:#f8fafc"] [style*="color:#166534"],
 .slide[style*="background:white"] [style*="color:#166534"] { color: #86efac !important; }
 
-.slide[style*="background:#f8fafc"] [style*="color:#78350f"],
-.slide[style*="background:white"] [style*="color:#78350f"],
-.slide[style*="background:#f8fafc"] [style*="color:#92400e"],
-.slide[style*="background:white"] [style*="color:#92400e"] { color: #fcd34d !important; }
+/* #78350f / #92400e (amber text) is fine on its own amber box — no override needed */
 
 .slide[style*="background:#f8fafc"] [style*="color:#dc2626"],
 .slide[style*="background:white"] [style*="color:#dc2626"],
@@ -12449,12 +12454,17 @@ thead tr{background:#f1f5f9}th{padding:.875rem 1rem;text-align:left;font-weight:
 .slide[style*="background:#f8fafc"] [style*="color:#16a34a"],
 .slide[style*="background:white"] [style*="color:#16a34a"] { color: #86efac !important; }
 
-/* Amber inner box text must contrast on dark */
+/* Amber inner boxes (#fffbeb) keep original dark text — they stay light-colored on dark slides */
+.slide[style*="background:#f8fafc"] [style*="background:#fffbeb"],
+.slide[style*="background:white"] [style*="background:#fffbeb"] {
+  background: #1e293b !important;
+  border-color: rgba(251,191,36,.25) !important;
+}
 .slide[style*="background:#f8fafc"] [style*="background:#fffbeb"] *,
-.slide[style*="background:white"] [style*="background:#fffbeb"] *,
+.slide[style*="background:white"] [style*="background:#fffbeb"] * { color: #fde68a !important; }
 .slide[style*="background:#fff5f5"] p,
 .slide[style*="background:#fff5f5"] li,
-.slide[style*="background:#fff5f5"] span { color: #fcd34d !important; }
+.slide[style*="background:#fff5f5"] span { color: #e2e8f0 !important; }
 .slide[style*="background:#fff5f5"] h1,
 .slide[style*="background:#fff5f5"] h2,
 .slide[style*="background:#fff5f5"] h3 { color: #f1f5f9 !important; }
