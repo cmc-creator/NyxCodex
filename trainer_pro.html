@@ -1097,11 +1097,7 @@ body.theme-dark .info-card { border-color: rgba(255,255,255,.12) !important; }
   #nav-controls-group{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:.35rem!important;width:100%}
   #nav-controls-group button{min-height:44px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;font-size:1rem!important}
   #nav-more-btn{display:flex!important}
-  #mobile-nav-sheet-backdrop{display:none;position:fixed;inset:0;z-index:94;background:rgba(2,6,23,.6);backdrop-filter:blur(2px);align-items:flex-end;padding:0 .5rem 5.2rem}
-  #mobile-nav-sheet{width:100%;max-width:560px;margin:0 auto;background:rgba(8,12,24,.98);border:1px solid rgba(255,255,255,.12);border-radius:1rem;padding:.7rem;display:grid;grid-template-columns:1fr 1fr;gap:.45rem;box-shadow:0 16px 36px rgba(0,0,0,.35)}
-  #mobile-nav-sheet button{min-height:44px;border-radius:.7rem;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#e2e8f0;font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center;gap:.4rem}
-  /* hide side-edge arrows on small screens to avoid obscuring content */
-  #side-arrow-prev,#side-arrow-next{display:none!important}
+  
   
   /* Prof. Vance portrait glow while speaking */
   @keyframes vance-pulse {
@@ -3565,18 +3561,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
     </div>
   </div>
 </nav>
-<div id="mobile-nav-sheet-backdrop" onclick="closeMobileNavSheet()">
-  <div id="mobile-nav-sheet" onclick="event.stopPropagation()">
-    <button onclick="openChat();closeMobileNavSheet()">🎓 Prof. Vance</button>
-    <button onclick="openLabRoom();closeMobileNavSheet()">🧪 Lab</button>
-    <button onclick="openVideoModal();closeMobileNavSheet()">🎬 Videos</button>
-    <button onclick="openAccountModal();closeMobileNavSheet()">My Account</button>
-    <button onclick="toggleAmbience();closeMobileNavSheet()">🎵 Ambient</button>
-    <button onclick="openAdminPrompt();closeMobileNavSheet()">⚙️ Admin</button>
-    <button onclick="toggleTheme();closeMobileNavSheet()">✦ <span id="theme-toggle-label-mobile">Gold</span></button>
-    <button onclick="doSignOut();closeMobileNavSheet()" style="grid-column:1/-1;border-color:rgba(239,68,68,.35);color:#fca5a5">🚪 Sign Out</button>
-  </div>
-</div>
+
 
 <!-- XP Toast notification -->
 <div id="xp-toast" style="display:none;position:fixed;bottom:6.5rem;left:50%;transform:translateX(-50%);z-index:300;background:linear-gradient(135deg,#B8892A,#C9A84C);color:#000;font-weight:900;font-size:.95rem;padding:.5rem 1.3rem;border-radius:2rem;box-shadow:0 6px 20px rgba(201,168,76,.4);pointer-events:none;white-space:nowrap">+XP</div>
@@ -11688,7 +11673,7 @@ thead tr{background:#f1f5f9}th{padding:.875rem 1rem;text-align:left;font-weight:
 .visual-compare-panel {
   width: 100%;
   max-width: none;
-  margin: 2rem 0;
+  margin: 2rem auto;
   box-sizing: border-box;
 }
 .slide > .visual-compare-panel {
