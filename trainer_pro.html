@@ -7911,47 +7911,51 @@ async function openAdminPrompt() {
   const msg      = document.getElementById('admin-access-msg');
   // Reset state
   checking.style.display='block'; denied.style.display='none'; setup.style.display='none'; codeBox.style.display='none';
-  codeErr.style.display='none'; if(codeInp) codeInp.value='';
-  msg.textContent = 'Checking your access level—';
+  if(codeErr) codeErr.style.display='none'; if(codeInp) codeInp.value='';
+  msg.textContent = 'Checking access…';
   modal.style.display='flex';
-  try {
-    const uid = window._currentUser?.uid;
-    if(!uid) { denied.style.display='block'; checking.style.display='none'; return; }
-    // Load settings and admins
-    const [allAdmins, settings] = await Promise.all([window._loadAllAdmins(), window._getSettings()]);
-    adminCodeHash = settings?.adminCodeHash || null;
-    if(!allAdmins || !Object.keys(allAdmins).length) {
-      // First-time setup — allow current user to claim owner and set code
-      msg.textContent = 'No admin accounts found.';
-      checking.style.display='none'; setup.style.display='block'; return;
-    }
-    const role = await window._getAdminRole(uid);
-    currentAdminRole = role;
-    // Cache full admin records so openAdminDashboard can read dept for managers
-    window._allAdminsCache = allAdmins;
-    if(role) {
-      if(adminCodeHash) {
-        msg.textContent = 'Enter access code to continue.';
-        checking.style.display='none'; codeBox.style.display='block';
-        if(codeInp) setTimeout(()=>codeInp.focus(),50);
-      } else {
-        modal.style.display='none';
-        openAdminDashboard();
-      }
+
+  const uid = window._currentUser?.uid;
+  if(!uid) { checking.style.display='none'; denied.style.display='block'; return; }
+
+  // Each Firebase read has its own try/catch so one failure never blocks the others
+  let role = null;
+  try { role = await window._getAdminRole(uid); } catch(e) { /* handled below */ }
+
+  let settings = {};
+  try { settings = await window._getSettings(); } catch(e) { /* best effort */ }
+  adminCodeHash = settings?.adminCodeHash || null;
+  currentAdminRole = role;
+
+  if(role) {
+    // This user is already an admin — load the full list (best effort) and proceed
+    try { window._allAdminsCache = await window._loadAllAdmins(); } catch(e) { window._allAdminsCache = {}; }
+    checking.style.display='none';
+    if(adminCodeHash) {
+      msg.textContent = 'Enter your access code to continue.';
+      codeBox.style.display='block';
+      if(codeInp) setTimeout(()=>codeInp.focus(), 50);
     } else {
-      msg.textContent = 'Access check complete.';
-      checking.style.display='none'; denied.style.display='block';
+      modal.style.display='none';
+      openAdminDashboard();
     }
-  } catch(e) {
-    const errMsg = (e?.message || e?.code || '').toLowerCase();
-    if(errMsg.includes('permission') || errMsg.includes('denied') || errMsg.includes('unauthorized')) {
-      // Firebase rules are blocking the read — almost certainly means no admins set up yet
-      msg.textContent = 'No admin accounts found. Set up owner access below.';
-      checking.style.display='none'; setup.style.display='block';
-    } else {
-      msg.textContent = 'Error checking access.';
-      checking.style.display='none'; denied.style.display='block';
-    }
+    return;
+  }
+
+  // Not an admin — check if ANY admins exist at all
+  let allAdmins = {};
+  try { allAdmins = await window._loadAllAdmins(); } catch(e) { /* treated as empty */ }
+  const hasAnyAdmins = allAdmins && Object.keys(allAdmins).length > 0;
+
+  checking.style.display='none';
+  if(!hasAnyAdmins) {
+    // No admins exist yet — offer first-time owner setup
+    msg.textContent = 'No admin accounts found. Claim owner access below.';
+    setup.style.display='block';
+  } else {
+    // Admins exist but this account isn’t one of them
+    msg.textContent = 'Access check complete.';
+    denied.style.display='block';
   }
 }
 
