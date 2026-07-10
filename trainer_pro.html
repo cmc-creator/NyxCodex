@@ -12057,6 +12057,175 @@ thead tr{background:#f1f5f9}th{padding:.875rem 1rem;text-align:left;font-weight:
 @keyframes slideUp { from { transform:translateY(100%); opacity:0; } to { transform:translateY(0); opacity:1; } }
 @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeInDown { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:translateY(0); } }
+
+/* ===== DARK SLIDE OVERRIDE =====
+   Forces ALL light-background slides to dark theme.
+   !important beats inline styles per CSS cascade rules. */
+.slide[style*="background:#f8fafc"],
+.slide[style*="background:white"],
+.slide[style*="background: white"],
+.slide[style*="background:#ffffff"] {
+  background: #0f172a !important;
+}
+
+/* Cards inside light slides → dark */
+.slide[style*="background:#f8fafc"] .card,
+.slide[style*="background:white"] .card,
+.slide[style*="background:#ffffff"] .card {
+  background: #1e293b !important;
+  border-color: rgba(255,255,255,.1) !important;
+  color: #e2e8f0 !important;
+}
+
+/* Headings */
+.slide[style*="background:#f8fafc"] h1,
+.slide[style*="background:#f8fafc"] h2,
+.slide[style*="background:#f8fafc"] h3,
+.slide[style*="background:white"] h1,
+.slide[style*="background:white"] h2,
+.slide[style*="background:white"] h3,
+.slide[style*="background:#ffffff"] h1,
+.slide[style*="background:#ffffff"] h2,
+.slide[style*="background:#ffffff"] h3 {
+  color: #f1f5f9 !important;
+}
+
+/* Body / muted text */
+.slide[style*="background:#f8fafc"] p,
+.slide[style*="background:#f8fafc"] li,
+.slide[style*="background:white"] p,
+.slide[style*="background:white"] li,
+.slide[style*="background:#ffffff"] p,
+.slide[style*="background:#ffffff"] li {
+  color: #cbd5e1 !important;
+}
+
+/* Very dark near-black text → make readable */
+.slide[style*="background:#f8fafc"] [style*="color:#0f172a"],
+.slide[style*="background:white"] [style*="color:#0f172a"],
+.slide[style*="background:#f8fafc"] [style*="color:#1e293b"],
+.slide[style*="background:white"] [style*="color:#1e293b"],
+.slide[style*="background:#f8fafc"] [style*="color:#334155"],
+.slide[style*="background:white"] [style*="color:#334155"] {
+  color: #f1f5f9 !important;
+}
+
+/* Medium gray text → lighter for readability */
+.slide[style*="background:#f8fafc"] [style*="color:#64748b"],
+.slide[style*="background:white"] [style*="color:#64748b"],
+.slide[style*="background:#f8fafc"] [style*="color:#475569"],
+.slide[style*="background:white"] [style*="color:#475569"] {
+  color: #94a3b8 !important;
+}
+
+/* Accent colors → lighter variants */
+.slide[style*="background:#f8fafc"] [style*="color:#1d4ed8"],
+.slide[style*="background:white"] [style*="color:#1d4ed8"] { color: #93c5fd !important; }
+
+.slide[style*="background:#f8fafc"] [style*="color:#2563eb"],
+.slide[style*="background:white"] [style*="color:#2563eb"] { color: #93c5fd !important; }
+
+.slide[style*="background:#f8fafc"] [style*="color:#6d28d9"],
+.slide[style*="background:white"] [style*="color:#6d28d9"] { color: #c4b5fd !important; }
+
+.slide[style*="background:#f8fafc"] [style*="color:#0e7490"],
+.slide[style*="background:white"] [style*="color:#0e7490"] { color: #67e8f9 !important; }
+
+.slide[style*="background:#f8fafc"] [style*="color:#166534"],
+.slide[style*="background:white"] [style*="color:#166534"] { color: #86efac !important; }
+
+.slide[style*="background:#f8fafc"] [style*="color:#78350f"],
+.slide[style*="background:white"] [style*="color:#78350f"],
+.slide[style*="background:#f8fafc"] [style*="color:#92400e"],
+.slide[style*="background:white"] [style*="color:#92400e"] { color: #fcd34d !important; }
+
+.slide[style*="background:#f8fafc"] [style*="color:#dc2626"],
+.slide[style*="background:white"] [style*="color:#dc2626"],
+.slide[style*="background:#f8fafc"] [style*="color:#ef4444"],
+.slide[style*="background:white"] [style*="color:#ef4444"] { color: #fca5a5 !important; }
+
+.slide[style*="background:#f8fafc"] [style*="color:#16a34a"],
+.slide[style*="background:white"] [style*="color:#16a34a"] { color: #86efac !important; }
+
+/* Inner light boxes → dark glass effect */
+.slide[style*="background:#f8fafc"] [style*="background:#fffbeb"],
+.slide[style*="background:#f8fafc"] [style*="background:#faf5ff"],
+.slide[style*="background:#f8fafc"] [style*="background:#f0fdf4"],
+.slide[style*="background:#f8fafc"] [style*="background:#dbeafe"],
+.slide[style*="background:#f8fafc"] [style*="background:#eff6ff"],
+.slide[style*="background:#f8fafc"] [style*="background:#f8fafc"],
+.slide[style*="background:#f8fafc"] [style*="background:#cffafe"],
+.slide[style*="background:white"] [style*="background:#fffbeb"],
+.slide[style*="background:white"] [style*="background:#faf5ff"],
+.slide[style*="background:white"] [style*="background:#f0fdf4"],
+.slide[style*="background:white"] [style*="background:#dbeafe"],
+.slide[style*="background:white"] [style*="background:#eff6ff"],
+.slide[style*="background:white"] [style*="background:#f8fafc"],
+.slide[style*="background:white"] [style*="background:#cffafe"] {
+  background: rgba(255,255,255,.07) !important;
+}
+
+/* White inner boxes (commonly used for "bad phrase" items etc.) */
+.slide[style*="background:#f8fafc"] [style*="background:white"],
+.slide[style*="background:white"] [style*="background:white"],
+.slide[style*="background:#f8fafc"] [style*="background:#fff"],
+.slide[style*="background:white"] [style*="background:#fff"] {
+  background: rgba(255,255,255,.1) !important;
+}
+
+/* Badge overrides on light slides */
+.slide[style*="background:#f8fafc"] .badge[style*="background:#dbeafe"],
+.slide[style*="background:white"] .badge[style*="background:#dbeafe"] {
+  background: rgba(59,130,246,.25) !important;
+  color: #93c5fd !important;
+}
+.slide[style*="background:#f8fafc"] .badge[style*="background:#fef3c7"],
+.slide[style*="background:white"] .badge[style*="background:#fef3c7"] {
+  background: rgba(251,191,36,.2) !important;
+  color: #fcd34d !important;
+}
+.slide[style*="background:#f8fafc"] .badge[style*="background:#cffafe"],
+.slide[style*="background:white"] .badge[style*="background:#cffafe"] {
+  background: rgba(14,116,144,.2) !important;
+  color: #67e8f9 !important;
+}
+.slide[style*="background:#f8fafc"] .badge,
+.slide[style*="background:white"] .badge {
+  background: rgba(255,255,255,.12) !important;
+  color: #e2e8f0 !important;
+}
+
+/* strong / bold text in light slides */
+.slide[style*="background:#f8fafc"] strong,
+.slide[style*="background:white"] strong {
+  color: #f1f5f9 !important;
+}
+
+/* Input and select elements in light slides (Role-Play builder) */
+.slide[style*="background:#f8fafc"] select,
+.slide[style*="background:#f8fafc"] input,
+.slide[style*="background:#f8fafc"] textarea,
+.slide[style*="background:white"] select,
+.slide[style*="background:white"] input,
+.slide[style*="background:white"] textarea {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: rgba(255,255,255,.2) !important;
+}
+.slide[style*="background:#f8fafc"] select option,
+.slide[style*="background:white"] select option {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+/* amber-box cards stay amber on dark */
+.slide[style*="background:#f8fafc"] .amber-box,
+.slide[style*="background:white"] .amber-box {
+  background: rgba(251,191,36,.12) !important;
+  border-color: rgba(251,191,36,.3) !important;
+}
+/* === END DARK SLIDE OVERRIDE === */
+
 </style></head><body>
 <div class="card">
   <div class="header">
