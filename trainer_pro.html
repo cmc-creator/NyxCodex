@@ -166,6 +166,14 @@ async function loadUserData(user) {
       hasOnboarded: false, currentSlide: 0, sessionMode: 'training'
     };
   }
+  // Safety net: if initApp wasn't called (unexpected error path), force it after 100ms
+  setTimeout(()=>{
+    const loader = document.getElementById('app-loading');
+    if(loader && loader.style.display !== 'none') {
+      console.warn('[DSH] loader still visible after loadUserData — forcing initApp');
+      initApp();
+    }
+  }, 5000);
   initApp();
 }
 window._signUp = async function(fname, lname, email, pass, phone, title, dept, empid) {
