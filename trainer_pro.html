@@ -3256,10 +3256,10 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
           </div>
         </div>
         <div id="microexp-buttons" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;margin-bottom:.85rem">
-          <button onclick="answerMicroExp('Anger')" style="border:2px solid #fca5a5;background:#fff5f5;color:#b91c1c;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😠 Anger</button>
-          <button onclick="answerMicroExp('Fear')" style="border:2px solid #bfdbfe;background:rgba(219,234,254,.12);color:#1d4ed8;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😨 Fear</button>
-          <button onclick="answerMicroExp('Sadness')" style="border:2px solid rgba(201,168,76,.3);background:rgba(201,168,76,.06);color:#C9A84C;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😢 Sadness</button>
-          <button onclick="answerMicroExp('Neutral')" style="border:2px solid #d1fae5;background:#f0fdf4;color:#065f46;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😐 Neutral</button>
+          <button class="microexp-choice-btn" data-choice="Anger" onclick="answerMicroExp(this.dataset.choice)" style="border:2px solid #fca5a5;background:#fff5f5;color:#b91c1c;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😠 Anger</button>
+          <button class="microexp-choice-btn" data-choice="Fear" onclick="answerMicroExp(this.dataset.choice)" style="border:2px solid #bfdbfe;background:rgba(219,234,254,.12);color:#1d4ed8;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😨 Fear</button>
+          <button class="microexp-choice-btn" data-choice="Sadness" onclick="answerMicroExp(this.dataset.choice)" style="border:2px solid rgba(201,168,76,.3);background:rgba(201,168,76,.06);color:#C9A84C;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😢 Sadness</button>
+          <button class="microexp-choice-btn" data-choice="Neutral" onclick="answerMicroExp(this.dataset.choice)" style="border:2px solid #d1fae5;background:#f0fdf4;color:#065f46;font-weight:900;padding:.7rem .4rem;border-radius:.875rem;cursor:pointer;font-size:.88rem">😐 Neutral</button>
         </div>
         <div id="microexp-vance-tip" style="background:rgba(201,168,76,.08);border-left:4px solid #C9A84C;border-radius:0 .6rem .6rem 0;padding:.7rem 1rem;display:none">
           <div style="font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#1d4ed8;margin-bottom:.2rem">Prof. Vance</div>
@@ -3683,10 +3683,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       <svg class="sb-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
       <span class="sb-label">Videos</span>
     </button>
-    <button id="ambience-btn" class="sb-nav-btn" onclick="toggleAmbience()" title="Toggle ambient sound" style="color:#93c5fd;" onmouseover="this.style.background='rgba(59,130,246,.1)'" onmouseout="this.style.background='transparent'">
-      <svg class="sb-icon" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-      <span class="sb-label">Ambient Sound</span>
-    </button>
+
     <button id="nav-admin-btn" class="sb-nav-btn" onclick="openAdminPrompt()" title="Admin Dashboard" style="color:#c4b5fd;" onmouseover="this.style.background='rgba(124,58,237,.1)'" onmouseout="this.style.background='transparent'">
       <svg class="sb-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
       <span class="sb-label">Admin</span>
@@ -4941,7 +4938,7 @@ function getSlides14to27() { return `
       </div>
     </div>
     <div class="card p-6" style="display:flex;flex-direction:column;gap:1rem">
-      <div id="scenario-feedback" style="flex:1;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.18);border-radius:1rem;padding:1.25rem;font-size:.875rem;color:#e2e8f0;line-height:1.7;min-height:200px">
+      <div id="scenario-feedback" style="flex:1;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.18);border-radius:1rem;padding:1.25rem;font-size:.875rem;color:#e2e8f0;line-height:1.7;min-height:200px;max-height:none;overflow-y:auto">
         <p style="color:#94a3b8;font-style:italic">Clinical evaluation will appear here. Powered by Gemini AI when configured — using evidence-based clinical grading otherwise.</p>
       </div>
       <div id="scenario-score" style="display:none;background:linear-gradient(135deg,#1e3a8a,#2563eb);border-radius:1rem;padding:1.25rem;text-align:center">
@@ -7941,7 +7938,15 @@ async function claimOwnerAccount() {
     currentAdminRole = 'owner';
     document.getElementById('admin-pin-modal').style.display='none';
     openAdminDashboard();
-  } catch(e) { if(err){err.textContent='Error: '+e.message; err.style.display='block';} else { alert('Error claiming owner account: ' + e.message); } }
+  } catch(e) {
+    const msg = e.message || '';
+    let userMsg = 'Error: ' + msg;
+    if(msg.includes('PERMISSION_DENIED') || msg.includes('permission')) {
+      userMsg = 'Firebase security rules are blocking first-time setup. Please update your Firebase Realtime Database rules to allow admin bootstrapping:\n\nIn Firebase Console → Realtime Database → Rules, update the \"admins\" section:\n{\n  \"admins\": {\n    \".read\": \"auth != null\",\n    \".write\": \"auth != null && (!data.exists() || root.child(\'admins\').child(auth.uid).child(\'role\').val() === \'owner\')\",\n    \"$uid\": {\n      \".write\": \"auth != null && ($uid === auth.uid || root.child(\'admins\').child(auth.uid).child(\'role\').val() === \'owner\')\",\n      \".read\": \"auth != null\"\n    }\n  }\n}\n\nAfter saving these rules, refresh this page and try again.';
+    }
+    if(err){ err.style.whiteSpace='pre-wrap'; err.textContent=userMsg; err.style.display='block'; }
+    else { alert(userMsg); }
+  }
 }
 
 async function openAdminDashboardLegacy() {
@@ -11525,14 +11530,86 @@ async function _preCacheIdleNudges() {
 document.addEventListener('DSHUserLoaded', () => setTimeout(_preCacheIdleNudges, 500));
 // --- Micro-Expression Drill -------------------------------------------------
 const MICROEXP_ROUNDS = [
-  { prompt: "Marcus crosses his arms, jaw tightens, eyes narrow. He just heard 'You have to calm down.'", emotion: "Anger", tip: "Jaw tightening + narrowed eyes = suppressed anger. Never command calm - offer choice instead." },
-  { prompt: "Marcus goes still. Brows pull together and upward. Lips press together. A door just slammed.", emotion: "Fear", tip: "Inner brow raise + lip press = startle/fear. Lower voice, slow movements, give space." },
-  { prompt: "Marcus's gaze drops to the floor. Lip corners pull down slightly. He says 'It doesn't matter.'", emotion: "Sadness", tip: "Downward gaze + lip corners down = despair. Validate feelings - do not problem-solve." },
-  { prompt: "Marcus sits relaxed, face neutral, eyes mid-level. He responds to his name with 'Yeah.'", emotion: "Neutral", tip: "Relaxed facial muscles, neutral gaze = regulated state. Build rapport and offer choices now." },
-  { prompt: "Marcus's nostrils flare briefly. Upper lip twitches. He turns slightly away while you speak.", emotion: "Anger", tip: "Nostril flare + upper lip pull = micro-contempt. Avoid confrontational language immediately." },
-  { prompt: "Marcus glances rapidly toward the door twice. Breathing shallow. Hands grip chair arms.", emotion: "Fear", tip: "Eye movement to exits + shallow breathing = threat assessment. State room is safe; do not block exits." },
-  { prompt: "Marcus stares at the table. Shoulders slump. Has not responded in 90 seconds.", emotion: "Sadness", tip: "Withdrawn stillness + slumped posture = shutdown. Silence can be therapeutic - wait before re-prompting." },
-  { prompt: "Marcus makes brief eye contact, nods once, says 'I hear you.' Body language open.", emotion: "Neutral", tip: "Brief eye contact + open body = engagement signal. Transition to collaborative problem solving now." }
+  { subject: "Marcus (Adult Male)", img: "https://randomuser.me/api/portraits/men/32.jpg",
+    prompt: "Marcus crosses his arms, jaw tightens, eyes narrow. He just heard 'You have to calm down.'",
+    emotion: "Anger", choices: ["Anger","Fear","Sadness","Neutral"],
+    tip: "Jaw tightening + narrowed eyes = suppressed anger. Never command calm — offer choice instead." },
+  { subject: "Delilah (Adult Female)", img: "https://randomuser.me/api/portraits/women/44.jpg",
+    prompt: "Delilah goes still. Brows pull together and upward, lips press together. A door just slammed.",
+    emotion: "Fear", choices: ["Fear","Anger","Neutral","Sadness"],
+    tip: "Inner brow raise + lip press = startle/fear. Lower voice, slow movements, give space." },
+  { subject: "Leon (Older Male)", img: "https://randomuser.me/api/portraits/men/78.jpg",
+    prompt: "Leon's gaze drops to the floor. Lip corners pull down slightly. He says 'It doesn't matter.'",
+    emotion: "Sadness", choices: ["Sadness","Anger","Fear","Neutral"],
+    tip: "Downward gaze + lip corners down = despair. Validate feelings — do not problem-solve yet." },
+  { subject: "Rosa (Older Female)", img: "https://randomuser.me/api/portraits/women/72.jpg",
+    prompt: "Rosa sits relaxed, face neutral, eyes mid-level. She responds to her name with 'Yes?'",
+    emotion: "Neutral", choices: ["Neutral","Fear","Sadness","Anger"],
+    tip: "Relaxed facial muscles + neutral gaze = regulated state. Build rapport and offer choices now." },
+  { subject: "Devon (Adult Male)", img: "https://randomuser.me/api/portraits/men/22.jpg",
+    prompt: "Devon's nostrils flare briefly. Upper lip twitches. He turns slightly away while you speak.",
+    emotion: "Contempt", choices: ["Contempt","Anger","Neutral","Fear"],
+    tip: "Nostril flare + unilateral upper lip pull = contempt micro-expression. Shift approach immediately — he feels disrespected." },
+  { subject: "Aisha (Adult Female)", img: "https://randomuser.me/api/portraits/women/28.jpg",
+    prompt: "Aisha glances rapidly toward the door twice. Breathing shallow. Hands grip chair arms.",
+    emotion: "Fear", choices: ["Fear","Anger","Contempt","Neutral"],
+    tip: "Eye movement toward exits + shallow breathing = threat assessment. State the room is safe; never block exits." },
+  { subject: "Graham (Older Male)", img: "https://randomuser.me/api/portraits/men/82.jpg",
+    prompt: "Graham stares at the table. Shoulders slump. Has not responded in 90 seconds.",
+    emotion: "Sadness", choices: ["Sadness","Fear","Neutral","Contempt"],
+    tip: "Withdrawn stillness + slumped posture = emotional shutdown. Silence can be therapeutic — wait before re-prompting." },
+  { subject: "Maria (Adult Female)", img: "https://randomuser.me/api/portraits/women/55.jpg",
+    prompt: "Maria makes brief eye contact, nods once, says 'I hear you.' Body language open.",
+    emotion: "Neutral", choices: ["Neutral","Sadness","Fear","Anger"],
+    tip: "Brief eye contact + open body = active engagement. This is your window — transition to collaborative problem solving." },
+  { subject: "Tyrone (Adult Male)", img: "https://randomuser.me/api/portraits/men/41.jpg",
+    prompt: "Tyrone's eyes widen suddenly, eyebrows shoot up, mouth drops slightly open. Backs against wall.",
+    emotion: "Fear", choices: ["Fear","Surprise","Anger","Neutral"],
+    tip: "Wide eyes + raised brows + open mouth = acute fear response. Move slowly, speak softly, create physical space." },
+  { subject: "Elena (Adult Female)", img: "https://randomuser.me/api/portraits/women/37.jpg",
+    prompt: "Elena's nose wrinkles, upper lip raises symmetrically, eyes squint slightly as if smelling something bad.",
+    emotion: "Disgust", choices: ["Disgust","Anger","Fear","Contempt"],
+    tip: "Nose wrinkle + symmetric lip raise = disgust. She may be reacting to a procedure, smell, or perceived injustice." },
+  { subject: "Bernard (Older Male)", img: "https://randomuser.me/api/portraits/men/90.jpg",
+    prompt: "Bernard's brows furrow deeply, lips press in a tight line, eyes locked on you with sustained eye contact.",
+    emotion: "Anger", choices: ["Anger","Sadness","Contempt","Neutral"],
+    tip: "Furrowed brows + sustained eye contact + tight lips = escalating anger. Do not break eye contact abruptly — respond calmly." },
+  { subject: "Yolanda (Older Female)", img: "https://randomuser.me/api/portraits/women/85.jpg",
+    prompt: "Yolanda's chin quivers almost imperceptibly. She blinks rapidly and looks away, swallowing hard.",
+    emotion: "Sadness", choices: ["Sadness","Fear","Neutral","Disgust"],
+    tip: "Chin quiver + blink suppression + swallowing = trying to suppress tears. Offer privacy and validate without pressure to talk." },
+  { subject: "Kevin (Adult Male)", img: "https://randomuser.me/api/portraits/men/14.jpg",
+    prompt: "Kevin's face is completely still. He's answering questions, giving short accurate replies, no emotional coloring.",
+    emotion: "Neutral", choices: ["Neutral","Sadness","Anger","Fear"],
+    tip: "Flat affect with accurate verbal responses = not necessarily withdrawal — may indicate emotional regulation or dissociation. Monitor context." },
+  { subject: "Priya (Adult Female)", img: "https://randomuser.me/api/portraits/women/18.jpg",
+    prompt: "Priya freezes when you enter. Eyes dart to the door, then the floor. She pulls knees to chest on the bed.",
+    emotion: "Fear", choices: ["Fear","Sadness","Anger","Neutral"],
+    tip: "Freeze + gaze avoidance + protective posture = acute fear/trauma response. Announce yourself clearly, move slowly, offer choice." },
+  { subject: "Emmett (Adult Male)", img: "https://randomuser.me/api/portraits/men/58.jpg",
+    prompt: "Emmett smiles, nods, but the smile does not reach his eyes. Crow's feet absent. Eyes remain flat.",
+    emotion: "Contempt", choices: ["Contempt","Neutral","Anger","Sadness"],
+    tip: "Duchenne smile involves crow's feet and eye orbicularis activation. A flat-eyed smile signals masked emotion — possibly contempt or concealed distress." },
+  { subject: "Fatima (Older Female)", img: "https://randomuser.me/api/portraits/women/91.jpg",
+    prompt: "Fatima wrings her hands slowly, shoulders drawn inward. She says 'I'm fine' but avoids your gaze.",
+    emotion: "Fear", choices: ["Fear","Sadness","Neutral","Contempt"],
+    tip: "Hand-wringing + shoulder contraction + verbal incongruence = anxiety with self-soothing. Trust behavioral cues over verbal denial." },
+  { subject: "Darius (Adult Male)", img: "https://randomuser.me/api/portraits/men/67.jpg",
+    prompt: "Darius suddenly grips the bedrail hard. His jaw clenches. He lets out a slow controlled exhale.",
+    emotion: "Anger", choices: ["Anger","Fear","Neutral","Sadness"],
+    tip: "Grip tension + jaw clench + controlled exhale = active anger suppression. Acknowledge the frustration before continuing — 'I can see this is frustrating.'" },
+  { subject: "Carmen (Adult Female)", img: "https://randomuser.me/api/portraits/women/64.jpg",
+    prompt: "Carmen's shoulders drop. She leans back in the chair, expression soft, makes comfortable eye contact.",
+    emotion: "Neutral", choices: ["Neutral","Sadness","Anger","Fear"],
+    tip: "Dropped shoulders + back lean + soft expression = de-escalated baseline. Reinforce this state — positive engagement window is open." },
+  { subject: "Harold (Older Male)", img: "https://randomuser.me/api/portraits/men/97.jpg",
+    prompt: "Harold's upper lip curls on one side only. He glances sideways as you explain the medication. Says 'Whatever you say, doc.'",
+    emotion: "Contempt", choices: ["Contempt","Anger","Neutral","Sadness"],
+    tip: "Unilateral lip curl + lateral gaze = contempt — the only asymmetric micro-expression. He may distrust the treatment plan. Explore his concerns directly." },
+  { subject: "Simone (Adult Female)", img: "https://randomuser.me/api/portraits/women/50.jpg",
+    prompt: "Simone's face scrunches — nose, eyes, mouth all tighten together. She shudders briefly after a dressing change.",
+    emotion: "Disgust", choices: ["Disgust","Fear","Anger","Contempt"],
+    tip: "Whole-face scrunch + shudder = visceral disgust response. This is often involuntary. Normalize the reaction — 'Many patients find this uncomfortable.'" }
 ];
 let _meIndex = 0, _meScore = 0, _meAnswered = false;
 let _meTimerHandle = null, _meTimerBarHandle = null;
@@ -11564,6 +11641,18 @@ function nextMicroExpRound() {
   }
   _meAnswered = false;
   var round = MICROEXP_ROUNDS[_meIndex];
+  // Update image and subject label
+  var img = document.getElementById('microexp-image');
+  if(img && round.img) { img.src = round.img; img.alt = round.subject || 'Subject'; }
+  var subjectLbl = document.getElementById('microexp-subject-label');
+  if(subjectLbl) subjectLbl.textContent = (round.subject || 'Subject') + ' — Read the expression';
+  // Update answer buttons with this round's choices
+  if(round.choices) {
+    var btns = document.querySelectorAll('.microexp-choice-btn');
+    btns.forEach(function(btn, i) {
+      if(round.choices[i]) { btn.textContent = round.choices[i]; btn.dataset.choice = round.choices[i]; }
+    });
+  }
   var prompt = document.getElementById('microexp-prompt');
   if(prompt) prompt.textContent = round.prompt;
   var res = document.getElementById('microexp-result-badge');
