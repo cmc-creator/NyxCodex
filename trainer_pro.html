@@ -5653,9 +5653,9 @@ function getSlides14to27() { return `
 </div>
 
 <!-- SLIDE 29 — CERTIFICATE DOWNLOAD (UNLOCKED AFTER QUIZ) -->
-<div class="slide" style="background:linear-gradient(135deg,#0b1224,#0f172a);padding-bottom:5rem">
-  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2rem;text-align:center">
-    <div style="font-size:4.5rem;margin-bottom:1rem"></div>
+<div class="slide" style="background:linear-gradient(135deg,#0b1224,#0f172a);overflow-y:auto">
+  <div style="display:flex;flex-direction:column;align-items:center;padding:4rem 2rem 6rem;text-align:center;min-height:100%">
+    <div style="font-size:4.5rem;margin-bottom:1rem;letter-spacing:-.05em">&#10024;</div>
     <h2 style="font-size:clamp(1.85rem,5vw,3rem);font-weight:900;color:white;font-family:Montserrat,sans-serif;margin-bottom:.5rem">Certificate of Completion</h2>
     <p style="color:#a5b4fc;font-size:1rem;margin-bottom:2rem">Available after you score 93% or higher on the quiz (14/15).</p>
     <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:1.5rem;padding:2rem;max-width:640px;width:100%;backdrop-filter:blur(12px);box-shadow:0 14px 40px rgba(0,0,0,.25)">
@@ -5682,6 +5682,9 @@ function getSlides14to27() { return `
         </div>
       </div>
     </div>
+    <button onclick="showHomeGateway()" style="margin-top:2rem;background:transparent;border:1.5px solid rgba(255,255,255,.3);color:#e2e8f0;font-weight:800;font-size:.95rem;padding:.75rem 2rem;border-radius:1rem;cursor:pointer;letter-spacing:.02em;transition:all .2s" onmouseover="this.style.borderColor='#C9A84C';this.style.color='#C9A84C'" onmouseout="this.style.borderColor='rgba(255,255,255,.3)';this.style.color='#e2e8f0'">
+      &larr; Back to Hub
+    </button>
   </div>
 </div>
 
@@ -6199,8 +6202,12 @@ function showSlide(n) {
 
   // Gate certificate slide until quiz is passed
   if(target === certIndex && !finalQuizPassed) {
-    alert('Score 90%+ on the quiz to unlock the certificate slide.');
+    // Don't use alert — just bounce to the quiz slide
     target = Math.max(0, certIndex-1);
+  }
+  // When landing on cert slide, refresh stats
+  if(target === certIndex) {
+    updateFinalStats();
   }
 
   const _slideDir = target > currentSlide ? 'fwd' : (target < currentSlide ? 'bwd' : null);
@@ -6467,7 +6474,24 @@ async function selectRoleTrack(roleKey) {
     `Got it — role track set to ${role.label}. ${role.vance}`);
 }
 
-async function refreshHubRoleTrack() {
+async function refreshHubResumeCard() {
+  const isCompleted = !!(window._userData?.completedTraining);
+  const titleEl = document.querySelector('.hub-action-resume .hub-card-title');
+  const bodyEl  = document.querySelector('.hub-action-resume .hub-card-body');
+  const metaEl  = document.querySelector('.hub-action-resume .hub-card-meta');
+  if(!titleEl) return;
+  if(isCompleted) {
+    titleEl.textContent = 'Review Training';
+    if(bodyEl) bodyEl.textContent = 'Go back through all 31 modules from the beginning.';
+    if(metaEl) metaEl.textContent = 'Training completed ✓';
+  } else {
+    titleEl.textContent = 'Resume where I left off';
+    if(bodyEl) bodyEl.textContent = 'Jump back to your last slide and keep your progress.';
+    if(metaEl) metaEl.textContent = 'Progress auto-saved';
+  }
+}
+
+function refreshHubRoleTrack() {
   const pillWrap = document.getElementById('hub-role-pills');
   const roleWrap = document.getElementById('hub-role-wrap');
   if (!pillWrap || !roleWrap) return;
@@ -6580,6 +6604,7 @@ async function showHomeGateway() {
   refreshHubCertStatus(); // update certification renewal strip
   refreshHubBadges();     // render earned badge wall
   refreshHubRoleTrack();  // render role selector pills
+  refreshHubResumeCard(); // update resume card text based on completion state
   refreshHubChallenge();  // show monthly team challenge widget
   refreshAssignedScenarioBanner(); // show manager-assigned scenario if any
   refreshHubChecklist();  // onboarding checklist for new users
@@ -6592,13 +6617,16 @@ async function showHomeGateway() {
   if(vFab) vFab.style.display = 'none';
   // Show Professor Vance on the hub with a welcome greeting
   const fname = currentFirstName();
-  const isReturning = !!(window._userData?.currentSlide > 0 || window._userData?.completedTraining || window._userData?.hasOnboarded);
+  const isReturning   = !!(window._userData?.currentSlide > 0 || window._userData?.completedTraining || window._userData?.hasOnboarded);
+  const isCompleted   = !!(window._userData?.completedTraining);
   const savedRole = window._userData?.roleTrack || null;
   const roleObj   = savedRole ? ROLE_TRACKS.find(r => r.label === savedRole) : null;
   const roleSuffix = roleObj
     ? ` As ${roleObj.icon} ${roleObj.label}: ${roleObj.vance}`
     : ' Select your role below to get personalized guidance.';
-  const hubMsg = isReturning
+  const hubMsg = isCompleted
+    ? `Congratulations, ${fname} — you've completed your NyxCodex training! Would you like to review the material, head into the Practice Lab, or download your certificate from the final slide?`
+    : isReturning
     ? `Welcome back, ${fname}! Pick where you want to go today — I'll be right here with you.${roleSuffix}`
     : `Welcome, ${fname}! I'm Professor Vance. When you're ready, choose a path and we'll get started.${roleSuffix}`;
   if(window._vanceAudio) { window._vanceAudio.pause(); window._vanceAudio.currentTime = 0; }
@@ -6685,15 +6713,17 @@ function confirmRedoTraining() {
 function resumeTrainingFromHub() {
   hideHomeGateway();
   sessionMode = 'training';
-  // Go to saved slide; use at least slide 1 so we never land back on the title card
+  const slides = document.querySelectorAll('.slide');
+  const certIdx = slides.length - 1;
   const savedSlide = Number(window._userData?.currentSlide || currentSlide || 0);
-  const resumeSlide = Math.max(1, savedSlide);
+  // If completed (or saved slide is the cert slide), start a review from slide 1
+  const resumeSlide = (window._userData?.completedTraining || savedSlide >= certIdx)
+    ? 1
+    : Math.max(1, savedSlide);
   currentSlide = resumeSlide;
   showSlide(currentSlide);
   renderFinalQuiz();
   window._saveUserData({ sessionMode, currentSlide }).catch(()=>{});
-  const fname = currentFirstName();
-  // Vance will auto-speak via showSlide if it's a new slide; no redundant greeting needed
 }
 
 function enterLabFromHub() {
@@ -6862,7 +6892,7 @@ function renderFinalQuiz() {
   const certBtn = document.getElementById('cert-btn');
   if(certBtn) certBtn.disabled = !finalQuizPassed;
   const lockMsg = document.getElementById('cert-locked-msg');
-  if(lockMsg) lockMsg.textContent = finalQuizPassed ? 'Certificate unlocked — go to the next slide to download.' : 'Pass the quiz to unlock your certificate.';
+  if(lockMsg) lockMsg.textContent = finalQuizPassed ? 'Certificate unlocked — download your certificate below.' : 'Pass the quiz to unlock your certificate.';
   const res = document.getElementById('final-quiz-result');
   if(res && finalQuizPassed) res.textContent = `Passed ${finalQuizScore}/15 — certificate unlocked.`;
 }
