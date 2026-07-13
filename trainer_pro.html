@@ -2188,6 +2188,13 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{
 /* ── DARK MODE: nav bar slide counter ── */
 :root:not([data-theme="light"]) #nav-slide-counter{color:#94a3b8!important}
 /* ── DARK MODE: lab modal inline elements ── */
+/* Character pills and mic button need dark text regardless of theme */
+#patient-selector button{color:#0f172a!important}
+#patient-selector button.active-patient{color:inherit!important}
+#lab-mic-btn{color:#0f172a!important}
+/* Override the general dark-modal rule that forces light text on white bg buttons */
+:root:not([data-theme="light"]) #patient-selector button[style*="background:white"]{background:rgba(255,255,255,.92)!important;color:#0f172a!important}
+:root:not([data-theme="light"]) #lab-mic-btn{background:#f0f4f8!important;border-color:rgba(255,255,255,.25)!important;color:#0f172a!important}
 :root:not([data-theme="light"]) #lab-modal h3[style*="color:#0f172a"]{color:#eef2fb!important}
 :root:not([data-theme="light"]) #lab-modal div[style*="background:#ecfdf3"]{background:rgba(34,197,94,.1)!important;border-color:rgba(34,197,94,.2)!important;color:#86efac!important}
 :root:not([data-theme="light"]) #lab-modal div[style*="background:#f8fafc"]{background:#080806!important;border-color:rgba(255,255,255,.08)!important}
