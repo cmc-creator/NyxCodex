@@ -3185,7 +3185,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
         <div style="display:flex;flex-direction:column;gap:.5rem">
           <textarea id="lab-response" class="input-field" placeholder="Type your de-escalation response..." style="height:180px;resize:vertical"></textarea>
           <button id="lab-mic-btn" onclick="toggleLabMic()" title="Record spoken response"
-            style="display:none;align-items:center;justify-content:center;gap:.45rem;padding:.45rem .9rem;border-radius:.65rem;border:1.5px solid #e2e8f0;background:#f8fafc;color:#64748b;font-size:.8rem;font-weight:800;cursor:pointer;width:100%;transition:all .2s">
+            style="display:none;align-items:center;justify-content:center;gap:.45rem;padding:.45rem .9rem;border-radius:.65rem;border:1.5px solid #e2e8f0;background:#f8fafc;color:#0f172a;font-size:.8rem;font-weight:800;cursor:pointer;width:100%;transition:all .2s">
             🎤 <span id="lab-mic-label">Speak response</span>
           </button>
           <div id="lab-mic-status" style="display:none;font-size:.75rem;color:#dc2626;font-weight:700;text-align:center"></div>
@@ -9945,7 +9945,7 @@ function renderPatientSelector() {
     const avatarHtml = p.avatar
       ? `<img src="${p.avatar}" style="width:24px;height:24px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid ${isActive?'white':p.color};flex-shrink:0" alt="">`
       : `<div style="width:24px;height:24px;border-radius:50%;background:${p.color};display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.58rem;color:white;flex-shrink:0;border:2px solid ${isActive?'white':'transparent'}">${p.initials}</div>`;
-    return `<button onclick="selectLabPatient('${p.id}')" style="display:flex;align-items:center;gap:.45rem;padding:.3rem .65rem .3rem .38rem;border-radius:2rem;border:2px solid ${isActive?p.color:'#e2e8f0'};background:${isActive?p.color+'22':'white'};cursor:pointer;font-size:.77rem;font-weight:${isActive?'900':'700'};color:${isActive?p.color:'#475569'};transition:all .15s;white-space:nowrap">${avatarHtml}<span>${p.name}</span><span style="font-size:.64rem;color:${isActive?p.color:'#94a3b8'};font-weight:600;display:none" class="pat-sel-dx">${p.dx}</span></button>`;
+    return `<button onclick="selectLabPatient('${p.id}')" style="display:flex;align-items:center;gap:.45rem;padding:.3rem .65rem .3rem .38rem;border-radius:2rem;border:2px solid ${isActive?p.color:'#e2e8f0'};background:${isActive?p.color+'22':'white'};cursor:pointer;font-size:.77rem;font-weight:${isActive?'900':'700'};color:${isActive?p.color:'#0f172a'};transition:all .15s;white-space:nowrap">${avatarHtml}<span>${p.name}</span><span style="font-size:.64rem;color:${isActive?p.color:'#475569'};font-weight:600;display:none" class="pat-sel-dx">${p.dx}</span></button>`;
   }).join('');
 }
 
