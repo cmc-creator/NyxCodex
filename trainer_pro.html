@@ -3710,6 +3710,19 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 
 <!-- floating slide edge nav arrows -->
 <button id="side-arrow-prev" onclick="prevSlide()" title="Previous slide" style="position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:79;width:52px;height:80px;background:rgba(10,15,30,.65);border:none;color:white;font-size:1.6rem;cursor:pointer;border-radius:0 .75rem .75rem 0;backdrop-filter:blur(8px);transition:background .2s" onmouseover="this.style.background='rgba(37,99,235,.7)'" onmouseout="this.style.background='rgba(10,15,30,.65)'">&#8249;</button>
+<!-- Persistent "Return to Hub" button shown during slide training -->
+<button id="hub-return-btn" onclick="showHomeGateway()" title="Return to Hub"
+  style="position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:80;
+         display:none;align-items:center;gap:.45rem;
+         background:rgba(10,15,30,.80);border:1px solid rgba(201,168,76,.35);
+         color:#C9A84C;font-size:.78rem;font-weight:800;letter-spacing:.08em;
+         padding:.5rem 1.2rem;border-radius:2rem;cursor:pointer;
+         backdrop-filter:blur(10px);transition:all .2s;white-space:nowrap"
+  onmouseover="this.style.borderColor='#C9A84C';this.style.background='rgba(201,168,76,.15)'"
+  onmouseout="this.style.borderColor='rgba(201,168,76,.35)';this.style.background='rgba(10,15,30,.80)'">
+  &#8962; Hub
+</button>
+
 <button id="side-arrow-next" onclick="nextSlide()" title="Next slide" style="position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:79;width:52px;height:80px;background:rgba(37,99,235,.7);border:none;color:white;font-size:1.6rem;cursor:pointer;border-radius:.75rem 0 0 .75rem;backdrop-filter:blur(8px);transition:background .2s" onmouseover="this.style.background='rgba(37,99,235,.92)'" onmouseout="this.style.background='rgba(37,99,235,.7)'">&#8250;</button>
 
 <!-- ----------------------- LEFT SIDEBAR NAV — NyxCodex® -- -->
@@ -6666,11 +6679,13 @@ function hideHomeGateway() {
   clearTimeout(window._hubVanceTimer); clearTimeout(window._hubVanceFallback); // cancel welcome message if user navigated away quickly
   const hub = document.getElementById('home-gateway');
   if(hub) animatePanelOut(hub);
-  // Restore slide navigation arrows
+  // Restore slide navigation arrows + hub-return button
   const pa = document.getElementById('side-arrow-prev');
   const na = document.getElementById('side-arrow-next');
   if(pa) pa.style.display = '';
   if(na) na.style.display = '';
+  const _hrbHide = document.getElementById('hub-return-btn');
+  if(_hrbHide) _hrbHide.style.display = 'flex';
   // Show persistent Vance FAB during training
   const vFab = document.getElementById('vance-fab');
   if(vFab) vFab.style.display = 'flex';
@@ -11377,6 +11392,9 @@ function launchClinicalDemo() {
   if (document.getElementById('home-gateway')) {
     document.getElementById('home-gateway').style.display = 'flex';
   }
+  // Hide hub-return button when on hub
+  const _hrbHub = document.getElementById('hub-return-btn');
+  if(_hrbHub) _hrbHub.style.display = 'none';
   // Populate nav display
   const nameEl = document.getElementById('nav-name');
   if (nameEl) nameEl.textContent = 'Demo Admin';
