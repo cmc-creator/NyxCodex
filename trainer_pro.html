@@ -3173,82 +3173,150 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 
       <!-- TAB: Scenarios -->
       <div id="lab-tab-scenarios">
-        <!-- Patient Selector -->
-        <div id="patient-selector" style="display:flex;gap:.5rem;margin-bottom:.65rem;flex-wrap:wrap"></div>
-        <!-- Patient Status Bar -->
-        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem;background:#0f172a;border-radius:.875rem;padding:.6rem 1rem">
-          <div id="lab-patient-avatar-wrap" style="width:36px;height:36px;border-radius:50%;border:2px solid #C9A84C;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.75rem;color:white;background:#2563eb">
-            <img id="lab-patient-avatar-img" src="prof.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block" alt="">
-          </div>
-          <div style="flex:1">
-            <div style="font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#64748b">Patient Status</div>
-            <div id="lab-patient-name" style="font-weight:800;color:white;font-size:.9rem">Marcus <span style="font-size:.75rem;font-weight:600;color:#94a3b8">— Combat PTSD, evaluation pending</span></div>
-          </div>
-          <div id="marcus-state-badge" style="padding:.3rem .85rem;border-radius:1rem;font-weight:900;font-size:.8rem;background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.28)">&#x26AB; Neutral</div>
-        </div>
-        <div class="grid-two-varied">
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:1rem;padding:1rem">
-          <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem">
-            <select id="lab-dx" class="input-field" style="flex:1;min-width:180px">
-              <option value="autism">Autism Spectrum Disorder</option>
-              <option value="adhd">ADHD / Attention-Deficit Disorder</option>
-              <option value="schizophrenia">Schizophrenia Spectrum Disorder</option>
-              <option value="bipolar">Bipolar Disorder</option>
-              <option value="ptsd">PTSD / Trauma Response</option>
-              <option value="bpd">Borderline Personality Disorder</option>
-              <option value="medication_refusal">Medication Refusal</option>
-            </select>
 
-            <button class="btn btn-amber" onclick="generateLabScenario()" style="padding:.65rem 1.1rem;font-size:.85rem;font-weight:800">&#9654; Load Scenario</button><button class="btn btn-primary" onclick="randomizeLabScenario()" style="padding:.65rem 1.1rem;font-size:.85rem;font-weight:800">&#127922; Randomize All</button>
-          </div>
-          <div id="lab-scenario-box" style="background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.2);border-radius:.875rem;padding:1rem;min-height:140px;color:#e2e8f0;font-weight:600;line-height:1.6">Pick a diagnosis and click New Scenario.</div>
-        </div>
-        <div style="background:rgba(180,83,9,.08);border:1px solid rgba(180,83,9,.25);border-radius:1rem;padding:1rem">
-          <h4 style="margin:0 0 .5rem;font-size:.95rem;font-weight:900;color:#C9A84C">Earning Rules</h4>
-          <ul style="margin:0;padding-left:1.1rem;color:#e2c97e;font-weight:700;font-size:.86rem;line-height:1.6">
-            <li>Base: 50 Lab Credits per completed scenario.</li>
-            <li>Score bonus: A +50, B +30, C +15, D +5.</li>
-            <li>Run each scenario once per day for credits (replays allowed, no credits).</li>
-            <li>Difficulty advanced/intensive adds +10%/+20% to total credits.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="grid-two-equal" style="margin-top:1rem">
-        <div style="display:flex;flex-direction:column;gap:.5rem">
-          <textarea id="lab-response" class="input-field" placeholder="Type your de-escalation response..." style="height:180px;resize:vertical"></textarea>
-          <button id="lab-mic-btn" onclick="toggleLabMic()" title="Record spoken response"
-            style="display:none;align-items:center;justify-content:center;gap:.45rem;padding:.45rem .9rem;border-radius:.65rem;border:1.5px solid #e2e8f0;background:#f8fafc;color:#0f172a;font-size:.8rem;font-weight:800;cursor:pointer;width:100%;transition:all .2s">
-            🎤 <span id="lab-mic-label">Speak response</span>
-          </button>
-          <div id="lab-mic-status" style="display:none;font-size:.75rem;color:#dc2626;font-weight:700;text-align:center"></div>
-        </div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:1rem;padding:1rem;display:flex;flex-direction:column;gap:.75rem;align-self:start">
-          <button id="lab-submit-btn" class="btn btn-success" onclick="submitLabScenario()" style="width:100%">Submit Response</button>
-        </div>
-      </div>
-      <!-- Full-width professor feedback panel — outside the grid so it has no height constraint -->
-      <div id="lab-score-panel" style="display:none;margin-top:1rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:1rem;padding:1.25rem">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid rgba(255,255,255,.1)">
-          <div style="font-weight:900;color:#f1f5f9;font-size:1.05rem">Score: <span id="lab-score-letter" style="font-size:1.4rem;margin-left:.25rem">—</span></div>
-          <div style="font-weight:900;color:#4ade80;font-size:1rem">+<span id="lab-lc-earned">0</span> LC</div>
-        </div>
-        <div id="lab-feedback" style="color:#e2e8f0;font-size:.9rem;line-height:1.75;white-space:pre-wrap"></div>
-        <div id="lab-cooldown" style="margin-top:.6rem;color:#f87171;font-weight:800;display:none;font-size:.82rem"></div>
-        <!-- Marcus in-character reply -->
-        <div id="marcus-reply-wrap" style="display:none;margin-top:1rem;background:#0f172a;border-radius:.875rem;overflow:hidden;border:1px solid rgba(255,255,255,.08)">
-          <div style="padding:.5rem .85rem;background:#1e293b;display:flex;align-items:center;gap:.6rem">
-            <div id="reply-patient-avatar-wrap" style="width:28px;height:28px;border-radius:50%;border:2px solid #475569;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.65rem;color:white;background:#475569">
-              <img id="reply-patient-avatar-img" src="prof.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block" alt="">
+        <!-- Patient pills -->
+        <div id="patient-selector" style="display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap"></div>
+
+        <!-- HUD Bar -->
+        <div style="display:grid;grid-template-columns:1fr auto;gap:.75rem;margin-bottom:.85rem;align-items:stretch">
+          <div style="display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,#0a1628 0%,#0f172a 100%);border:1px solid rgba(201,168,76,.25);border-radius:.875rem;padding:.65rem 1rem">
+            <div id="lab-patient-avatar-wrap" style="width:40px;height:40px;border-radius:50%;border:2px solid #C9A84C;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.8rem;color:white;background:#2563eb;box-shadow:0 0 12px rgba(201,168,76,.3)">
+              <img id="lab-patient-avatar-img" src="" style="width:100%;height:100%;object-fit:cover;object-position:top;display:none" alt="">
             </div>
-            <span id="reply-patient-label" style="font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8">Marcus responds</span>
-            <span id="marcus-reply-state-dot" style="margin-left:auto;font-size:.75rem;font-weight:800;padding:.2rem .6rem;border-radius:1rem"></span>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.14em;color:#C9A84C;margin-bottom:.15rem">Active Patient</div>
+              <div id="lab-patient-name" style="font-weight:900;color:white;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Marcus <span style="font-size:.75rem;font-weight:600;color:#94a3b8">&#8212; Combat PTSD</span></div>
+            </div>
+            <div id="marcus-state-badge" style="padding:.3rem .85rem;border-radius:1rem;font-weight:900;font-size:.8rem;background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.28);flex-shrink:0">&#x26AB; Neutral</div>
           </div>
-          <div style="padding:.875rem 1.1rem">
-            <p id="marcus-reply-text" style="margin:0;color:#e2e8f0;font-size:1.1rem;font-weight:600;line-height:1.7;font-style:italic">—</p>
+          <!-- Escalation gauge -->
+          <div style="background:linear-gradient(135deg,#0a1628,#0f172a);border:1px solid rgba(255,255,255,.1);border-radius:.875rem;padding:.65rem 1rem;display:flex;flex-direction:column;justify-content:center;gap:.35rem;min-width:165px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:#64748b">Escalation Level</span>
+              <span id="lab-escalation-pct" style="font-size:.68rem;font-weight:900;color:#4ade80">0%</span>
+            </div>
+            <div style="height:8px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden">
+              <div id="lab-escalation-bar" style="height:100%;width:0%;border-radius:4px;background:linear-gradient(90deg,#4ade80,#fbbf24,#f87171);transition:width .8s cubic-bezier(.4,0,.2,1)"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between">
+              <span style="font-size:.55rem;color:#4ade80;font-weight:800">STABLE</span>
+              <span style="font-size:.55rem;color:#fbbf24;font-weight:800">CAUTION</span>
+              <span style="font-size:.55rem;color:#f87171;font-weight:800">CRITICAL</span>
+            </div>
           </div>
         </div>
-      </div>
+
+        <!-- Content grid -->
+        <div style="display:grid;grid-template-columns:1fr 270px;gap:.85rem;align-items:start">
+
+          <!-- Mission brief terminal -->
+          <div style="background:linear-gradient(160deg,#080e1e 0%,#0a1020 100%);border:1px solid rgba(201,168,76,.25);border-radius:1rem;padding:1rem;position:relative;overflow:hidden">
+            <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.6),transparent)"></div>
+            <div style="font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.18em;color:#C9A84C;margin-bottom:.65rem;display:flex;align-items:center;gap:.5rem">
+              <span style="width:6px;height:6px;background:#C9A84C;border-radius:50%;animation:pulse-dot 1.5s ease infinite;display:inline-block"></span>
+              Mission Brief
+            </div>
+            <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:.85rem">
+              <select id="lab-dx" class="input-field" style="flex:1;min-width:160px;background:#060c18;border-color:rgba(201,168,76,.3);color:#e2e8f0;font-size:.85rem">
+                <option value="autism">Autism Spectrum Disorder</option>
+                <option value="adhd">ADHD / Attention-Deficit Disorder</option>
+                <option value="schizophrenia">Schizophrenia Spectrum Disorder</option>
+                <option value="bipolar">Bipolar Disorder</option>
+                <option value="ptsd">PTSD / Trauma Response</option>
+                <option value="bpd">Borderline Personality Disorder</option>
+                <option value="medication_refusal">Medication Refusal</option>
+              </select>
+              <button class="btn btn-amber" onclick="generateLabScenario()" style="padding:.6rem 1rem;font-size:.82rem;font-weight:900">&#9654; Load</button>
+              <button class="btn btn-primary" onclick="randomizeLabScenario()" style="padding:.6rem 1rem;font-size:.82rem;font-weight:900">&#127922; Random</button>
+            </div>
+            <div id="lab-scenario-box" style="background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.18);border-radius:.75rem;padding:1rem;min-height:110px;color:#e2c97e;font-weight:700;line-height:1.7;font-size:.9rem">Select patient &amp; category above, then load a scenario.</div>
+          </div>
+
+          <!-- Vitals sidebar -->
+          <div style="display:flex;flex-direction:column;gap:.65rem">
+            <div style="background:linear-gradient(160deg,#080e1e,#0a1020);border:1px solid rgba(255,255,255,.1);border-radius:1rem;padding:.85rem;position:relative;overflow:hidden">
+              <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(96,165,250,.5),transparent)"></div>
+              <div style="font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.15em;color:#60a5fa;margin-bottom:.7rem">Session Vitals</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+                <div style="background:rgba(255,255,255,.04);border-radius:.5rem;padding:.5rem .6rem;text-align:center">
+                  <div id="lab-session-rounds" style="font-size:1.3rem;font-weight:900;color:white;line-height:1">0</div>
+                  <div style="font-size:.6rem;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem">Rounds</div>
+                </div>
+                <div style="background:rgba(255,255,255,.04);border-radius:.5rem;padding:.5rem .6rem;text-align:center">
+                  <div id="lab-session-timer" style="font-size:1.3rem;font-weight:900;color:white;font-family:monospace;line-height:1">0:00</div>
+                  <div style="font-size:.6rem;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem">Session</div>
+                </div>
+                <div style="background:rgba(255,255,255,.04);border-radius:.5rem;padding:.5rem .6rem;text-align:center">
+                  <div id="lab-session-best" style="font-size:1.3rem;font-weight:900;color:#C9A84C;line-height:1">&#8212;</div>
+                  <div style="font-size:.6rem;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem">Best</div>
+                </div>
+                <div style="background:rgba(255,255,255,.04);border-radius:.5rem;padding:.5rem .6rem;text-align:center">
+                  <div id="lab-session-lc" style="font-size:1.3rem;font-weight:900;color:#4ade80;line-height:1">0</div>
+                  <div style="font-size:.6rem;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem">LC</div>
+                </div>
+              </div>
+            </div>
+            <div style="background:linear-gradient(160deg,#0a1020,#080e1e);border:1px solid rgba(180,83,9,.3);border-radius:1rem;padding:.85rem">
+              <div style="font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.15em;color:#f97316;margin-bottom:.6rem">Diagnostic Flags</div>
+              <div id="lab-dx-flag-list" style="display:flex;flex-wrap:wrap;gap:.35rem">
+                <span style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:#fbbf24;padding:.2rem .6rem;border-radius:999px;font-size:.68rem;font-weight:800">Select patient</span>
+              </div>
+            </div>
+            <button id="lab-submit-btn" class="btn btn-success" onclick="submitLabScenario()" style="width:100%;padding:.8rem;font-size:.9rem;font-weight:900;letter-spacing:.04em">Submit Response</button>
+          </div>
+        </div>
+
+        <!-- Response area -->
+        <div style="margin-top:.85rem;background:linear-gradient(160deg,#080e1e,#0a1020);border:1px solid rgba(255,255,255,.1);border-radius:1rem;padding:1rem">
+          <div style="font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.15em;color:#94a3b8;margin-bottom:.6rem">Your Clinical Response</div>
+          <textarea id="lab-response" class="input-field" placeholder="Enter your de-escalation response here..." style="height:120px;resize:vertical;background:#04080f;border-color:rgba(255,255,255,.15);color:#e2e8f0;font-size:.95rem"></textarea>
+          <button id="lab-mic-btn" onclick="toggleLabMic()" title="Record spoken response"
+            style="display:none;align-items:center;justify-content:center;gap:.45rem;padding:.45rem .9rem;border-radius:.65rem;border:1.5px solid #e2e8f0;background:#f8fafc;color:#0f172a;font-size:.8rem;font-weight:800;cursor:pointer;width:100%;margin-top:.5rem;transition:all .2s">
+            &#127908; <span id="lab-mic-label">Speak response</span>
+          </button>
+          <div id="lab-mic-status" style="display:none;font-size:.75rem;color:#dc2626;font-weight:700;text-align:center;margin-top:.4rem"></div>
+        </div>
+
+        <!-- Score / feedback panel -->
+        <div id="lab-score-panel" style="display:none;margin-top:.85rem">
+          <div style="display:grid;grid-template-columns:auto auto 1fr;gap:.75rem;align-items:center;background:linear-gradient(135deg,#0a1628,#0f172a);border:1px solid rgba(255,255,255,.12);border-radius:1rem 1rem 0 0;padding:.9rem 1.25rem;border-bottom:1px solid rgba(255,255,255,.08)">
+            <div style="display:flex;align-items:center;gap:.6rem">
+              <span style="font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:#64748b">Score</span>
+              <span id="lab-score-letter" style="font-size:2rem;font-weight:900;color:#C9A84C;line-height:1">&#8212;</span>
+            </div>
+            <div style="width:1px;height:32px;background:rgba(255,255,255,.1)"></div>
+            <div style="display:flex;align-items:center;gap:.5rem">
+              <span style="font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:#64748b">Lab Credits</span>
+              <span style="font-size:1.1rem;font-weight:900;color:#4ade80">+<span id="lab-lc-earned">0</span></span>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-top:none;border-radius:0 0 1rem 1rem;padding:1.1rem 1.25rem">
+            <div style="font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.14em;color:#C9A84C;margin-bottom:.65rem">Clinical Debrief &#8212; Prof. Vance</div>
+            <div id="lab-feedback" style="color:#e2e8f0;font-size:.9rem;line-height:1.8;white-space:pre-wrap"></div>
+            <div id="lab-cooldown" style="margin-top:.6rem;color:#f87171;font-weight:800;display:none;font-size:.82rem"></div>
+          </div>
+        </div>
+
+        <!-- Patient reply panel -->
+        <div id="marcus-reply-wrap" style="display:none;margin-top:.75rem;border-radius:1rem;overflow:hidden;border:1px solid rgba(201,168,76,.2);box-shadow:0 8px 32px rgba(0,0,0,.6)">
+          <div style="background:linear-gradient(90deg,#0f172a,#1e293b);padding:.65rem 1rem;display:flex;align-items:center;gap:.75rem;border-bottom:1px solid rgba(255,255,255,.08)">
+            <div id="reply-patient-avatar-wrap" style="width:32px;height:32px;border-radius:50%;border:2px solid #C9A84C;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.7rem;color:white;background:#475569;box-shadow:0 0 10px rgba(201,168,76,.25)">
+              <img id="reply-patient-avatar-img" src="" style="width:100%;height:100%;object-fit:cover;object-position:top;display:none" alt="">
+            </div>
+            <div style="flex:1">
+              <div style="font-size:.57rem;font-weight:900;text-transform:uppercase;letter-spacing:.16em;color:#64748b">Patient Response</div>
+              <span id="reply-patient-label" style="font-size:.8rem;font-weight:900;color:white">Marcus responds</span>
+            </div>
+            <span id="marcus-reply-state-dot" style="font-size:.72rem;font-weight:900;padding:.25rem .75rem;border-radius:999px;border:1px solid transparent"></span>
+          </div>
+          <div style="background:linear-gradient(135deg,#070d1c 0%,#0c1526 100%);padding:1.1rem 1.25rem;position:relative;overflow:hidden">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,.008) 3px,rgba(255,255,255,.008) 4px);pointer-events:none"></div>
+            <p id="marcus-reply-text" style="margin:0;color:#f1f5f9;font-size:1.15rem;font-weight:600;line-height:1.75;font-style:italic;position:relative">&#8212;</p>
+          </div>
+        </div>
+
       </div><!-- end tab scenarios -->
+
 
       <!-- TAB: Debrief -->
       <div id="lab-tab-debrief" style="display:none">
@@ -5929,7 +5997,7 @@ const LAB_PATIENTS = [
     dx:'Combat PTSD',
     dxKey:'ptsd',
     bio:'Veteran — acute flashback episode — evaluation pending',
-    avatar:'prof.png',
+    avatar:null,
     initials:'MR', color:'#C9A84C',
     sceneUrl:'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1400&q=80',
     sceneTag:'Psychiatric Unit — Evaluation Bay',
@@ -10347,6 +10415,24 @@ function submitLabScenario() {
   const _gradeLEl = document.getElementById('lab-score-letter');
   if(_gradeLEl){ _gradeLEl.textContent = grade; _gradeLEl.style.color = _gradeColMap[grade]||'#f1f5f9'; }
   document.getElementById('lab-lc-earned').textContent = lcEarned;
+  // Update session vitals
+  _labSessionRounds++;
+  _labSessionLC += lcEarned;
+  const _gradeOrder = {A:0,B:1,C:2,D:3,F:4};
+  if(_labSessionBest === null || _gradeOrder[grade] < _gradeOrder[_labSessionBest]) _labSessionBest = grade;
+  const _rvEl = document.getElementById('lab-session-rounds');
+  const _bvEl = document.getElementById('lab-session-best');
+  const _lvEl = document.getElementById('lab-session-lc');
+  if(_rvEl) _rvEl.textContent = _labSessionRounds;
+  if(_bvEl) { _bvEl.textContent = _labSessionBest; _bvEl.style.color = _gradeColMap[_labSessionBest]||'#C9A84C'; }
+  if(_lvEl) _lvEl.textContent = _labSessionLC;
+  // Update escalation bar
+  const _escMap = {Neutral:0, Frustrated:55, Rage:100};
+  const _escPct = _escMap[marcusState] || 0;
+  const _eb2 = document.getElementById('lab-escalation-bar');
+  const _ep2 = document.getElementById('lab-escalation-pct');
+  if(_eb2) _eb2.style.width = _escPct + '%';
+  if(_ep2) { _ep2.textContent = _escPct + '%'; _ep2.style.color = _escPct >= 70 ? '#f87171' : _escPct >= 35 ? '#fbbf24' : '#4ade80'; }
   document.getElementById('lab-feedback').innerHTML = '<span style="color:#94a3b8;font-size:.82rem;font-style:italic">Prof. Vance is reviewing your response…</span>';
   document.getElementById('lab-modal-credits').textContent = labCredits.toLocaleString();
   document.getElementById('lab-submit-btn').disabled=true;
@@ -10428,7 +10514,7 @@ async function generateMarcusReply(grade, scenario, staffResponse) {
   };
   const gradeContext = { A: 'The staff member responded well — they gave you space, validated your feelings, and offered a choice. You are slightly less tense.', B: 'The staff response was okay. Not great, but not threatening. You are still unsure.', C: 'The staff response felt robotic or clinical. It did not land for you. You feel unheard.', D: 'The staff response made things worse — too directive, too close, or dismissive. You feel cornered.' };
 
-  const sys = `${activePatient.persona} Current emotional state: ${marcusState}. ${toneMap[marcusState]} Keep your reply to 1-3 short sentences. No explanations, no narration — just ${activePatient.name} speaking. Do not use quotation marks.`;
+  const sys = `${activePatient.persona} Current emotional state: ${marcusState}. ${toneMap[marcusState]} Keep your reply to 1-3 short sentences. Every sentence must be fully complete — never end on a single word or fragment. No stage directions, no explanations, no narration — only ${activePatient.name}'s spoken words. Do not use quotation marks. Do not begin with their name.`;
   const userMsg = `Clinical scenario: ${scenario.slice(0,300)}
 
 A staff member just responded to you by saying: "${staffResponse.slice(0,250)}"
