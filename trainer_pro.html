@@ -3159,7 +3159,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
       </div>
       <!-- Character portrait -->
       <img id="lab-char-portrait" src="" alt="Patient portrait"
-           style="position:absolute;right:0;bottom:0;top:0;width:38%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity .5s ease;pointer-events:none">
+           style="position:absolute;right:0;bottom:0;top:0;width:38%;height:100%;object-fit:cover;object-position:center 15%;opacity:0;transition:opacity .5s ease;pointer-events:none">
       <div style="position:absolute;right:0;bottom:0;top:0;width:48%;background:linear-gradient(to right,#080d1a 0%,rgba(8,13,26,0) 60%);pointer-events:none"></div>
     </div>
     <!-- Tab bar -->
@@ -3271,7 +3271,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
           <div style="font-size:.6rem;font-weight:900;text-transform:uppercase;letter-spacing:.15em;color:#94a3b8;margin-bottom:.6rem">Your Clinical Response</div>
           <textarea id="lab-response" class="input-field" placeholder="Enter your de-escalation response here..." style="height:120px;resize:vertical;background:#04080f;border-color:rgba(255,255,255,.15);color:#e2e8f0;font-size:.95rem"></textarea>
           <button id="lab-mic-btn" onclick="toggleLabMic()" title="Record spoken response"
-            style="display:none;align-items:center;justify-content:center;gap:.45rem;padding:.45rem .9rem;border-radius:.65rem;border:1.5px solid #e2e8f0;background:#f8fafc;color:#0f172a;font-size:.8rem;font-weight:800;cursor:pointer;width:100%;margin-top:.5rem;transition:all .2s">
+            style="display:none;align-items:center;justify-content:center;gap:.45rem;padding:.45rem .9rem;border-radius:.65rem;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);color:rgba(255,255,255,.9);font-size:.8rem;font-weight:800;cursor:pointer;width:100%;margin-top:.5rem;transition:all .2s">
             &#127908; <span id="lab-mic-label">Speak response</span>
           </button>
           <div id="lab-mic-status" style="display:none;font-size:.75rem;color:#dc2626;font-weight:700;text-align:center;margin-top:.4rem"></div>
@@ -6002,9 +6002,9 @@ const LAB_PATIENTS = [
     sceneUrl:'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1400&q=80',
     sceneTag:'Psychiatric Unit — Evaluation Bay',
     portraits:{
-      Neutral:    'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=340&h=460&fit=crop&crop=faces&q=80',
-      Frustrated: 'https://images.unsplash.com/photo-1542190891-2093d38760f2?w=340&h=460&fit=crop&crop=faces&q=80',
-      Rage:       'https://images.unsplash.com/photo-1542903660-eedba2cda473?w=340&h=460&fit=crop&crop=faces&q=80'
+      Neutral:    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=340&h=460&fit=crop&crop=faces&q=80',
+      Frustrated: 'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=340&h=460&fit=crop&crop=faces&q=80',
+      Rage:       'https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?w=340&h=460&fit=crop&crop=faces&q=80'
     },
     persona:`You are Marcus, 38, a military veteran admitted to a psychiatric unit with combat PTSD. You do NOT know you are in a training simulation. Respond in first person, in character, exactly as Marcus would in this moment.`
   },
@@ -10096,7 +10096,7 @@ function renderPatientSelector() {
     const avatarHtml = p.avatar
       ? `<img src="${p.avatar}" style="width:24px;height:24px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid ${isActive?'white':p.color};flex-shrink:0" alt="">`
       : `<div style="width:24px;height:24px;border-radius:50%;background:${p.color};display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.58rem;color:white;flex-shrink:0;border:2px solid ${isActive?'white':'transparent'}">${p.initials}</div>`;
-    return `<button onclick="selectLabPatient('${p.id}')" style="display:flex;align-items:center;gap:.45rem;padding:.3rem .65rem .3rem .38rem;border-radius:2rem;border:2px solid ${isActive?p.color:'#e2e8f0'};background:${isActive?p.color+'22':'white'};cursor:pointer;font-size:.77rem;font-weight:${isActive?'900':'700'};color:${isActive?p.color:'#0f172a'};transition:all .15s;white-space:nowrap">${avatarHtml}<span>${p.name}</span><span style="font-size:.64rem;color:${isActive?p.color:'#475569'};font-weight:600;display:none" class="pat-sel-dx">${p.dx}</span></button>`;
+    return `<button onclick="selectLabPatient('${p.id}')" style="display:flex;align-items:center;gap:.45rem;padding:.3rem .65rem .3rem .38rem;border-radius:2rem;border:2px solid ${isActive?p.color:'rgba(255,255,255,.18)'};background:${isActive?p.color+'22':'rgba(255,255,255,.08)'};cursor:pointer;font-size:.77rem;font-weight:${isActive?'900':'700'};color:${isActive?p.color:'rgba(255,255,255,.85)'};transition:all .15s;white-space:nowrap">${avatarHtml}<span>${p.name}</span><span style="font-size:.64rem;color:${isActive?p.color:'rgba(255,255,255,.45)'};font-weight:600;display:none" class="pat-sel-dx">${p.dx}</span></button>`;
   }).join('');
 }
 
