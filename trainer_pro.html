@@ -3119,25 +3119,46 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 
 <!-- ------------------------------------- LAB ROOM MODAL -- -->
 <div id="lab-modal" class="modal-overlay lab">
-  <div class="modal-card large">
-    <div class="modal-card-header large">
-      <div>
-        <h3 style="margin:0;font-size:1.2rem;font-weight:900;color:#0f172a">Laboratory Room</h3>
-        <p style="margin:0;color:#64748b;font-weight:600;font-size:.85rem">Earn Lab Credits by running live de-escalation scenarios.</p>
+  <div class="modal-card large" style="background:#080d1a;border-color:rgba(201,168,76,.2)">
+    <!-- Cinematic Lab Header -->
+    <div style="position:relative;border-radius:1rem 1rem 0 0;overflow:hidden;height:210px;flex-shrink:0">
+      <img id="lab-scene-img" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1400&q=80"
+           style="width:100%;height:100%;object-fit:cover;object-position:center;opacity:.45;transition:opacity .9s ease,transform 1.2s ease;transform:scale(1.04)"
+           alt="Lab Scene">
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,13,26,.92) 0%,rgba(8,13,26,.35) 55%,rgba(8,13,26,.8) 100%)"></div>
+      <!-- Top row -->
+      <div style="position:absolute;top:1rem;left:1.25rem;right:1.25rem;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:.65rem">
+          <span id="lab-live-badge" style="display:flex;align-items:center;gap:.35rem;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.35);color:#f87171;font-size:.6rem;font-weight:900;padding:.2rem .7rem;border-radius:999px;letter-spacing:.12em;text-transform:uppercase">
+            <span style="width:5px;height:5px;background:#ef4444;border-radius:50%;animation:pulse-dot 1.2s ease infinite;display:inline-block"></span>LIVE SESSION
+          </span>
+          <span style="color:rgba(255,255,255,.4);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em">NyxCodex Practice Lab</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:.65rem">
+          <div style="background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.22);padding:.3rem .85rem;border-radius:.75rem;font-weight:800;color:#4ade80;font-size:.8rem">LC: <span id="lab-modal-credits">0</span></div>
+          <button onclick="closeLabRoom()" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.65);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:.85rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='rgba(239,68,68,.2)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">✕</button>
+        </div>
       </div>
-      <div style="display:flex;align-items:center;gap:.75rem">
-        <div style="background:#ecfdf3;border:1px solid #bbf7d0;padding:.4rem .75rem;border-radius:.75rem;font-weight:800;color:#4ade80;font-size:.85rem">Credits: <span id="lab-modal-credits">0</span></div>
-        <button onclick="closeLabRoom()" class="modal-close-btn">✕</button>
+      <!-- Scene info overlay -->
+      <div style="position:absolute;bottom:1.1rem;left:1.25rem;right:1.25rem;display:flex;align-items:flex-end;justify-content:space-between">
+        <div>
+          <div id="lab-scene-tag" style="font-size:.65rem;font-weight:900;text-transform:uppercase;letter-spacing:.14em;color:#C9A84C;margin-bottom:.3rem">De-Escalation Training Lab</div>
+          <div id="lab-scene-title" style="font-size:1.25rem;font-weight:900;color:white;font-family:Montserrat,sans-serif;text-shadow:0 2px 16px rgba(0,0,0,.9);line-height:1.25">Select a patient to begin</div>
+          <div id="lab-scene-subtitle" style="font-size:.75rem;color:rgba(255,255,255,.5);font-weight:600;margin-top:.25rem">Choose a patient profile below</div>
+        </div>
+        <div id="lab-state-badge-overlay" style="display:none;flex-shrink:0;margin-left:1rem">
+          <div id="lab-state-badge-text" style="padding:.3rem .9rem;border-radius:999px;font-size:.68rem;font-weight:900;background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)">&#9679; Neutral</div>
+        </div>
       </div>
     </div>
     <!-- Tab bar -->
-    <div style="display:flex;gap:0;border-bottom:2px solid #e2e8f0;padding:0 1.25rem;background:#f8fafc">
-      <button id="lab-tab-btn-scenarios" onclick="switchLabTab('scenarios')" class="lab-tab-btn active">🎮 Scenarios</button>
-      <button id="lab-tab-btn-debrief" onclick="switchLabTab('debrief')" class="lab-tab-btn">📝 Debrief</button>
-      <button id="lab-tab-btn-script" onclick="switchLabTab('script')" class="lab-tab-btn">📄 Script Builder</button>
+    <div style="display:flex;gap:0;border-bottom:2px solid rgba(255,255,255,.08);padding:0 1.25rem;background:#0d1526">
+      <button id="lab-tab-btn-scenarios" onclick="switchLabTab('scenarios')" class="lab-tab-btn active">🧪 Scenarios</button>
+      <button id="lab-tab-btn-debrief" onclick="switchLabTab('debrief')" class="lab-tab-btn">📋 Debrief</button>
+      <button id="lab-tab-btn-script" onclick="switchLabTab('script')" class="lab-tab-btn">📑 Script Builder</button>
       <button id="lab-tab-btn-microexp" onclick="switchLabTab('microexp')" class="lab-tab-btn">🧠 Micro-Exp</button>
     </div>
-    <div style="padding:1.25rem;overflow-y:auto;flex:1">
+    <div style="padding:1.25rem;overflow-y:auto;flex:1;background:#080d1a">
 
       <!-- TAB: Scenarios -->
       <div id="lab-tab-scenarios">
@@ -3152,10 +3173,10 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
             <div style="font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#64748b">Patient Status</div>
             <div id="lab-patient-name" style="font-weight:800;color:white;font-size:.9rem">Marcus <span style="font-size:.75rem;font-weight:600;color:#94a3b8">— Combat PTSD, evaluation pending</span></div>
           </div>
-          <div id="marcus-state-badge" style="padding:.3rem .85rem;border-radius:1rem;font-weight:900;font-size:.8rem;background:rgba(220,252,231,.15);color:#166534;border:1px solid #bbf7d0">&#x26AB; Neutral</div>
+          <div id="marcus-state-badge" style="padding:.3rem .85rem;border-radius:1rem;font-weight:900;font-size:.8rem;background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.28)">&#x26AB; Neutral</div>
         </div>
         <div class="grid-two-varied">
-        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem">
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:1rem;padding:1rem">
           <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem">
             <select id="lab-dx" class="input-field" style="flex:1;min-width:180px">
               <option value="autism">Autism Spectrum Disorder</option>
@@ -3169,11 +3190,11 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
 
             <button class="btn btn-primary" onclick="generateLabScenario()" style="padding:.65rem 1.1rem;font-size:.85rem;font-weight:800">🎲 New Scenario</button>
           </div>
-          <div id="lab-scenario-box" style="background:white;border:1px solid #e2e8f0;border-radius:.875rem;padding:1rem;min-height:140px;color:#0f172a;font-weight:600;line-height:1.6">Pick a diagnosis and click New Scenario.</div>
+          <div id="lab-scenario-box" style="background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.2);border-radius:.875rem;padding:1rem;min-height:140px;color:#e2e8f0;font-weight:600;line-height:1.6">Pick a diagnosis and click New Scenario.</div>
         </div>
-        <div style="background:#fffaf5;border:1px solid #fed7aa;border-radius:1rem;padding:1rem">
-          <h4 style="margin:0 0 .5rem;font-size:.95rem;font-weight:900;color:#92400e">Earning Rules</h4>
-          <ul style="margin:0;padding-left:1.1rem;color:#fbbf24;font-weight:700;font-size:.86rem;line-height:1.6">
+        <div style="background:rgba(180,83,9,.08);border:1px solid rgba(180,83,9,.25);border-radius:1rem;padding:1rem">
+          <h4 style="margin:0 0 .5rem;font-size:.95rem;font-weight:900;color:#C9A84C">Earning Rules</h4>
+          <ul style="margin:0;padding-left:1.1rem;color:#e2c97e;font-weight:700;font-size:.86rem;line-height:1.6">
             <li>Base: 50 Lab Credits per completed scenario.</li>
             <li>Score bonus: A +50, B +30, C +15, D +5.</li>
             <li>Run each scenario once per day for credits (replays allowed, no credits).</li>
@@ -5899,6 +5920,8 @@ const LAB_PATIENTS = [
     bio:'Veteran — acute flashback episode — evaluation pending',
     avatar:'prof.png',
     initials:'MR', color:'#C9A84C',
+    sceneUrl:'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1400&q=80',
+    sceneTag:'Psychiatric Unit — Evaluation Bay',
     persona:`You are Marcus, 38, a military veteran admitted to a psychiatric unit with combat PTSD. You do NOT know you are in a training simulation. Respond in first person, in character, exactly as Marcus would in this moment.`
   },
   {
@@ -5908,6 +5931,8 @@ const LAB_PATIENTS = [
     bio:'First hospitalization — manic episode day 3 — flight of ideas',
     avatar:null,
     initials:'DL', color:'#B8892A',
+    sceneUrl:'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1400&q=80',
+    sceneTag:'Inpatient Unit — Room 14-B',
     persona:`You are Delilah, 25, admitted for a first psychiatric hospitalization in the middle of a severe manic episode — day 3, little to no sleep. You are racing with ideas, feel invincible and misunderstood, and do NOT know you are in a training simulation. Respond in first person with rapid, pressured speech. You are not hostile by default but feel deeply that no one understands your brilliance right now.`
   },
   {
@@ -5917,6 +5942,8 @@ const LAB_PATIENTS = [
     bio:'Paranoid ideation — refusing medications — hearing voices',
     avatar:null,
     initials:'RM', color:'#dc2626',
+    sceneUrl:'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1400&q=80',
+    sceneTag:'Secure Unit — Medication Hold',
     persona:`You are Raymond, 52, a patient admitted with paranoid schizophrenia who believes the staff are part of a coordinated effort to silence him. You have been refusing your antipsychotic for 2 days. You hear a voice warning you not to trust anyone in the room. You do NOT know you are in a training simulation. Respond in first person — guarded, suspicious, low-trust. Statements from staff may feel like coded threats.`
   }
 ];
@@ -9881,6 +9908,17 @@ function openLabRoom() {
   if (rl) rl.textContent = `${activePatient.name} responds`;
   renderPatientSelector();
   updateMarcusStateBadge();
+  // Init scene banner to match activePatient
+  const _scImg = document.getElementById('lab-scene-img');
+  if(_scImg && activePatient.sceneUrl) { _scImg.src = activePatient.sceneUrl; _scImg.style.opacity = '.45'; }
+  const _scTag = document.getElementById('lab-scene-tag');
+  const _scTit = document.getElementById('lab-scene-title');
+  const _scSub = document.getElementById('lab-scene-subtitle');
+  if(_scTag) _scTag.textContent = activePatient.sceneTag || activePatient.dx;
+  if(_scTit) _scTit.textContent = activePatient.name + ' — ' + activePatient.dx;
+  if(_scSub) _scSub.textContent = activePatient.bio;
+  const _stOv = document.getElementById('lab-state-badge-overlay');
+  if(_stOv) _stOv.style.display = 'flex';
 }
 function closeLabRoom() {
   document.getElementById('lab-modal').style.display='none';
@@ -9901,17 +9939,26 @@ function closeVideoModal() {
 // --- Lab Room Tabs ---------------------------------------
 function updateMarcusStateBadge() {
   const badge = document.getElementById('marcus-state-badge');
-  if(!badge) return;
   const map = {
-    Neutral:  { bg:'#dcfce7', color:'#166534', border:'#bbf7d0', dot:'&#x26AB;' },
-    Frustrated:{ bg:'#fef9c3', color:'#854d0e', border:'#fde68a', dot:'&#x1F7E1;' },
-    Rage:     { bg:'#fee2e2', color:'#991b1b', border:'#fca5a5', dot:'&#x1F534;' }
+    Neutral:   { bg:'rgba(74,222,128,.12)',  color:'#4ade80', border:'rgba(74,222,128,.28)',  dot:'&#x26AB;' },
+    Frustrated:{ bg:'rgba(251,191,36,.12)',  color:'#fbbf24', border:'rgba(251,191,36,.28)',  dot:'&#x1F7E1;' },
+    Rage:      { bg:'rgba(239,68,68,.14)',   color:'#f87171', border:'rgba(239,68,68,.3)',    dot:'&#x1F534;' }
   };
   const s = map[marcusState] || map.Neutral;
-  badge.style.background = s.bg;
-  badge.style.color = s.color;
-  badge.style.borderColor = s.border;
-  badge.innerHTML = s.dot + ' ' + marcusState;
+  if(badge) {
+    badge.style.background = s.bg;
+    badge.style.color = s.color;
+    badge.style.borderColor = s.border;
+    badge.innerHTML = s.dot + ' ' + marcusState;
+  }
+  // Also update the cinematic overlay badge
+  const ovText = document.getElementById('lab-state-badge-text');
+  if(ovText) {
+    ovText.style.background = s.bg;
+    ovText.style.color = s.color;
+    ovText.style.borderColor = s.border;
+    ovText.innerHTML = s.dot + ' ' + marcusState;
+  }
 }
 
 // --- Patient selector helpers -----------------------------
@@ -9954,6 +10001,21 @@ function selectLabPatient(id) {
   if (!p) return;
   activePatient = p;
   marcusState = 'Neutral';
+
+  // Update cinematic scene banner
+  const sceneImg = document.getElementById('lab-scene-img');
+  if(sceneImg && p.sceneUrl) {
+    sceneImg.style.opacity = '0';
+    setTimeout(() => { sceneImg.src = p.sceneUrl; sceneImg.style.opacity = '.45'; }, 350);
+  }
+  const sceneTag   = document.getElementById('lab-scene-tag');
+  const sceneTitle = document.getElementById('lab-scene-title');
+  const sceneSub   = document.getElementById('lab-scene-subtitle');
+  if(sceneTag)   sceneTag.textContent   = p.sceneTag || p.dx;
+  if(sceneTitle) sceneTitle.textContent = p.name + ' — ' + p.dx;
+  if(sceneSub)   sceneSub.textContent   = p.bio;
+  const stateOv = document.getElementById('lab-state-badge-overlay');
+  if(stateOv) stateOv.style.display = 'flex';
 
   // Status bar — name/bio
   const nameEl = document.getElementById('lab-patient-name');
@@ -10084,6 +10146,9 @@ async function generateLabScenario() {
   currentLabDx = dx;
   currentLabScenarioId = `${dx}_${idx}`;
   document.getElementById('lab-scenario-box').textContent = scen;
+  // Update banner subtitle with scenario snippet
+  const _scSub = document.getElementById('lab-scene-subtitle');
+  if(_scSub && scen.length > 10) _scSub.textContent = scen.length > 90 ? scen.substring(0,90)+'…' : scen;
   document.getElementById('lab-response').value = '';
   document.getElementById('lab-score-panel').style.display='none';
   document.getElementById('lab-feedback').textContent='';
