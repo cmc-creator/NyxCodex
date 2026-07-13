@@ -552,11 +552,11 @@ h1,h2,h3,.font-display{font-family:'Playfair Display',serif;font-weight:700}
 .btn-purple:hover{box-shadow:0 10px 24px rgba(142,113,255,.34)}
 .btn-amber{background:linear-gradient(130deg,#ffd189,#C9A84C);color:#2f1b06;border-color:rgba(255,221,163,.65)}
 .btn-amber:hover{box-shadow:0 10px 24px rgba(201,168,76,.34)}
-.btn-secondary{background:white;color:#64748b;border-color:#e2e8f0}
+.btn-secondary{background:white;color:#0f172a;border-color:#cbd5e1}
 .btn-secondary:hover{background:#f8fafc;box-shadow:0 4px 12px rgba(0,0,0,.08)}
 .btn-info{background:linear-gradient(130deg,#93c5fd,#60a5fa);color:#0c2d6b;border-color:rgba(96,165,250,.55)}
 .btn-info:hover{box-shadow:0 10px 24px rgba(96,165,250,.32)}
-.lab-tab-btn{padding:.65rem 1.1rem;font-size:.85rem;font-weight:800;border:none;cursor:pointer;border-bottom:3px solid transparent;color:#64748b;background:transparent;margin-bottom:-2px;transition:color .2s,border-color .2s}
+.lab-tab-btn{padding:.65rem 1.1rem;font-size:.85rem;font-weight:800;border:none;cursor:pointer;border-bottom:3px solid transparent;color:rgba(255,255,255,.65);background:transparent;margin-bottom:-2px;transition:color .2s,border-color .2s}
 .lab-tab-btn.active{color:#C9A84C;border-bottom-color:#C9A84C}
 .input-field{width:100%;padding:.875rem 1rem;background:#f8fafc;border:1.5px solid #94a3b8;border-radius:.82rem;font-family:inherit;font-size:1.05rem;font-weight:600;outline:none;transition:border-color .2s,background .2s;color:#0f172a}
 .input-field:focus{border-color:#60a5fa;background:#fff}
@@ -3157,13 +3157,17 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
           <div id="lab-state-badge-text" style="padding:.3rem .9rem;border-radius:999px;font-size:.68rem;font-weight:900;background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)">&#9679; Neutral</div>
         </div>
       </div>
+      <!-- Character portrait -->
+      <img id="lab-char-portrait" src="" alt="Patient portrait"
+           style="position:absolute;right:0;bottom:0;top:0;width:38%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity .5s ease;pointer-events:none">
+      <div style="position:absolute;right:0;bottom:0;top:0;width:48%;background:linear-gradient(to right,#080d1a 0%,rgba(8,13,26,0) 60%);pointer-events:none"></div>
     </div>
     <!-- Tab bar -->
     <div style="display:flex;gap:0;border-bottom:2px solid rgba(255,255,255,.08);padding:0 1.25rem;background:#0d1526">
-      <button id="lab-tab-btn-scenarios" onclick="switchLabTab('scenarios')" class="lab-tab-btn active">🧪 Scenarios</button>
-      <button id="lab-tab-btn-debrief" onclick="switchLabTab('debrief')" class="lab-tab-btn">📋 Debrief</button>
-      <button id="lab-tab-btn-script" onclick="switchLabTab('script')" class="lab-tab-btn">📑 Script Builder</button>
-      <button id="lab-tab-btn-microexp" onclick="switchLabTab('microexp')" class="lab-tab-btn">🧠 Micro-Exp</button>
+      <button id="lab-tab-btn-scenarios" onclick="switchLabTab('scenarios')" class="lab-tab-btn active">Scenarios</button>
+      <button id="lab-tab-btn-debrief" onclick="switchLabTab('debrief')" class="lab-tab-btn">Debrief</button>
+      <button id="lab-tab-btn-script" onclick="switchLabTab('script')" class="lab-tab-btn">Script Builder</button>
+      <button id="lab-tab-btn-microexp" onclick="switchLabTab('microexp')" class="lab-tab-btn">Micro-Expressions</button>
     </div>
     <div style="padding:1.25rem;overflow-y:auto;flex:1;background:#080d1a">
 
@@ -3195,7 +3199,7 @@ body{line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:
               <option value="medication_refusal">Medication Refusal</option>
             </select>
 
-            <button class="btn btn-primary" onclick="generateLabScenario()" style="padding:.65rem 1.1rem;font-size:.85rem;font-weight:800">🎲 New Scenario</button>
+            <button class="btn btn-amber" onclick="generateLabScenario()" style="padding:.65rem 1.1rem;font-size:.85rem;font-weight:800">&#9654; Load Scenario</button><button class="btn btn-primary" onclick="randomizeLabScenario()" style="padding:.65rem 1.1rem;font-size:.85rem;font-weight:800">&#127922; Randomize All</button>
           </div>
           <div id="lab-scenario-box" style="background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.2);border-radius:.875rem;padding:1rem;min-height:140px;color:#e2e8f0;font-weight:600;line-height:1.6">Pick a diagnosis and click New Scenario.</div>
         </div>
@@ -5929,6 +5933,11 @@ const LAB_PATIENTS = [
     initials:'MR', color:'#C9A84C',
     sceneUrl:'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1400&q=80',
     sceneTag:'Psychiatric Unit — Evaluation Bay',
+    portraits:{
+      Neutral:    'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=340&h=460&fit=crop&crop=faces&q=80',
+      Frustrated: 'https://images.unsplash.com/photo-1542190891-2093d38760f2?w=340&h=460&fit=crop&crop=faces&q=80',
+      Rage:       'https://images.unsplash.com/photo-1542903660-eedba2cda473?w=340&h=460&fit=crop&crop=faces&q=80'
+    },
     persona:`You are Marcus, 38, a military veteran admitted to a psychiatric unit with combat PTSD. You do NOT know you are in a training simulation. Respond in first person, in character, exactly as Marcus would in this moment.`
   },
   {
@@ -5940,6 +5949,11 @@ const LAB_PATIENTS = [
     initials:'DL', color:'#B8892A',
     sceneUrl:'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1400&q=80',
     sceneTag:'Inpatient Unit — Room 14-B',
+    portraits:{
+      Neutral:    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=340&h=460&fit=crop&crop=faces&q=80',
+      Frustrated: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=340&h=460&fit=crop&crop=faces&q=80',
+      Rage:       'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=340&h=460&fit=crop&crop=faces&q=80'
+    },
     persona:`You are Delilah, 25, admitted for a first psychiatric hospitalization in the middle of a severe manic episode — day 3, little to no sleep. You are racing with ideas, feel invincible and misunderstood, and do NOT know you are in a training simulation. Respond in first person with rapid, pressured speech. You are not hostile by default but feel deeply that no one understands your brilliance right now.`
   },
   {
@@ -5951,6 +5965,11 @@ const LAB_PATIENTS = [
     initials:'RM', color:'#dc2626',
     sceneUrl:'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1400&q=80',
     sceneTag:'Secure Unit — Medication Hold',
+    portraits:{
+      Neutral:    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=340&h=460&fit=crop&crop=faces&q=80',
+      Frustrated: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=340&h=460&fit=crop&crop=faces&q=80',
+      Rage:       'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=340&h=460&fit=crop&crop=faces&q=80'
+    },
     persona:`You are Raymond, 52, a patient admitted with paranoid schizophrenia who believes the staff are part of a coordinated effort to silence him. You have been refusing your antipsychotic for 2 days. You hear a voice warning you not to trust anyone in the room. You do NOT know you are in a training simulation. Respond in first person — guarded, suspicious, low-trust. Statements from staff may feel like coded threats.`
   }
 ];
@@ -9966,6 +9985,16 @@ function updateMarcusStateBadge() {
     ovText.style.borderColor = s.border;
     ovText.innerHTML = s.dot + ' ' + marcusState;
   }
+  // Update character portrait based on emotional state
+  const portrait = document.getElementById('lab-char-portrait');
+  if(portrait && activePatient.portraits) {
+    const newSrc = activePatient.portraits[marcusState] || activePatient.portraits.Neutral;
+    if(portrait.getAttribute('data-state') !== marcusState) {
+      portrait.setAttribute('data-state', marcusState);
+      portrait.style.opacity = '0';
+      setTimeout(() => { portrait.src = newSrc; portrait.style.opacity = '.85'; }, 320);
+    }
+  }
 }
 
 // --- Patient selector helpers -----------------------------
@@ -10050,6 +10079,13 @@ function selectLabPatient(id) {
   const mrw = document.getElementById('marcus-reply-wrap');
   if (mrw) mrw.style.display = 'none';
 
+  // Init portrait for selected patient (always Neutral on switch)
+  const portrait = document.getElementById('lab-char-portrait');
+  if(portrait && p.portraits) {
+    portrait.style.opacity = '0';
+    portrait.removeAttribute('data-state');
+    setTimeout(() => { portrait.src = p.portraits.Neutral; portrait.style.opacity = '.85'; }, 400);
+  }
   renderPatientSelector();
   updateMarcusStateBadge();
 }
@@ -10135,11 +10171,18 @@ async function buildLabScriptAI() {
   }
 }
 
-async function generateLabScenario() {
-  // Use active patient's dx key; sync the dropdown to match
+function randomizeLabScenario() {
   const dxSel = document.getElementById('lab-dx');
-  if (dxSel) dxSel.value = activePatient.dxKey;
-  const dx = activePatient.dxKey;
+  if(dxSel) {
+    const avail = Object.keys(scenarios).filter(k => (scenarios[k]||[]).length > 0);
+    if(avail.length) dxSel.value = avail[Math.floor(Math.random()*avail.length)];
+  }
+  generateLabScenario();
+}
+
+async function generateLabScenario() {
+  const dxSel = document.getElementById('lab-dx');
+  const dx = dxSel ? dxSel.value : activePatient.dxKey;
   let pool;
   if (dx === 'ptsd') {
     // Keep Marcus-specific pool for PTSD patient
